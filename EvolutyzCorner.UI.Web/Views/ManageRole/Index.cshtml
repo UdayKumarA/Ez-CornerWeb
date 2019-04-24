@@ -1,0 +1,985 @@
+﻿@model Evolutyz.Entities.RoleEntity
+
+@{
+    ViewBag.Title = "Role Management";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+
+
+
+<style>
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    .form-control.validate_msg + span.field-validation-valid:before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    input#Rol_RoleCode.validate_msg + span:before {
+        content: "RoleCode Already Exist In this Account ";
+    }
+
+    select#Rol_RoleName.validate_msg + span:before {
+        content: "RoleName Already Exist In this Account ";
+    }
+
+    a .btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    .flex-group {
+        /*display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-items: center;*/
+        margin: auto auto 10px;
+    }
+
+    .flex-wrap {
+        display: flex;
+        flex-flow: wrap;
+    }
+
+        .flex-wrap > .col-md-4 > .flex-group {
+            background-color: rgba(231, 159, 127, 0.20);
+        }
+
+            .flex-wrap > .col-md-4 > .flex-group > [id^="submodules_"] {
+                padding-left: 20px;
+            }
+
+            .flex-wrap > .col-md-4 > .flex-group > label {
+                font-size: 16px;
+                color: #bb6d4b;
+                padding-left: 5px;
+            }
+
+    .flex-group > input[type=checkbox] {
+        display: inline-block;
+        float: right;
+        margin-right: 5px;
+    }
+
+    .flex-group > input[type=radio] {
+        margin: auto auto 8px auto;
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .box.box-solid.box-brown .btn-warning {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+
+    [id^="submodules_"] > label.control-label {
+        display: block;
+    }
+
+    .inline-radio {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    [id^="submodules_"] > span.inline-radio + span.inline-radio {
+        margin-left: 15px;
+    }
+</style>
+<style>
+    #loading-image {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1035;
+        background-color: rgba(243, 243, 243, 0.75);
+        /*opacity: .8;*/
+    }
+
+        #loading-image > img {
+            /*width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 87, 34, 0.25);
+            border-top-color: #f37a41;
+            border-radius: 50%;*/
+            position: absolute;
+            /* animation: loader-rotate 1s linear infinite; */
+            top: 50%;
+            left: 50%;
+            margin: -60px auto 0;
+            max-width: 100%;
+            display: block;
+            height: 100px;
+        }
+
+        #loading-image > span {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            animation: loader-circles 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            margin: -20px auto 0;
+        }
+
+        #loading-image > strong {
+            position: absolute;
+            top: 50%;
+            left: 48%;
+            margin: 0px auto 0;
+            font-size: 10px;
+        }
+
+    @@keyframes loader-circles {
+        0% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+
+        12.5% {
+            box-shadow: 0 -85px 0 0 #f37a41, 61px -61px 0 0 rgba(255, 87, 34, 0.05), 85px 0 0 0 rgba(255, 87, 34, 0.1), 61px 61px 0 0 rgba(255, 87, 34, 0.2), 0 85px 0 0 rgba(255, 87, 34, 0.3), -61px 61px 0 0 rgba(255, 87, 34, 0.4), -85px 0 0 0 rgba(255, 87, 34, 0.6), -61px -61px 0 0 rgba(255, 87, 34, 0.8);
+        }
+
+        25% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.8), 61px -61px 0 0 #f37a41, 85px 0 0 0 rgba(255, 87, 34, 0.05), 61px 61px 0 0 rgba(255, 87, 34, 0.1), 0 85px 0 0 rgba(255, 87, 34, 0.2), -61px 61px 0 0 rgba(255, 87, 34, 0.3), -85px 0 0 0 rgba(255, 87, 34, 0.4), -61px -61px 0 0 rgba(255, 87, 34, 0.6);
+        }
+
+        37.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.6), 61px -61px 0 0 rgba(255, 87, 34, 0.8), 85px 0 0 0 #f37a41, 61px 61px 0 0 rgba(255, 87, 34, 0.05), 0 85px 0 0 rgba(255, 87, 34, 0.1), -61px 61px 0 0 rgba(255, 87, 34, 0.2), -85px 0 0 0 rgba(255, 87, 34, 0.3), -61px -61px 0 0 rgba(255, 87, 34, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.4), 61px -61px 0 0 rgba(255, 87, 34, 0.6), 85px 0 0 0 rgba(255, 87, 34, 0.8), 61px 61px 0 0 #f37a41, 0 85px 0 0 rgba(255, 87, 34, 0.05), -61px 61px 0 0 rgba(255, 87, 34, 0.1), -85px 0 0 0 rgba(255, 87, 34, 0.2), -61px -61px 0 0 rgba(255, 87, 34, 0.3);
+        }
+
+        62.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.3), 61px -61px 0 0 rgba(255, 87, 34, 0.4), 85px 0 0 0 rgba(255, 87, 34, 0.6), 61px 61px 0 0 rgba(255, 87, 34, 0.8), 0 85px 0 0 #f37a41, -61px 61px 0 0 rgba(255, 87, 34, 0.05), -85px 0 0 0 rgba(255, 87, 34, 0.1), -61px -61px 0 0 rgba(255, 87, 34, 0.2);
+        }
+
+        75% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.2), 61px -61px 0 0 rgba(255, 87, 34, 0.3), 85px 0 0 0 rgba(255, 87, 34, 0.4), 61px 61px 0 0 rgba(255, 87, 34, 0.6), 0 85px 0 0 rgba(255, 87, 34, 0.8), -61px 61px 0 0 #f37a41, -85px 0 0 0 rgba(255, 87, 34, 0.05), -61px -61px 0 0 rgba(255, 87, 34, 0.1);
+        }
+
+        87.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.1), 61px -61px 0 0 rgba(255, 87, 34, 0.2), 85px 0 0 0 rgba(255, 87, 34, 0.3), 61px 61px 0 0 rgba(255, 87, 34, 0.4), 0 85px 0 0 rgba(255, 87, 34, 0.6), -61px 61px 0 0 rgba(255, 87, 34, 0.8), -85px 0 0 0 #f37a41, -61px -61px 0 0 rgba(255, 87, 34, 0.05);
+        }
+
+        100% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+    }
+</style>
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Role</h4>
+            </div>
+            <form id="myform">
+                <div class="modal-body">
+
+                    <div class="row" style="display:none;">
+                        <div class="form-group col-md-4">
+                            <label for="Usr_UserID">Rol_RoleID</label>
+                            @Html.TextBoxFor(m => m.Rol_RoleID, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Usr_UserID">Rol_AccountID</label>
+                            @Html.TextBoxFor(m => m.Rol_AccountID, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(m => m.Rol_Version, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="AccountName">Accountname<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(model => model.AccountName, new SelectList(ViewBag.accountnames, "value", "text"), "Select Accountname", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AccountName)
+                            @*@Html.DropDownListFor(m => m.AccountName, new SelectList(ViewBag.accountnames, "value", "text"), "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AccountName)*@
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="RoleCode">RoleCode<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Rol_RoleCode, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.Rol_RoleCode)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="RoleName">RoleName<font style="color:red;">*</font></label>
+                            @*@Html.TextBoxFor(m => m.Rol_RoleName, new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(m => m.Rol_RoleName)*@
+                            @Html.DropDownListFor(model => model.Rol_RoleName, new SelectList(ViewBag.rolenames, "value", "text"), "Select Rolename", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Rol_RoleName)
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="form-group col-md-4">
+                            <label for="RoleDescription">Role Title<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Rol_RoleDescription, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.Rol_RoleDescription)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Manager1">Status<font style="color:red;">*</font></label>
+
+                            @Html.DropDownListFor(m => m.Rol_ActiveStatus, new SelectList(new List<Object>{
+
+                         new { value = true, text = "Active"},
+                         new { value = false, text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Rol_ActiveStatus)
+                        </div>
+                        @*<div class="form-group col-md-4">
+                                <div>&nbsp;</div>
+                                <label for="Manager1">
+                                    @Html.CheckBoxFor(m => m.IsManagerRole.Value, new { @id = "IsManagerRole", style = "display:inline-block" })Is A Manger
+                                </label>
+
+                            </div>*@
+                    </div>
+                    <div class="row flex-wrap">
+
+                        @foreach (var modules in ViewBag.modules)
+                        {
+                            <div class="col-md-4">
+                                <div class="flex-group">
+                                    <label class="control-label">@modules.Mod_ModuleName</label>
+                                    <input type="checkbox" id="@modules.Mod_ModuleID" value="@modules.Mod_ModuleID" name="modulenames" class="control--checkbox" onchange="Checkmodule(this)" />
+                                    <div id='submodules_@modules.Mod_ModuleID'></div>
+
+                                    @*@foreach (var access in ViewBag.access)
+                                        {
+                                            <input type="radio" id="@access.ModuleAccessTypeID" name="@modules.Mod_ModuleID" value="" class="id" />@access.ModuleAccessType1
+                                        }*@
+
+
+                                </div>
+                            </div>
+                        }
+                        <span>(Note:To deselect module double click on radion button)</span>
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" id="btnUpdate" class="btn btn-clr">Update</button>
+                    <button type="submit" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> Roles </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Organization</th>
+                        <th>Role Code</th>
+                        <th>User Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th id="actions">Action</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="DeleteSkill(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    var roleid = 0;
+    var moduleaccesstypeids = [];
+    var moduleids = [];
+    var moduleid = [];
+    var j = 0;
+    var delid;
+    function EditUser(Rol_RoleID) {
+
+        $("#btnAdd").hide();
+        roleid = Rol_RoleID;
+        $("#btnUpdate").show();
+        $(".modal-title").text('Edit Record');
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+
+            url: '/ManageRole/GetRoleByID?catID=' + Rol_RoleID,
+            type: 'Get',
+            success: function (data) {
+
+                $.ajax({
+                    url: '/ManageRole/Getmodulesselected?catID=' + data.Rol_RoleID,
+                    type: 'Get',
+                    success: function (res) {
+
+                        j = res.length;
+                        for (var i = 0; i <= res.length - 1; i++) {
+                            moduleaccesstypeids.push(res[i].ModuleAccessTypeID);
+                            moduleids.push(res[i].Sub_ModuleID);
+                            moduleid.push(res[i].Mod_ModuleID);
+                            $("#" + moduleid[i] + "").prop('checked', true);
+                            //$("input[name=" + moduleids[i] + "][id=" + moduleaccesstypeids[i] + "]").prop('checked', true);
+                            getallsubmodules(moduleid[i]);
+                            $("input[name=" + moduleids[i] + "][id=" + moduleaccesstypeids[i] + "]").prop('checked', true);
+
+                        }
+
+                    }
+                });
+
+                var Rol_RoleID = data.Rol_RoleID;
+
+                var Rol_AccountID = data.Rol_AccountID;
+
+                var AccountName = data.AccountName;
+
+                var Rol_RoleName = data.GenericRoleID;
+
+                var Rol_RoleDescription = data.Rol_RoleDescription;
+
+                var Rol_ActiveStatus = data.Rol_ActiveStatus;
+
+                var Rol_RoleCode = data.Rol_RoleCode;
+
+               // var IsManagerRole = data.IsManagerRole;
+                if (Rol_ActiveStatus === true) {
+                    $("#Rol_ActiveStatus").val("True");
+                } else {
+                    $("#Rol_ActiveStatus").val("False");
+                }
+
+
+
+                $("#Rol_RoleCode").val(Rol_RoleCode);
+
+                $("#AccountName").val(Rol_AccountID).attr("disabled", "disabled");
+
+                $("#Rol_RoleName").val(Rol_RoleName);
+
+                $("#Rol_RoleDescription").val(Rol_RoleDescription);
+
+                $("#Rol_RoleID").val(Rol_RoleID);
+
+                $("#Rol_AccountID").val(Rol_AccountID);
+
+                //if (IsManagerRole === true) {
+                //    $("#IsManagerRole").prop('checked', true);
+                //}
+                //else {
+                //    $("#IsManagerRole").prop('checked', false);
+                //}
+
+
+
+
+
+            },
+
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+
+
+            error: function () {
+                alert(Response.text);
+            }
+        });
+
+    }
+
+
+    function DeleteSkill(Rol_RoleID) {
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+
+            type: "POST",
+            url: '/ManageRole/DeleteRole?RoleID=' + Rol_RoleID,
+            //dataType: "json",
+            //   cache: false,
+            success: function (res) {
+
+                alert(res);
+                //alert("Deleted Succesfully");
+
+                window.location.reload();
+                // window.location.href = "/ManageRole/Index";
+            },
+
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        });
+
+    }
+   // ondblclick = "resetradio(this)"
+    function resetradio(radio) {
+        var name = $(radio).prop('name');
+       // $('#form input:radio[name=' + name + ']:checked').each(function () {
+        $('#form input:radio[name=' + name + ']:checked').each(function () {
+            var $this = $(this);
+            $this.prop("checked", false);
+        });
+    }
+
+
+
+      var permissions = '@ViewBag.a';
+    function loaddata() {
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+            url: "/ManageRole/GetRoleCollection",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+                                { 'data': 'AccountName' },
+                                { 'data': 'Rol_RoleCode' },
+                                { 'data': 'Rol_RoleName' },
+                                {
+                                    'data': 'Rol_RoleDescription',
+                                    'render': function (data, type, row) {
+                                        return data.substr(0, 15);
+                                    }
+                                },
+
+                                {
+                                    'data': 'Rol_ActiveStatus',
+                                    "render": function (Rol_ActiveStatus, type, full, meta) {
+                                        if (Rol_ActiveStatus === true) {
+                                            return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked   onclick="UnCheckStatus(' + full.Rol_RoleID + ')"> <label for="check_01"></label> </div>';
+                                        }
+                                        else {
+                                            return '<div class="statuscheck"> <input type="checkbox" id="check_02"   onclick="CheckStatus(' + full.Rol_RoleID + ')"> <label for="check_02"></label> </div>';
+                                        }
+                                    }
+                                },
+
+
+                                {
+
+                                    "render": function (Rol_RoleID, type, full, meta){
+
+                                        if (permissions === "Read/Write")
+                                        {
+                                            return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal"  data-target="#ContainerGridDetail" id="edit" title="Edit" onclick="EditUser(' + full.Rol_RoleID + ')" ><i class="fa fa-edit" aria-hidden="true"></i></a><a class="btn btn-icn btn-icn-hide" id="delete" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.Rol_RoleID + '" title="Delete" onclick="Getid(' + full.Rol_RoleID + ')" "><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+
+                                        }
+                                        else {
+                                            return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail" id="edit" title="Edit" onclick="EditUser(' + full.Rol_RoleID + ')" ><i class="fa fa-edit" aria-hidden="true"></i></a><a class="btn btn-icn" id="delete" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.Rol_RoleID + '" title="Delete" onclick="Getid(' + full.Rol_RoleID + ')" "><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+                                        }
+                                     }
+
+                                }
+
+                    ]
+                });
+
+            },
+
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+
+
+            error: function (msg) {
+                // alert(msg.responseText);
+            }
+        });
+    }
+    function UnCheckStatus(id) {
+        $.ajax({
+            url: "/ManageRole/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': false
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function CheckStatus(id) {
+        $.ajax({
+            url: "/ManageRole/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': true
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+
+    function Checkmodule(checkbox) {
+        var id;
+
+
+        if ($(checkbox).prop("checked") === true) {
+            id = $(checkbox).val();
+            $.ajax({
+                url: '/ManageRole/CheckModule?modid=' + id,
+                type: "GET",
+                dataType: "json",
+                success: function (res) {
+
+                    for (var i = 0; i <= res.length - 1; i++) {
+                        $("#submodules_" + id + "").append('<label class="control-label">' + res[i].Sub_ModuleName + '</label>@foreach (var access in ViewBag.access){<span class="inline-radio"><input type="radio" id="@access.ModuleAccessTypeID" name="' + res[i].Sub_ModuleID + '" value="" class="id" ondblclick="resetradio(this)"/>@access.ModuleAccessType1</span>}');
+                    }
+                }
+            });
+        } else {
+            id = $(checkbox).val();
+
+                $("#submodules_" + id + "").empty();
+
+        }
+    }
+
+
+
+    function getallsubmodules(mid) {
+
+        if ($("#" + mid).prop("checked") === true) {
+
+            $.ajax({
+                url: '/ManageRole/CheckModule?modid=' + mid,
+                type: 'Get',
+                dataType: "json",
+                success: function (res)    {
+                    $("#submodules_" + mid + "").empty();
+                    for (var i = 0; i <= res.length - 1; i++) {
+                        $("#submodules_" + res[i].Mod_ModuleID + "").append('<label class="control-label">' + res[i].Sub_ModuleName + '</label>@foreach (var access in ViewBag.access){<span class="inline-radio"><input type="radio" id="@access.ModuleAccessTypeID" name="' + res[i].Sub_ModuleID + '" value="" class="id" ondblclick="resetradio(this)"  />@access.ModuleAccessType1</span>}');
+
+                    }
+                    for ( var k = 0; k <= j- 1; k++) {
+                        $("input[name=" + moduleids[k] + "][id=" + moduleaccesstypeids[k] + "]").attr('checked', 'checked');
+                    }
+
+                }
+            });
+        }
+        else {
+            $("#submodules_" +mid + "").empty();
+        }
+    }
+
+    function Getid(id) {
+        delid = id;
+    }
+
+    $(document).ready(function () {
+
+
+        $('#form input:radio').on('dblclick', function () {
+
+            var $this = $(this);
+            var name = $this.prop('name');
+            resetRadio(name);
+        });
+        loaddata();
+
+
+        $("#btnclose").click(function () {
+            window.location.reload();
+        });
+        $(function modalTwice() {
+
+            $(document).on("click", "#btnAddModel", function (event) {
+
+                $("#AccountName").val(0).removeAttr('disabled');
+                // $("#AccountName").val(" ");
+                $("#Rol_RoleCode").val("");
+                $("#Rol_ActiveStatus").val("True");
+                $("#Rol_RoleName").val("");
+                $("#Rol_RoleDescription").val(" ");
+              //  $("#Rol_ActiveStatus").val(1);
+
+                $('input[type=checkbox]').prop('checked', false);
+
+                $("#ContainerGridDetail").show();
+                $("#btnAdd").show();
+
+                $("#btnUpdate").hide();
+
+
+                $("#close").on('click', function () {
+                    $("#ContainerGridDetail").hide();
+                });
+                $(".close").on('click', function () {
+                    $("#ContainerGridDetail").hide();
+                });
+
+
+                $("#btnAdd").on("click", function () {
+
+
+                    var AccountName = $("#AccountName").val();
+                    var Rol_RoleCode = $("#Rol_RoleCode").val();
+                    var Rol_RoleName = $("#Rol_RoleName").val();
+                    var Rol_RoleDescription = $("#Rol_RoleDescription").val();
+                   // var IsManagerRole = $("#IsManagerRole").val();
+                    var Rol_ActiveStatus = $("#Rol_ActiveStatus").val();
+
+
+
+                    var moduleaccess = [];
+                    var moduleaccesstypeid = new Array();
+                    $("input[class=id]:checked").each(function () {
+                        moduleaccesstypeid.push($(this).attr('id'));
+                    });
+                    var moduleid = new Array();
+                    $("input[class=id]:checked").each(function () {
+                        moduleid.push($(this).attr('name'));
+                    });
+                    for (var i = 0; i <= moduleid.length - 1; i++) {
+                        moduleaccess.push({ "ModuleAccessTypeID": moduleaccesstypeid[i], "Mod_ModuleID": moduleid[i], "Rol_AccountID": AccountName });
+                    }
+                    moduleaccess = JSON.stringify({
+                        'moduleaccess': moduleaccess, 'Rol_RoleCode': Rol_RoleCode, 'Rol_RoleName': Rol_RoleName, 'Rol_RoleDescription': Rol_RoleDescription, 'Rol_ActiveStatus': Rol_ActiveStatus,
+                       'Rol_AccountID': AccountName
+                    });
+
+
+                    $('#myform').validate({
+                        rules: {
+                            AccountName: {
+                                required: true,
+
+                            },
+                            Rol_RoleCode: {
+                                required: true,
+                                regx: /^[a-zA-Z]*$/
+                            },
+                            Rol_RoleName: {
+                                required: true,
+                              
+                            },
+                            Rol_ActiveStatus: {
+                                required: true
+                            },
+                            Rol_RoleDescription: {
+                                required: true,
+                                regx: /^[a-zA-Z ]*$/
+                            }
+
+
+                        },
+                        submitHandler: function (form) {
+                            $('#loading-image').attr("style", "display: block;");
+                            if (moduleaccesstypeid.length === 0 || moduleid.length === 0) {
+                                alert("Please Select Modules");
+                                return false;
+                            } else {
+                                $.ajax({
+
+                                    type: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    url: "/ManageRole/CreateRole",
+                                    data: moduleaccess,
+                                    /// dataType: "json",
+                                    // cache: false,
+                                    success: function (res) {
+                                        if (res === "RoleName Already Exist In this Account ") {
+                                            $("#Rol_RoleName").addClass("validate_msg");
+                                            $("#Rol_RoleCode").removeClass("validate_msg");
+                                        } else if (res === "RoleCode Already Exist In this Account ") {
+                                            $("#Rol_RoleCode").addClass("validate_msg");
+                                            $("#Rol_RoleName").removeClass("validate_msg");
+                                        } else {
+                                            $("#Rol_RoleCode").removeClass("validate_msg");
+                                            $("#Rol_RoleName").removeClass("validate_msg");
+                                            alert(res);
+                                            window.location.href = "/ManageRole/Index";
+                                        }
+
+
+                                    },
+
+                                    complete: function () {
+                                        $('#loading-image').attr("style", "display: none;");
+                                    },
+
+
+                                    error: function (Result) {
+
+                                        //alert("Error");
+
+                                    }
+
+                                });
+
+                                return false;
+                           }
+
+
+                        }
+                    });
+                    $.validator.addMethod("regx", function (value, element, regexpr) {
+                        return regexpr.test(value);
+                    }, "Please enter  Only Alphabets .");
+                    $.validator.addMethod("regex", function (value, element, regexpr) {
+                        return regexpr.test(value);
+                    }, "Please enter 10 Digit Number.");
+                    $.validator.addMethod("reg", function (value, element, regexpr) {
+                        return regexpr.test(value);
+                    }, "Please enter valid Password");
+
+
+
+                });
+
+
+            });
+
+        });
+
+        $("#btnUpdate").on("click", function () {
+
+            var AccountName = $("#AccountName").val();
+            var Rol_RoleCode = $("#Rol_RoleCode").val();
+            var Rol_RoleName = $("#Rol_RoleName").val();
+            var Rol_RoleDescription = $("#Rol_RoleDescription").val();
+            //var IsManagerRole = $("#IsManagerRole").val();
+            var Rol_ActiveStatus = $("#Rol_ActiveStatus").val();
+
+            var moduleaccess = [];
+            var moduleaccesstypeid = new Array();
+            $("input[class=id]:checked").each(function () {
+                moduleaccesstypeid.push($(this).attr('id'));
+            });
+            var moduleid = new Array();
+            $("input[class=id]:checked").each(function () {
+                moduleid.push($(this).attr('name'));
+            });
+            for (var i = 0; i <= moduleid.length - 1; i++) {
+                moduleaccess.push({ "ModuleAccessTypeID": moduleaccesstypeid[i], "Mod_ModuleID": moduleid[i], "Rol_AccountID": AccountName });
+            }
+            moduleaccess = JSON.stringify({
+                'moduleaccess': moduleaccess, 'Rol_RoleCode': Rol_RoleCode, 'Rol_RoleName': Rol_RoleName, 'Rol_RoleDescription': Rol_RoleDescription, 'Rol_ActiveStatus': Rol_ActiveStatus,
+                'Rol_AccountID': AccountName
+            });
+            $('#myform').validate({
+                rules: {
+                    AccountName: {
+                        required: true,
+
+                    },
+                    Rol_RoleCode: {
+                        required: true,
+                        regx: /^[a-zA-Z]*$/
+                    },
+                    Rol_RoleName: {
+                        required: true,
+
+                    },
+                    Rol_ActiveStatus: {
+                        required: true
+                    },
+                    Rol_RoleDescription: {
+                        required: true,
+                        regx: /^[a-zA-Z ]*$/
+                    }
+
+
+                },
+                submitHandler: function (form) {
+                    $('#loading-image').attr("style", "display: block;");
+                    if (moduleaccesstypeid.length === 0 || moduleid.length === 0) {
+                        alert("Please Select Modules");
+                        return false;
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: '/ManageRole/UpdateRole?id=' + roleid,
+                            data: moduleaccess,
+                            success: function (res) {
+
+                                alert(res);
+                                window.location.reload();
+
+                            },
+                            complete: function () {
+                                $('#loading-image').attr("style", "display: none;");
+                            },
+
+
+                            error: function (Result) {
+
+                                //alert("Error");
+
+                            }
+
+                        });
+                        return false;
+                    }
+
+
+                }
+            });
+            $.validator.addMethod("regx", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter  Only Alphabets .");
+            $.validator.addMethod("regex", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter 10 Digit Number.");
+            $.validator.addMethod("reg", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter valid Password");
+
+
+
+           
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#role_management").addClass("active");
+        $("#role_management > ul.treeview-menu > li:first-child").addClass("click");
+        $("#role_management").siblings().removeClass("active");
+        var permissions = '@ViewBag.a';
+
+        if (permissions === "Read/Write")
+        {
+            $("#btnAddModel").show();
+            $("#actions").show();
+
+        }
+        else
+        {
+            $("#btnAddModel").hide();
+            $("#actions").hide();
+         }
+    });
+</script>

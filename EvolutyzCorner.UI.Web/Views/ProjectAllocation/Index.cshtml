@@ -1,0 +1,1145 @@
+﻿@model Evolutyz.Entities.ProjectAllocationEntity
+@{
+    ViewBag.Title = "Assign user to Project";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>*@
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+
+<style>
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .box.box-solid.box-brown .btn-warning {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<style type="text/css">
+    body.modal-open {
+        padding-right: 8px;
+    }
+
+        body.modal-open .modal {
+            display: block;
+            padding-right: 8px;
+        }
+
+    .checkbox > input[type=checkbox], .radio > input[type=radio] {
+        margin: 5px auto auto;
+        left: 5px;
+    }
+
+    fieldset.form-group .checkbox, fieldset.form-group .checkbox {
+        padding-left: 25px;
+        margin: auto;
+    }
+
+    fieldset.form-group {
+        display: block;
+        margin-inline-start: 2px;
+        margin-inline-end: 2px;
+        padding-block-start: 0.35em;
+        padding-inline-start: 0.75em;
+        padding-inline-end: 0.75em;
+        padding-block-end: 0.625em;
+        min-inline-size: min-content;
+        border-width: 1px;
+        border-style: solid;
+        border-color: lightsteelblue;
+    }
+
+        fieldset.form-group > legend {
+            display: block;
+            padding-inline-start: 2px;
+            padding-inline-end: 2px;
+            border-width: initial;
+            border-style: none;
+            border-color: initial;
+            margin-bottom: auto;
+            font-size: 14px;
+            width: auto;
+            line-height: 15px;
+        }
+
+    .form-grid {
+        display: table;
+        width: 100%;
+        background: linear-gradient(to right, #ffece1,#ffe9de);
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+
+        .form-grid > .frm_row {
+            display: table-row-group;
+        }
+
+            .form-grid > .frm_row > p,
+            .form-grid .frm_row > td {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 10px;
+                border: 0;
+            }
+
+                .form-grid .frm_row > td[rowspan="2"] > span {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: inherit;
+                }
+
+                    .form-grid .frm_row > td[rowspan="2"] > span > button {
+                        display: inline-block;
+                        padding: 6px 12px;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 1.42857143;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        -ms-touch-action: manipulation;
+                        touch-action: manipulation;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                        background: -webkit-linear-gradient(135deg,#f37a41,#f8c26c);
+                        color: #fff;
+                        border: 1px solid #fdae81;
+                        margin-left: 15px;
+                        border-radius: 4px;
+                    }
+
+                .form-grid > .frm_row > p > label:last-child, .form-grid .frm_row > td > label:last-child {
+                    float: right;
+                }
+</style>
+
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="edit">Edit projectUser</h4>
+                <h4 class="modal-title" id="add">Add ProjectUser</h4>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="row" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <label for="Proj_AccountID">Proj_AccountID</label>
+                        @Html.TextBoxFor(m => m.UProj_UserProjectID, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.UProj_ProjectID, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.UProj_UserID, new { @class = "form-control" })
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row">
+                    <div class="clearfix">
+
+                        <div class="col-md-6">
+
+
+                            <fieldset class="form-group">
+                                <legend><input type="checkbox" name="mycheckbox" style="display: inline-block;" id="mycheckbox" value="0" />Is A Manager</legend>
+                                <div id="mycheckboxdiv" style="display:none">
+                                    <label class="checkbox" for="defaultUnchecked">
+
+                                        @Html.CheckBoxFor(m => m.Is_L1_Manager.Value, new { @id = "Is_L1_Manager" }) L1_Manager
+                                        @Html.ValidationMessageFor(m => m.Is_L1_Manager)
+
+
+                                        @*<input type="checkbox"  id="checked" value="1" onfocus="myFunction()" name="defaultExampleRadios" /> Level 1 Manager*@
+                                    </label>
+                                    <label class="checkbox" for="defaultUnchecked">
+                                        @Html.CheckBoxFor(m => m.Is_L2_Manager.Value, new { @id = "Is_L2_Manager" }) L2_Manager
+                                        @Html.ValidationMessageFor(m => m.Is_L2_Manager)
+                                        @*<input type="checkbox" id="checked" value="2" onfocus="myFunction()" name="defaultExampleRadios">Level 2 Manager*@
+
+                                    </label>
+                                </div>
+                            </fieldset>
+
+
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group" style="border: 1px solid lightsteelblue; padding: 15px">
+                                <div class="form-group">
+                                    <label for="Username">L1 Manager</label>
+
+                                    @Html.DropDownListFor(m => m.UProj_L1_ManagerId, new SelectList("", ""), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.UProj_L1_ManagerId)
+                                </div>
+                                <label for="Username">L2 Manager</label>
+
+                                @Html.DropDownListFor(m => m.UProj_L2_ManagerId, new SelectList("", ""), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UProj_L2_ManagerId)
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="clearfix">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ProjectName">ProjectName</label>
+                                @Html.DropDownListFor(m => m.ProjectName, new SelectList("", ""), "Select ProjectName", new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(m => m.ProjectName)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Username">Username</label>
+
+                                @Html.DropDownListFor(m => m.Username, new SelectList("", ""), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Username)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="clearfix">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ParticipationPercentage">ParticipationPercentage</label>
+                                @Html.TextBoxFor(m => m.UProj_ParticipationPercentage, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UProj_ParticipationPercentage)
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="StartDate">StartDate</label>
+                                @Html.TextBoxFor(m => m.UProj_StartDate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UProj_StartDate)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="clearfix">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="EndDate">EndDate</label>
+
+                                @Html.TextBoxFor(m => m.UProj_EndDate, new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(m => m.UProj_EndDate)
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ActiveStatus">ActiveStatus</label>
+
+                                @Html.DropDownListFor(m => m.UProj_ActiveStatus, new SelectList(new List<Object>{
+
+                       new { value = 1 , text = "Active"},
+                       new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+
+                                @Html.ValidationMessageFor(m => m.UProj_ActiveStatus)
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnUpdate" class="btn btn-clr">Update</button>
+                <button type="button" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                <button type="button" class="btn btn-clr1" id="close" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<h4 class="heading-fancy"> User Project Details </h4>
+<table class="form-grid">
+
+    <tr class="frm_row">
+        <td rowspan="1"><label for="ProjectCode">ProjectCode : </label><label id="ProjectCode"></label></td>
+        <td rowspan="1"><label for="ProjectName">ProjectName : </label><label id="ProjectNamedis"></label></td>
+        @*<td rowspan="2"><span><select id="Roles" multiple="multiple"></select><button id="btnGet">Search</button></span></td>*@
+    </tr>
+    <tr class="frm_row">
+        <td rowspan="1"><label for="Username">StarDate</label><label id="Proj_StartDate"></label></td>
+        <td rowspan="1"><label for="Username">EndDate</label><label id="Proj_EndDate"></label></td>
+    </tr>
+    <tr class="frm_row"></tr>
+
+    @*<div class="panel panel-default">
+            <div class="clearfix">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+</table>
+<div class="block-content">
+    <div class="">
+
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-type="0" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>User Name</th>
+                        <th>Participation %</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th id="actions1">action</th>
+
+                    </tr>
+                </thead>
+            </table>
+            <table id="table1" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>User Name</th>
+                        <th>Participation %</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th id="actions2">Action</th>
+                       
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var LoginId;
+    var id;
+    var UProj_UserProjectID;
+    var startDate;
+    var EndDate;
+    var projectCode;
+        var modalFlag;
+        var AccountID;
+        var projName;
+        projName = '@ViewBag.projName';
+       // alert(projName);
+  //  $("#Proj_ProjectCode").html(Proj_ProjectCode);
+
+    function myFunction(x) {
+
+        $("#IsSuccessful").addClass('disabled');
+    }
+
+    var getGridBasedONRoles;
+
+    //$(function () {
+
+    //    $.ajax({
+    //        type: "Get",
+    //        url: "/Project/GetRoleNames",
+    //        // data: { InputType: "W" },
+    //        contentType: 'application/json',
+    //        success: function (obj) {
+
+    //            var theDropDown = document.getElementById("Roles");
+    //            //$("#Roles").append($("<option></option>").val("0").html("Select Role"));
+    //            $.each(obj, function (key, value) {
+
+    //                $("#Roles").append($("<option></option>").val(value.Rol_RoleID).html(value.Rol_RoleName));
+    //            });
+    //            $('#Roles').multiselect({
+
+    //                includeSelectAllOption: true,
+
+
+    //            });
+
+    //            $('#btnGet').click(function () {
+    //                var checkData = [];
+
+    //                getGridBasedONRoles = "1"
+
+    //                $('#Roles').each(function () {
+
+    //                    var Value = $(this).val();
+    //                    checkData.push(Value);
+    //                    if (Value == "multiselect-all" || Value == 'multiselect-all') {
+    //                        $(this).remove();
+    //                        return false;
+    //                    }
+
+    //                });
+    //                var GettingCheckData = checkData;
+
+
+    //                    getGridBasedONRoles = "1";
+    //                   var data = { "getGridBasedONRoles": getGridBasedONRoles, "GettingCheckData": checkData, "Projectid": id };
+    //                    $.ajax({
+    //                        type: "GET",
+    //                        contentType: 'application/json',
+    //                        url: "/ProjectAllocation/GetProjectAllocationCollection?getGridBasedONRoles=" + getGridBasedONRoles + "&GettingCheckData=" + checkData + "&Projectid=" + id + " ",
+    //                        //data: JSON.stringify(data),
+    //                        success: function (res) {
+    //                            $("#table1").show();
+    //                            $('#table').parents('div.dataTables_wrapper').first().hide();
+    //                            $('#table').hide();
+
+    //                            $('#table1').DataTable({
+    //                                'destroy': true,
+    //                                'data': res,
+    //                                'paginate': true,
+    //                                'sort': true,
+    //                                'Processing': true,
+    //                                'columns': [
+
+    //                                    { 'data': 'ProjectName' },
+    //                                    { 'data': 'Username' },
+    //                                    { 'data': 'UProj_ParticipationPercentage' },
+
+    //                                    {
+    //                                        'data': 'UProj_StartDate',
+    //                                        "type": "date ",
+    //                                        "render": function (value) {
+    //                                            if (value === null) return "";
+
+    //                                            var pattern = /Date\(([^)]+)\)/;
+    //                                            var results = pattern.exec(value);
+    //                                            var dt = new Date(parseFloat(results[1]));
+
+    //                                            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+    //                                        }
+    //                                    },
+
+    //                                    {
+    //                                        'data': 'UProj_EndDate',
+    //                                        "type": "date ",
+    //                                        "render": function (value) {
+    //                                            if (value === null) return "";
+
+    //                                            var pattern = /Date\(([^)]+)\)/;
+    //                                            var results = pattern.exec(value);
+    //                                            var dt = new Date(parseFloat(results[1]));
+
+    //                                            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+    //                                        }
+    //                                    },
+
+    //                                    {
+    //                                        'data': 'UProj_ActiveStatus',
+    //                                        "render": function (UProj_ActiveStatus, type, full, meta) {
+    //                                            if (UProj_ActiveStatus == 1) {
+    //                                                //    return "<span class='label label-success'>Active</span>";
+    //                                                //}
+    //                                                //else {
+    //                                                //    return "<span class='label label-danger'>InActive</span>";
+    //                                                return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked> <label for="check_01"></label> </div>';
+    //                                            }
+    //                                            else {
+    //                                                return '<div class="statuscheck"> <input type="checkbox" id="check_02"> <label for="check_02"></label> </div>';
+    //                                            }
+    //                                        }
+    //                                    },
+
+    //                                    {
+    //                                        "render": function (UProj_UserProjectID, type, full, meta) {
+    //                                            return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail" id="edit" title="Edit" onclick="EditUser(' + full.UProj_UserProjectID + ')" ><i class="fa fa-edit"></i></a>';
+    //                                        },
+
+    //                                    },
+    //                                    {
+    //                                        data: null, render: function (data, type, row) {
+
+    //                                            return '<a class="btn btn-icn" data-target="#containerDelete" data-toggle="modal" title="Delete" data-id="' + row.UProj_UserProjectID + '"  onclick="DeleteSkill(' + row.UProj_UserProjectID + ')" "><i class="fa fa-trash"></i></a>';
+
+    //                                        }
+
+    //                                    },
+
+    //                                ]
+    //                            });
+
+    //                        },
+    //                        error: function (msg) {
+    //                            // alert(msg.responseText);
+    //                        }
+    //                    });
+
+
+
+
+
+    //            })
+
+    //        },
+
+
+    //    });
+
+
+    //})
+
+    $("#UProj_StartDate").datepicker({
+        dateFormat: 'mm-dd-yy',
+        //maxDate: '0'
+    });
+
+    $("#UProj_EndDate").datepicker({
+
+        dateFormat: 'mm-dd-yy',
+       //S maxDate: '0'
+    });
+
+        function loaddata() {
+
+          AccountID = '@ViewBag.AccountID';
+         id = '@ViewBag.id';
+         startDate='@ViewBag.startDate';
+         EndDate ='@ViewBag.endDate';
+         projName = '@ViewBag.projName';
+
+         projectCode='@ViewBag.projcode';
+
+         $("#Proj_StartDate").html(startDate);
+
+         $("#Proj_EndDate").html(EndDate);
+
+         $("#ProjectCode").html(projectCode);
+
+         $("#ProjectNamedis").html(projName);
+
+        var GettingCheckData = 0;
+        getGridBasedONRoles = "0"
+        $.ajax({
+            url: "/ProjectAllocation/GetProjectAllocationCollection",
+            data: { getGridBasedONRoles: getGridBasedONRoles, GettingCheckData: GettingCheckData, Projectid:id},
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+                LoginId ='@ViewBag.LoginId';
+
+
+                $('#table1').parents('div.dataTables_wrapper').first().hide();
+                //$("#table1").hide();
+                $("#table").show();
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+                        { 'data': 'ProjectName','visible':false },
+                        { 'data': 'Username' },
+                        { 'data': 'UProj_ParticipationPercentage' },
+                        {
+                            'data': 'UProj_StartDate',
+                            "type": "date ",
+                            "render": function (value) {
+                                if (value === null) return "";
+
+                                var pattern = /Date\(([^)]+)\)/;
+                                var results = pattern.exec(value);
+                                var dt = new Date(parseFloat(results[1]));
+
+                                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+                            }
+                        },
+
+                        {
+                            'data': 'UProj_EndDate',
+                            "type": "date ",
+                            "render": function (value) {
+                                if (value === null) return "";
+
+                                var pattern = /Date\(([^)]+)\)/;
+                                var results = pattern.exec(value);
+                                var dt = new Date(parseFloat(results[1]));
+
+                                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+                            }
+                        },
+
+                        {
+                            'data': 'UProj_ActiveStatus',
+                            "render": function (UProj_ActiveStatus, type, full, meta) {
+                                if (UProj_ActiveStatus === 1) {
+                                    return "Active";
+                                }
+                                else {
+                                    return "InActive";
+                                }
+                            }
+                        },
+
+                        {
+                            "render": function (UProj_UserProjectID, type, full, meta, data) {
+                                  var permissions = '@ViewBag.a';
+                                if (permissions === "Read") {
+                                    return '<a class="btn btn-icn" data-toggle="modal" title="Edit" data-target="#ContainerGridDetail" id="edit"  onclick="EditUser(' + full.UProj_UserProjectID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn" data-target="#containerDelete" title="Delete" data-toggle="modal"  data-id="' + full.UProj_UserProjectID + '"  onclick="DeleteSkill(' + full.UProj_UserProjectID + ')" "><i class="fa fa-trash"></i></a>';
+
+                                }
+                                else {
+                                    return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal" title="Edit" data-target="#ContainerGridDetail" id="edit"  onclick="EditUser(' + full.UProj_UserProjectID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn btn-icn-hide" data-target="#containerDelete" title="Delete" data-toggle="modal"  data-id="' + full.UProj_UserProjectID + '"  onclick="DeleteSkill(' + full.UProj_UserProjectID + ')" "><i class="fa fa-trash"></i></a>';
+        
+                                }
+                       },
+
+                        },
+                        //{
+                        //    data: null, render: function (data, type, row) {
+
+                        //        return '<a class="btn btn-icn" data-target="#containerDelete" title="Delete" data-toggle="modal"  data-id="' + row.UProj_UserProjectID + '"  onclick="DeleteSkill(' + row.UProj_UserProjectID + ')" "><i class="fa fa-trash"></i></a>';
+
+                        //    }
+
+                        //},
+
+                    ]
+                });
+            },
+
+            error: function (msg) {
+                // alert(msg.responseText);
+            }
+        });
+    }
+
+        function Manger2() {
+
+            $.ajax({
+
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "/User/GetL2ManagerNames?AccountId=" + AccountID,
+                //data: "{}",
+                dataType: "json",
+                success: function (Result) {
+
+                    $(Result).each(function () {
+
+                        $("#UProj_L2_ManagerId").append($("<option></option>").val(this.Usr_UserID).html(this.Usr_Username));
+
+
+                    });
+
+                },
+
+                error: function (Result) {
+
+                    // alert("Error");
+
+                }
+
+            });
+        }
+
+        function EditUser(UProj_UserProjectID) {
+            $("#edit").show();
+            $("#add").hide();
+        Manger2();
+        bindProjectNames();
+        bindManager1();
+        $("#btnAdd").hide();
+        $("#btnUpdate").show();
+
+        $.ajax({
+
+            url: '/ProjectAllocation/GetProjectByID?catID=' + UProj_UserProjectID,
+            type: 'Get',
+            success: function (data) {
+                $("#UProj_StartDate").val("");
+
+                $("#UProj_EndDate").val("");
+
+                UProj_UserProjectID = data.UProj_UserProjectID;
+
+                var UProj_ProjectID = data.UProj_ProjectID;
+
+                var UProj_UserID = data.UProj_UserID;
+
+                var ProjectName = data.ProjectName;
+
+                var Username = data.Username;
+
+                var UProj_ParticipationPercentage = data.UProj_ParticipationPercentage;
+
+                if (data.UProj_StartDate !== null) {
+
+                    var StartDate = (data.UProj_StartDate).substr(6);
+                }
+
+                if (data.UProj_EndDate !== null) {
+
+                    var EndDate = (data.UProj_EndDate).substr(6);
+                }
+
+                var UProj_StartDate = new Date(parseInt(StartDate));
+                var UProj_EndDate = new Date(parseInt(EndDate));
+                var UProj_ActiveStatus = data.UProj_ActiveStatus;
+
+                var Is_L1_Manager = data.Is_L1_Manager;
+                var Is_L2_Manager = data.Is_L2_Manager;
+
+                var UProj_L1_ManagerId = data.UProj_L1_ManagerId;
+                var UProj_L2_ManagerId = data.UProj_L2_ManagerId;
+
+                // if it is active set the ddl to active else in-active
+                if (UProj_ActiveStatus == 1) {
+                    $("#UProj_ActiveStatus").val("1");
+                } else {
+                    $("#UProj_ActiveStatus").val("0");
+                }
+               // var value = $("#LoginId option:selected").html(LoginId);
+
+
+               // $("#LoginId").html(value);
+
+
+
+                $("#ProjectName").val(UProj_ProjectID);
+
+                $("#Username").val(UProj_UserID);
+
+                $("#UProj_ProjectID").val(UProj_ProjectID);
+
+                $("#UProj_UserID").val(UProj_UserID);
+
+                $("#UProj_ParticipationPercentage").val(UProj_ParticipationPercentage);
+
+                $("#UProj_StartDate").val(UProj_StartDate.format("yyyy-mm-dd")).datepicker({
+                });
+
+                $("#UProj_EndDate").val(UProj_EndDate.format("yyyy-mm-dd")).datepicker({
+                });
+
+                $("#UProj_UserProjectID").val(UProj_UserProjectID);
+
+                $("#UProj_L1_ManagerId").val(UProj_L1_ManagerId);
+
+                $("#UProj_L2_ManagerId").val(UProj_L2_ManagerId);
+
+                if (Is_L1_Manager == 1) {
+
+                    $("#mycheckboxdiv").show();
+                    $("#Is_L1_Manager").prop('checked', true);
+                }
+                if (Is_L2_Manager == 1) {
+                    $("#mycheckboxdiv").show();
+                    $("#Is_L2_Manager").prop('checked', true);
+                }
+            },
+            error: function () {
+                //alert(Response.text);
+            }
+        });
+
+    }
+
+
+    function DeleteSkill(UProj_UserProjectID) {
+
+        $.ajax({
+
+            type: "POST",
+            url: '/ProjectAllocation/DeleteProjectAllocation?ID=' + UProj_UserProjectID,
+            dataType: "json",
+            //   cache: false,
+            complete: function (res) {
+
+              //  alert(res);
+                loaddata();
+                window.location.href = '/ProjectAllocation/Index?ProjectID=' + id + '&Proj_StartDate=' + startDate + '&Proj_EndDate=' + EndDate + '&projectCode=' + projectCode + '&Proj_ProjectName=' + projName;
+
+            },
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        })
+
+    }
+
+    function bindUserNames() {
+
+        $.ajax({
+
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/ProjectAllocation/GetUserNames",
+            //data: "{}",
+            dataType: "json",
+            success: function (Result) {
+
+                $(Result).each(function () {
+
+                    $("#Username").append($("<option></option>").val(this.UProj_UserID).html(this.Username));
+
+                });
+            },
+            error: function (Result) {
+
+               // alert("Error");
+
+            }
+
+        });
+    }
+
+
+    function bindProjectNames() {
+
+        $.ajax({
+
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/Project/GetProjectNames",
+            //data: "{}",
+            dataType: "json",
+            success: function (Result) {
+
+                $(Result).each(function () {
+
+                    $("#ProjectName").append($("<option></option>").val(this.Proj_ProjectID).html(this.Proj_ProjectName));
+
+                });
+            },
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        });
+        }
+
+    function bindManager1() {
+        $.ajax({
+
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/User/GetL1ManagerNames?AccountId=" + AccountID,
+            //data: "{}",
+            dataType: "json",
+            success: function (Result) {
+
+                $(Result).each(function () {
+
+                    $("#UProj_L1_ManagerId").append($("<option></option>").val(this.Usr_UserID).html(this.Usr_Username));
+
+
+                });
+
+            },
+
+            error: function (Result) {
+
+                // alert("Error");
+
+            }
+
+        });
+
+
+        }
+
+
+
+    $(document).ready(function () {
+
+        $('#mycheckbox').change(function () {
+            $('#mycheckboxdiv').toggle();
+        });
+
+        loaddata();
+        bindProjectNames();
+        bindManager1();
+
+        bindUserNames();
+        $(function modalTwice() {
+
+            $(document).on("click", "#btnAddModel", function (event) {
+                $("#edit").hide();
+                $("#add").show();
+                Manger2();
+                 modalFlag = 0;
+                 $("#UProj_L1_ManagerId").val(0);
+                $('input[type=checkbox]').prop('checked', false);
+               // $("#Username option[value='option1']").remove();
+                $("#Username").val(0);
+                $("#UProj_ParticipationPercentage").val(" ");
+                $("#UProj_StartDate").val(" ");
+                $("#Proj_StartDate").val("");
+                $("#UProj_EndDate").val(" ");
+                $("#ProjectName").val(id);
+                $("#ContainerGridDetail").show();
+                $("#ContainerGridDetail").addClass('in');
+                $("body").addClass('modal-open');
+                $("#btnAdd").show();
+                $(UProj_ActiveStatus).val(1);
+
+                $("#btnUpdate").hide();
+
+                $("#close").on('click', function () {
+                    $("#ContainerGridDetail").hide();
+                    $("#ContainerGridDetail").removeClass('in');
+                    //$("body").removeClass("#UProj_L1_ManagerId").val().Class('modal-open');
+                    $("body").removeClass('modal-open');
+
+                });
+                $(".close").on('click', function () {
+                    $("#ContainerGridDetail").hide();
+                    $("#ContainerGridDetail").removeClass('in');
+                    $("body").removeClass('modal-open');
+
+
+                });
+                //var value = $("#LoginId option:selected").html(LoginId);
+
+                //$("#LoginId").html(value);
+
+                var L1Manager = $("#UProj_L1_ManagerId").val();
+                var L2Manager = $("#UProj_L2_ManagerId").val();
+
+
+                $("#btnAdd").on("click", function () {
+
+                    var UProj_L1_ManagerId = $("#UProj_L1_ManagerId").val();
+                    var UProj_L2_ManagerId = $("#UProj_L2_ManagerId").val();
+                    var Is_L1_Manager = $("#Is_L1_Manager").val();
+                    var Is_L2_Manager = $("#Is_2_Manager").val();
+
+                   var UProj_UserProjectID = $("#UProj_UserProjectID").val();
+                   var UProj_ProjectID = $("#UProj_ProjectID").val();
+
+                    var UProj_UserID = $("#UProj_UserID").val();
+                    var ProjectName = $("#ProjectName").val();
+                    alert(ProjectName);
+                    var Username = $("#Username").val();
+                    var UProj_ParticipationPercentage = $("#UProj_ParticipationPercentage").val();
+                    var UProj_StartDate = $("#UProj_StartDate").val();
+
+                    var UProj_EndDate = $("#UProj_EndDate").val();
+
+                    var UProj_ActiveStatus = $("#UProj_ActiveStatus").val();
+
+                    if (UProj_ActiveStatus == 1) {
+                        var UProj_ActiveStatusVal = true;
+                    }
+                    else {
+                        var UProj_ActiveStatusVal = false;
+                    }
+
+                    $.ajax({
+
+                        type: "POST",
+                        // contentType: "application/json; charset=utf-8",
+                        url: "/ProjectAllocation/CreateProjectAllocation",
+                        data: {
+                            UProj_ProjectID: ProjectName, Username: Username, UProj_ParticipationPercentage: UProj_ParticipationPercentage, UProj_StartDate: UProj_StartDate,
+                            UProj_EndDate: UProj_EndDate, UProj_ActiveStatus: UProj_ActiveStatusVal, UProj_UserID: Username, UProj_UserProjectID: UProj_UserProjectID,
+                            Is_L1_Manager: Is_L1_Manager, Is_L2_Manager: Is_L2_Manager, UProj_L2_ManagerId: UProj_L2_ManagerId, UProj_L1_ManagerId: UProj_L1_ManagerId
+
+                        },
+                        dataType: "json",
+                        // cache: false,
+                        complete: function (res) {
+
+                            window.location.href = '/ProjectAllocation/Index?ProjectID=' + id + '&Proj_StartDate=' + UProj_StartDate + '&Proj_EndDate=' + UProj_EndDate + '&projectCode=' + projectCode + '&Proj_ProjectName=' + projName;
+
+
+                        },
+
+                        error: function (Result) {
+
+                            //alert("Error");
+
+                        }
+
+                    })
+
+                })
+
+            });
+        });
+
+
+        $("#btnUpdate").on("click", function () {
+
+                 UProj_UserProjectID = $("#UProj_UserProjectID").val();
+                var UProj_ProjectID = $("#UProj_ProjectID").val();
+                var UProj_UserID = $("#UProj_UserID").val();
+                var ProjectName = $("#ProjectName").val();
+                var Username = $("#Username").val();
+                var UProj_ParticipationPercentage = $("#UProj_ParticipationPercentage").val();
+                var UProj_StartDate = $("#UProj_StartDate").val();
+                var UProj_EndDate = $("#UProj_EndDate").val();
+
+                if ($("#Is_L1_Manager").is(':checked', true)) {
+                    var Is_L1_Manager = true;
+                }
+                else {
+                    var Is_L1_Manager = false;
+                }
+                if ($("#Is_L2_Manager").is(':checked', true)) {
+                    var Is_L2_Manager = true;
+                }
+                else
+                {
+                    var Is_L2_Manager = false;
+                }
+
+                var UProj_ActiveStatus = $("#UProj_ActiveStatus").val();
+                var UProj_L1_ManagerId = $("#UProj_L1_ManagerId").val();
+            var UProj_L2_ManagerId = $("#UProj_L2_ManagerId").val();
+           //   
+                if ($("#UProj_ActiveStatus").val() == 1) {
+
+                    var UProj_ActiveStatusVal = true;
+                }
+                else {
+
+                    var UProj_ActiveStatusVal = false;
+                }
+
+                $.ajax({
+
+                    type: "POST",
+                    // contentType: "application/json; charset=utf-8",
+                    url: "/ProjectAllocation/UpdateProjectAllocation",
+                    data: {
+                        ProjectName: ProjectName, Username: Username, UProj_ParticipationPercentage: UProj_ParticipationPercentage, UProj_StartDate: UProj_StartDate,
+                        UProj_EndDate: UProj_EndDate, UProj_ActiveStatus: UProj_ActiveStatusVal, UProj_ProjectID: UProj_ProjectID, UProj_UserID: UProj_UserID, UProj_UserProjectID: UProj_UserProjectID,
+                        Is_L1_Manager: Is_L1_Manager, Is_L2_Manager: Is_L2_Manager, UProj_L1_ManagerId: UProj_L1_ManagerId, UProj_L2_ManagerId: UProj_L2_ManagerId
+
+                    },
+                    dataType: "json",
+                    // cache: false,
+                    complete: function (res) {
+
+                        window.location.href = '/ProjectAllocation/Index?ProjectID=' + id + '&Proj_StartDate=' + startDate + '&Proj_EndDate=' + EndDate + '&projectCode=' + projectCode + '&Proj_ProjectName=' + projName;
+
+                       // window.location.href = "/Project/Index";
+
+                    },
+
+                    error: function (Result) {
+
+                    }
+                })
+
+        })
+    });
+
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#project_management").addClass("active");
+        $("#project_management > ul.treeview-menu > li:last-child").addClass("click");
+        $("#project_management").siblings().removeClass("active");
+    var permissions = '@ViewBag.a';
+    if (permissions.toLowerCase() === "read") {
+        $("#btnAddModel").hide();
+        $("#actions1").hide();
+        $("#actions2").hide();
+       
+    }
+    else {
+        $("#btnAddModel").show();
+        $("#actions1").show();
+        $("#actions2").hide();
+    }
+
+
+    });
+</script>

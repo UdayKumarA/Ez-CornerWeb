@@ -1,0 +1,259 @@
+﻿@model Evolutyz.Entities.OrganizationAccountEntity
+
+<div>
+    <h4>Organization Account</h4>
+    <hr />
+    <fieldset>
+        <legend>Author</legend>
+        <div class="=row">
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Acc_AccountCode)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Acc_AccountCode)
+            </div>
+        </div>
+
+        <div class="display-label">
+            @Html.HiddenFor(model => model.Acc_AccountID, new { id = "hdnAccountID" })
+            @Html.DisplayNameFor(model => model.Acc_AccountName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_AccountName)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_AccountDescription)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_AccountDescription)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_EmailID)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_EmailID)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_MobileNumber)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_MobileNumber)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_PhoneNumber)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_PhoneNumber)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_CompanyLogo)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_CompanyLogo)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Acc_Version)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Acc_Version)
+        </div>
+        <p>
+            <input type="submit" value="Previous" />
+            <input type="submit" value="Next" />
+            @*<input type="button" value="First" id="btnFirst" />&nbsp;<input type="button" value="Previous" id="btnPrevious" />&nbsp;
+            <input type="button" value="Next" id="btnNext" />&nbsp;<input type="button" value="Last" id="btnLast" />*@
+        </p>
+    </fieldset>
+
+
+
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_AccountID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_AccountID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_AccountCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_AccountCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_AccountName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_AccountName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_AccountDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_AccountDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_EmailID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_EmailID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_MobileNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_MobileNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_CompanyLogo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_CompanyLogo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_ActiveStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_ActiveStatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_Version)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_Version)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_CreatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_CreatedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_CreatedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_CreatedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_ModifiedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_ModifiedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_ModifiedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_ModifiedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acc_isDeleted)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acc_isDeleted)
+            </dd>
+
+        </dl>*@
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script>
+    function fetchRecord(_id, nav) {
+        alert('id:' + _id + ', Navigation: ' + nav);
+
+        $.ajax({
+            url: "@Url.Action("browseAccountRecords", "OrganizationAccount")",
+            data: { id: _id, navigation: nav },
+            //type: "GET",
+            //dataType: "json",
+            success: function (data) {
+                $('#hdnAccountID').val(data.Acc_AccountID);
+                $('#Acc_AccountCode').val(data.Acc_AccountCode);
+                $('#Acc_AccountName').val(data.Acc_AccountName);
+                $('#Acc_AccountDescription').val(data.Acc_AccountDescription);
+                $('#Acc_EmailID').val(data.Acc_EmailID);
+                $('#Acc_MobileNumber').val(data.Acc_MobileNumber);
+                $("#Acc_PhoneNumber").val(data.Acc_PhoneNumber)
+                ////$('#Acc_ActiveStatus').val(data.Acc_ActiveStatus);
+                //if (data.Acc_ActiveStatus) {
+                //    $('#Acc_ActiveStatus').val("1");
+                //}
+                //else {
+                //    $('#Acc_ActiveStatus').val("0");
+                //}
+
+                //var _imgLogo = data.Acc_CompanyLogo;
+                //var _imgPath = "/Content/images/CompanyLogos/";
+                ////$('#Acc_CompanyLogo').val(imgLogo);
+
+                //if (_imgLogo != null && _imgLogo != "")
+                //{
+                //    $('#imgLogo').show();
+                //    $('#imgLogo').prop('src', _imgPath + _imgLogo);
+                //}
+            },
+            error: function () {
+                alert("Failed! Please try again.");
+            }
+        });
+    }
+
+    $("#btnFirst").click(function () {
+        fetchRecord(0,"First")
+    });
+    $("#btnLast").click(function () {
+        var id = $('#hdnAccountID').val();
+        fetchRecord(id, "Last")
+    });
+    $("#btnNext").click(function () {
+        var id = $('#hdnAccountID').val();
+        fetchRecord(id, "Next")
+    });
+    $("#btnPrevious").click(function () {
+        var id = $('#hdnAccountID').val();
+        fetchRecord(id, "Previous")
+    });
+</script>

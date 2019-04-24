@@ -1,0 +1,732 @@
+﻿@model Evolutyz.Entities.LeaveSchemeEntity
+@{
+    ViewBag.Title = "Leave Management - Leave Scheme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>*@
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<style>
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .box.box-solid.box-brown .btn-warning {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+
+    .error {
+        display: inline-block !important;
+        color: red;
+    }
+</style>
+<style>
+    #loading-image {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1035;
+        background-color: rgba(243, 243, 243, 0.75);
+        /*opacity: .8;*/
+    }
+
+        #loading-image > img {
+            /*width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 87, 34, 0.25);
+            border-top-color: #f37a41;
+            border-radius: 50%;*/
+            position: absolute;
+            /* animation: loader-rotate 1s linear infinite; */
+            top: 50%;
+            left: 50%;
+            margin: -60px auto 0;
+            max-width: 100%;
+            display: block;
+            height: 100px;
+        }
+
+        #loading-image > span {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            animation: loader-circles 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            margin: -20px auto 0;
+        }
+
+        #loading-image > strong {
+            position: absolute;
+            top: 50%;
+            left: 48%;
+            margin: 0px auto 0;
+            font-size: 10px;
+        }
+
+    @@keyframes loader-circles {
+        0% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+
+        12.5% {
+            box-shadow: 0 -85px 0 0 #f37a41, 61px -61px 0 0 rgba(255, 87, 34, 0.05), 85px 0 0 0 rgba(255, 87, 34, 0.1), 61px 61px 0 0 rgba(255, 87, 34, 0.2), 0 85px 0 0 rgba(255, 87, 34, 0.3), -61px 61px 0 0 rgba(255, 87, 34, 0.4), -85px 0 0 0 rgba(255, 87, 34, 0.6), -61px -61px 0 0 rgba(255, 87, 34, 0.8);
+        }
+
+        25% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.8), 61px -61px 0 0 #f37a41, 85px 0 0 0 rgba(255, 87, 34, 0.05), 61px 61px 0 0 rgba(255, 87, 34, 0.1), 0 85px 0 0 rgba(255, 87, 34, 0.2), -61px 61px 0 0 rgba(255, 87, 34, 0.3), -85px 0 0 0 rgba(255, 87, 34, 0.4), -61px -61px 0 0 rgba(255, 87, 34, 0.6);
+        }
+
+        37.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.6), 61px -61px 0 0 rgba(255, 87, 34, 0.8), 85px 0 0 0 #f37a41, 61px 61px 0 0 rgba(255, 87, 34, 0.05), 0 85px 0 0 rgba(255, 87, 34, 0.1), -61px 61px 0 0 rgba(255, 87, 34, 0.2), -85px 0 0 0 rgba(255, 87, 34, 0.3), -61px -61px 0 0 rgba(255, 87, 34, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.4), 61px -61px 0 0 rgba(255, 87, 34, 0.6), 85px 0 0 0 rgba(255, 87, 34, 0.8), 61px 61px 0 0 #f37a41, 0 85px 0 0 rgba(255, 87, 34, 0.05), -61px 61px 0 0 rgba(255, 87, 34, 0.1), -85px 0 0 0 rgba(255, 87, 34, 0.2), -61px -61px 0 0 rgba(255, 87, 34, 0.3);
+        }
+
+        62.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.3), 61px -61px 0 0 rgba(255, 87, 34, 0.4), 85px 0 0 0 rgba(255, 87, 34, 0.6), 61px 61px 0 0 rgba(255, 87, 34, 0.8), 0 85px 0 0 #f37a41, -61px 61px 0 0 rgba(255, 87, 34, 0.05), -85px 0 0 0 rgba(255, 87, 34, 0.1), -61px -61px 0 0 rgba(255, 87, 34, 0.2);
+        }
+
+        75% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.2), 61px -61px 0 0 rgba(255, 87, 34, 0.3), 85px 0 0 0 rgba(255, 87, 34, 0.4), 61px 61px 0 0 rgba(255, 87, 34, 0.6), 0 85px 0 0 rgba(255, 87, 34, 0.8), -61px 61px 0 0 #f37a41, -85px 0 0 0 rgba(255, 87, 34, 0.05), -61px -61px 0 0 rgba(255, 87, 34, 0.1);
+        }
+
+        87.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.1), 61px -61px 0 0 rgba(255, 87, 34, 0.2), 85px 0 0 0 rgba(255, 87, 34, 0.3), 61px 61px 0 0 rgba(255, 87, 34, 0.4), 0 85px 0 0 rgba(255, 87, 34, 0.6), -61px 61px 0 0 rgba(255, 87, 34, 0.8), -85px 0 0 0 #f37a41, -61px -61px 0 0 rgba(255, 87, 34, 0.05);
+        }
+
+        100% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+    }
+</style>
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Leave Scheme</h4>
+            </div>
+            <form id="Addmodel">
+                <div class="modal-body">
+                    <div class="form-row row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Employement Type<font style="color:red;">*</font></label>
+
+                                @Html.DropDownListFor(model => model.UserType, new SelectList(ViewBag.Employeementtypes, "value", "text"), "Select Employement Type", new { @class = "form-control", id = "Usertype" })
+                                @Html.ValidationMessageFor(model => model.UserType)
+                                <label id="usererror"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="LeaveType">Account Name<font style="color:red;">*</font></label>
+                                @*@Html.DropDownListFor(model => model.AccountName,new SelectList(ViewBag.accid,"value","text"), "Select Account", new { @class = "form-control", id = "Accountname" })*@
+                                @Html.DropDownListFor(model => model.AccountName, new SelectList(ViewBag.Accountname, "value", "text"), new { @class = "form-control", id = "Accountname" })
+                                @Html.ValidationMessageFor(model => model.AccountName)
+                                <label id="accounterror"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Financial Year<font style="color:red;">*</font> </label>
+
+                                @Html.DropDownListFor(model => model.FinancialYearId, new SelectList(ViewBag.FinancialYears, "value", "text"), new { @class = "form-control", id = "FinancialYearId", onchange = "yearvalidation(this.value)" })
+                                @Html.ValidationMessageFor(model => model.FinancialYearId)
+                                <label id="yearerror"></label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row row">
+
+                        @foreach (var types in ViewBag.leavetypes)
+                        {
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label id="@types.LTyp_LeaveTypeID" value="@types.LTyp_LeaveTypeID" name="daysid">@types.LTyp_LeaveType</label>
+                                    <input type="text" id="leavetypeno_@types.LTyp_LeaveTypeID" class="form-control" name="days" />
+                                    <label id="error1"></label>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ActiveStatus">ActiveStatus<font style="color:red;">*</font></label>
+
+                                @Html.DropDownListFor(m => m.LSchm_ActiveStatus, new SelectList(new List<Object>{
+
+                               new { value = true , text = "Active"},
+                               new { value =false , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control",id="status" })
+
+                                <label id="statuserror"></label>
+                                @Html.ValidationMessageFor(m => m.LSchm_ActiveStatus)
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnadd" class="btn btn-clr">Add</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade-in" id="leaveschemeedit" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Leave Types</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <label for="UserAccountName">Employement Type<font style="color:red;">*</font></label>
+                        @*<input type="text" class="form-control" name="usertype" />*@
+
+                        @Html.DropDownListFor(m => m.UserType, new SelectList(ViewBag.UserTypes, "value", "text"), "Select Employeement types", new { @class = "form-control", id = "editusertype" })
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="accoutname">Account Name<font style="color:red;">*</font></label>
+                        @*<input type="text" class="form-control" id="accountname" />*@
+                        @Html.DropDownListFor(m => m.AccountName, new SelectList(ViewBag.Accountname, "value", "text"), "Select Account", new { @class = "form-control" })
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="btnupdate" class="btn btn-clr" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade-in" id="Leavetypes" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Leave Types</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row row" id="leavetype">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnedit" class="btn btn-clr">Edit</button>
+                <button type="button" id="updatebtn" class="btn btn-default" style="display:none">Update</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose1">Close</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> Leave Scheme Details </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Employement Type</th>
+                        <th>Account ID</th>
+
+                        <th>Total Leaves</th>
+                        <th>Financial Year</th>
+                        <th>Preview Leaves</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/jquery.validate.js"></script>
+
+<script>
+
+    $("#status").val("True");
+    $(document).ready(function () {
+        loaddata();
+         var permissions = '@ViewBag.a';
+        if (permissions.toLowerCase() === "read/write") {
+            
+            $("#btnAddModel").show();
+            $("#btnedit").show();
+            }
+            else {
+            $("#btnAddModel").hide();
+            $("#btnedit").hide();
+            }
+        $("#btnclose").click(function () {
+            window.location.reload();
+            $("#updatebtn").hide();
+            $("#btnedit").show();
+        });
+        $("#btnclose1").click(function () {
+            window.location.reload();
+            $("#updatebtn").hide();
+            $("#btnedit").show();
+        });
+
+        $("#btnadd").click(function () {
+
+            var isValid = true;
+            var intRegex = /^\d+(?:\.\d\d?)?$/;
+            if (!$('#Usertype').val()) {
+                if ($("#Usertype").parent().next(".validation").length === 0) // only add if not added
+                {
+                    $("#usererror").text("Please Select UserType");
+                    $("#usererror").addClass("error");
+                    isValid = false;
+                    //$("#Usertype").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please Select UserType</div>");
+                }
+            } else {
+                $("#usererror").text("");
+                $("#usererror").removeClass("error");
+                isValid = true;
+                //$("#Usertype").parent().next(".validation").remove(); // remove it
+            }
+            if (!$('#FinancialYearId').val()) {
+
+                if ($("#FinancialYearId").parent().next(".validation").length === 0) // only add if not added
+                {
+                    $("#yearerror").text("Please Select financialyear");
+                    $("#yearerror").addClass("error");
+                    isValid = false;
+                }
+            } else {
+                $("#yearerror").text("");
+                $("#yearerror").removeClass("error");
+                isValid = true;
+
+            }
+            if (!$('#Accountname').val()) {
+
+                if ($("#Accountname").parent().next(".validation").length === 0) // only add if not added
+                {
+                    $("#accounterror").text("Please Select Accountname");
+                    $("#accounterror").addClass("error");
+                    isValid = false;
+                }
+            } else {
+                $("#accounterror").text("");
+                $("#accounterror").removeClass("error");
+                isValid = true;
+
+            }
+            if (!$('#status').val()) {
+                if ($("#status").parent().next(".validation").length === 0) // only add if not added
+                {
+                    $("#statuserror").text("Please Select status");
+                    $("#statuserror").addClass("error");
+                    isValid = false;
+                    //$("#Usertype").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please Select UserType</div>");
+                }
+            } else {
+                $("#statuserror").text("");
+                $("#statuserror").removeClass("error");
+                isValid = true;
+                //$("#Usertype").parent().next(".validation").remove(); // remove it
+            }
+            $("#Addmodel input").each(function () {
+                if ($(this).is('[type=text]') && !parseFloat($(this).val())) {
+
+                    $(this).parent().next(".validation").remove();
+                    $(this).parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:left;'>Please Enter Leaves(Enter Only numbers)</label>");
+                    isValid = false;
+
+                }
+                else {
+                    $(this).parent().next(".validation").remove(); // remove it
+                    isValid = true;
+                }
+            });
+
+
+            var daysarray = new Array();
+            $("input[name=days]").each(function () {
+                daysarray.push($(this).val());
+            });
+            var daysids = new Array();
+
+            $("label[name=daysid").each(function () {
+                daysids.push($(this).attr('id'));
+            });
+            var status = $("#status").val();
+            var employeetypeid = $("#Usertype").val();
+            var accountid = $("#Accountname").val();
+            var FinancialYearId = $("#FinancialYearId").val();
+            var jsonobj = [];
+
+            for (var i = 0; i <= daysarray.length - 1; i++) {
+                jsonobj.push({ "LSchm_LeaveTypeID": daysids[i], "LSchm_LeaveCount": daysarray[i], "LSchm_ActiveStatus": status, "LSchm_UserTypeID": employeetypeid, "LSchm_AccountID": accountid, "FinancialYearId": FinancialYearId });
+            }
+
+            jsonobj = JSON.stringify({ 'jsonobj': jsonobj });
+            if (isValid === true) {
+
+                $('#loading-image').attr("style", "display: block;");
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    url: '/LeaveScheme/SaveLeavescheme',
+                    data: jsonobj,
+                    success: function (data) {
+
+                        alert(data);
+                        console.log(data);
+                        window.location.reload();
+                    },
+                    complete: function () {
+                        $('#loading-image').attr("style", "display: none;");
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+
+                });
+
+
+            }
+
+        });
+
+        $("#btnedit").click(function () {
+            $("input[name=leavetypedays]").removeAttr("disabled");
+            $("#btnedit").hide();
+            $("#updatebtn").show();
+
+        });
+        $("#updatebtn").click(function () {
+
+            $("input[name=leavetypedays]").each(function () {
+                if ($(this).is('[type=text]') && !parseFloat($(this).val())) {
+
+                    $(this).parent().next(".validation").remove();
+                    $(this).parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:left;'>Please Enter Leaves(Enter Only numbers)</label>");
+                    isValid = false;
+
+                }
+                else {
+                    $(this).parent().next(".validation").remove(); // remove it
+                    isValid = true;
+                }
+            });
+            var leaveupdate = [];
+            var leavearray = new Array();
+            $("label[name=leavetypename]").each(function () {
+                leavearray.push($(this).attr('id'));
+            });
+            var leavenamearray = new Array();
+            $("input[name=leavetypedays]").each(function () {
+                leavenamearray.push($(this).val());
+            });
+            for (var i = 0; i <= leavearray.length - 1; i++) {
+                leaveupdate.push({ "LSchm_LeaveTypeID": leavearray[i], "LSchm_LeaveCount": leavenamearray[i], "LSchm_UserTypeID": userid });
+            }
+            leaveupdate = JSON.stringify({ 'leaveupdate': leaveupdate });
+
+            if (isValid === true) {
+                $('#loading-image').attr("style", "display: block;");
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    type: 'POST',
+                    url: '/LeaveScheme/updateLeavecount',
+                    data: leaveupdate,
+                    success: function (data) {
+
+                        alert(data);
+                        console.log(data);
+                        window.location.reload();
+                    },
+                    complete: function () {
+                        $('#loading-image').attr("style", "display: none;");
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+
+                });
+            }
+
+        });
+
+        $("#btnupdate").click(function () {
+
+            var userid = $("#editusertype").val();
+            var accountid = $("#AccountName").val();
+            $('#loading-image').attr("style", "display: block;");
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                type: "POST",
+                url: "/LeaveScheme/UpdateLeavescheme",
+
+                data: JSON.stringify({
+                    'id': UserID,
+                    'userid': userid,
+                    'accountid': accountid
+                }),
+                success: function (data) {
+
+                    alert(data);
+                    window.location.reload();
+                },
+                complete: function () {
+                    $('#loading-image').attr("style", "display: none;");
+                },
+
+            });
+        });
+
+    });
+    function yearvalidation(yearvalue) {
+
+        var usertypeid = $("#Usertype").val();
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/LeaveScheme/checkyear",
+            type: "post",
+            data: {
+                'usertypeid': usertypeid,
+                'yearvalue': yearvalue
+            },
+            success: function (res) {
+                // alert(res);
+                if (res === "True") {
+                    $("#yearerror").text("this usertype and financial year combination is already exist ");
+                    $("#yearerror").addClass("error");
+                }
+                else {
+                    $("#yearerror").text("");
+                    $("#yearerror").removeClass("error");
+                }
+
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function loaddata() {
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/LeaveScheme/GetLeaveSchemeCollection",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+
+                        { 'data': 'UserType' },
+                        { 'data': 'AccountName' },
+                        { 'data': 'Noofdays' },
+                        { 'data': 'financialyear' },
+                        {
+                            "render": function (LSchm_UserTypeID, type, full, meta) {
+                                return '<a class="btn  btn-icn-hide " data-toggle="modal"  data-target="#Leavetypes" id="preview" title="Preview" onclick="Preview(' + full.LSchm_UserTypeID + ',' + full.FinancialYearId + ')" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                            }
+
+                        },
+                        //{
+                        //    "render": function (LSchm_UserTypeID, type, full, meta) {
+
+                        //        return '<a class="btn btn-default" data-target="#leaveschemeedit" data-toggle="modal"  data-id="' + full.LSchm_UserTypeID + '"  onclick="EditLeavescheme(' + full.LSchm_UserTypeID + ')" ">Edit</a>';
+
+                        //    }
+
+                        //},
+                        //{
+                        //    "render": function (LSchm_UserTypeID, type, full, meta) {
+
+                        //        return '<a class="btn btn-default" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.LSchm_UserTypeID + '"  onclick="DeleteLeavescheme(' + full.LSchm_UserTypeID + ')" ">Delete</a>';
+
+                        //    }
+
+                        //}
+
+                    ]
+                });
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+    var delid = 0;
+
+    var UserID = 0;
+    function EditLeavescheme(id) {
+        UserID = id;
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/LeaveScheme/Getleaveschemebyid",
+            type: "POST",
+            data: {
+                'id': id
+            },
+
+            dataType: "json",
+            success: function (data) {
+
+                var userdid = data[0].LSchm_UserTypeID;
+                var accountname = data[0].LSchm_AccountID;
+                $('#editusertype option[value=' + userdid + ']').attr('selected', true);
+                $('#AccountName option[value=' + accountname + ']').attr('selected', true);
+
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+
+        });
+    }
+    var userid = 0;
+    function Preview(id, yearid) {
+
+        userid = id;
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/LeaveScheme/GetLeaveTypes",
+            type: "POST",
+            data: {
+                'id': id,
+                'yearid': yearid,
+            },
+
+            dataType: "json",
+            success: function (res) {
+
+                $("#leavetype").empty();
+                $.each(res, function (index, value) {
+
+                    $('#leavetype').append('<div class="col-md-4"><div class="form-group"><label id="' + value.LSchm_LeaveTypeID + '" class="control-label" name="leavetypename">' + value.LeaveType + '</label><input type="text" class="form-control" name="leavetypedays" value="' + value.LSchm_LeaveCount + '" id="' + value.LSchm_LeaveTypeID + '" disabled /></div></div>');
+                    //$("#leavetype").append('');
+
+                });
+
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (xhr, data, error) {
+                console.log(error);
+            }
+
+
+        });
+
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#liLeaveType").addClass("active");
+        $("#liLeaveType > ul.treeview-menu > li:nth-child(2)").addClass("click");
+        $("#liLeaveType").siblings().removeClass("active");
+        $("#timesheet_management + li + li").addClass("active");
+        $("#timesheet_management + li + li > ul.treeview-menu > li:nth-child(2)").addClass("click");
+        $("#timesheet_management + li + li").siblings().removeClass("active");
+    });
+</script>

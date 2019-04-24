@@ -1,0 +1,1676 @@
+﻿@model Evolutyz.Entities.UserProfileEntity
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<style>
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    .box.box-solid.box-brown .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .box.box-solid.box-brown .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<style type="text/css">
+    .panel-default > .panel-heading {
+        background-color: #ececec;
+    }
+
+    .modal-footer {
+        border-top-color: #dedede;
+    }
+
+    .btn-clr {
+        background: linear-gradient(-45deg,#f37a41,#f8c26c);
+        background: -webkit-linear-gradient(135deg,#f37a41,#f8c26c);
+        border-radius: 25px;
+        border-color: #f8c26c;
+        color: #fff;
+    }
+
+    #v-card {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        /*max-height: 400px;*/
+        margin-bottom: 25px;
+        /*-webkit-transition: height 1s, color 1s, margin 1s;
+        transition: height 1s, color 1s, margin 1s;
+        z-index: 1;
+        background: linear-gradient(#e7b576,#dc9c4c);*/
+        font-family: 'Muli', sans-serif;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+        border-radius: 0;
+    }
+
+    .panel-brown {
+        border-color: #d48500;
+    }
+
+        .panel-brown > .panel-heading {
+            color: #7a4c00;
+            border-color: #d48500;
+            background-image: -webkit-linear-gradient(top, #f1cd90 0%, #d6a24c 100%);
+            background-image: -o-linear-gradient(top, #f1cd90 0%, #d6a24c 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#f1cd90), to(#d6a24c));
+            background-image: linear-gradient(to bottom, #f1cd90 0%, #d6a24c 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1cd90', endColorstr='#ffd6a24c', GradientType=0);
+        }
+
+    #v-card .card-content {
+        padding: 40px;
+        border-radius: 0 0 2px 2px;
+    }
+
+    #v-card .info-headings {
+        max-width: 80%;
+    }
+
+        #v-card .info-headings h4 {
+            display: block;
+            width: 100%;
+            font-weight: 900;
+            color: #fff;
+            float: left !important;
+            font-size: 2.18rem;
+            line-height: 110%;
+            margin: 1.14rem 0 0.912rem 0;
+            font-family: 'Raleway', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.29);
+        }
+
+        #v-card .info-headings h6 {
+            display: block;
+            width: 100%;
+            font-weight: 300;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            color: #fb8236;
+            float: left !important;
+            text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+        }
+
+    #v-card .infos {
+        max-width: 80%;
+        margin-top: 45px;
+    }
+
+    #v-card .clearfix {
+        clear: both;
+    }
+
+    #v-card.card-edit #profile #editbtn {
+        display:none;
+    }
+
+    #v-card #profile #viewbtn {
+        display: none;
+    }
+
+    #v-card.card-edit #profile #viewbtn {
+        background-color: #72bd1a;
+        display: inline-block;
+    }
+    /*#v-card.card-edit #editview > .fa:before {
+        content: "\f06e";
+    }*/
+
+    #v-card.card-edit .card-content > [class^="edit-"] {
+        display: block;
+        max-width: 85%;
+    }
+
+    #v-card.card-edit .card-content {
+        padding: 0 40px 40px;
+    }
+
+    .card-content > [class^="edit-"] > fieldset {
+        position: relative;
+        border: none;
+    }
+
+        .card-content > [class^="edit-"] > fieldset > label {
+            position: absolute;
+            top: 18px;
+            color: rgba(64, 64, 64, 0.5);
+            transform-origin: left;
+            transition: all 0.3s ease;
+        }
+
+        .card-content > [class^="edit-"] > fieldset > input:focus ~ label,
+        .card-content > [class^="edit-"] > fieldset > select:focus ~ label,
+        .card-content > [class^="edit-"] > fieldset > textarea:focus ~ label {
+            color: rgba(101, 56, 0, 0.75);
+        }
+
+        .card-content > [class^="edit-"] > fieldset > input:focus ~ label,
+        .card-content > [class^="edit-"] > fieldset > input:valid ~ label,
+        .card-content > [class^="edit-"] > fieldset > input[disabled] ~ label,
+        .card-content > [class^="edit-"] > fieldset > select:focus ~ label,
+        .card-content > [class^="edit-"] > fieldset > select:valid ~ label,
+        .card-content > [class^="edit-"] > fieldset > textarea:valid ~ label,
+        .card-content > [class^="edit-"] > fieldset > textarea:focus ~ label {
+            top: 0;
+            transform: scale(0.6, 0.6);
+        }
+
+        .card-content > [class^="edit-"] > fieldset > select,
+        .card-content > [class^="edit-"] > fieldset > input,
+        .card-content > [class^="edit-"] > fieldset > textarea {
+            width: 100%;
+            border: none;
+            margin-top: 15px;
+            background-color: transparent;
+            color: #333333;
+            line-height: 25px;
+        }
+
+            .card-content > [class^="edit-"] > fieldset > select > option {
+                background: rgba(101, 56, 0, 0.6);
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+            }
+
+            .card-content > [class^="edit-"] > fieldset > input:focus,
+            .card-content > [class^="edit-"] > fieldset > select:focus,
+            .card-content > [class^="edit-"] > fieldset > textarea:focus {
+                outline: none;
+            }
+
+        .card-content > [class^="edit-"] > fieldset > .after {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, rgba(101, 56, 0, 0.75) 50%, transparent 50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            transition: all 0.6s ease;
+        }
+
+        .card-content > [class^="edit-"] > fieldset > input:focus ~ .after,
+        .card-content > [class^="edit-"] > fieldset > select:focus ~ .after,
+        .card-content > [class^="edit-"] > fieldset > textarea:focus ~ .after {
+            background-position: 0 0;
+        }
+
+    @@keyframes ripple {
+        0% {
+            box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+        }
+
+        50% {
+            box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        100% {
+            box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0);
+        }
+    }
+
+    fieldset > strong {
+        margin-top: 15px;
+        display: block;
+    }
+
+    fieldset > .md-radio {
+        display: inline-block;
+        margin-top: 5px;
+    }
+
+        fieldset > .md-radio > input[type="radio"] {
+            display: none;
+        }
+
+            fieldset > .md-radio > input[type="radio"]:checked + label:before {
+                border-color: #bb6800;
+                animation: ripple 0.2s linear forwards;
+            }
+
+            fieldset > .md-radio > input[type="radio"]:checked + label:after {
+                transform: scale(1);
+            }
+
+        fieldset > .md-radio > label {
+            display: inline-block;
+            color: rgba(0, 0, 0, 0.54);
+            height: 20px;
+            position: relative !important;
+            padding: 0 30px;
+            margin-bottom: 0;
+            cursor: pointer;
+            vertical-align: bottom;
+            transform: none !important;
+        }
+
+        fieldset > .md-radio > input[type="radio"]:checked + label {
+            color: #cc770c;
+        }
+
+        fieldset > .md-radio > label:before, fieldset > .md-radio > label:after {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            transition: all .3s ease;
+            transition-property: transform, border-color;
+        }
+
+        fieldset > .md-radio > label:before {
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.54);
+        }
+
+        fieldset > .md-radio > label:after {
+            top: 5px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            transform: scale(0);
+            background: #bb6800;
+        }
+
+    .card-content button {
+        position: relative;
+        width: auto;
+        font-family: 'Ubuntu', 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-top: 20px;
+        border-radius: 25px;
+        padding: 8px 16px;
+        border: 1px solid;
+        transition: all 0.6s ease;
+    }
+
+        .card-content button.btn-clr1 {
+            background: linear-gradient(135deg, rgb(255, 148, 101), rgb(255, 200, 174));
+            border-color: rgb(231, 159, 127);
+            background: -webkit-linear-gradient(135deg, rgb(255, 148, 101), rgb(255, 200, 174));
+            color: #fff;
+        }
+
+        .card-content  button.btn-clr {
+            color: #fff;
+            border-color: #9E9E9E;
+            background: linear-gradient(135deg,#909090,#d2d2d2);
+            background: -webkit-linear-gradient(135deg,#909090,#d2d2d2);
+            /*color: rgb(181, 101, 0);
+        background: linear-gradient(to right, #ff8e00 50%, transparent 50%);
+        background-color: rgb(204, 113, 0);
+        background-size: 200% 100%;
+        background-position: 100% 0;*/
+        }
+    /*.card-content > [class^="edit-"] > fieldset > button:before {
+            position: absolute;
+            content: "Submit";
+            top: 2px;
+            bottom: 2px;
+            left: 2px;
+            right: 2px;
+            display: block;
+            background-color: white;
+        }*/
+    .card-content > .edit-heading {
+        margin-bottom: 30px;
+    }
+
+    .card-content  button:active,
+    .card-content  button:focus,
+    .card-content  button:hover {
+        outline: none;
+        color: #fff;
+    }
+
+    .card-content button.btn-clr1:active,
+    .card-content button.btn-clr1:focus,
+    .card-content button.btn-clr1:hover {
+        border: 1px solid rgb(218, 128, 88);
+        background: -webkit-linear-gradient(135deg, rgb(247, 121, 66), rgb(251, 187, 157));
+    }
+
+    .card-content button.btn-clr:active,
+    .card-content  button.btn-clr:focus,
+    .card-content  button.btn-clr:hover {
+        border-color: #7c7c7c;
+        background: -webkit-linear-gradient(135deg,#8e8c8c,#bebcbc);
+    }
+
+    #v-card.card-edit .card-content > [class^="info"],
+    .card-content > [class^="edit-"] {
+        display: none;
+    }
+
+    #v-card .infos .profile-list,
+    #v-card ul,
+    #v-card ol {
+        list-style-type: none;
+        margin-top: 0;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+        #v-card ul li {
+            list-style-type: none;
+            font-weight: 400;
+        }
+
+    #v-card .btn-floating:hover {
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+    }
+
+    #v-card span {
+        font-family: 'Raleway', sans-serif;
+    }
+    #v-card .info-headings h6 > span + span {
+        font-family: sans-serif;
+    }
+    #v-card .infos .profile-list .title {
+        display: block;
+        float: left;
+        color: #4c4c4c;
+        line-height: 26px;
+    }
+
+        #v-card .infos .profile-list .title i {
+            font-size: 23px;
+        }
+
+        #v-card .infos .profile-list .title .fa {
+            padding-left: 2px;
+        }
+
+    #v-card .infos .profile-list .list_content {
+        display: block;
+        margin-left: 30px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #868686;
+    }
+
+    #v-card .links {
+        /*max-width: 80%;*/
+        margin-left: -12px;
+        margin-top: 12px;
+        height: 100%;
+        position:relative;
+    }
+    #v-card.card-edit .links {
+        border: 2px dashed #ddd;
+        padding: 15px 5px;
+    }
+        #v-card .links li > a {
+            margin-left: 12px;
+            margin-bottom: 4px;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+            width: 37px;
+            height: 37px;
+            padding: 0;
+            border-radius: 50%;
+            transition: .3s;
+            color: #fff;
+            line-height: 37px;
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            cursor: pointer;
+            text-align: center;
+        }
+        #v-card ul.links > li {
+            display:inline-block;
+            width:auto;
+        }
+    #v-card.card-edit ul.links > li {
+        width:50%;
+    }
+    #v-card .links li > input.form-control {
+        display: none;
+        border-width: 0px 0 2px 0px;
+        background-color: transparent;
+        border-radius: 0;
+        border-color: #adadae;
+    }
+    #v-card .links li:first-child {
+        display: none;
+    }
+    #v-card.card-edit .links li > input.form-control,
+    #v-card.card-edit ul.links li:first-child,
+    #v-card.card-edit ul.links > li > button.btn-clr1 {
+        display: inline-block;
+    }
+            #v-card .links li i {
+                font-size: 15px;
+                vertical-align: middle;
+            }
+    #v-card.card-edit ul.links > li:first-child {
+        width: 100%;
+        color: #f48d4c;
+        font-weight: 600;
+        padding-left: 15px;
+        padding-bottom: 15px;
+        font-size: 16px;
+    }
+    @@media screen and (min-width:768px) {
+        .card-content > [class^="edit-"] > fieldset {
+            width: 33.33%;
+            float: left;
+            padding: 0 15px;
+        }
+
+            .card-content > [class^="edit-"] > fieldset:last-child {
+                width: 100%;
+                text-align: center;
+            }
+
+        .card-content > .edit-heading > fieldset:first-child,
+        .card-content > .edit-heading > fieldset:last-child {
+            width: 50%;
+            text-align:left;
+        }
+
+        #v-card ul li {
+            width: 50%;
+            float: left;
+        }
+
+        #v-card #profile img {
+            /*-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 350%, 0% 0%);
+           width: 400px;
+            height: auto;*/
+        }
+    }
+
+    @@media screen and (max-width:400px) {
+        #v-card .links li {
+            margin: 4px;
+        }
+    }
+
+    @@media screen and (max-width:295px) {
+        #v-card .links li {
+            margin: 1px;
+        }
+    }
+    #v-card #profile img {
+        pointer-events: none;
+    }
+
+    #v-card.card-edit #profile img {
+        pointer-events: auto;
+    } 
+    @@media screen and (max-width:990px) {
+        #v-card .infos {
+            max-width: 278px;
+        }
+
+        #v-card .links {
+            max-width: 325px;
+        }
+
+        #v-card .info-headings {
+            max-width: 270px;
+        }
+    }
+    .social.Facebook {
+        background-color: #3f51b5 !important;
+    }
+
+    .social.Twitter {
+        background-color: #2196F3 !important;
+    }
+
+    .social.Google {
+        background-color: #F44336 !important;
+    }
+
+    .social.LinkedIn {
+        background-color: #1565C0 !important;
+    }
+
+    .social.Instgram {
+        background-color: #ef6c00 !important;
+    }
+
+    #v-card #profile {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        float: right !important;
+    }
+
+        #v-card #profile .slant {
+            position: absolute;
+            background-color: #8e9194;
+            top: -25px;
+            right: -25px;
+            width: 55.5px;
+            height: 55.5px;
+            line-height: 56px;
+            z-index: 1;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+            outline: 0;
+            text-align: center;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            -webkit-tap-highlight-color: transparent;
+            text-transform: uppercase;
+            vertical-align: middle;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            transition: .3s;
+            cursor: pointer;
+            /*top: 0;
+            z-index: 1;
+            position: absolute;
+            border-style: solid;
+            border-width: 400px 0 0 100px;
+            border-color: rgba(223, 50, 50, 0) transparent transparent #e7b576;*/
+        }
+
+            #v-card #profile .slant:before {
+                position: absolute;
+                font-family: fontAwesome;
+                content: "\f044";
+                bottom: -10px;
+                left: 10px;
+            }
+
+        #v-card #profile .add-btn {
+            position: absolute;
+            background-color: #1976D2;
+            top: 20%;
+            right: 80%;
+            overflow: hidden;
+            width: 55.5px;
+            height: 55.5px;
+            line-height: 56px;
+            z-index: 1;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+            outline: 0;
+            text-align: center;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            -webkit-tap-highlight-color: transparent;
+            text-transform: uppercase;
+            vertical-align: middle;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+            #v-card #profile .add-btn i {
+                font-size: 30px;
+                color: #fff;
+                line-height: 59.5px;
+                width: inherit;
+            }
+    #v-card ul.links > li > a.social {
+        display: inline-block;
+        color: #fff;
+    }
+    #v-card ul.links > li > button.btn-clr1 {
+        position:absolute;
+        right:0 ;
+        top:50%;
+        margin: auto 15px;
+        display:none;
+    }
+    @@media screen and (max-width:767px) {
+        #v-card {
+            position: relative;
+            width: 100%;
+            overflow: visible;
+            z-index: 1;
+            margin-top: 30%;
+        }
+
+            #v-card #profile {
+                bottom: 85%;
+                left: 0;
+                width: 150px;
+                height: auto;
+                margin-right: auto;
+                margin-left: auto;
+                z-index: 1;
+                background-color: transparent;
+            }
+
+            #v-card.card-edit #profile {
+                top: -9%;
+                bottom: inherit;
+            }
+
+            #v-card #profile img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            }
+
+            #v-card #profile .slant {
+                /*display: none;
+                    opacity: 0;
+                    overflow: hidden;*/
+            }
+
+            #v-card.card-edit .card-content > .edit-heading {
+                padding-top: 45px;
+            }
+
+            #v-card #profile .add-btn {
+                top: 50%;
+                left: 150%;
+            }
+
+            #v-card li {
+                top: 0;
+                margin-left: 5px;
+                margin-bottom: 4px;
+            }
+
+                #v-card .infos {
+            display: table;
+            margin: 0 auto;
+            max-width: 100%;
+            padding: 0;
+        }
+
+            #v-card .links {
+                display: table;
+                max-width: 100%;
+                padding: 0;
+                margin: 0 auto 9px;
+            }
+
+                #v-card .links #first_one {
+                    margin-left: 0;
+                }
+
+            #v-card .info-headings {
+                max-width: 100%;
+                text-align: center;
+                margin-top: 38px;
+            }
+
+                #v-card .info-headings h6 {
+                    margin-bottom: 20px;
+                }
+
+            #v-card .card-content {
+                padding: 10px;
+            }
+    }
+
+    input[type=date]::-webkit-datetime-edit {
+        color: transparent;
+    }
+
+    input[type=date]:focus::-webkit-datetime-edit,
+    input[type=date]:valid::-webkit-datetime-edit {
+        color: #000;
+    }
+
+    fieldset.input-file {
+        width: 50% !important;
+        text-align: center;
+    }
+
+    .inputfile-4 + label {
+        color: #d3394c !important;
+    }
+
+        .inputfile-4:focus + label,
+        .inputfile-4.has-focus + label,
+        .inputfile-4 + label:hover {
+            color: #722040 !important;
+            outline: 0 !important;
+        }
+
+        .inputfile-4 + label figure {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #d3394c;
+            display: block;
+            padding: 20px;
+            margin: 0 auto 10px;
+        }
+
+        .inputfile-4:focus + label figure,
+        .inputfile-4.has-focus + label figure,
+        .inputfile-4 + label:hover figure {
+            background-color: #722040;
+        }
+
+
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius:50%;
+        /*-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 350%, 0% 0%);
+            background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(/uploadimages/Images/default.PNG);*/
+    }
+</style>
+
+<div class="container">
+    <div id="v-card">
+
+        <!-- PROFILE PICTURE -->
+        <div id="profile" class="right">
+            <img id="profile-image" class="profile-image" />
+
+            <input name="file" type="file" id="fileUpload" style="display:none" onchange="readURL(this)" />
+
+            <!--EMPTY PLUS BUTTON-->
+            <button class="btn-floating btn-large add-btn" id="editbtn"><i class="fa fa-edit"></i></button>
+            @*<button class="btn-floating btn-large add-btn" id="viewbtn"><i class="fa fa-eye"></i></button>*@
+        </div>
+
+        <div class="card-content">
+
+            <!-- NAME & STATUS -->
+            <div class="info-headings clearfix">
+                <h6 class="text-uppercase left"><span id="fname"></span>&nbsp; <span id="lname"></span></h6>
+
+                <h6 class="text-capitalize left" id="rolename">@Session["RoleName"]</h6>
+            </div>
+            <div class="edit-heading clearfix">
+                <fieldset>
+                    <input id="firstname" type="text" name="first name" required>
+                    <label for="first-name">First Name</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <input id="lastname" type="text" name="last name" required>
+                    <label for="last-name">Last Name</label>
+                    <div class="after"></div>
+                </fieldset>
+            </div>
+
+            <!-- CONTACT INFO -->
+            <div class="infos">
+                <ul class="profile-list clearfix">
+                    <li>
+                        <span class="title"><i class="fa fa-envelope"></i></span>
+                        <span class="list_content" id="emailDis"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-calendar"></i></span>
+                        <span class="list_content" id="dob"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                        <span class="list_content" id="doj"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-superpowers"></i></span> 
+                        <span class="list_content" id="maritalstatus"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-intersex"></i></span>
+                        <span class="list_content" id="gender"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-phone"></i></span>
+                        <span class="list_content" id="mobileno"></span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-map-marker"></i></span>
+                        <span class="list_content" id="address">  </span>
+                    </li>
+                    <li>
+                        <span class="title"><i class="fa fa-map-marker"></i></span>
+                        <span class="list_content" id="address1">  </span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="edit-field clearfix">
+                <fieldset>
+                    <input id="Dateofbirth" name="Date of Birth">
+                    <label for="Date-of-birth">Date of Birth</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <input id="Dateofjoin" name="Date of Join" disabled>
+                    <label for="Date-of-join">Date of Join</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <input id="emailaddr" type="email" name="Email Address" required disabled>
+                    <label for="email_addr">Email Address</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <input id="mobilenumber" type="text" name="Mobile Number" required>
+                    <label for="mobile_number">Mobile Number</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <strong>Gender </strong>
+                    <div class="md-radio">
+                        <input id="Male" value="1" type="radio" name="Gender" checked>
+                        <label for="Male">Male</label>
+                    </div>
+                    <div class="md-radio">
+                        <input id="Female" value="2" type="radio" name="Gender">
+                        <label for="Female">Female</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <strong>Marital Status </strong>
+                    <div class="md-radio">
+                        <input id="Single" value="1" type="radio" name="maritalstatus" checked>
+                        <label for="Single">Single</label>
+                    </div>
+                    <div class="md-radio">
+                        <input id="married" value="2" type="radio" name="maritalstatus">
+                        <label for="married">Married</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <textarea id="paddress" rows="4" required></textarea>
+                    <label for="p_address">Permanent Address</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+                    <textarea id="taddress" rows="4" required></textarea>
+                    <label for="t_address">Temporary Address</label>
+                    <div class="after"></div>
+                </fieldset>
+                <fieldset>
+
+
+
+                    <button id="ProfileEdit" class=" btn-clr1">Submit</button>
+                    <button class="btn-clr add-btn" id="viewbtn">Close</button>
+
+
+                </fieldset>
+
+            </div>
+            <!--LINKS-->
+            <ul class="links clearfix" id="socialmedia">
+                <li>Social Media Profiles</li>
+                @foreach (var types in ViewBag.SocialMediaIcons)
+                {
+
+
+
+                    <li>
+
+                        <a href="#"
+                           class="social btn-floating @types.Title" name="mediaids" id="@types.SocialMediaId">
+                            <i class="@types.Icon"></i>
+                        </a>
+
+                        <input class="form-control @types.SocialMediaId" type="text" name="@types.SocialMediaId" data-id="@types.SocialMediaId" id="MediaUrls" />
+                    </li>
+
+                }
+                    <li>
+                        <button id="AddSocialMedia" class=" btn-clr1" style="display:none">Add Social Media </button>
+                        <button id="UpdateSocialMedia" class=" btn-clr1" style="display:none">Update Social Media </button>
+                    </li>
+            </ul>
+           
+         
+            
+</div>
+
+    </div>
+    <div class="">
+        <h4 class="heading-fancy"> Add Skills </h4>
+        <a class="btn" href="#skils_Header" data-toggle="modal" title="Add"><i class="fa fa-plus" style="font-size: 22px;"></i> </a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Skill Details</div>
+        <div class="panel-body">
+
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Skills</th>
+                        <th>Experience</th>
+                        <th>SkillID</th>
+                        <th id="actions">Actions</th>
+                        @*<th>Edit</th>
+                            <th>Delete</th>*@
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="skils_Header" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add User Skills</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    @*<label for="inputPassword3" class="col-md-2 control-label">Skills : </label>*@
+                    <div class="col-md-4">
+                        <select class="form-control" name="skills" id="Skills">
+
+                            <option value="">Select Skills</option>
+                        </select>
+                    </div>
+                    @*<label for="inputPassword3" class="col-md-2 control-label">YearsEXp:</label>*@
+
+                    <div class="col-md-4">
+                        <select class="form-control" name="year" id="yearsOfExperience">
+                            <option value="">Select Years of Exp</option>
+                        </select>
+                    </div>
+                    @*<label for="inputPassword3" class="col-md-2 control-label">MonthsExp:</label>*@
+                    <div class="col-md-4">
+
+                        <select class="form-control" name="year" id="MonthsOfExperience">
+                            <option value="">Select Months of Exp</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submit" value="1" class="btn btn-clr">Add</button>
+                <button type="button" id="UpdateSkill" value="1" class="btn btn-clr" style="display:none">Update</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    //console.log($("#rolename").val());
+    if ($("#rolename").text() === "Super Admin") {
+        $("#socialmedia").hide();
+    } else {
+        $("#socialmedia").show();
+    }
+
+    $("#Dateofbirth").datepicker({
+        format: 'mm/dd/yyyy'
+
+    });
+
+
+    $("#Dateofjoin").datepicker({
+        format: 'mm/dd/yyyy'
+    });
+    var dropdownflag = 0;
+    var skilltitle;
+    var Experience;
+    var UserId = '@ViewBag.UserId';
+
+    function loaddata() {
+
+        $.ajax({
+            url: "/Profile/getAllUsersDetails",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+
+                $('#table').DataTable({
+
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+                        { 'data': 'Usr_UserId', "visible": false },
+                        { 'data': 'SkillTitle' },
+                        { 'data': 'Experience' },
+                        { 'data': 'Usr_SkillId', 'visible': false },
+                        {
+                            "render": function (Usr_SkillId, type, full, meta) {
+
+
+
+                                return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal" data-attr="SkillTitle" data-target="#skils_Header" data-userskillid="' + full.Usr_SkillId + '" data-skillID="' + full.SkillId + '" data-id="' + full.Usr_UserId + '" data-STitle="' + full.SkillTitle + '" data-Exp="' + full.Experience + '"  onclick="EditUser(this)" ><i class="fa fa-edit"></i></a><a class="btn btn-icn btn-icn-hide" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.Usr_SkillId + '"  onclick="DeleteSkill(this)" "><i class="fa fa-trash"></i></a>';
+
+
+
+                                  },
+
+                        },
+
+
+                    ]
+                });
+            },
+            error: function (msg) {
+                // alert(msg.responseText);
+            }
+        });
+    }
+
+    function DeleteSkill(d) {
+
+        var userId = d.getAttribute("data-id");
+
+        $.ajax({
+
+            type: "POST",
+
+            url: "/Profile/DeleteSkills?id=" + userId,
+
+            cache: false,
+            success: function (res) {
+
+                alert(res);
+                window.location.reload();
+
+
+            },
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        });
+
+    }
+
+    function EditUser(d) {
+        //data - userskillid="' + full.Usr_SkillId + '"
+        //data - skillID="' + full.SkillId + '"
+        //data - id="' + full.Usr_UserId + '"
+        //data - STitle="' + full.SkillTitle + '"
+        //data - Exp="' + full.Experience + '"
+
+        $("#UpdateSkill").show();
+        $("#submit").hide();
+        var SkillID = d.getAttribute("data-skillID");
+
+        $("#Skills").val(SkillID);
+
+
+
+
+        var userskillid = d.getAttribute("data-userskillid");
+        var Experience = d.getAttribute("data-Exp");
+
+        var seperateExperience = String(Experience).split(".");
+        var getFirstVal = seperateExperience[0];
+        var getSecondVal = seperateExperience[1];
+        $("#yearsOfExperience").val(getFirstVal);
+        $("#MonthsOfExperience").val(getSecondVal);
+
+        $("#UpdateSkill").click(function () {
+
+            // var userid = usrid;
+            var skill = $("#Skills").val();
+            var yearExp = $("#yearsOfExperience").val();
+            var monthExp = $("#MonthsOfExperience").val();
+
+            $.ajax({
+
+                type: "POST",
+                // contentType: "application/json; charset=utf-8",
+                url: "/Profile/updateSkills",
+                data: { SkillsTitle: skill, yearExp: yearExp, monthExp: monthExp, userskillid: userskillid },
+                dataType: "json",
+                cache: false,
+                success: function (res) {
+                    alert(res);
+                    window.location.href = "/Profile/Index";
+
+                }
+
+            });
+        });
+
+
+    }
+
+    function edit()
+       {
+           $.ajax({
+
+               url: '/Profile/GetProfiletByID?catID=' + UserId,
+               type: 'Get',
+               success: function (data) {
+                   var UsrP_UserProfileID = data.UsrP_UserProfileID;
+
+                   var UsrP_LastName = data.UsrP_LastName;
+
+                   var UsrP_FirstName = data.UsrP_FirstName;
+
+                   var UsrP_DOB = data.UsrP_DOB;
+
+                   var Usrp_DOJ = data.Usrp_DOJ;
+
+                   var UsrP_EmailID = data.UsrP_EmailID;
+
+                   var Usrp_ProfilePicture = data.Usrp_ProfilePicture;
+
+                   var Usrp_MobileNumber = data.Usrp_MobileNumber;
+
+                   var PermanentAddress = data.PermanentAddress;
+
+                   var TemporaryAddress = data.TemporaryAddress;
+
+                   var Marital_Status = data.Marital_Status;
+
+                   var Usr_GenderId = data.Usr_GenderId;
+
+                   var baseUrl = "/uploadimages/Images/";
+
+                   var image = baseUrl + Usrp_ProfilePicture;
+                   var image2 = baseUrl + "default.png";
+
+
+                   if (Usrp_ProfilePicture !== "") {
+                       $('#profile-image').show();
+                       $('#profile-image').prop('src', image);
+                   }
+                   else {
+                       $('#profile-image').show();
+                       $('#profile-image').prop('src', image2);
+
+                   }
+                   if (data.UsrP_DOB != null) {
+                       var dobDate = new Date(parseInt(UsrP_DOB.substr(6)));
+                       $("#Dateofbirth").val(dobDate.format("mm/dd/yyyy"));
+                   }
+
+                   if (data.Usrp_DOJ != null) {
+                       var dojDate = new Date(parseInt(Usrp_DOJ.substr(6)));
+                       $("#Dateofjoin").val(dojDate.format("mm/dd/yyyy"));
+                   }
+
+                   // if it is active set the ddl to active else in-active
+                   if (Usr_GenderId == 1) {
+                       $("#Male").prop("checked", true);
+                   } else {
+                       $("#Female").prop("checked", true);
+                   }
+                   if (Marital_Status == "UnMarried") {
+                       $("#Single").prop("checked", true);
+                   }
+                   else {
+                       $("#married").prop("checked", true);
+                   }
+
+                   $("#firstname").val(UsrP_FirstName);
+
+                   $("#lastname").val(UsrP_LastName);
+
+                   $("#emailaddr").val(UsrP_EmailID);
+
+                   $("#mobilenumber").val(Usrp_MobileNumber);
+
+                   $("#paddress").val(PermanentAddress);
+                   $("#taddress").val(TemporaryAddress);
+
+
+               },
+               error: function () {
+                   //alert(Response.text);
+               }
+           });
+    }
+
+    function editSocialMedia() {
+        $.ajax({
+
+            url: '/Profile/GetSocialMediaByID?catID=' + UserId,
+            type: 'Get',
+            success: function (data) {
+                  
+                for (var i = 0; i <= data.length - 1; i++) {
+              
+                    $("input[name=" + data[i].SocialMediaId + "]").val(data[i].Url);
+                }
+                //$(data).each(function () {
+
+                //    $("#"+this.SocialMediaId+"").val(this.Url);
+                //});
+
+            },
+            error: function () {
+                //alert(Response.text);
+            }
+        });
+    }
+
+    function ProfileEdit() {
+
+        $.ajax({
+
+            url: '/Profile/GetProfiletByID?catID=' + UserId,
+            type: 'Get',
+            success: function (data) {
+
+                $("#Proj_StartDate").val("");
+
+                $("#Proj_EndDate").val("");
+
+                var UsrP_UserProfileID = data.UsrP_UserProfileID;
+                var UsrP_LastName = data.UsrP_LastName;
+                var UsrP_FirstName = data.UsrP_FirstName;
+                var UsrP_DOB = data.UsrP_DOB;
+                var UsrP_EmailID = data.UsrP_EmailID;
+                var Usrp_DOJ = data.Usrp_DOJ;
+                var Usrp_ProfilePicture = data.Usrp_ProfilePicture;
+                var Usrp_MobileNumber = data.Usrp_MobileNumber;
+                var PermanentAddress = data.PermanentAddress;
+                var TemporaryAddress = data.TemporaryAddress;
+                var Marital_Status = data.Marital_Status;
+                var Usr_GenderId = data.Usr_GenderId;
+                var baseUrl = "/uploadimages/Images/";
+                var image = baseUrl + Usrp_ProfilePicture;
+                //console.log(image);
+                var image1 = baseUrl + "default.png";
+                $("#image").prop('src', image);
+                $("#imageNew").prop('src', image);
+                $("#Firstname").html(UsrP_FirstName);
+                $("#Lastname").html(UsrP_LastName);
+                $("#PFname").html(UsrP_FirstName);
+                $("#PLname").html(UsrP_LastName);
+                $("#email").html(UsrP_EmailID);
+
+                if (Usrp_ProfilePicture != "") {
+                    $('#profile-image').show();
+                    $('#profile-image').prop('src', image);
+                }
+                else {
+                    $('#profile-image').show();
+                    $('#profile-image').prop('src', image1);
+
+                }
+                if (data.UsrP_DOB != null) {
+
+                    var dobDate = new Date(parseInt(UsrP_DOB.substr(6)));
+                    $("#dob").html(dobDate.format("mm/dd/yyyy"));
+                }
+                if (data.Usrp_DOJ != null) {
+                    var dojDate = new Date(parseInt(Usrp_DOJ.substr(6)));
+                    $("#doj").html(dojDate.format("mm/dd/yyyy"));
+                }
+
+                if (Usr_GenderId == 1) {
+                    $("#gender").html("Male");
+                } else {
+                    $("#gender").html("Female");
+                }
+
+                $("#maritalstatus").html(Marital_Status);
+                $("#fname").html(UsrP_FirstName);
+                $("#lname").html(UsrP_LastName);
+                $("#emailDis").html(UsrP_EmailID);
+                $("#mobileno").html(Usrp_MobileNumber);
+                $("#address").html(PermanentAddress);
+                $("#address1").html(TemporaryAddress);
+
+
+            },
+            error: function () {
+                //alert(Response.text);
+            }
+        });
+       }
+
+    function bindSkills() {
+        $.ajax({
+
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/Profile/getUsers",
+            //data: "{}",
+            dataType: "json",
+            success: function (Result) {
+
+
+                $(Result).each(function () {
+
+                    $("#Skills").append($("<option></option>").val(this.SkillId).html(this.SkillTitle));
+                });
+
+            },
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        });
+    }
+
+    function bindsocialmediaurls() {
+        $.ajax({
+
+            type: "GET",
+            url: "/Profile/GetUserSocialMediaurls",
+          
+           dataType: "json",
+            success: function (Result) {
+                $(Result).each(function () {
+
+                    $("#" + this.SocialMediaId + "").attr("title",this.Url);
+                });
+                debugger;
+                if (Result.length === 0) {
+                    $(" #UpdateSocialMedia").hide();
+                    $(" #AddSocialMedia").show();
+                } else {
+                    $(" #UpdateSocialMedia").show();
+                    $(" #AddSocialMedia").hide();
+                }
+
+            },
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        });
+    }
+
+    $("#editbtn").on("click", function () {
+
+        edit();
+        editSocialMedia();
+     
+    });
+
+    $("#AddSocialMedia").click(function () {
+        
+        var userid = UserId;
+        var socialmediaurls = new Array();
+        var SocialMediaids = new Array();
+        $("input[id=MediaUrls]").each(function () {
+            socialmediaurls.push($(this).val());
+        });
+        $("input[id=MediaUrls]").each(function () {
+            SocialMediaids.push($(this).attr("data-id"));
+        });
+        var jsonobj = [];
+
+        for (var i = 0; i <= SocialMediaids.length - 1; i++) {
+            jsonobj.push({ "Usmp_SocialMediaId": SocialMediaids[i], "Url": socialmediaurls[i], "Usmp_UserID": UserId });
+        }
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            url: '/Profile/AddUserSocialMedia',
+            data: JSON.stringify(jsonobj),
+            success: function (data) {
+
+                alert(data);
+                console.log(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        });
+       
+
+    });
+
+    $("#UpdateSocialMedia").click(function () {
+       
+        var socialmediaurls = new Array();
+        var SocialMediaids = new Array();
+        $("input[id=MediaUrls]").each(function () {
+            socialmediaurls.push($(this).val());
+        });
+        $("input[id=MediaUrls]").each(function () { 
+            SocialMediaids.push($(this).attr("data-id"));
+        });
+        var jsonobj = [];
+
+        for (var i = 0; i <= SocialMediaids.length - 1; i++) {
+            jsonobj.push({ "Usmp_SocialMediaId": SocialMediaids[i], "Url": socialmediaurls[i], "Usmp_UserID": UserId });
+        }
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            url: '/Profile/UpdateUserSocialMedia',
+            data: JSON.stringify(jsonobj),
+            success: function (data) {
+
+                alert(data);
+                //console.log(data);
+                window.location.reload(); 
+            },
+            complete: function () {
+
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        });
+    });
+
+    $("#ProfileEdit").click(function () {
+
+        var Gender = $('input[name=Gender]:checked').val();
+        var maritalstatus = $('input[name=maritalstatus]:checked').val();
+        if (maritalstatus === "1") {
+            var status = "UnMarried";
+        }
+        if (maritalstatus === "2") {
+            status = "Married";
+        }
+        var file = document.getElementById("fileUpload").files[0];
+        var formData = new FormData();
+        formData.append("UsrP_FirstName", $('#firstname').val());
+        formData.append("Usrp_ProfilePicture", file);
+        formData.append("UsrP_LastName", $('#lastname').val());
+        formData.append("UsrP_UserID", UserId);
+        formData.append("UsrP_DOB", $('#Dateofbirth').val());
+        formData.append("Usrp_DOJ", $('#Dateofjoin').val());
+        formData.append("UsrP_EmailID", $('#emailaddr').val());
+        formData.append("Usrp_MobileNumber", $('#mobilenumber').val());
+        formData.append("Titleid", 1);
+        formData.append("PermanentAddress", $('#paddress').val());
+        formData.append("TemporaryAddress", $('#taddress').val());
+        formData.append("Usr_GenderId", Gender);
+        formData.append("Marital_Status", status);
+        $.ajax({
+            url: "/Profile/UpdateProfile",
+            type: 'POST',
+            data: formData,
+            cache: false,
+            success: function (res) {
+                $.ajax({
+                    url: "/Profile/GetProfileDetailforAdminLayout",
+                    type: 'GET',
+                    data: { UsrP_UserID: UserId },
+                    success: function (result) {
+                        window.location.href = "/Profile/Index";
+                    }
+                });
+
+            },
+            contentType: false,
+            processData: false
+        });
+    });
+
+    $(document).ready(function () {
+
+        loaddata();
+        bindSkills();
+        ProfileEdit();
+        
+        for (var i = 0; i < 30; i++) {
+            $("#yearsOfExperience").append($("<option></option>").html(i));
+        }
+        for (var j = 0; j < 12; j++) {
+            $("#MonthsOfExperience").append($("<option></option>").html(j));
+        }
+
+
+
+        $("#submit").click(function () {
+
+
+            var skill = $("#Skills").val();
+            var yearExp = $("#yearsOfExperience").val();
+            var monthExp = $("#MonthsOfExperience").val();
+
+
+            $.ajax({
+
+                type: "POST",
+                // contentType: "application/json; charset=utf-8",
+                url: "/Profile/AddSkills",
+                data: { skill: skill, yearExp: yearExp, monthExp: monthExp },
+                //dataType: "json",
+                cache: false,
+                success: function (res) {
+                    alert(res);
+                    //loaddata();
+                    window.location.href = "/Profile/Index";
+                },
+
+                error: function (Result) {
+
+                    //alert("Error");
+
+                }
+
+            });
+
+            //loaddata();
+
+        });
+
+
+
+
+
+    });
+
+
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.add-btn').on('click', function (event) {
+            jQuery('#v-card').toggleClass('card-edit');
+            bindsocialmediaurls();
+        });
+    });
+
+
+
+</script>
+<script type="text/javascript">
+     var permissions = '@ViewBag.a';
+
+    if (permissions === "Read") {
+        $("#btnAddModel").hide();
+
+        $("#actions").hide();
+
+
+    }
+    else {
+        $("#btnAddModel").show();
+
+        $("#actions").show();
+
+    }
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                //$('#profile-image').css('background-image', 'url(' + e.target.result + ')');
+                $('#profile-image').prop('src', e.target.result);
+                //css('background-image', 'url(' + e.target.result + ')');
+                $('#profile-image').hide();
+                $('#profile-image').fadeIn(650);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    // Replace source img-404
+  
+    $("#profile-image").click(function () {
+        $("#fileUpload").trigger('click');
+    });
+</script>

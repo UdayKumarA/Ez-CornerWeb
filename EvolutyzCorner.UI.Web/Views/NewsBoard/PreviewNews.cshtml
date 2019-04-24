@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "PreviewNews";
+}
+<style type="text/css">
+    @@media (min-width:992px) {
+        .content-wrapper, .right-side {
+            min-height: 100% !important;
+        }
+
+        html, body {
+            height: 100% !important;
+            min-height: inherit !important;
+        }
+
+        .block-content > .box-body {
+            padding: 0 0 4em;
+        }
+
+            .block-content > .box-body > ul.products-list.product-list-in-box {
+                max-height: 30em;
+                overflow: auto;
+            }
+
+        .content-wrapper + footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+</style>
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> News Board </h4>
+    </div>
+    <div class="box-body">
+        <ul class="products-list product-list-in-box">
+            @foreach (var types in ViewBag.news)
+            {
+                <li class="item" data-toggle="modal" data-target="#overview-article" id="@types.NewsBoardId">
+                    <div class="product-img">
+                        <img src="/uploadimages/Images/@types.Image" alt="Article-1">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-title">
+                            @types.Title
+                            <span class="article-date">  @types.CreatedDate</span>
+                        </span>
+                        <span class="product-description">
+                            By @types.Name
+                        </span>
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+
+
+
+<div id="overview-article" class="modal fade">
+    <div class="modal-dialog main-overview">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="img-div" id="newsimage">
+                    @*<img src="https://image.freepik.com/free-vector/facebook-background-with-likes-and-hearts_23-2147855033.jpg" class="img-responsive" alt="Mr M V Gowtama" />*@
+                </div>
+                <div class="article-title">
+                    <h4 class="modal-title" id="Name">By</h4>
+                    <h3 id="date"></h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <img src="~/Content/images/modal-close-icon.png" />
+                </button>
+                <div class="modal-btn-print">
+                    <a href="javascript:void(0);" onclick="printWithCss()">
+                        <i class="fa fa-print"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="article-widget" id="newsdata">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var date;
+    function dateConversion(value) {
+        if (value === null) return "";
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+
+        date = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+
+    }
+    $(document).ready(function () {
+        $(".item").click(function () {
+
+            var id = $(this).attr("id");
+            console.log(id);
+            $.ajax({
+                url: "/NewsBoard/GetNewsById?id=" + id,
+                type: "POST",
+                success: function (res) {
+
+                    $("#newsimage").empty();
+                    $("#newsimage").append("<img src='" + "/uploadimages/Images/" + res.Image + "' alt='No Image Uploaded'  width='150' height='55' id='ImageName'   />");
+                    $("#Name").text("By" + res.Name);
+                    dateConversion(res.CreatedDate);
+                    $("#date").text(date);
+                    $("#newsdata").text(res.Description);
+
+
+                },
+                complete: function () {
+                    $('#loading-image').attr("style", "display: none;");
+                },
+
+                error: function (Result) {
+
+
+
+                }
+
+            });
+        });
+    });
+  
+</script>

@@ -1,0 +1,497 @@
+﻿@model Evolutyz.Entities.LeaveTypeEntity
+@{
+    ViewBag.Title = "Leave Management - Leave Type";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>*@
+
+
+<style>
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    .box.box-solid.box-brown .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .box.box-solid.box-brown .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add LeaveType</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row" style="display:none;">
+                    <div class="form-group col-md-6">
+                        <label for="Usr_UserID">LTyp_AccountID</label>
+                        @Html.TextBoxFor(m => m.LTyp_AccountID, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Usr_UserID">LeaveTypeID</label>
+                        @Html.TextBoxFor(m => m.LTyp_LeaveTypeID, new { @class = "form-control" })
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label for="AccountName">AccountName<font style="color:red;">*</font></label>
+                        @Html.DropDownListFor(model => model.AccountName, new SelectList(ViewBag.AccountName, "value", "text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountName)
+                        @*@Html.DropDownListFor(m => m.AccountName, new SelectList("", ""), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AccountName)*@
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="LeaveType">LeaveType<font style="color:red;">*</font></label>
+                        @Html.TextBoxFor(m => m.LTyp_LeaveType, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.LTyp_LeaveType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="LeaveTypeDescription">LeaveTypeDescription</label>
+                        @Html.TextBoxFor(m => m.LTyp_LeaveTypeDescription, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.LTyp_LeaveTypeDescription)
+                    </div>
+                </div>
+                <div class="row">
+
+
+                    <div class="form-group col-md-4">
+                        <label for="ActiveStatus">ActiveStatus<font style="color:red;">*</font></label>
+
+                        @Html.DropDownListFor(m => m.LTyp_ActiveStatus, new SelectList(new List<Object>{
+
+                       new { value = true , text = "Active"},
+                       new { value = false , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.LTyp_ActiveStatus)
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnadd" class="btn btn-clr">Add</button>
+                <button type="button" id="btnUpdate" class="btn btn-clr" style="display:none">Update</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="DeleteSkill(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> Leave Types </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Organization</th>
+                        <th>Leave Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th id="actions">Actions</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#LTyp_ActiveStatus").val("True");
+    var delid;
+        $(document).ready(function () {
+            loaddata();
+
+             var permissions = '@ViewBag.a';
+        if (permissions.toLowerCase() === "read/write") {
+              
+            $("#btnAddModel").show();
+            $("#actions").show();
+
+            }
+            else {
+            $("#btnAddModel").hide();
+            $("#actions").hide();
+
+            }
+
+            $("#btnAddModel").click(function () {
+                $("#btnadd").show();
+                $("#btnUpdate").hide();
+            });
+            $("#btnclose").click(function () {
+                window.location.reload();
+            });
+
+            $("#btnUpdate").on("click", function () {
+                var LTyp_LeaveTypeID = $("#LTyp_LeaveTypeID").val();
+                var AccountName = $("#AccountName").val();
+
+                var LTyp_LeaveType = $("#LTyp_LeaveType").val();
+
+                var LTyp_LeaveTypeDescription = $("#LTyp_LeaveTypeDescription").val();
+
+
+
+                var LTyp_ActiveStatus = $("#LTyp_ActiveStatus").val();
+
+
+
+
+                $.ajax({
+
+                    type: "POST",
+                    // contentType: "application/json; charset=utf-8",
+                    url: "/LeaveType/UpdateLeaveType",
+                    data: {
+                        'LTyp_LeaveTypeID': LTyp_LeaveTypeID,
+                        'LTyp_AccountID': AccountName,
+                        'LTyp_LeaveType': LTyp_LeaveType,
+                        'LTyp_LeaveTypeDescription': LTyp_LeaveTypeDescription,
+                        'LTyp_ActiveStatus': LTyp_ActiveStatus
+                    },
+
+                    // cache: false,
+                    success: function (res) {
+
+                        alert(res);
+                        window.location.href = "/LeaveType/Index";
+
+                    },
+
+                    error: function (Result) {
+
+                        //alert("Error");
+
+                    }
+
+                });
+
+            });
+
+            $("#btnadd").click(function () {
+                  
+
+                var AccountName = $("#AccountName").val();
+
+                var LTyp_LeaveType = $("#LTyp_LeaveType").val();
+
+                var LTyp_LeaveTypeDescription = $("#LTyp_LeaveTypeDescription").val();
+
+
+
+                var LTyp_ActiveStatus = $("#LTyp_ActiveStatus").val();
+                if (AccountName === "" || LTyp_LeaveType === "" || LTyp_ActiveStatus === "") {
+                    alert("Please Fill All Mandatory Fields");
+                } else {
+                    $.ajax({
+
+                        type: "post",
+
+                        url: "/LeaveType/CreateLeaveType",
+                        data: {
+                            'LTyp_AccountID': AccountName,
+                            'LTyp_LeaveType': LTyp_LeaveType,
+                            'LTyp_LeaveTypeDescription': LTyp_LeaveTypeDescription,
+                            'LTyp_ActiveStatus': LTyp_ActiveStatus
+                        },
+
+                        success: function (Result) {
+
+                            alert(Result);
+                            window.location.reload();
+                        },
+                        error: function (Result) {
+
+                            alert("Error");
+
+                        }
+
+                    });
+
+                }
+              
+            });
+        });
+
+</script>
+
+<script type="text/javascript">
+        function loaddata() {
+
+            $.ajax({
+                url: "/LeaveType/GetLeaveTypeCollection",
+                type: "Get",
+                dataType: "json",
+                success: function (res) {
+
+                    $('#table').DataTable({
+                        'data': res,
+                        'paginate': true,
+                        'sort': true,
+                        'Processing': true,
+                        'columns': [
+
+                            { 'data': 'LTyp_LeaveTypeID', visible: false },
+                            { 'data': 'AccountName', visible: false },
+                            { 'data': 'LTyp_LeaveType' },
+                            { 'data': 'LTyp_LeaveTypeDescription' },
+
+
+                            {
+                                'data': 'LTyp_ActiveStatus',
+                                "render": function (LTyp_ActiveStatus, type, full, meta) {
+                                    if (LTyp_ActiveStatus === true) {
+                                        return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked   onclick="UnCheckStatus(' + full.LTyp_LeaveTypeID + ')"> <label for="check_01"></label> </div>';
+                                    }
+                                    else {
+                                        return '<div class="statuscheck"> <input type="checkbox" id="check_02"   onclick="CheckStatus(' + full.LTyp_LeaveTypeID + ')"> <label for="check_02"></label> </div>';
+                                    }
+                                }
+                            },
+
+                            {
+                                "render": function (LTyp_LeaveTypeID, type, full, meta) {
+                                      var permissions = '@ViewBag.a';
+                                    if (permissions === "Read/Write") {
+                                        return '<a class="btn btn-icn btn-icn-hide" data-toggle="modal"  data-target="#ContainerGridDetail" id="edit" title="Edit" onclick="EditUser(' + full.LTyp_LeaveTypeID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn btn-icn-hide" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.LTyp_LeaveTypeID + '" title="Delete" onclick="getid(' + full.LTyp_LeaveTypeID + ')" "><i class="fa fa-trash"></i></a>';
+
+
+                                    }
+                                    else {
+
+                                        return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail" id="edit" title="Edit" onclick="EditUser(' + full.LTyp_LeaveTypeID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.LTyp_LeaveTypeID + '" title="Delete" onclick="getid(' + full.LTyp_LeaveTypeID + ')" "><i class="fa fa-trash"></i></a>';
+
+                                    }
+
+
+
+                                        }
+
+                            },
+                            //{
+                            //    data: null, render: function (data, type, row) {
+
+                            //        return '<a class="btn btn-icn" data-target="#containerDelete" data-toggle="modal"  data-id="' + row.LTyp_LeaveTypeID + '" title="Delete" onclick="DeleteSkill(' + row.LTyp_LeaveTypeID + ')" "><i class="fa fa-trash"></i></a>';
+
+                            //    }
+
+                            //},
+
+                        ]
+                    });
+                },
+                error: function (msg) {
+                    // alert(msg.responseText);
+                }
+            });
+        }
+
+    function UnCheckStatus(id) {
+        $.ajax({
+            url: "/LeaveType/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': false
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function CheckStatus(id) {
+        $.ajax({
+            url: "/LeaveType/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': true
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+
+    function getid(id) {
+        delid = id;
+    }
+
+        function EditUser(LTyp_LeaveTypeID) {
+            $("#btnadd").hide();
+            $("#btnUpdate").show();
+            $.ajax({
+
+                url: '/LeaveType/GetLeaveTypeByID?catID=' + LTyp_LeaveTypeID,
+                type: 'Get',
+                success: function (data) {
+
+
+                    var LTyp_LeaveTypeID = data.LTyp_LeaveTypeID;
+
+                    var LTyp_AccountID = data.LTyp_AccountID;
+
+                    var AccountName = data.AccountName;
+
+                    var LTyp_LeaveType = data.LTyp_LeaveType;
+
+                    var LTyp_LeaveTypeDescription = data.LTyp_LeaveTypeDescription;
+
+                    var LTyp_ActiveStatus = data.LTyp_ActiveStatus;
+
+                    // if it is active set the ddl to active else in-active
+                    if (LTyp_ActiveStatus === true) {
+                        $("#LTyp_ActiveStatus").val("True");
+                    } else {
+                        $("#LTyp_ActiveStatus").val("False");
+                    }
+
+                    $("#LTyp_LeaveTypeID").val(LTyp_LeaveTypeID);
+
+                    $("#AccountName").val(LTyp_AccountID);
+
+
+                    $("#LTyp_LeaveType").val(LTyp_LeaveType);
+
+                    $("#LTyp_LeaveTypeDescription").val(LTyp_LeaveTypeDescription);
+
+                    $("#LTyp_AccountID").val(LTyp_AccountID);
+
+                    $("#Rol_AccountID").val(Rol_AccountID);
+
+                    $("#LTyp_ActiveStatus option:selected").val(val);
+
+
+
+                },
+                error: function () {
+                    alert(Response.text);
+                }
+            });
+
+        }
+
+
+        function DeleteSkill(LTyp_LeaveTypeID) {
+
+            $.ajax({
+
+                type: "POST",
+                url: '/LeaveType/DeleteLeaveType?LeaveTypeID=' + LTyp_LeaveTypeID,
+
+                //   cache: false,
+                success: function (res) {
+
+                    alert(res);
+                    window.location.reload();
+
+                },
+
+                error: function (Result) {
+
+                    //alert("Error");
+
+                }
+
+            })
+
+        }
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#liLeaveType").addClass("active");
+        $("#liLeaveType > ul.treeview-menu > li:first-child").addClass("click");
+        $("#liLeaveType").siblings().removeClass("active");
+        $("#timesheet_management + li").addClass("active");
+        $("#timesheet_management + li > ul.treeview-menu > li:first-child").addClass("click");
+        $("#timesheet_management + li").siblings().removeClass("active");
+
+    });
+</script>

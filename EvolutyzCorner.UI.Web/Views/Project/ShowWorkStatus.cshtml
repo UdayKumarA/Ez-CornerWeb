@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Project Resources";
+}
+
+<h2>Project Resources</h2>
+<table id="table1" border="1" cellpadding="4px" align="center" width="100%">
+    <tr style="background-color:gold; font-variant-caps:all-petite-caps">
+        <th>Project Name</th>
+        <th>User Name</th>
+        <th>From</th>
+        <th>TO</th>
+        <th>Percentage Completed</th>
+    </tr>
+</table>
+<script>
+    $(document).ready(function () {
+        load();
+
+    });
+
+    function load() {
+
+        $.ajax({
+            url: '@Url.Action("getproject", "Project")',
+            data: {},
+            type: "GET",
+            cache: false,
+            success: function (savingStatus) {
+                $.each(savingStatus, function (i, item) {
+                    $("#table1").append("<tr> <td>" + item.ProjectName + "</td> <td>" +
+                        item.UserName + "</td> <td> " + formatJSONDate(item.FromDT) + " </td> <td> " +
+                        formatJSONDate(item.ToDT) + " </td> <td>" + item.PercentageCompleted + " </td></tr>");
+                });
+                console.log(savingStatus);
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+
+            }
+        });
+    }
+    
+    function formatJSONDate(jsonDate) {
+        var dateString = jsonDate.substr(6);
+        var currentTime = new Date(parseInt(dateString));
+        var month = currentTime.getMonth() + 1;
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+        var date = day + "/" + month + "/" + year;
+        return date;
+    }
+</script>

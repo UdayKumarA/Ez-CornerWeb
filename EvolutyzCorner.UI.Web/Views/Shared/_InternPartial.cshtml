@@ -1,0 +1,37 @@
+﻿@*<li><a href="~/TimeSheetManagement/Timesheetsubmit">Submit Timesheet</a> </li>*@
+
+
+
+
+<ul class="sidebar-menu" data-widget="tree">
+    <li id="dashboard"> <a href="~/Dashboard/Dashboard1"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a> </li>
+
+    <li id="timesheet_management"> <a href="~/User/PreviewTimesheets"> <i class="fa fa-hourglass"></i> <span>Timesheet Management</span> </a> </li>
+    <li id="timesheet_calender"> <a href="~/LeaveApplicationManagement/Calendar"> <i class="fa fa-calendar"></i> <span>Calendar</span> </a> </li>
+
+   
+    @*<li class="treeview" id="liLeaveType">
+        <a href="#"> <i class="fa fa-calendar-check-o"></i> <span>Leave Policies</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu">
+
+            <li><a href="~/LeaveApplicationManagement/Calendar">Calendar</a></li>
+
+
+        </ul>
+    </li>*@
+
+</ul>
+@*<script>
+
+        $(document).ready(function () {
+            var url = window.location;
+            // Will only work if string in href matches with location
+            $('.treeview-menu li a[href="' + url + '"]').parent().addClass('active');
+            // Will also work for relative and absolute hrefs
+            $('.treeview-menu li a').filter(function () {
+                return this.href == url;
+            }).parent().parent().parent().addClass('active');
+
+
+        });
+    </script>*@

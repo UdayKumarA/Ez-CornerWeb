@@ -1,0 +1,173 @@
+﻿@model Evolutyz.Entities.OrganizationAccountEntity
+
+@using (Html.BeginForm("CreateOrganizationAccount", "OrganizationAccount", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, id = "AccountForm" }))
+{
+    @*@Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)*@
+
+    <div class="form-horizontal">
+        <div class="col-sm-12">
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    <label class="col-md-4"> Account Code</label>
+                    <div class="col-md-8">
+                        @Html.HiddenFor(m => m.Acc_AccountID, new { id = "hdnAccountID" })
+                        @Html.HiddenFor(m => m.Acc_Version, new { id = "hdnVersion" })
+                        @Html.TextBoxFor(m => m.Acc_AccountCode, new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(m => m.Acc_AccountCode)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4"> Account Name :</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Acc_AccountName, new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(m => m.Acc_AccountName)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4"> Account Description :</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Acc_AccountDescription, new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(m => m.Acc_AccountDescription)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4"> Account Logo :</label>
+                    <div class="col-sm-8">
+                        <input type="file" id="fileUpload" name="fileUpload" />
+                        @Html.TextBoxFor(m => m.Acc_CompanyLogo, new { @class = "form-control", style = "display: none;" })
+                        @*@Html.ValidationMessageFor(m => m.Acc_CompanyLogo  )*@
+                        <img id="imgLogo" src='#' class="img-responsive" alt="Logo" width="150" height="55"/>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-md-4"> Email :</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Acc_EmailID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Acc_EmailID)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4"> Mobile :</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Acc_MobileNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Acc_MobileNumber)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4"> Phone :</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.Acc_PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Acc_PhoneNumber)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-4">Status :</label>
+                    <div class="col-sm-8">
+                        @*@Html.DropDownListFor(x => x.Acc_ActiveStatus, new List<SelectListItem> { new SelectListItem { Text = "Active", Value = "True" }, new SelectListItem { Text = "InActive", Value = "False" } }, "Select Status", new { @class = "form-control" })*@
+                        @Html.DropDownListFor(x => x.Acc_ActiveStatus, new SelectList(@ViewBag.Status, "value", "text"), "Select Status", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Acc_ActiveStatus)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <input type="button" id="btnClose" value="Close"  class="btn btn-default pull-right" />&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="btnAddAccount" value="Create" class="btn btn-success pull-right" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnClose').click(function () {
+            $('#ContainerGridAccountDetail').hide();
+        });
+                
+    $('#btnAddAccount').click(function () {
+        var switch_val = $(this).val();
+        var _accountID = $('#hdnAccountID').val();
+        alert('_accountID : ' + _accountID + ', Button Text : ' + switch_val);
+
+        var file = document.getElementById("fileUpload").files[0];
+        var formData = new FormData();
+        formData.append("Acc_AccountID", _accountID);
+        formData.append("Acc_AccountCode", $('#Acc_AccountCode').val());
+        //formData.append("Acc_AccountCode", $('#hdnAccountID').val());
+        formData.append("Acc_AccountName", $('#Acc_AccountName').val());
+        formData.append("Acc_AccountDescription", $('#Acc_AccountDescription').val());
+        formData.append("Acc_EmailID", $('#Acc_EmailID').val());
+        formData.append("Acc_MobileNumber", $('#Acc_MobileNumber').val());
+        formData.append("Acc_PhoneNumber", $('#Acc_PhoneNumber').val());
+
+        alert('Active Status : ' + $('#Acc_ActiveStatus').val());
+
+        formData.append("Acc_ActiveStatus", $('#Acc_ActiveStatus').val());
+        formData.append("Acc_AccountCode", $('#hdnAccountID').val());
+        formData.append("Acc_Version", $('#hdnVersion').val());
+        formData.append("Acc_CompanyLogo", file);
+
+        if (switch_val.toUpperCase() === "ADD") {
+
+            formData.append("Acc_Version", 1);
+
+            $.ajax({
+                    url: '@Url.Action("CreateOrganizationAccount", "OrganizationAccount")',
+                    cache: false,
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function (data) {
+                        $('#jQGridDetail').jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
+                        $(".custom-grid-form").hide();
+                        alert('Successfully Added');
+                    }
+                });
+        }
+        else if (switch_val.toUpperCase() === "UPDATE") {                
+            $.ajax({
+                url: '@Url.Action("UpdateOrganizationAccount", "OrganizationAccount")',
+                async: false,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#jQGridDetail').jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
+                    $(".custom-grid-form").hide();
+                    alert('Successfully Updated');
+                }
+            });
+        }
+    });
+});
+
+</script>

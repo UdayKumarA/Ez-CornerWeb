@@ -1,0 +1,1063 @@
+﻿@model Evolutyz.Entities.ProjectAllocationEntities
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+@*<script src="~/Scripts/jquery.validate.min.js"></script>*@
+@*<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>*@
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="~/EvolutyzCornerScripts/NewClientScript.js"></script>
+
+
+
+
+
+<style type="text/css">
+
+    input.form-control.validate_msg + span.field-validation-valid:before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 0px;
+        font-size: 10px;
+        color: red;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    #Usr_Username.validate_msg + span:before {
+        content: "UserName already Exists";
+    }
+
+    #Email.validate_msg + span:before {
+        content: "Loginid already Exists";
+    }
+    #HolidayName.validate_msg + span:before {
+        content: "HolidayName Already Exist In this Client";
+    }
+    #HolidayDate.validate_msg + span:before {
+        content: "HolidayDate Already Exist In this Client";
+    }
+
+    #clientprojecttitle.validate_msg + span:before {
+        content: "Project Name Already Existed";
+    }
+
+    #AssociateEmpGrid.modal {
+        z-index: 1045;
+    }
+
+    .profile-image {
+        /*-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 350%, 0% 0%);*/
+        width: 50px;
+        height: 50px;
+        margin-left: 25px;
+        /*background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(/upload/Images/default.PNG);*/
+    }
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    /*.form-control {
+        width: 100%;
+    }*/
+
+    .modal-footer.padding-015 {
+        padding: 5px;
+    }
+
+        .modal-footer.padding-015 > .btn {
+            padding: 2px 8px;
+        }
+
+    .panel-brown {
+        border-color: #e4a385;
+    }
+
+        .panel-brown > .panel-heading {
+            background-image: -webkit-linear-gradient(top, #f9d9cb 0%, #e4b49e 100%);
+            background-image: -o-linear-gradient(top, #f9d9cb 0%, #e4b49e 100%);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#e4b49e), to(#faf2cc));
+            background-image: linear-gradient(to bottom, #f9d9cb 0%, #e4b49e 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9d9cb', endColorstr='#ffe4b49e', GradientType=0);
+            background-repeat: repeat-x;
+            color: #976048 !important;
+            border-color: #e4a385;
+        }
+</style>
+
+<div>
+    <input type="text" value="@ViewBag.id" style="display:none" id="editpid" />
+</div>
+
+<div class="panel panel-brown">
+    <div class="panel-heading">Client Info.</div>
+    <form id="clientform">
+    <div class="panel-body no-padding">
+        <div class="clearfix" style="display:none;">
+            <div class="form-group col-md-6">
+                <label for="Proj_AccountID">Proj_ProjectID</label>
+                @Html.TextBoxFor(m => m.Proj_ProjectID, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.AccountName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="col-md-2" style="display:none;">
+                <div class="form-group">
+                    <label for="ProjectID">AccountID</label>
+                    @Html.TextBoxFor(m => m.Proj_AccountID, new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(m => m.Proj_ProjectID)
+                </div>
+            </div>
+            <div class="col-md-2"  style="display:none">
+                <div class="form-group">
+                    <label for="Proj_ProjectCode">Client Code</label>
+                    @Html.TextBoxFor(m => m.Proj_ProjectCode, new { Value = ViewBag.procode, @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(m => m.Proj_ProjectCode)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="RoleCode">Client Name<font style="color:red;">*</font></label>
+                    @Html.TextBoxFor(m => m.Proj_ProjectName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Proj_ProjectName)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="StartDate">Country<font style="color:red;">*</font></label>
+                    @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.countries, "value", "text"), "Select Country", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CountryId)
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="StartDate">State<font style="color:red;">*</font></label>
+                    @Html.DropDownListFor(m => m.StateId, new SelectList("", ""), "Select State", new { @class = "form-control",style="width:100%" })
+                    @Html.ValidationMessageFor(m => m.StateId)
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="StartDate">Web Address<font style="color:red;">*</font></label>
+
+                    @Html.TextBoxFor(m => m.WebUrl, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(m => m.WebUrl)
+
+                </div>
+            </div>
+            @*<div class="col-md-2">
+                    <div class="form-group">
+                        <label for="StartDate">StartDate<font style="color:red;">*</font></label>
+
+                        @Html.TextBoxFor(m => m.Proj_StartDate, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.Proj_StartDate)
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="EndDate">EndDate<font style="color:red;">*</font></label>
+
+                        @Html.TextBoxFor(m => m.Proj_EndDate, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.Proj_EndDate)
+
+                    </div>
+                </div>*@
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="StartDate">Status<font style="color:red;">*</font></label>
+
+                    @Html.DropDownListFor(m => m.Proj_ActiveStatus, new SelectList(new List<Object>{
+
+                       new { value = 1 , text = "Active"},
+                       new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(m => m.Proj_ActiveStatus)
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="ProjectDescription">Client Description</label>
+                    @Html.TextAreaFor(m => m.Proj_ProjectDescription, new { @class = "form-control", style = "width:100%" })
+                    @Html.ValidationMessageFor(m => m.Proj_ProjectDescription)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div>&nbsp;</div>
+                    <label for="Is_Timesheet_ProjectSpecific">
+                        <div>@Html.CheckBoxFor(m => m.Is_Timesheet_ProjectSpecific, new { style = "display: inline-block;" }) Is Timesheet ProjectSpecific</div>
+                        @*@Html.CheckBoxFor(m => m.Is_Timesheet_ProjectSpecific.Value, new { @id = "Is_Timesheet_ProjectSpecific", style = "display:inline-block" })Is Timesheet ProjectSpecific*@
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer padding-015">
+        <button type="submit" id="btnSingleUpdate" class="btn btn-clr" style="display:none">Update</button>
+
+        <button type="submit" id="btnAdd" class="btn btn-clr">Add</button>
+        <button type="button" class="btn btn-clr1" id="Back" data-dismiss="modal">Back</button>
+    </div>
+    </form>
+</div>
+
+@*-----------------------------------------------------------------------*@
+
+<div class="modal" id="ContainerGridProjectDetail" role="dialog">
+    <div class="modal-dialog modal-md">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="addproj" style="display:none">Add Project</h4>
+                <h4 class="modal-title" id="editproj" style="display:none">Edit Project</h4>
+            </div>
+            <form id="proForm"> 
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="clientprojecttitle">Project Name<font style="color:red;">*</font></label>
+                                @Html.TextBoxFor(m => m.clientprojecttitle, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.clientprojecttitle)
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ProjectDescription">Project Description</label>
+                                @Html.TextAreaFor(m => m.clientprojectdescription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Proj_ProjectDescription)
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <input type="hidden" id="Clientproid" />
+
+                    <input type="hidden" id="accid" />
+
+                    <input type="hidden" id="projid" />
+
+
+
+                </div>
+                <div class="modal-footer ">
+                    @*<button type="button" id="btnSingleUpdate" class="btn btn-clr" style="display:none">Update</button>*@
+
+                    <button type="submit" id="btnAddProj" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="submit" id="btnupdateProj" class="btn btn-clr" style="display:none">Update</button>
+                    <button type="button" class="btn btn-clr1" id="Back" data-dismiss="modal">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*--------------------------------------------*@
+
+<div class="modal-footer padding-015">
+    <button type="submit" id="btnProject" class="btn btn-clr" data-target="#ContainerGridProjectDetail" data-toggle="modal">Add Project</button>
+    <button type="submit" id="btnManModel" class="btn btn-clr" data-target="#ContainerGridDetail" data-toggle="modal">Add Manager</button>
+    <button type="submit" id="btnEmpModel" class="btn btn-clr" data-target="#ContainerGridDetail" data-toggle="modal">Add Employee</button>
+    <button type="submit" id="btnHoliday" class="btn btn-clr" data-target="#Holidaycalendergrid" data-toggle="modal">Holidaycalender</button>
+    @*<button type="button"  id="btnassociateemp" class="btn btn-clr" data-target="#AssociateEmpGrid" data-toggle="modal">Associate Employee</button>*@
+    <button type="submit" id="btntasks" class="btn btn-clr" data-target="#Projectspecifictaskgrid" data-toggle="modal">ProjectSpecific Tasks</button>
+</div>
+
+<div class="modal" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-md">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h4 class="modal-title" id="add"></h4>
+
+            </div>
+            <form id="EmpForm">
+                <div class="modal-body">
+                    <div class="row" style="display:none;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Proj_AccountID">Proj_AccountID</label>
+                                @Html.TextBoxFor(m => m.UProj_UserProjectID, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.UProj_ProjectID, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.UProj_UserID, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.Usr_UserID, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <label for="Email">Login/EmailId:<font style="color:red;">*</font></label>
+
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label for="Password">Password<font style="color:red;">*</font></label>
+                            @Html.PasswordFor(m => m.Usr_Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_Password)
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label for="ConfirmPassword">Confirm Password<font style="color:red;">*</font></label>
+                            @Html.PasswordFor(m => m.Usr_ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_ConfirmPassword)
+                            <label id="message"></label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label for="Usr_Titleid">Title<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(model => model.Usr_Titleid, new SelectList(ViewBag.usertitle, "value", "text"), "Select Title", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Usr_Titleid)
+                        </div>
+
+
+
+                        <div class="form-group col-md-3">
+                            <label for="Usr_Username">UserName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Usr_Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_Username)
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <label for="UserName">FirstName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsrP_FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsrP_FirstName)
+
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <label for="LoginId">LastName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsrP_LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsrP_LastName)
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="Usrp_CountryCode">CountryCode<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(model => model.Usrp_CountryCode, new SelectList(ViewBag.countrycode, "value", "text"), "Select CountryCode", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Usrp_CountryCode)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Usrp_MobileNumber">PhoneNumber<font style="color:red;">*</font></label>
+
+                            @Html.TextBoxFor(m => m.Usrp_MobileNumber, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.Usrp_MobileNumber)
+
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label for="Usr_GenderId">Gender<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(model => model.Usr_GenderId, new SelectList(ViewBag.Gender, "value", "text"), "Select Gender", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Usr_GenderId)
+                        </div>
+
+
+
+
+                        <div class="form-group col-md-4">
+                            <label for="LoginId">Profile Image</label>
+                            <img id="profile-image" class="profile-image" />
+
+                            <input name="file" type="file" id="fileUpload" style="display:none" onchange="readURL(this)" />
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <label for="UserType">Employeetype<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.Usr_UserTypeID, new SelectList("", ""), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_UserTypeID)
+                        </div>
+
+
+                        <div class="form-group col-md-4">
+                            <label for="RoleName">Role<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.RoleName, new SelectList("", ""), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RoleName)
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+                            <label for="UsrP_EmployeeID">Project<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.project, new SelectList("", ""), "Select Project", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.project)
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <label for="Taskname">Taskname<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.Usr_TaskID, new SelectList("", ""), new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.Usr_TaskID)
+                        </div>
+
+
+                        <div class="form-group col-md-4" id="manager1">
+                            <label for="Manager1">Manager1<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.ManagerName, new SelectList("", ""), "Select manager", new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.ManagerName)
+                        </div>
+
+
+                        <div class="form-group col-md-4" id="manager2">
+                            <label for="Manager2">Manager2</label>
+                            @Html.DropDownListFor(m => m.Managername2, new SelectList("", ""), "Select manager", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Managername2)
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="ParticipationPercentage">Project load(ParticipationPercentage)</label>
+                            @Html.TextBoxFor(m => m.UProj_ParticipationPercentage, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UProj_ParticipationPercentage)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="TimesheetMode_id">TimesheetMode<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(model => model.TimesheetMode_id, new SelectList(ViewBag.Timesheetmodes, "value", "text"), "Select TimeSheetMode", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TimesheetMode_id)
+                        </div>
+
+
+                        <div class="form-group col-md-3" style="display:none;">
+                            <label for="StartDate">StartDate</label>
+                            @Html.TextBoxFor(m => m.UProj_StartDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UProj_StartDate)
+                        </div>
+
+
+                        <div class="form-group col-md-3" style="display:none;">
+                            <label for="EndDate">EndDate</label>
+
+                            @Html.TextBoxFor(m => m.UProj_EndDate, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.UProj_EndDate)
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="ActiveStatus">ActiveStatus<font style="color:red;">*</font></label>
+
+                            @Html.DropDownListFor(m => m.UProj_ActiveStatus, new SelectList(new List<Object>{
+
+                       new { value = 1 , text = "Active"},
+                       new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(m => m.UProj_ActiveStatus)
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="manbtnassociate" class="btn btn-clr" style="display:none">Associate Manager</button>
+                    <button type="submit" id="empbtnassociate" class="btn btn-clr" style="display:none">Associate Employee</button>
+                    <button type="submit" id="btnUpdateModel" class="btn btn-clr" style="display:none">Update</button>
+                    <button type="submit" id="btnManAddModel" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="submit" id="btnEmpAddModel" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="button" class="btn btn-clr1" id="btnclose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="AssociateEmpGrid" role="dialog">
+
+    <div class="modal-dialog modal-md">
+        @*<label id="succ"></label>*@
+        <div class="modal-content" style="margin-left: 304px;width: 50%;align-items: center;/* padding: 50px; */">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h4 class="modal-title" id="">Associate Empoyee</h4>
+
+
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div class="col-md-6" id="">
+                        <label class="radio-inline">
+                            <input type="radio" class="check" name="optradio" id="radio1" value="rad1">Associate Manager
+                        </label>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label class="radio-inline">
+                            <input type="radio" class="check" name="optradio" id="radio2" value="rad2">Associate Employee
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row" style="display:none" id="managertype">
+                    <div class="col-md-3" id="L1manager">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio1" id="radio3" value="rad3">L1 Manager
+                        </label>
+
+                    </div>
+                    <div class="col-md-3" id="L2manager">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio1" id="radio3" value="rad4">L2 Manager
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12" id="managers" style="display:none">
+                        <label>Managers:</label>
+
+                        @Html.DropDownListFor(m => m.managerslist, new SelectList("", ""), "Select manager", new { @class = "form-control", onchange = "Selectmanager(this.value)" })
+
+                    </div>
+                    <div class="col-md-12" id="employees" style="display:none">
+                        <label>Employees:</label>
+
+                        @Html.DropDownListFor(m => m.employeeslist, new SelectList("", ""), "Select Employee", new { @class = "form-control", onchange = "SelectEmployee(this.value)" })
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="Closegrid" class="btn btn-clr">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="Projectspecifictaskgrid" role="dialog">
+
+    <div class="modal-dialog modal-md">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h4 class="modal-title" id="add">Add Project Tasks</h4>
+                <h4 class="modal-title" id="edit" style="display:none">Edit Project tasks</h4>
+
+            </div>
+
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Acc_SpecificTaskName">Account Specific Task:<font style="color:red;">*</font></label>
+
+                            @Html.DropDownListFor(model => model.Acc_SpecificTaskName, new SelectList(ViewBag.accspecifictasks, "value", "text"), "Select AccountSpecific task", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Acc_SpecificTaskName)
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Proj_SpecificTaskName">Project Specific Task:<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Proj_SpecificTaskName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Proj_SpecificTaskName)
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="rtmid">RTM ID<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.RTMId, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RTMId)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Actual_StartDate">Actual StartDate:</label>
+                            @Html.TextBoxFor(m => m.Actual_StartDate, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Actual_StartDate)
+                            <label id="message"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Actual_EndDate">Actual EndDate:</label>
+                            @Html.TextBoxFor(m => m.Actual_EndDate, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Actual_EndDate)
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Plan_StartDate">Plan StartDate</label>
+                            @Html.TextBoxFor(m => m.Plan_StartDate, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Plan_StartDate)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Plan_EndDate">Plan Enddate</label>
+                            @Html.TextBoxFor(m => m.Plan_EndDate, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Plan_EndDate)
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ActiveStatus">ActiveStatus</label>
+
+                            @Html.DropDownListFor(m => m.StatusId, new SelectList(new List<Object>{
+
+                       new { value = 1 , text = "Active"},
+                       new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(m => m.StatusId)
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="Addprojecttask" class="btn btn-clr">Add Task</button>
+                <button type="button" id="Updatetask" class="btn btn-clr">Update Task</button>
+                <button type="button" id="closetask" class="btn btn-clr">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-brown">
+    <div class="panel-heading">Project Info.</div>
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table id="Projecttable">
+                <thead>
+                    <tr>
+
+                        <th>Projectid</th>
+                        <th>accountid</th>
+                        <th>Project Name</th>
+                        <th>Project Description</th>
+                        <th id="projaction">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-brown">
+    <div class="panel-heading">Employee Info.</div>
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table id="usertable">
+                <thead>
+                    <tr>
+                        <th>Userid</th>
+                        <th>Roleid</th>
+                        <th>EmployeeID</th>
+                        <th>Employee Name</th>
+                        <th>Project</th>
+                        <th>Role Name</th>
+                        <th>Participation percentage(%)</th>
+                        <th>LoginID/Email</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th id="actions1">Actions</th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Email">Total Optional Holidays:</label>
+                @Html.TextBoxFor(m => m.optionalholidays, new { @class = "form-control", style = "width:50%", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Email">No of Optional Holidays You Can Opt:</label>
+                @Html.TextBoxFor(m => m.useroptionalholidays, new { @class = "form-control", style = "width:50%", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+<div class="panel panel-brown">
+    <div class="panel-heading" id="clientholidays" style="display:none">Client Holiday Calendar</div>
+    <div class="panel-heading" id="accountholidays" style="display:none">Account Holiday Calendar</div>
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table id="holidaytable">
+                <thead>
+                    <tr>
+                        <th>HolidayCalendarID</th>
+
+                        <th>AccountID</th>
+                        <th>HolidayName</th>
+
+                        <th>HolidayDate</th>
+                        <th>Year</th>
+
+                        <th>OptionalHoliday</th>
+                        <th id="holidaystatus">isActive</th>
+                        <th id="holidayaction">Action</th>
+
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+<div id="taskstable">
+    <div class="panel panel-brown">
+        <div class="panel-heading">Project Specific Task</div>
+    </div>
+    <div class="panel-body">
+
+        <div class="table-responsive">
+            <table id="tasktable">
+                <thead>
+                    <tr>
+                        <th>Project SpecificTaskId</th>
+                        <th>Account SpecificTaskName</th>
+                        <th>Project SpecificTaskName</th>
+                        <th>RTMId</th>
+                        <th>Actual_StartDate</th>
+
+                        <th>Actual_EndDate</th>
+                        <th>Plan_StartDate</th>
+                        <th>Plan_EndDate</th>
+                        <th>isActive</th>
+                        <th id="taskaction">Action</th>
+
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade-in" id="Holidaycalendergrid" role="dialog">
+
+    <div class="modal-dialog">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Holiday</h4>
+            </div>
+            <form id="holidayform">
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-6" style="display:none;">
+                        <label for="HolidayCalendarID">HolidayCalendarID</label>
+                        @Html.TextBoxFor(m => m.HolidayCalendarID, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="HolidayName">HolidayName<font style="color:red;">*</font></label>
+                        @Html.TextBoxFor(m => m.HolidayName, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="HolidayDate">HolidayDate<font style="color:red;">*</font></label>
+                        @Html.TextBoxFor(m => m.HolidayDate, new { @type = "text", @class = "form-control", autocomplete = "off" })
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="Financialyear">Financialyear<font style="color:red;">*</font></label>
+                        @Html.DropDownListFor(model => model.FinancialYearId, new SelectList(ViewBag.FinancialYears, "value", "text"), new { @class = "form-control", id = "FinancialYearId" })
+                        @Html.ValidationMessageFor(model => model.FinancialYearId)
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="isActive">OptionalHoliday<font style="color:red;">*</font></label>
+
+                        @Html.DropDownListFor(m => m.isOptionalHoliday, new SelectList(new List<Object>{
+
+                         new { value = true, text = "Yes"},
+                         new { value = false, text = "No"}  }, "value", "text", 2), "Select isOptionalHoliday", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.isOptionalHoliday)
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label for="isActive">Status<font style="color:red;">*</font></label>
+
+                        @Html.DropDownListFor(m => m.isActive, new SelectList(new List<Object>{
+
+                         new { value = true, text = "Active"},
+                         new { value = false, text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.isActive)
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" id="HolidaybtnUpdate" class="btn btn-clr" style="display:none">Update</button>
+                <button type="submit" id="HolidaybtnAdd" class="btn btn-clr">Add</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+            </div>
+</form>
+        </div>
+    </div>
+</div>
+
+<div id="usercontainerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="Deleteuser(deluserid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="holidaycontainerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="Deletehc(delHoliday)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="taskcontainerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="DeleteTask(delprotaskid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#isOptionalHoliday").val("False");
+    $("#isActive").val("True");
+    var editprojectid = $("#editpid").val();
+      var assempper = '@ViewBag.e';
+    if (assempper === "Read/Write") {
+        $("#btnassociateemp").show();
+    } else {
+        $("#btnassociateemp").hide();
+        $("#actions1").text('View');
+        $("#taskaction").text('View');
+
+    }
+    var usrpermission = '@ViewBag.b';
+    if (usrpermission === "Read") {
+        $("#btnManModel").hide();
+        $("#btnProject").hide();
+        $("#projaction").hide();
+        $("#btnSingleUpdate").hide();
+        $("#btnEmpModel").hide();
+        $("#actions1").text('View');
+        $("#taskaction").text('View');
+        $("holidayaction").text('View');
+    } else if (usrpermission === "Read/Write")  {
+        $("#btnManModel").show();
+        $("#btnProject").show();
+        $("#btnSingleUpdate").show();
+        $("#projaction").show();
+        $("#btnEmpModel").show();
+    }else {
+        $("#btnManModel").hide();
+        $("#btnProject").hide();
+        $("#projaction").hide();
+        $("#btnSingleUpdate").hide();
+        $("#btnEmpModel").hide();
+    }
+     var hlpermission = '@ViewBag.c';
+    if (hlpermission === "Read") {
+        $("#btnHoliday").hide();
+        $("#btnSingleUpdate").hide();
+       // $("#holidaystatus").hide();
+        $("#actions1").text('View');
+        $("#taskaction").text('View');
+        $("#holidayaction").text('View');
+    } else if (hlpermission === "Read/Write") {
+        $("#btnHoliday").show();
+       // $("#holidaystatus").show();
+        $("#btnSingleUpdate").show();
+
+    } else {
+        $("#btnHoliday").hide();
+        $("#btnSingleUpdate").hide();
+    }
+    var perms = '@ViewBag.a';
+    var taskpermission = '@ViewBag.d';
+    if (taskpermission === "Read") {
+        $("#btntasks").hide();
+       // $("#taskaction").hide();
+      //  $("#actions1").text('View');
+        $("#taskaction").text('View');
+        $("holidayaction").text('View');
+    } else if (taskpermission === "Read/Write") {
+        $("#taskaction").show();
+        $("#btntasks").show();
+    } else {
+        $("#btntasks").hide();
+        $("#taskaction").hide();
+
+    }
+    var UsAccount = '@ViewBag.usaccount';
+
+    if (UsAccount === "True") {
+       // $("#Projectspecifictaskgrid").hide();
+        $("#taskstable").hide();
+        $("#btntasks").hide();
+    } else {
+      //  $("#Projectspecifictaskgrid").show();
+        $("#taskstable").show();
+        $("#btntasks").show();
+    }
+    $.fn.noMask = function (regex) {
+        this.on("keypress", function (e) {
+            if (regex.test(String.fromCharCode(e.which))) {
+                return false;
+            }
+        });
+        };
+
+
+     $("#HolidayDate").noMask(/^[\w.,:;"'/!|#%&$*()_-]+$/);
+    $("#HolidayDate").noMask(/[$-/:-?{-~!"^_`\[\]]/);
+
+</script>

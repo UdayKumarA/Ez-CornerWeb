@@ -1,0 +1,9 @@
+D:\EvolutyzCornerWeb\Evolutyz.Entities\bin\Release\Evolutyz.Entities.dll
+D:\EvolutyzCornerWeb\Evolutyz.Entities\bin\Release\Evolutyz.Entities.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Entities\bin\Release\RestSharp.dll
+D:\EvolutyzCornerWeb\Evolutyz.Entities\bin\Release\RestSharp.xml
+D:\EvolutyzCornerWeb\Evolutyz.Entities\obj\Release\Evolutyz.Entities.csprojAssemblyReference.cache
+D:\EvolutyzCornerWeb\Evolutyz.Entities\obj\Release\Evolutyz.Entities.csproj.CoreCompileInputs.cache
+D:\EvolutyzCornerWeb\Evolutyz.Entities\obj\Release\Evolutyz.Entities.csproj.CopyComplete
+D:\EvolutyzCornerWeb\Evolutyz.Entities\obj\Release\Evolutyz.Entities.dll
+D:\EvolutyzCornerWeb\Evolutyz.Entities\obj\Release\Evolutyz.Entities.pdb

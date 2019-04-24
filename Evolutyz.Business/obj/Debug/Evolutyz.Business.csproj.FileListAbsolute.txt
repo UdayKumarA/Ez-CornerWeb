@@ -1,0 +1,409 @@
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+C:\Users\abhilash\Documents\IPMsg\AutoSave\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+C:\Users\suma\source\repos\Testing\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+F:\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+F:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojResolveAssemblyReference.cache
+F:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+F:\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\RestSharp.dll
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\EntityFramework.dll
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\RestSharp.xml
+E:\Evollatestbuild\Evolutyz.Business\bin\Debug\EntityFramework.xml
+E:\Evollatestbuild\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+E:\Evollatestbuild\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+E:\Evollatestbuild\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+E:\Evollatestbuild\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+E:\Evollatestbuild\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\RestSharp.dll
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\EntityFramework.dll
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\RestSharp.xml
+D:\New folder (2)\april18\Evolutyz.Business\bin\Debug\EntityFramework.xml
+D:\New folder (2)\april18\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+D:\New folder (2)\april18\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+D:\New folder (2)\april18\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+D:\New folder (2)\april18\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+D:\New folder (2)\april18\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Business.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\RestSharp.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Data.dll.config
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\Evolutyz.Entities.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\RestSharp.xml
+F:\EvolutyzCornerSolution\Evolutyz.Business\bin\Debug\EntityFramework.xml
+F:\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csprojAssemblyReference.cache
+F:\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CoreCompileInputs.cache
+F:\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.csproj.CopyComplete
+F:\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.dll
+F:\EvolutyzCornerSolution\Evolutyz.Business\obj\Debug\Evolutyz.Business.pdb

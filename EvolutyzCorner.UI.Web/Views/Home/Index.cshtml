@@ -1,0 +1,772 @@
+﻿@*@{
+        ViewBag.Title = "Home Page";
+    }
+
+    <div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+
+
+@model evolCorner.Models.UserProjectdetailsEntity
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+
+
+}
+
+
+<h2></h2>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" />
+
+<html>
+<body>
+    <div class="container" style="width:980px;background-color:rgba(158, 158, 158, 0.18);">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" id="ClientDetails" style="display:none;">
+            <tbody>
+                <tr>
+                    <td align="right" width="100" class="alt"><strong>Client Name:</strong></td>
+                    <td>
+                        <div id="dvClient">@Model.projectName</div>
+                    </td>
+                    <td align="right" width="110" class="alt"><strong>Project Name:</strong></td>
+                    <td>
+                        <div id="dvProjectName"> @Model.ProjectClientName</div>
+                    </td>
+                    <td align="right" width="120" class="alt"><strong>Account Name:</strong></td>
+                    <td>
+                        <div id="dvManager">@Model.AccountName</div>
+                    </td>
+                    <td width="100" align="right" class="alt"><strong>Timesheet Mode:</strong></td>
+                    <td>
+                        <div id="dvTSMode">Monthly</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="body" cellspacing="0" cellpadding="0" border="0" width="100%" style="padding:5px">
+
+            <div id="divMonthYear">
+                <div id="divhiduserid" style="display:none"><input type="hidden" id="hidUserid">/>@Model.User_ID</div>
+                <select name="month" id="month">
+                    <option value="">Select Month</option>
+                </select>
+
+                <select name="year" id="year">
+                    <option value="">Select Year</option>
+                </select>
+            </div>
+            <button id="submit" value="1">Go</button>
+            <button id="btnChangeDate" value="2" name="ChangeDate" style="display:none;">ChangeDate</button>
+            <div id="divhidFday" style="display:none">
+                <p> <label id="fday"></label></p>
+            </div>
+            <div id="StardateToEnddate" style="color:coral;font-size:large"></div>
+            <div id="tabCon">
+
+            </div>
+            <div id="TotHrs" style="float:right;position:relative;right:19px;font-size:large;display:none"><label>Total:</label>&nbsp;&nbsp;<label name="totCount" id="TotalHoursCount"></label></div>
+        </div>
+
+        <div id="footer">
+
+            <div id='Cmtsave' style="display:none">
+                <label style='color:coral'>Additional Comments</label>
+                <div>
+                    <textarea name='tnameDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea>
+
+                </div>
+                <div align='right' style='padding: 10px;'>
+                    <input type='submit' name='btnSave' value='Save &amp; Close' onclick=ConfirmSendTimesheet('1') id='btnSave' class='evInputBtn'>
+                    &nbsp;&nbsp;
+                    <input type='submit' name='btnSend' value='Save &amp; Send Timesheet' onclick=ConfirmSendTimesheet('2') id='btnSend' class='evInputBtn'>
+                    &nbsp;&nbsp;
+                    <input type='submit' id='btnclose' name='bntClose' value='Close' id='bntClose' class='evInputBtn' onClick='window.location.reload()'>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+@*<script type="text/javascript">
+        var d = new Date()
+        var weekday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        var monthname = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+        document.write(weekday[d.getDay()] + " ")
+        document.write(d.getDate() + ". ")
+        document.write(monthname[d.getMonth()] + " ")
+        document.write(d.getFullYear())
+    </script>*@
+
+<script type="text/javascript">
+    //function MonthYear() {
+
+    //    var year = $("#year").find("option:selected").text();
+
+    //    document.write("<select><option>" + mon + "</option></select><select ><option>" + year + "</option></select>");
+    //    document.write();
+    //}
+
+
+
+        //var mon = $("#month").find("option:selected").val();
+        //var year = $("#year").find("option:selected").text();
+
+    var Submittedtype = "";
+    function ConfirmSendTimesheet(id) {
+   
+
+        if (id == '1')
+        {
+            Submittedtype = 'Save';
+        }
+        if (id == '2')
+        {
+           
+            Submittedtype = 'Submit';
+        }
+        var Timesheetmonth = $("#fday").html();
+        var Commentss = $.trim($("#txtDescription").val());
+      //  var submittedtype = "Submit";
+        var Projectid =@Model.Proj_ProjectID;
+
+        var rows = $("#SubTable,#SubTable2").find("tr");
+        var listtimesheetdetails = []; var rowData = {}; var Date, TaskId, hours;
+      // var listtimesheetdetails = Array();
+        //
+        for (var rowOn = 1; rowOn < rows.length; rowOn++) {
+
+             Date = $(rows[rowOn]).find("td").eq(0).text();
+             TaskId = $(rows[rowOn]).find("#uc1_ddlTask option:selected").val();
+             hours = $(rows[rowOn]).find("input").val();
+             if (rowOn != 16)
+                 {
+            if (TaskId != undefined && hours != undefined && Date != null)
+            {
+                rowData = { taskDate: Date, taskid: TaskId, hoursWorked: hours, ProjectID: Projectid }
+                 }
+             }
+
+             else
+             {
+                 continue;
+             }
+
+
+
+            listtimesheetdetails.push(rowData);
+        }
+
+            //console.log(rowData);
+        var timesheets = {
+
+            UserID: @Model.User_ID,
+              TimeSheetMonth: Timesheetmonth,
+              Comments: Commentss,
+              SubmittedType: Submittedtype
+
+
+        }
+
+
+
+       /// sheetObj = JSON.stringify({ 'timesheets': timesheets, 'listtimesheetdetails': listtimesheetdetails.rowData });
+         var sheetObj = {
+             timesheets: timesheets,
+
+             listtimesheetdetails: listtimesheetdetails
+
+         };
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/AddUser",
+            data: JSON.stringify(sheetObj),
+           // data: JSON.stringify(sheetObj),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                alert(data);
+    window.location.reload();
+            }
+        });
+
+
+
+    }
+
+    $(document).ready(function (e) {
+
+
+       // caluc(t1);
+        var optn;
+
+        var d = new Date();
+        var curmon = d.getMonth();
+        var curYear = d.getFullYear();
+
+
+        for (y = 2000; y <= 2500; y++) {
+            var optn = document.createElement("OPTION");
+            optn.text = y;
+            optn.value = y;
+
+            // if year is 2015 selected
+            if (y == curYear) {
+                optn.selected = true;
+            }
+
+            document.getElementById('year').options.add(optn);
+
+        }
+
+
+
+
+        var monthArray = new Array();
+        monthArray[0] = "January";
+        monthArray[1] = "February";
+        monthArray[2] = "March";
+        monthArray[3] = "April";
+        monthArray[4] = "May";
+        monthArray[5] = "June";
+        monthArray[6] = "July";
+        monthArray[7] = "August";
+        monthArray[8] = "September";
+        monthArray[9] = "October";
+        monthArray[10] = "November";
+        monthArray[11] = "December";
+        for (m = 0; m <= 11; m++) {
+            optn = document.createElement("OPTION");
+            optn.text = monthArray[m];
+            // server side month start from one
+            optn.value = (m + 1);
+            //  if june selected
+            //if (m == 5) {
+            //    optn.selected = true;
+            //}
+
+            if (curmon == m)
+            {
+
+                optn.selected = true;
+            }
+
+            document.getElementById('month').options.add(optn);
+
+
+            // var data = document.getElementById('month').options.add(optn);
+        }
+
+
+
+
+        $('#month').prop('Select Month', curmon);
+        //$("#month").show();
+        //$("#year").show();
+        //$("#body").show();
+
+        $("#submit").on("click", function () {
+
+            $('#divMonthYear').hide();
+            $('#btnChangeDate').show();
+            $('#TotHrs').show();
+            $('#submit').hide();
+            // $("#body").hide();
+            //  $('#footer').hide();
+
+            $("#StardateToEnddate").empty();
+            $("#tabCon").empty();
+            $('#Cmtsave').show();
+            var counter = 1;
+            var counter15 = 1;
+            var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+            var month = $("#month").val();
+            var year = $("#year").val();
+            var month1 = $('#month :selected').text();
+
+            var dy = 1; // day variable for adjustment of starting date.
+            $("#ClientDetails").show(true);
+            $("#tabCon").append("<table name='maintbl' id='MainTable' width='100%'/*style='position:relative;left:10%;'*/>");
+            var day = 1;
+            var noofdaysinselectedmonth = daysInMonth(month, year);
+
+            var weekday = "";
+
+            var getdate = new Date(year, month - 1);
+            var StartDay = days[getdate.getDay() - 1]
+            //alert(dt.getDay());
+            //alert(StartDay);
+
+            var first_day = getdate.getDate(); //, first day of present month
+
+            getdate.setMonth(month, 0); // Set to next month and one day backward.
+
+            var last_date = getdate.getDate(); // Last date of present month
+
+            $("#StardateToEnddate").append("<span id='StartToEnd'>Timesheet of @Model.Usr_Username for the Period of " + month1, " ", + first_day, ", " + year + " to " + month1, " ", + last_date, ", " + year + "</span>");
+
+            if (month <= 9)
+            {
+                $("#fday").html(year + "-" + "0" + month + "-" + first_day);
+            }
+            else
+            {
+                $("#fday").html(year + "-"  + month + "-" + first_day);
+            }
+            var HCal = 0;
+            for (var temp = 1; temp <= noofdaysinselectedmonth; temp++) {
+
+                var dt = new Date(year, month - 1, temp);
+
+                var day = days[dt.getDay() - 1];
+                HCal++;
+                if (temp <= 15) {
+
+
+                    if (counter15 == 1) {
+                        $("#MainTable").append("<td id='td1' style='width:40%:vertical-align:right;'>" +
+                            "<table id='SubTable' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50' class='evAdminTable'>Hours </th></tr>");
+
+                        counter15 = counter15 + 1;
+                    }
+                    if (day === undefined) {
+                        weekday = "sun";
+                        // document.write("<td>" + weekday + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+                        $("#SubTable").append("<tr><td style='border:0px solid grey'>" + weekday + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%' selected class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' onload='LoadTasklookups()'></select></td><td style='align:center;border:0px solid grey'><input style='width:100%' name='hrs' class='uc1txtHours' onload='onLoadHours()' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+
+                    }
+
+                    else {
+
+                        var WeekndsVal = "";
+                        //$("#SubTable").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  selected class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' onload='LoadTasklookups()'></select></td><td style='align:center;border:0px solid grey'><input style='width:100%'  name='hrs'class='uc1txtHours'  onblur='myFunc(this);' type='text' value='8:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+                        weekday = "Sat";
+                        if (day === "Sat")
+                        {
+                            WeekndsVal = '0:00';
+
+
+                        }
+                        else
+                        {
+                            WeekndsVal = '8:00';
+                        }
+
+
+                        $("#SubTable").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  selected class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' onload='LoadTasklookups()'></select></td><td style='align:center;border:0px solid grey'><input style='width:100%'  name='hrs'class='uc1txtHours'  onblur='myFunc(this);' type='text' value=" + WeekndsVal + " maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+
+                    }
+
+                }
+                else {
+
+                    if (counter == 1) {
+                        $("#SubTable").append("</table>")
+                        $("#SubTable").append("</td>")
+                        // document.write("</table></td>");
+                        $("#MainTable").append("<td id='td2' style='width:40%:vertical-align:top;'><table id='SubTable2' /*style='position:relative;top:19px;'*/ width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50'class='evAdminTable'>Hours</th></tr>");
+                        //weekday = "Sat";
+                        //if (day === "Sat") {
+                        //    $("#SubTable").append("<tr><td style='border:0px solid grey'>" + weekday + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  selected class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' onload='LoadTasklookups()'></select></td><td style='align:center;border:0px solid grey'><input style='width:100%'  name='hrs'class='uc1txtHours' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+
+                        //}
+
+                        counter = counter + 1;
+                    }
+
+                    if (day === undefined) {
+
+                        weekday = "sun";
+
+                        // docu;:ment.write("<td>" + weekday + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+
+                        $("#SubTable2").append("<tr><td style='border:0px solid grey'>" + weekday + "," + month1 + "  " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  class='lookup' name='uc1$ddlTask' onload='LoadTasklookups()' selected id='uc1_ddlTask'></select></td><td style='border:0px solid grey'><input style='width:100%'  name='hrs' class='uc1txtHours'  onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td>&nbsp</td></td>");
+
+
+                    }
+
+
+                    else {
+                        var WeekndsVal2 = "";
+                        //$("#SubTable").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  selected class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' onload='LoadTasklookups()'></select></td><td style='align:center;border:0px solid grey'><input style='width:100%'  name='hrs'class='uc1txtHours'  onblur='myFunc(this);' type='text' value='8:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+                        weekday = "Sat";
+                        if (day === "Sat") {
+                            WeekndsVal2 = '0:00';
+
+
+                        }
+                        else {
+                            WeekndsVal2 = '8:00';
+                        }
+
+
+                        $("#SubTable2").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%'  class='lookup' name='uc1$ddlTask' id='uc1_ddlTask' selected  onload='LoadTasklookups()'></select></td><td style='border:0px solid grey'><input style='width:100%'  name='hrs' class='uc1txtHours' onload='onLoadHours()' onblur='myFunc(this);' type='text' value=" + WeekndsVal2+" maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td>&nbsp</td></td>");
+
+                    }
+                }
+
+                dy = dy + 1;
+
+            }
+
+            Number.prototype.padDigit = function () {
+
+                return (this < 10) ? '0' + this : this;
+            }
+
+                t1 = "0:00";
+                var mins = 0;
+                var hrs = 0;
+                $('.uc1txtHours').each(function () {
+                    t1 = t1.split(':');
+                    var t2 = $(this).val().split(':');
+                    //console.log(Number(t1[1]) + Number(t2[1]))
+                    mins = Number(t1[1]) + Number(t2[1]);
+                    minhrs = Math.floor(parseInt(mins / 60));
+                    hrs = Number(t1[0]) + Number(t2[0]) + minhrs;
+                    mins = mins % 60;
+                    t1 = hrs.padDigit() + ':' + mins.padDigit()
+                    console.log(t1)
+                });
+
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    t1 += parseFloat(this.value)
+
+                }
+                $('#TotalHoursCount').html(t1);
+
+
+            $(".uc1txtHours").on('change', function () {
+
+                     t1 = "0:00";
+                    var mins = 0;
+                    var hrs = 0;
+                    $('.uc1txtHours').each(function () {
+                        t1 = t1.split(':');
+                        var t2 = $(this).val().split(':');
+                        //console.log(Number(t1[1]) + Number(t2[1]))
+                        mins = Number(t1[1]) + Number(t2[1]);
+                        minhrs = Math.floor(parseInt(mins / 60));
+                        hrs = Number(t1[0]) + Number(t2[0]) + minhrs;
+                        mins = mins % 60;
+                        t1 = hrs.padDigit() + ':' + mins.padDigit()
+                        console.log(t1)
+                    });
+
+                    if (!isNaN(this.value) && this.value.length != 0) {
+                        t1 += parseFloat(this.value)
+
+                    }
+                    $('#TotalHoursCount').html(t1);
+
+            });
+
+            "</table>" + + "<hr />"
+            $("#MainTable").append("</tr></table>") + "<hr />";
+
+            //$("#footer").append("<div id='Cmtsave' >" +
+            //    " <label style='color:coral'>Additional Comments</label>" +
+            //    " <div>" +
+            //    " <textarea name='tnameDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea>" +
+            //    " </div>" +
+            //    "<div align= 'right' style= 'padding: 10px;' > " +
+            //    "<input type= 'submit' name= 'btnSave' value= 'Save &amp; Close' id= 'btnSave' class='evInputBtn' > " +
+            //    "&nbsp;&nbsp; " +
+            //    "<input type= 'submit' name= 'btnSend' value= 'Save &amp; Send Timesheet' onclick= 'ConfirmSendTimesheet();' id= 'btnSend' class='evInputBtn' > " +
+            //    "&nbsp;&nbsp; " +
+            //    "<input type= 'submit' id='btnclose' name= 'bntClose' value= 'Close' id= 'bntClose' class='evInputBtn' > " +
+            //    "</div > " +
+            //    "</div>");
+
+        });
+
+
+
+
+    });
+
+    //function myFunc(hrs)
+    //{
+    //    //alert(getHVal);
+    //    //var hours = 0;
+    //    //$('.uc1txtHours').each(function () {
+    //    //    var getHVal = $('.uc1txtHours').html(this.val);
+    //    //    hours += getHVal;
+    //    //   alert(hours);
+    //    //});
+    //    $('#TotalHoursCount').val(this.val);
+    //}
+
+
+
+
+    function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+
+
+
+    //$("#submit").on("click", function () {
+
+    //    $('#divMonthYear').hide();
+    //    $('#btnChangeDate').show();
+    //    $('#TotHrs').show();
+    //    $('#submit').hide();
+    //    // $("#body").hide();
+    //    $("#Cmtsave").hide();
+
+    //});
+
+
+    $(document).ready(function () {
+
+
+        $("#submit").click(function () {
+
+            //onLoadHours(t1);
+
+            LoadTasklookups();
+            LoadClientDetails();
+        });
+
+         var id =@Model.tsktaskID;
+
+        //$("#uc1_ddlTask").change(function () {
+        // $('#uc1_ddlTask').click(function () {
+
+        //    LoadTasklookups();
+        //    alert($('option:selected', $(this)).text());
+        //    $('option:selected', $(this)).text();
+        //});
+
+
+        function LoadTasklookups() {
+
+            $.ajax({
+                type: "GET",
+                url: "/Admin/getLookUp" ,
+                datatype: "Json",
+                //data: { id: id },
+                success: function (data) {
+                    $.each(data, function (index, value) {
+
+                        $('.lookup').append('<option value="' + value.tsk_TaskID + '">' + value.tsk_TaskName + '</option>');
+                        //$('.lookup').filter(function () {
+                        //    alter("fdsf");
+                        //    return ($(this).value() == t1); //To select Blue
+                        //}).prop('selected', true);
+
+                        $(".lookup option").each(function () {
+
+                            if ($(this).val() == id) {
+                                $(this).attr("selected", "selected");
+                                return;
+                            }
+                        });
+
+                    });
+                }
+            });
+
+
+        }
+
+        var getData;
+        function LoadClientDetails()
+        {
+        $.ajax({
+            type: "GET",
+            url: "/Home/Index",
+            datatype: "Json",
+            success: function (data) {
+
+               // $('#ClientDetails').innerHTML();
+
+            }
+            });
+        }
+
+    });
+
+
+
+
+
+
+    $("#btnChangeDate").on("click", function () {
+
+        $("#body").show();
+        //if()
+       // $("#footer").show();
+        $('#divMonthYear').show();
+        $('#btnChangeDate').hide();
+        $('#submit').show();
+        $('#TotHrs').hide();
+        $("#MainTable").html("");
+        $("#SubTable").html("");
+        $("#tabCon").html("");
+        $("#StardateToEnddate").html("");
+        $("#ClientDetails").hide();
+      $('#Cmtsave').hide();
+
+
+        //alert(btnval);
+        //if (btnval = '1') {
+        //    $('#Cmtsave').hide();
+        //    $('#txtDescription').hide();
+        //    $('#btnSave').hide();
+        //    $('#btnclose').hide();
+
+        //}
+        //else if (btnval = '2') {
+        //    $('#Cmtsave').show();
+        //    //$('#Cmtsave').show();
+        //    //$('#txtDescription').show();
+        //    //$('#btnSave').show();
+        //    //$('#btnclose').shi();
+        //}
+
+
+
+    });
+
+
+    function addInput() {
+
+        var selectHTML = "";
+        selectHTML = "<select style='width:100%' name='uc1$ddlTask' id='uc1_ddlTask'>";
+        for (i = 0; i < choices.length; i = i + 1) {
+            selectHTML += "< option value= '" + choices[i] + "' > " + choices[i] + "</option > ";
+        }
+        selectHTML += "</select > ";
+        newDiv.innerHTML = selectHTML;
+        document.getElementById(divName).appendChild(newDiv);
+    }
+</script>
+<style>
+    .evInputBtn {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 3px 5px;
+        background: #FF3300;
+        color: #FFF !important;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -moz-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+        .evInputBtn:hover {
+            background: #FF6600;
+        }
+
+    input, select, textarea {
+        max-width: 1000px;
+    }
+
+    .contentArea {
+        background: #FFF url(../images/shadow.png) repeat-x;
+        box-shadow: 0px 5px 8px rgba(183, 35, 35, 0.81);
+        padding: 30px;
+        min-height: 350px;
+    }
+
+    #MainTable {
+        border: 0px !important;
+    }
+
+    #SubTable {
+        border: 0px !important;
+    }
+
+    #SubTable2 {
+        border: 0px !important;
+    }
+
+    #body {
+        border-spacing: 5px;
+        border-color: grey;
+        border: 2px solid #8080800f;
+    }
+
+    td {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        color: #000;
+        padding: 5px;
+    }
+
+    table {
+        /*display: table;
+        border-collapse: separate;*/
+        border-spacing: 2px;
+        border-color: grey;
+        border: 1px solid grey;
+    }
+
+    th {
+        border-left: 0px solid #EAEAEA;
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+    }
+
+    /*tr:nth-of-type(odd) {
+        background: #eee;
+    }*/
+
+    .evAdminTable th {
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+        background: #666;
+        color: #FFF;
+    }
+</style>

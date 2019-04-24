@@ -1,0 +1,827 @@
+﻿@model evolCorner.Models.UserProjectdetailsEntity
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>*@
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    @*<script src="~/Scripts/PreviewTimesheet.js"></script>*@
+<script src="~/EvolutyzCornerScripts/PreviewTimesheet.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<style>
+    fieldset.note-status {
+        float: left;
+        text-align: left;
+        padding: 5px 15px 10px;
+        margin: 0 2px;
+        border: 1px solid silver;
+    }
+    table[id^="SubTable"] {
+        background-color: #fff;
+    }
+
+        table[id^="SubTable"] tr > td:first-child {
+            word-spacing: 5px;
+            text-align: right;
+            padding-right: 15px;
+        }
+        fieldset.note-status > legend {
+            width: auto;
+            margin-bottom: auto;
+            font-size: 16px;
+            font-weight: 600;
+            border: 0;
+            padding: 0 10px;
+        }
+
+        fieldset.note-status > label {
+            margin: 0 5px;
+        }
+
+            fieldset.note-status > label:before {
+                content: "*";
+                width: 18px;
+                height: 18px;
+                line-height: 22px;
+                display: inline-block;
+                color: #fff;
+                text-align: center;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+            /*fieldset.note-status > label.black:before {
+                background-color: black;
+            }*/
+
+            fieldset.note-status > label.green:before {
+                background-color: green;
+            }
+
+            fieldset.note-status > label.red:before {
+                background-color: red;
+            }
+
+            fieldset.note-status > label.blue:before {
+                background-color: blue;
+            }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    .flex {
+        display: flex;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    /*.box.box-solid.box-brown .btn-warning
+        {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success
+        {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }*/
+    .block-content .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .block-content .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+<style>
+    /*b[class^="ts_ManagerNames"],*/
+    table#body_ClientDetails td > b ~ b {
+        display: block;
+    }
+
+    table[id^="SubTable"] td.colored {
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+    }
+
+
+    @@import url(https://fonts.googleapis.com/css?family=Titillium+Web|Ubuntu:400,500);
+
+    #ProjectNameid > b {
+        color: #ff824b;
+        background: linear-gradient(102deg, #fd6d29 0%, #ff9905 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+    /*.modal-footer .btn-clr2 {
+        border-color: #ff5b28;
+        background: -webkit-linear-gradient(135deg,#ff9465,#ffc8ae);
+        background: linear-gradient(45deg,#fb6434,#fb948d);
+    }*/
+    [class*="btn-custom"] {
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+    }
+
+    .modal-footer > .btn-custom1 {
+        border-color: #06960c;
+        background: -webkit-linear-gradient(45deg,#4CAF50,#8BC34A);
+        background: linear-gradient(45deg,#4CAF50,#8BC34A);
+    }
+
+    .modal-footer > .btn-custom2 {
+        border-color: #ff5b28;
+        background: -webkit-linear-gradient(135deg,#ff9465,#ffc8ae);
+        background: linear-gradient(45deg,#fb6434,#fb948d);
+    }
+
+    #btnApprove.evInputBtn, #btnSend.evInputBtn {
+        background: #4CAF50;
+    }
+    /*a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }*/
+
+    #btnReject.evInputBtn {
+        background: #ff3f30;
+    }
+
+    #btnSave.evInputBtn {
+        background: #ff9800;
+    }
+
+    .panel-default > .panel-heading {
+        background-color: #ececec;
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    /*.box.box-solid.box-brown .btn-warning
+        {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success
+        {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }*/
+    .block-content .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .block-content .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<style>
+    #UserGridData td > span.badge.badge-radius[id="Saved Timesheet"],
+    #ManagerGridData td > span.badge.badge-radius[id="Saved Timesheet"] {
+        background-color: yellow;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Waiting for Approval at Both Managers"],
+    #ManagerGridData td > span.badge.badge-radius[id="Waiting for Approval at Both Managers"] {
+        background-color: deepskyblue;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Waiting for Approval at Level_1 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Waiting for Approval at Level_1 Manager"] {
+        background-color: deepskyblue;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Waiting for Approval at Level_2 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Waiting for Approval at Level_2 Manager"] {
+        background-color: deepskyblue;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Waiting for Approval"],
+    #ManagerGridData td > span.badge.badge-radius[id="Waiting for Approval"] {
+        background-color: deepskyblue;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Waiting for Approval at Both Managers"],
+    #ManagerGridData td > span.badge.badge-radius[id="Waiting for Approval at Both Managers"] {
+        background-color: deepskyblue;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Approved by Both Managers"],
+    #ManagerGridData td > span.badge.badge-radius[id="Approved by Both Managers"] {
+        background-color: green;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Approved By Level_1 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Approved By Level_1 Manager"] {
+        background-color: green;
+    }
+
+
+    #UserGridData td > span.badge.badge-radius[id="Approved By Level_2 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Approved By Level_2 Manager"] {
+        background-color: green;
+    }
+
+
+    #UserGridData td > span.badge.badge-radius[id="Approved By Level_1 Manager and Pending at Level_2 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Approved By Level_1 Manager and Pending at Level_2 Manager"] {
+        background-color: #deaa7c;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Pending at Level_1 Manager and Approved by Level_2 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Pending at Level_1 Manager and Approved by Level_2 Manager"] {
+        background-color: orange;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Rejected at Level_1 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Rejected at Level_1 Manager"] {
+        background-color: red;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Rejected"],
+    #ManagerGridData td > span.badge.badge-radius[id="Rejected"] {
+        background-color: red;
+    }
+
+    #UserGridData td > span.badge.badge-radius[id="Rejected at Level_2 Manager"],
+    #ManagerGridData td > span.badge.badge-radius[id="Rejected at Level_2 Manager"] {
+        background-color: red;
+    }
+
+
+
+    .box.box-solid.box-brown > .box-header > .btn-app {
+        border-radius: 50%;
+        margin: auto;
+        height: auto;
+        line-height: 0;
+        min-width: inherit;
+        float: right;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+    }
+
+        .box.box-solid.box-brown > .box-header > .btn-app > .fa {
+            font-size: 24px;
+        }
+
+    span.badge.badge-radius {
+        float: none;
+        position: relative;
+        background-color: #555;
+        color: #fff;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    /*span.badge.badge-radius[title]:hover:after {
+            content: attr(title);
+            padding: 4px 8px;
+            color: #333;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            white-space: nowrap;
+            z-index: 20;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            -moz-box-shadow: 0px 0px 4px #222;
+            -webkit-box-shadow: 0px 0px 4px #222;
+            box-shadow: 0px 0px 4px #222;
+            background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+            background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+            background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+            background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+            background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+            background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+        }*/
+    .evInputBtn {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 3px 5px;
+        background: #848484;
+        color: #FFF !important;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -moz-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+    /*.evInputBtn:hover {
+            background: #FF6600;
+        }*/
+
+    #Cmtsave {
+        padding: 0 10px;
+    }
+
+    .contentArea {
+        background: #FFF url(../images/shadow.png) repeat-x;
+        box-shadow: 0px 5px 8px rgba(183, 35, 35, 0.81);
+        padding: 30px;
+        min-height: 350px;
+    }
+
+    #MainTable {
+        border: 0px !important;
+    }
+
+    #SubTable {
+        border: 0px !important;
+    }
+
+    #SubTable2 {
+        border: 0px !important;
+    }
+
+    table#ClientDetails td {
+        border: 0;
+        width: auto;
+    }
+
+    tbody > tr:only-child:nth-child(odd) {
+        background: none;
+    }
+
+    .evAdminTable th {
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+        background: #666;
+        color: #FFF;
+    }
+
+    table td, table th {
+        padding: 3px 6px;
+    }
+
+    table tr:nth-of-type(odd) {
+        background: #f9f9f9;
+    }
+
+    table #MainTable > td[id^="td"] {
+        border: 0;
+        width: 50%;
+        vertical-align: top;
+    }
+
+    table td > .form-control {
+        border-radius: 0px;
+        height: auto;
+        padding: 2px;
+    }
+
+    table td > select.form-control {
+        width: 100%;
+    }
+
+    table #MainTable > td[id^="td"]:first-child {
+        padding-left: 0;
+    }
+
+    table#MainTable > td[id^="td"]:last-child {
+        padding-right: 0;
+    }
+
+    table [id^="SubTable"] tr > td:last-child {
+        display: none;
+    }
+
+    .box .panel-heading > h3.panel-title {
+        font-weight: 600;
+        font-family: 'Titillium Web', sans-serif;
+    }
+</style>
+
+<style>
+    #loading-image {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1035;
+        background-color: rgba(243, 243, 243, 0.75);
+        /*opacity: .8;*/
+    }
+
+        #loading-image > img {
+            /*width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 87, 34, 0.25);
+            border-top-color: #f37a41;
+            border-radius: 50%;*/
+            position: absolute;
+            /* animation: loader-rotate 1s linear infinite; */
+            top: 50%;
+            left: 50%;
+            margin: -60px auto 0;
+            max-width: 100%;
+            display: block;
+            height: 100px;
+        }
+
+        #loading-image > span {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            animation: loader-circles 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            margin: -20px auto 0;
+        }
+
+        #loading-image > strong {
+            position: absolute;
+            top: 50%;
+            left: 48%;
+            margin: 0px auto 0;
+            font-size: 10px;
+        }
+
+    @@keyframes loader-circles {
+        0% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+
+        12.5% {
+            box-shadow: 0 -85px 0 0 #f37a41, 61px -61px 0 0 rgba(255, 87, 34, 0.05), 85px 0 0 0 rgba(255, 87, 34, 0.1), 61px 61px 0 0 rgba(255, 87, 34, 0.2), 0 85px 0 0 rgba(255, 87, 34, 0.3), -61px 61px 0 0 rgba(255, 87, 34, 0.4), -85px 0 0 0 rgba(255, 87, 34, 0.6), -61px -61px 0 0 rgba(255, 87, 34, 0.8);
+        }
+
+        25% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.8), 61px -61px 0 0 #f37a41, 85px 0 0 0 rgba(255, 87, 34, 0.05), 61px 61px 0 0 rgba(255, 87, 34, 0.1), 0 85px 0 0 rgba(255, 87, 34, 0.2), -61px 61px 0 0 rgba(255, 87, 34, 0.3), -85px 0 0 0 rgba(255, 87, 34, 0.4), -61px -61px 0 0 rgba(255, 87, 34, 0.6);
+        }
+
+        37.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.6), 61px -61px 0 0 rgba(255, 87, 34, 0.8), 85px 0 0 0 #f37a41, 61px 61px 0 0 rgba(255, 87, 34, 0.05), 0 85px 0 0 rgba(255, 87, 34, 0.1), -61px 61px 0 0 rgba(255, 87, 34, 0.2), -85px 0 0 0 rgba(255, 87, 34, 0.3), -61px -61px 0 0 rgba(255, 87, 34, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.4), 61px -61px 0 0 rgba(255, 87, 34, 0.6), 85px 0 0 0 rgba(255, 87, 34, 0.8), 61px 61px 0 0 #f37a41, 0 85px 0 0 rgba(255, 87, 34, 0.05), -61px 61px 0 0 rgba(255, 87, 34, 0.1), -85px 0 0 0 rgba(255, 87, 34, 0.2), -61px -61px 0 0 rgba(255, 87, 34, 0.3);
+        }
+
+        62.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.3), 61px -61px 0 0 rgba(255, 87, 34, 0.4), 85px 0 0 0 rgba(255, 87, 34, 0.6), 61px 61px 0 0 rgba(255, 87, 34, 0.8), 0 85px 0 0 #f37a41, -61px 61px 0 0 rgba(255, 87, 34, 0.05), -85px 0 0 0 rgba(255, 87, 34, 0.1), -61px -61px 0 0 rgba(255, 87, 34, 0.2);
+        }
+
+        75% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.2), 61px -61px 0 0 rgba(255, 87, 34, 0.3), 85px 0 0 0 rgba(255, 87, 34, 0.4), 61px 61px 0 0 rgba(255, 87, 34, 0.6), 0 85px 0 0 rgba(255, 87, 34, 0.8), -61px 61px 0 0 #f37a41, -85px 0 0 0 rgba(255, 87, 34, 0.05), -61px -61px 0 0 rgba(255, 87, 34, 0.1);
+        }
+
+        87.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.1), 61px -61px 0 0 rgba(255, 87, 34, 0.2), 85px 0 0 0 rgba(255, 87, 34, 0.3), 61px 61px 0 0 rgba(255, 87, 34, 0.4), 0 85px 0 0 rgba(255, 87, 34, 0.6), -61px 61px 0 0 rgba(255, 87, 34, 0.8), -85px 0 0 0 #f37a41, -61px -61px 0 0 rgba(255, 87, 34, 0.05);
+        }
+
+        100% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+    }
+</style>
+<style>
+    #body_ClientDetails {
+        margin: 10px auto;
+        width: 99%;
+        border: 1px solid #aaaaaa;
+    }
+
+        #body_ClientDetails td {
+            border: 0;
+            width: auto;
+            /*font-weight: 600;
+            font-size: 13px;*/
+        }
+    /*#body_ClientDetails td > b {
+            font-weight: bolder;
+            font-size: 14px;
+        }*/
+</style>
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+<div id="PdfPrint">
+    <div class="block-content" id="divPreviewTimesheet">
+        @*<div class="box-header with-border">
+                <h3 class="box-title"><b style="font-family: 'Ubuntu', sans-serif;">Timesheets Management</b></h3>
+                <a class="btn btn-app" href="Usertimesheet" title="Add"><i class="fa fa-plus-circle"></i> </a>
+            </div>*@
+        <div class="">
+            <h4 class="heading-fancy">Timesheet Management</h4>
+            <a class="btn" href="Usertimesheet" title="Add" id="addbtn"><i class="fa fa-plus" style="font-size: 22px;"></i> </a>
+        </div>
+
+        <div class="box-body no-padding" id="body">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">My Timesheets</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <table id="UserGridData">
+                        <thead id="tblheadid">
+                            <tr>
+                                <th>Userid</th>
+                                <th>TimesheetID</th>
+                                <th>ProjectId</th>
+                                <th>Project Name</th>
+                                <th>Emp Name</th>
+                                <th>Month</th>
+                                <th>Actual Hours</th>
+                                <th>Worked Hours </th>
+                                <th>Status</th>
+                                <th id="actions1">Actions</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+            <div class="panel panel-default" id="ManagerGridPanel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Employee Timesheets</h3>
+                </div>
+                @*<table cellspacing="0" cellpadding="0" border="0" id="ManagerGridPanel_ClientDetails" style="margin: 10px auto;width:98%;border:1px solid #aaaaaa;">
+                        <tbody>
+                            <tr>
+                                <td align="right" width="100" class="alt"><b>Employee Name:</b></td>
+                                <td>
+                                    <div id="ManagerGridPanel_dvProjectName"> TarakRam</div>
+
+                                </td>
+                                <td align="right" width="110" class="alt"><b>Project Name:</b></td>
+                                <td>
+                                    <div id="ManagerGridPanel_dvClient">StepUp</div>
+                                </td>
+                                <td width="100" align="right" class="alt"><b>Timesheet Mode:</b></td>
+                                <td>
+                                    <div id="ManagerGridPanel_dvTSMode">Febrvary</div>
+                                </td>
+                                <td><b>Duration :</b></td>
+                                <td>Feb 01, 2019 to Feb 28, 2019</td>
+                        </tbody>
+                    </table>*@
+                <div class="panel-body">
+                    <table id="ManagerGridData" style="display:none">
+                        <thead id="tblheadid">
+                            <tr>
+                                <th>Userid</th>
+                                <th>TimesheetID</th>
+                                <th>ProjectId</th>
+                                <th>Project Name</th>
+                                <th>Emp Name</th>
+                                <th>Month</th>
+                                <th>Actual Hours</th>
+                                <th>Worked Hours </th>
+                                <th>Status</th>
+                                <th id="actions2">Actions</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+
+            @*</form>*@
+        </div>
+
+        <div class="control-sidebar-bg"></div>
+    </div>
+</div>
+<!-------EditTaskDetails <!-- Horizontal Form divEditTimesheetData-->
+<div class="box box-solid box-brown" id="divEditTimesheetData">
+    <div class="box-header with-border">
+        <h3 class="box-title">Preview Timesheet</h3>
+        <a class="btn btn-app" href="Usertimesheet" title="Add"><i class="fa fa-plus-circle" style=" color: #FF9800; text-shadow: 0px 0px 2px #7d7d7d; "></i> </a>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    @*<form class="form-horizontal">*@
+
+
+
+    <div class="box-body" id="body">
+        @*<div id="divhidFday" >
+                <p> <label id="fday" ></label></p>
+            </div>*@
+        <div class="clearfix">
+            <div id="StardateToEnddate" style="color:coral;font-size:large;text-align:center"></div>
+        </div>
+        <table cellspacing="0" cellpadding="0" border="0" id="body_ClientDetails">
+            <tbody>
+                <tr>
+                    <td align="right" width="100" class="alt">
+                        <b>Client Name:</b>
+                        <b id="ts_approid">Approved on:</b>
+                    </td>
+                    <td>
+                        <div id="ts_ClientNameid">  </div>
+                        <div id="ts_Approveid"></div>
+                    </td>
+                    <td align="right" width="110" class="alt">
+                        <b>Project Name:</b>
+                        <b id="ts_submited">Submitted on:</b>
+                    </td>
+                    <td>
+                        <div id="ts_ProjectNameid"></div>
+                        <div id="ts_Submittedid"></div>
+                    </td>
+                    <td width="100" align="right" class="alt">
+                        <b>Manager 1:</b>
+                        <b id="ts_Manager2">Manager 2:</b>
+                    </td>
+                    <td>
+                        <div id="ts_ManagerNamesid1"></div>
+                        <div id="ts_ManagerNamesid2"></div>
+                    </td>
+                    <td><b>Duration :</b><b>Timesheet Mode:</b></td>
+                    <td><div id="Timesheet_Duration"></div><div id="Timesheet_dvTSMode">Monthly</div></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="tabCon"></div>
+        <div id="TotHrs" style="float:right;position:relative;right:19px;font-size:large;display:block"><label>Total Working Hours:</label>&nbsp;&nbsp;<label name="totCount" id="TotalHoursCount"></label></div>
+    </div>
+
+
+    <div id="footer">
+        <div id='Cmtsave' style="display:none">
+            <label style='color:coral'>Additional Comments</label>
+            <div>
+                <textarea name='tnameDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea>
+
+            </div>
+            <div class='clearfix' style='padding: 10px;text-align:right;'>
+                <fieldset class="note-status">
+                    <legend>Note :</legend>
+                    @*<label class="black">Saturday / Sunday</label>*@
+                    <label class="green">Work from Home</label>
+                    <label class="red">Leaves</label>
+                    <label class="blue">Holidays</label>
+                </fieldset>
+                <input type='submit' name='btnSave' value='Save&amp;Close' id='btnSave' onclick=ConfirmSendTimesheet('1') class='evInputBtn'>
+                &nbsp;&nbsp;
+                <input type='submit' name='btnSend' value='Save&amp;Submit Timesheet' id='btnSend' onclick=ConfirmSendTimesheet('2') class='evInputBtn'>
+                &nbsp;&nbsp;
+                <input type='submit' name='Approve' value='ApproveTimesheet' id='btnApprove' onclick=ApprovalRejectTimesheet('3') style="display:none" class='evInputBtn'>
+                &nbsp;&nbsp;
+                <input type='submit' name='Reject' value='RejectTimesheet' id='btnReject' onclick=ApprovalRejectTimesheet('4') style="display:none" class='evInputBtn'>
+                &nbsp;&nbsp;
+                <input type='submit' id='btnclose' name='bntClose' value='Close' class='evInputBtn' title="Close" onClick='window.location.reload()'>
+                @*<input type='submit' id='btnPrint' name='bntPrint' value='Print' class='evInputBtn' onClick='print_page()'>
+                <input type='submit' name='btnpdf' value='Pdf' id='btnpdf' class='evInputBtn'>*@
+
+                <button type='submit' id='btnPrint' name='bntPrint' title="Click here to print" class='evInputBtn' onClick='print_page()' style="display:none;"><i class="fa fa-print"></i></button>
+                <button type='submit' name='btnpdf' id='btnpdf' title="Click here to pdf" class='evInputBtn' style="display:none;"><i class="fa fa-file-pdf-o"></i></button>
+            </div>
+        </div>
+
+        <input type="hidden" id="empname">
+    </div>
+
+
+    @*</form>*@
+</div>
+
+<!-- /.box -->
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+
+
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="LoadAllTimesheets()" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="PopupAppRejId"></h4>
+            </div>
+
+            <div class="modal-body">
+                <p id="ProjectNameid" style="margin-bottom:auto;"></p>
+            </div>
+            <div class="modal-footer" style="text-align:left;">
+                <input type="submit" id="btnAdd" class="btn btn-custom1" style="display:none" value="Approve" onclick=ApprovalRejectTimesheet('3')>
+                <input type="submit" id="btnRej" class="btn btn-custom2" style="display:none" value="Reject" onclick=ApprovalRejectTimesheet('4')>
+                <button type="button" id="btncancel" class="btn btn-clr1" onclick="LoadAllTimesheets()">Cancel</button>
+                @*<button type="button" class="btn btn-clr1" data-dismiss="modal" id="close" onclick="LoadAllTimesheets()">Close</button>*@
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // LoadClientDetails();
+        //$('span.badge.badge-radius[data-toggle="tooltip"]').tooltip();
+        $("#timesheet_management").addClass("active");
+        $("#timesheet_management > ul.treeview-menu > li:last-child").addClass("click");
+        $("#timesheet_management").siblings().removeClass("active");
+
+        var addtimesheet = '@ViewBag.a';
+    if (addtimesheet === "Read") {
+        $("#addbtn").hide();
+    } else {
+        $("#addbtn").show();
+    }
+
+
+    });
+
+    function LoadAllTimesheets() {
+        window.location = '/Timesheet/PreviewTimesheets';
+
+    }
+
+
+
+
+
+</script>
+
+
+
+
+

@@ -1,0 +1,641 @@
+﻿@model Evolutyz.Entities.UserTypeEntity
+@{
+    ViewBag.Title = "User Management - User Type";
+    //  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="~/Scripts/jquery.validate.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<style>
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    .form-control.validate_msg + span.field-validation-valid:before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    #UsT_UserTypeCode.validate_msg + span:before {
+        content: "Employee Code Already Existed";
+    }
+
+    #UsT_UserType.validate_msg + span:before {
+        content: "Employee Type Already Existed";
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .box.box-solid.box-brown .btn-warning {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="edit">Edit Employment Type</h4>
+                <h4 class="modal-title" id="add">Add Employment Type</h4>
+            </div>
+            <form id="myform">
+                <div class="modal-body">
+
+                    <div class="row" style="display:none;">
+                        <div class="form-group col-md-6">
+                            <label for="UsT_UserTypeID">UserTypeID</label>
+                            @Html.TextBoxFor(m => m.UsT_UserTypeID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsT_UserTypeID)
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="UsT_AccountID">AccountID</label>
+                            @Html.TextBoxFor(m => m.UsT_AccountID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsT_AccountID)
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-4">
+
+                            <label for="AccountName">AccountName<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.AccountName, new SelectList(ViewBag.accountnames, "value", "text"), "Select Accountname", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="UserTypeCode">Employement TypeCode<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsT_UserTypeCode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsT_UserTypeCode)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="UserType">Employement Type<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsT_UserType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsT_UserType)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="Description">Description</label>
+                            @Html.TextAreaFor(m => m.UsT_UserTypeDescription, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsT_UserTypeDescription)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Status">Status<font style="color:red;">*</font></label>
+
+                            @Html.DropDownListFor(m => m.UsT_ActiveStatus, new SelectList(new List<Object>{
+
+                           new { value = 1 , text = "Active"},
+                           new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+
+
+
+
+                            @Html.ValidationMessageFor(m => m.UsT_ActiveStatus)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnUpdate" class="btn btn-clr">Update</button>
+                    <button type="submit" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy">Employment Types </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Account ID</th>
+                        <th>Organization</th>
+                        <th>Employement Type Code</th>
+                        <th>Employement Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th id="actions">Action</th>
+                        @*<th>Delete</th>*@
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="DeleteSkill(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+        var userid;
+    var RoleId;
+    var delid;
+        userid = '@ViewBag.UserId';
+        RoleId = '@ViewBag.Roleid';
+
+        var acID;
+        acID = '@ViewBag.Accountid';
+     var permissions = '@ViewBag.a';
+    if (permissions.toLowerCase() === "read/write") {
+        $("#btnAddModel").show();
+        $("#actions").show();
+
+    }
+    else {
+        $("#btnAddModel").hide();
+        $("#actions").hide();
+
+    }
+
+
+        function EditUser(UsT_UserTypeID) {
+            $("#edit").show();
+            $("#add").hide();
+            $("#btnAdd").hide();
+
+            $("#btnUpdate").show();
+            $.ajax({
+
+                url: '/UserType/GetUserTypeByID?catID=' + UsT_UserTypeID,
+                type: 'Get',
+                //contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    debugger;
+                    var UsT_UserTypeID = data.UsT_UserTypeID;
+                    var UsT_AccountID = data.UsT_AccountID;
+                    var AccountName = data.AccountName;
+                    var UsT_UserTypeCode = data.UsT_UserTypeCode;
+                    var UsT_UserType = data.UsT_UserType;
+                    var UsT_UserTypeDescription = data.UsT_UserTypeDescription;
+                    var UsT_ActiveStatus = data.UsT_ActiveStatus;
+
+
+                    $("#UsT_UserTypeID").val(UsT_UserTypeID);
+                    //$("#UsT_AccountID").val(UsT_AccountID);
+                    $("#AccountName").val(UsT_AccountID).attr("disabled", "disabled");
+                    $("#UsT_UserTypeCode").val(UsT_UserTypeCode);
+                    $("#UsT_UserType").val(UsT_UserType);
+                    $("#UsT_UserTypeDescription").val(UsT_UserTypeDescription);
+                    $("#UsT_ActiveStatus").val(UsT_ActiveStatus);
+
+                    // if it is active set the ddl to active else in-active
+                    if (UsT_ActiveStatus === true) {
+                        $("#UsT_ActiveStatus").val("1");
+                    } else {
+                        $("#UsT_ActiveStatus").val("0");
+                    }
+
+
+                },
+                error: function () {
+                    //alert(Response.text);
+                }
+            });
+    }
+
+     function loaddata() {
+            userid = '@ViewBag.UserId';
+
+            $.ajax({
+                url: "/UserType/GetUserTypeCollection?acntID=" + acID + '&RoleId=' + RoleId,
+                type: "Get",
+                dataType: "json",
+                success: function (res) {
+
+                    $('#table').DataTable({
+                        'data': res,
+                        'paginate': true,
+                        'sort': true,
+                        'Processing': true,
+                        'columns': [
+                            { 'data': 'UsT_UserTypeID' ,'visible': false },
+                            { 'data': 'UsT_AccountID', 'visible': false },
+                            { 'data': 'AccountName'},
+                            { 'data': 'UsT_UserTypeCode'},
+                            { 'data': 'UsT_UserType'},
+                            {
+                                'data': 'UsT_UserTypeDescription',
+                                'render': function (data, type, row) {
+                                    return data.substr(0, 15);
+                                }
+                            },
+
+                            {
+                                'data': 'UsT_ActiveStatus',
+                                "render": function (UsT_ActiveStatus, type, full, meta) {
+                                    var permissions = '@ViewBag.a';
+                                    if (permissions === "Read/Write") {
+                                        if (UsT_ActiveStatus === true) {
+                                            return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked onclick="UnCheckStatus(' + full.UsT_UserTypeID + ')"> <label for="check_01"></label> </div>';
+                                        }
+                                        else {
+                                            return '<div class="statuscheck"> <input type="checkbox" id="check_02" onclick = "CheckStatus(' + full.UsT_UserTypeID + ')"> <label for="check_02"></label> </div>';
+                                        }
+                                    } else {
+                                        return null;
+                                    }
+                                }
+                            },
+                            {
+                                "render": function (UsT_UserTypeID, type, full, meta, data) {
+                                     var permissions = '@ViewBag.a';
+                                    if (permissions === "Read/Write") {
+                                        return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal"  data-target="#ContainerGridDetail" title="Edit" onclick="EditUser(' + full.UsT_UserTypeID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn btn-icn-hide" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.UsT_UserTypeID + '" title="Delete" onclick="GetId(' + full.UsT_UserTypeID + ')" "><i class="fa fa-trash"></i></a>';
+
+                                     }
+                                else {
+                                        return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail" title="Edit" onclick="EditUser(' + full.UsT_UserTypeID + ')" ><i class="fa fa-edit"></i></a><a class="btn btn-icn" data-target="#containerDelete" data-toggle="modal"  data-id="' + full.UsT_UserTypeID + '" title="Delete" onclick="GetId(' + full.UsT_UserTypeID + ')" "><i class="fa fa-trash"></i></a>';
+
+                                 }
+                                       },
+
+                            },
+
+
+                        ]
+                    });
+                },
+                error: function (msg) {
+                    // alert(msg.responseText);
+                }
+            });
+        }
+
+
+    function UnCheckStatus(id) {
+        $.ajax({
+            url: "/UserType/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': false
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function CheckStatus(id) {
+        $.ajax({
+            url: "/UserType/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': true
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+
+
+    function GetId(id) {
+        delid = id;
+    }
+
+        function DeleteSkill(UsT_UserTypeID) {
+
+            $.ajax({
+
+                type: "POST",
+                url: '/UserType/DeleteUserType?usertypeID=' + UsT_UserTypeID,
+                dataType: "json",
+                //   cache: false,
+                complete: function (res) {
+
+                    alert("Deleted Succesfully");
+                   // loaddata();
+                    window.location.href = "/UserType/Index";
+                },
+
+                error: function (Result) {
+
+                    //alert("Error");
+
+                }
+
+            })
+
+        }
+
+
+
+        $(document).ready(function () {
+            //bindAccountNames();
+            loaddata();
+
+            $(function modalTwice() {
+
+                $(document).on("click", "#btnAddModel", function (event) {
+                    $("#edit").hide();
+                    $("#add").show();
+                    $("#AccountName").val(0).removeAttr('disabled');
+                    $("#UsT_UserTypeCode").val(" ");
+                    $("#UsT_UserType").val(" ");
+                    $("#UsT_UserTypeDescription").val(" ");
+                    $("#UsT_ActiveStatus").val(1);
+
+                    $("#ContainerGridDetail").show();
+                    $("#btnAdd").show();
+
+                    $("#btnUpdate").hide();
+                    
+                    $("#btnclose").on('click', function () {
+                        window.location.reload();
+                    });
+                    $("#close").on('click', function () {
+                        $("#ContainerGridDetail").hide();
+                    });
+                    $(".close").on('click', function () {
+                        $("#ContainerGridDetail").hide();
+                    });
+                    $("#btnAdd").on("click", function () {
+
+
+                        var AccountName = $("#AccountName").val();
+                        var UsT_UserTypeCode = $("#UsT_UserTypeCode").val();
+                        var UsT_UserType = $("#UsT_UserType").val();
+                        var UsT_UserTypeDescription = $("#UsT_UserTypeDescription").val();
+
+                        var UsT_ActiveStatus = $("#UsT_ActiveStatus").val();
+
+                        if (UsT_ActiveStatus === "1") {
+
+                            var UsT_ActiveStatusVal = true;
+                        }
+                        else {
+                            UsT_ActiveStatusVal = false;
+                        }
+                        $('#myform').validate({
+                            rules: {
+                                AccountName: {
+                                    required: true,
+
+                                },
+                                UsT_UserTypeCode: {
+                                    required: true,
+                                   // regx: /^[a-zA-Z]*$/
+                                },
+                                UsT_UserType: {
+                                    required: true,
+                                    //regx: /^[a-zA-Z]*$/
+                                },
+
+                                UsT_ActiveStatus: {
+                                    required: true,
+
+                                }
+
+
+                            },
+                            submitHandler: function (form) {
+
+                                    $.ajax({
+
+                                        type: "POST",
+                                        // contentType: "application/json; charset=utf-8",
+                                        url: "/UserType/CreateUserType",
+                                        data: {
+                                            UsT_UserTypeCode: UsT_UserTypeCode, UsT_UserType: UsT_UserType, UsT_ActiveStatus: UsT_ActiveStatusVal,
+                                            UsT_UserTypeDescription: UsT_UserTypeDescription, UsT_AccountID: AccountName,
+                                        },
+
+                                        complete: function (res) {
+                                            if (res.responseText === "Employee Type Already Existed") {
+                                                $("#UsT_UserType").addClass("validate_msg");
+                                                $("#UsT_UserTypeCode").removeClass("validate_msg");
+                                            } else if (res.responseText === "Employee Code Already Existed") {
+                                                $("#UsT_UserTypeCode").addClass("validate_msg");
+                                                $("#UsT_UserType").removeClass("validate_msg");
+                                            } else if (res.responseText === "Please Fill All Mandatory Fields") {
+                                                $("#UsT_UserType").removeClass("validate_msg");
+                                                $("#UsT_UserTypeCode").removeClass("validate_msg");
+                                                alert(res.responseText);
+                                                // window.location.href = "/UserType/Index";
+                                            }
+
+                                            else {
+                                                $("#UsT_UserType").removeClass("validate_msg");
+                                                $("#UsT_UserTypeCode").removeClass("validate_msg");
+                                                alert(res.responseText);
+                                                window.location.href = "/UserType/Index";
+                                            }
+
+                                        },
+
+                                        error: function (Result) {
+
+                                            //alert("Error");
+
+                                        }
+
+                                    });
+                                    return false;
+
+
+
+                            }
+                        });
+                        $.validator.addMethod("regx", function (value, element, regexpr) {
+                            return regexpr.test(value);
+                        }, "Please enter  Only Alphabets .");
+                        $.validator.addMethod("regex", function (value, element, regexpr) {
+                            return regexpr.test(value);
+                        }, "Please enter 10 Digit Number.");
+                        $.validator.addMethod("reg", function (value, element, regexpr) {
+                            return regexpr.test(value);
+                        }, "Please enter valid Password");
+
+
+
+
+
+                    });
+
+
+                });
+
+            });
+
+            $("#btnUpdate").on("click", function () {
+
+                var UsT_UserTypeID = $("#UsT_UserTypeID").val();
+                var UsT_AccountID = $("#UsT_AccountID").val();
+                var AccountName = $("#AccountName").val();
+                var UsT_UserTypeCode = $("#UsT_UserTypeCode").val();
+                var UsT_UserType = $("#UsT_UserType").val();
+                var UsT_UserTypeDescription = $("#UsT_UserTypeDescription").val();
+                var UsT_ActiveStatus = $("#UsT_ActiveStatus").val();
+
+                if (UsT_ActiveStatus === "1") {
+                    var UsT_ActiveStatusVal = true;
+                }
+                else {
+                    UsT_ActiveStatusVal = false;
+                }
+                $('#myform').validate({
+                    rules: {
+                        AccountName: {
+                            required: true,
+
+                        },
+                        UsT_UserTypeCode: {
+                            required: true,
+                          //  regx: /^[a-zA-Z]*$/
+                        },
+                        UsT_UserType: {
+                            required: true,
+                           // regx: /^[a-zA-Z]*$/
+                        },
+
+                        UsT_ActiveStatus: {
+                            required: true,
+
+                        }
+
+
+                    },
+                    submitHandler: function (form) {
+
+                        $.ajax({
+
+                            type: "POST",
+                            // contentType: "application/json; charset=utf-8",
+                            url: "/UserType/UpdateUserType",
+                            data: {
+                                UsT_UserTypeID: UsT_UserTypeID, UsT_AccountID: AccountName, UsT_UserTypeCode: UsT_UserTypeCode,
+                                UsT_UserType: UsT_UserType, UsT_UserTypeDescription: UsT_UserTypeDescription, UsT_ActiveStatus: UsT_ActiveStatusVal,
+
+                            },
+                            dataType: "json",
+                            // cache: false,
+                            complete: function (res) {
+                                alert("updated succesfully");
+                                window.location.href = "/UserType/Index";
+                                //loaddata();
+                            },
+
+                            error: function (Result) {
+
+                                //alert("Error");
+
+                            }
+
+                        });
+                        return false;
+
+
+
+                    }
+                });
+                $.validator.addMethod("regx", function (value, element, regexpr) {
+                    return regexpr.test(value);
+                }, "Please enter  Only Alphabets .");
+                $.validator.addMethod("regex", function (value, element, regexpr) {
+                    return regexpr.test(value);
+                }, "Please enter 10 Digit Number.");
+                $.validator.addMethod("reg", function (value, element, regexpr) {
+                    return regexpr.test(value);
+                }, "Please enter valid Password");
+
+
+
+
+
+            });
+
+
+
+
+                });
+
+
+
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#user_management").addClass("active");
+        $("#user_management > ul.treeview-menu > li:first-child").addClass("click");
+        $("#user_management").siblings().removeClass("active");
+    });
+
+</script>

@@ -1,0 +1,378 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2></h2>
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<link rel="stylesheet" type="text/css" />
+
+<html>
+<body>
+    <div class="container" style="width:980px;background-color:rgba(158, 158, 158, 0.18);">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" id="ClientDetails" style="display:none;">
+            <tbody>
+                <tr>
+                    <td align="right" width="100" class="alt"><strong>Client Name:</strong></td>
+                    <td>
+                        <div id="dvClient">Evolutyz Time Sheets</div>
+                    </td>
+                    <td align="right" width="110" class="alt"><strong>Project Name:</strong></td>
+                    <td>
+                        <div id="dvProjectName">Evoluty</div>
+                    </td>
+                    <td align="right" width="120" class="alt"><strong>Manager Name:</strong></td>
+                    <td>
+                        <div id="dvManager"> ----</div>
+                    </td>
+                    <td width="100" align="right" class="alt"><strong>Timesheet Mode:</strong></td>
+                    <td>
+                        <div id="dvTSMode">Monthly</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="body" cellspacing="0" cellpadding="0" border="0" width="100%" style="padding:5px">
+            <select name="month" id="month">
+                <option value="">Select Month</option>
+            </select>
+
+
+            <select name="year" id="year">
+                <option value="">Select Year</option>
+            </select>
+            <button id="submit">Submit</button>
+
+            <div id="StardateToEnddate" style="color:coral;font-size:large"></div>
+            <div id="tabCon">
+
+            </div>
+            <div id="TotHrs" style="float:right;position:relative;right:19px;font-size:large;"><label>Total:</label>&nbsp;&nbsp;<label name="totCount" id="TotalHoursCount"></label></div>
+        </div>
+
+        <div id="footer">
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+@*<script type="text/javascript">
+        var d = new Date()
+        var weekday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        var monthname = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+        document.write(weekday[d.getDay()] + " ")
+        document.write(d.getDate() + ". ")
+        document.write(monthname[d.getMonth()] + " ")
+        document.write(d.getFullYear())
+    </script>*@
+
+<script type="text/javascript">
+    //function MonthYear() {
+    //    var mon = $("#month").find("option:selected").text();
+    //    var year = $("#year").find("option:selected").text();
+
+    //    document.write("<select><option>" + mon + "</option></select><select ><option>" + year + "</option></select>");
+    //    document.write();
+    //}
+
+    $(document).ready(function (e) {
+
+        var optn;
+
+        for (y = 2000; y <= 2500; y++) {
+            var optn = document.createElement("OPTION");
+            optn.text = y;
+            optn.value = y;
+
+            // if year is 2015 selected
+            if (y == 2015) {
+                optn.selected = true;
+            }
+
+            document.getElementById('year').options.add(optn);
+        }
+        var d = new Date();
+        var monthArray = new Array();
+        monthArray[0] = "January";
+        monthArray[1] = "February";
+        monthArray[2] = "March";
+        monthArray[3] = "April";
+        monthArray[4] = "May";
+        monthArray[5] = "June";
+        monthArray[6] = "July";
+        monthArray[7] = "August";
+        monthArray[8] = "September";
+        monthArray[9] = "October";
+        monthArray[10] = "November";
+        monthArray[11] = "December";
+        for (m = 0; m <= 11; m++) {
+            optn = document.createElement("OPTION");
+            optn.text = monthArray[m];
+            // server side month start from one
+            optn.value = (m + 1);
+
+            //  if june selected
+            if (m == 5) {
+                optn.selected = true;
+            }
+            document.getElementById('month').options.add(optn);
+            // var data = document.getElementById('month').options.add(optn);
+        }
+        //$("#month").show();
+        //$("#year").show();
+        //$("#body").show();
+
+        $("#submit").on("click", function () {
+
+            $("#StardateToEnddate").empty();
+            $("#tabCon").empty();
+            var counter = 1;
+            var counter15 = 1;
+            var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+            var month = $("#month").val();
+            var year = $("#year").val();
+
+
+            var month1 = $('#month :selected').text();
+
+
+
+            var dy = 1; // day variable for adjustment of starting date.
+            $("#ClientDetails").show(true);
+            $("#tabCon").append("<table name='maintbl' id='MainTable' width='100%'/*style='position:relative;left:10%;'*/>");
+            var day = 1;
+            var noofdaysinselectedmonth = daysInMonth(month, year);
+
+            var weekday = "";
+
+            var getdate = new Date(year, month - 1);
+            var StartDay = days[getdate.getDay() - 1]
+            //alert(dt.getDay());
+            //alert(StartDay);
+            var first_day = getdate.getDate(); //, first day of present month
+
+            getdate.setMonth(month, 0); // Set to next month and one day backward.
+
+            var last_date = getdate.getDate(); // Last date of present month
+
+            $("#StardateToEnddate").append("<span id='StartToEnd'>Timesheet for the Period of " + month1, " ", + first_day, ", " + year + " to " + month1, " ", + last_date, ", " + year + "</span>");
+            var HCal = 0;
+            for (var temp = 1; temp <= noofdaysinselectedmonth; temp++) {
+
+                var dt = new Date(year, month - 1, temp);
+
+                var day = days[dt.getDay() - 1];
+                HCal++;
+                if (temp <= 15) {
+                    if (counter15 == 1) {
+                        $("#MainTable").append("<td id='td1' style='width:40%:vertical-align:right;'>" +
+                            "<table id='SubTable' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50' class='evAdminTable'>Hours </th></tr>");
+                        counter15 = counter15 + 1;
+                    }
+                    if (day === undefined) {
+                        weekday = "sun";
+                        // document.write("<td>" + weekday + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+                        $("#SubTable").append("<tr><td style='border:0px solid grey'>" + weekday + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%' name='uc1$ddlTask' id='uc1_ddlTask'><option selected='selected' value='1' > --None --</option ></select></td><td style='align:center;border:0px solid grey'><input style='width:100%' name='hrs' class='uc1txtHours' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+
+                    }
+                    else {
+                        //document.write("<td>" + day + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+                        $("#SubTable").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%' name='uc1$ddlTask' id='uc1_ddlTask'><option selected='selected' value='1' > --None --</option ></select></td><td style='align:center;border:0px solid grey'><input style='width:100%'  name='hrs'class='uc1txtHours' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td >&nbsp</td></td>");
+
+                    }
+
+                }
+                else {
+
+                    if (counter == 1) {
+                        $("#SubTable").append("</table>")
+                        $("#SubTable").append("</td>")
+                        // document.write("</table></td>");
+                        $("#MainTable").append("<td id='td2' style='width:40%:vertical-align:top;'><table id='SubTable2' /*style='position:relative;top:19px;'*/ width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50'class='evAdminTable'>Hours</th></tr>");
+                        counter = counter + 1;
+                    }
+
+                    if (day === undefined) {
+
+                        weekday = "sun";
+                        // document.write("<td>" + weekday + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+
+                        $("#SubTable2").append("<tr><td style='border:0px solid grey'>" + weekday + "," + month1 + "  " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%' name='uc1$ddlTask' id='uc1_ddlTask'><option selected='selected' value= '1' > --None --</option ></select></td><td style='border:0px solid grey'><input style='width:100%'  name='hrs' class='uc1txtHours' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td>&nbsp</td></td>");
+
+                    }
+                    else {
+                        //document.write("<td>" + day + "</td><td>" + month1 + "</td><td>" + dy + "</td><td>" + year + "</td></tr>");
+
+                        $("#SubTable2").append("<tr><td style='border:0px solid grey'>" + day + "," + month1 + " " + dy + "," + year + "</td><td style='border:0px solid grey'><select style='width:100%' name='uc1$ddlTask' id='uc1_ddlTask'><option selected='selected' value= '1' > --None --</option ></select></td><td style='border:0px solid grey'><input style='width:100%'  name='hrs' class='uc1txtHours' onblur='myFunc(this);' type='text' value='0:00' maxlength='5' id='uc1_txtHours' style='width: 50px;'></td><td>&nbsp</td></td>");
+
+                    }
+                }
+
+                dy = dy + 1;
+
+            }
+
+            Number.prototype.padDigit = function () {
+
+                return (this < 10) ? '0' + this : this;
+            }
+
+            $(".uc1txtHours").on('change', function () {
+                var t1 = "00:00";
+                var mins = 0;
+                var hrs = 0;
+                $('input').each(function () {
+                    t1 = t1.split(':');
+                    var t2 = $(this).val().split(':');
+                    console.log(Number(t1[1]) + Number(t2[1]))
+                    mins = Number(t1[1]) + Number(t2[1]);
+                    minhrs = Math.floor(parseInt(mins / 60));
+                    hrs = Number(t1[0]) + Number(t2[0]) + minhrs;
+                    mins = mins % 60;
+                    t1 = hrs.padDigit() + ':' + mins.padDigit()
+                    console.log(t1)
+                });
+
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    t1 += parseFloat(this.value)
+
+                }
+                $('#TotalHoursCount').html(t1);
+            });
+            //"</table>" + + "<hr />"
+            $("#MainTable").append("</tr></table>") + "<hr />";
+
+            //$("#footer").append("<div id='Cmtsave'><label style='color:coral'>Additional Comments</label><div><textarea name='txtDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea></div><div align= 'right' style= 'padding: 10px;' > <input type= 'submit' name= 'btnSave' value= 'Save &amp; Close' id= 'btnSave' class='evInputBtn' > &nbsp;&nbsp; <input type= 'submit' name= 'btnSend' value= 'Save &amp; Send Timesheet' onclick= 'javascript:return ConfirmSendTimesheet();' id= 'btnSend' class='evInputBtn' > &nbsp;&nbsp; <input type= 'submit' name= 'bntClose' value= 'Close' id= 'bntClose' class='evInputBtn' > </div > </div>");
+            //$("#footer").append("<div id='Cmtsave'>" +
+            //    " <label style='color:coral'>Additional Comments</label>" +
+            //    " <div>" +
+            //    " <textarea name='txtDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea>" +
+            //    " </div>" +
+            //    "<div align= 'right' style= 'padding: 10px;' > " +
+            //    "<input type= 'submit' name= 'btnSave' value= 'Save &amp; Close' id= 'btnSave' class='evInputBtn' > " +
+            //    "&nbsp;&nbsp; " +
+            //    "<input type= 'submit' name= 'btnSend' value= 'Save &amp; Send Timesheet' onclick= 'javascript:return ConfirmSendTimesheet();' id= 'btnSend' class='evInputBtn' > " +
+            //    "&nbsp;&nbsp; " +
+            //    "<input type= 'submit' name= 'bntClose' value= 'Close' id= 'bntClose' class='evInputBtn' > " +
+            //    "</div > " +
+            //    "</div>");
+
+        });
+
+    });
+
+    //function myFunc(hrs)
+    //{
+    //    //alert(getHVal);
+    //    //var hours = 0;
+    //    //$('.uc1txtHours').each(function () {
+    //    //    var getHVal = $('.uc1txtHours').html(this.val);
+    //    //    hours += getHVal;
+    //    //   alert(hours);
+    //    //});
+    //    $('#TotalHoursCount').val(this.val);
+    //}
+
+    function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+
+</script>
+
+
+<style>
+    .evInputBtn {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 3px 5px;
+        background: #FF3300;
+        color: #FFF !important;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -moz-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+        .evInputBtn:hover {
+            background: #FF6600;
+        }
+
+    input, select, textarea {
+        max-width: 1000px;
+    }
+
+    .contentArea {
+        background: #FFF url(../images/shadow.png) repeat-x;
+        box-shadow: 0px 5px 8px rgba(183, 35, 35, 0.81);
+        padding: 30px;
+        min-height: 350px;
+    }
+
+    #MainTable {
+        border: 0px !important;
+    }
+
+    #SubTable {
+        border: 0px !important;
+    }
+
+    #SubTable2 {
+        border: 0px !important;
+    }
+
+    #body {
+        border-spacing: 5px;
+        border-color: grey;
+        border: 2px solid #8080800f;
+    }
+
+    td {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        color: #000;
+        padding: 5px;
+    }
+
+    table {
+        /*display: table;
+        border-collapse: separate;*/
+        border-spacing: 2px;
+        border-color: grey;
+        border: 1px solid grey;
+    }
+
+    th {
+        border-left: 0px solid #EAEAEA;
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+    }
+
+    /*tr:nth-of-type(odd) {
+        background: #eee;
+    }*/
+
+    .evAdminTable th {
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+        background: #666;
+        color: #FFF;
+    }
+</style>

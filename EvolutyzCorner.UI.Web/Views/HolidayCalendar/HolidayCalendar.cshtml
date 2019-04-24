@@ -1,0 +1,683 @@
+﻿@model Evolutyz.Entities.HolidayCalendarEntity
+
+@{
+    ViewBag.Title = "Holiday Calendar";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
+<style>
+    .form-control.validate_msg + span.field-validation-valid:before,
+    .validatemsg + span:before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    #HolidayName.validate_msg + span:before {
+        content: "HolidayName Already Exist In this Account";
+    }
+
+    #HolidayDate.validate_msg + span:before {
+        content: "HolidayDate Already Exist In this Account";
+    }
+
+    .validatemsg + span:before {
+        content: "This Field Is Required";
+    }
+
+    .profile-image {
+        /*-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 350%, 0% 0%);*/
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        /*background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(/upload/Images/default.PNG);*/
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    .box.box-solid.box-brown .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .box.box-solid.box-brown .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+<fieldset>
+
+    <div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+        <div class="modal-dialog modal-custom">
+            @*<label id="succ"></label>*@
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="addholiday">Add Holiday</h4>
+                    <h4 class="modal-title" id="editholiday">Edit Holiday</h4>
+                </div>
+                <form id="myform">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="form-group col-md-4" style="display:none;">
+                                <label for="HolidayCalendarID">HolidayCalendarID</label>
+                                @Html.TextBoxFor(m => m.HolidayCalendarID, new { @class = "form-control" })
+                                <span class="field-validation-valid"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="HolidayName">HolidayName<font style="color:red;">*</font></label>
+                                @Html.TextBoxFor(m => m.HolidayName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.HolidayName)
+                                <span class="field-validation-valid"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="HolidayDate">HolidayDate<font style="color:red;">*</font></label>
+                                @Html.TextBoxFor(m => m.HolidayDate, new { @type = "text", @class = "form-control", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.HolidayDate)
+                                <span class="field-validation-valid"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="Financialyear">Financialyear<font style="color:red;">*</font></label>
+                                @Html.DropDownListFor(model => model.FinancialYearId, new SelectList(ViewBag.FinancialYears, "value", "text"), new { @class = "form-control", id = "FinancialYearId", onchange = "yearvalidation(this.value)" })
+                                @Html.ValidationMessageFor(model => model.FinancialYearId)
+                                <span class="field-validation-valid"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="isActive">OptionalHoliday<font style="color:red;">*</font></label>
+
+                                @Html.DropDownListFor(m => m.isOptionalHoliday, new SelectList(new List<Object>{
+
+                             new { value = true, text = "Yes"},
+                             new { value = false, text = "No"}  }, "value", "text", 2), "Select isOptionalHoliday", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.isOptionalHoliday)
+                                <span class="field-validation-valid"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="isActive">Status<font style="color:red;">*</font></label>
+
+                                @Html.DropDownListFor(m => m.isActive, new SelectList(new List<Object>{
+
+                             new { value = true, text = "Active"},
+                             new { value = false, text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.isActive)
+                                <span class="field-validation-valid"></span>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" id="btnUpdate" class="btn btn-clr" style="display:none">Update</button>
+                        <button type="submit" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                        <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> Holiday Calendar </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>HolidayCalendarID</th>
+                        <th>AccountName</th>
+                        <th>Year</th>
+                        <th>HolidayName</th>
+                        <th>HolidayWeek</th>
+
+
+                        <th>HolidayDate</th>
+                        <th>OptionalHoliday</th>
+                        <th>Status</th>
+                        <th id="actions">Actions</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the record</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="Deletehc(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/date.format.js"></script>
+<script>
+  //  $("#StartDate").val();
+    $("#isActive").val("True");
+    $("#isOptionalHoliday").val("False");
+    var delid;
+
+    $(document).ready(function () {
+        loaddata();
+        $("#HolidayDate").datepicker({
+            //dateFormat: 'mm-dd-yy',
+
+            format: 'mm/dd/yyyy',
+        });
+
+        $("#btnAddModel").click(function () {
+            $("#btnAdd").show();
+            $("#btnUpdate").hide();
+            $("#editholiday").hide();
+            $("#addholiday").show();
+        });
+        $("#btnclose").click(function () {
+            window.location.reload();
+        });
+
+
+
+        $("#btnUpdate").click(function () {
+
+            var holiday = [];
+          var hcid=  $("#HolidayCalendarID").val();
+            var holidayname = $("#HolidayName").val();
+            var holidatydate = $("#HolidayDate").val();
+            var financialyear = $("#FinancialYearId").val();
+            var optionalholiday = $("#isOptionalHoliday").val();
+            var status = $("#isActive").val();
+            holiday.push({ "HolidayName": holidayname, "HolidayDate": holidatydate, "FinancialYearId": financialyear, "isOptionalHoliday": optionalholiday, "isActive": status });
+
+            holiday = JSON.stringify({ 'holiday': holiday });
+            $('#myform').validate({
+                rules: {
+                    HolidayName: {
+                        required: true,
+                        regex: /^[a-zA-Z]+$/
+                    },
+                    HolidayDate: {
+                        required: true,
+                        date: true
+                    },
+                    FinancialYearId: {
+                        required: true
+                    },
+                    isOptionalHoliday: {
+                        required: true
+                    },
+                    isActive: {
+                        required: true
+
+                    },
+
+                },
+                submitHandler: function (form) {
+                    $.ajax({
+                        //contentType: 'application/json; charset=utf-8',
+                        type: 'POST',
+                        url: '/HolidayCalendar/UpdateCalenderControl',
+                        data: {
+                            "HolidayCalendarID": hcid,
+                            "HolidayName": holidayname, "HolidayDate": holidatydate, "FinancialYearId": financialyear, "isOptionalHoliday": optionalholiday, "isActive": status
+                        },
+                        success: function (data) {
+                            if (data === "HolidayName Already Exist") {
+                                $("#HolidayName").addClass("validate_msg");
+                                $("#HolidayDate").removeClass("validate_msg");
+                            } else if (data === "HolidayDate Already Exist") {
+                                $("#HolidayName").removeClass("validate_msg");
+                                $("#HolidayDate").addClass("validate_msg");
+                            } else {
+                                $("#HolidayName").removeClass("validate_msg");
+                                $("#HolidayDate").removeClass("validate_msg");
+                                alert(data);
+                               // console.log(data);
+                                window.location.reload();
+                            }
+                        },
+                        complete: function () {
+                            $('#loading-image').attr("style", "display: none;");
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+
+                    });
+                    return false;
+                }
+            });
+            $.validator.addMethod("regx", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter  Only Alphabets .");
+            $.validator.addMethod("regex", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter 10 Digit Number.");
+            $.validator.addMethod("reg", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter valid Password");
+
+          
+        });
+
+        $("#btnAdd").click(function () {
+           
+            var holidayname = $("#HolidayName").val();
+            var holidatydate = $("#HolidayDate").val();
+            var financialyear = $("#FinancialYearId").val();
+            var optionalholiday = $("#isOptionalHoliday").val();
+            var status = $("#isActive").val();
+            $('#myform').validate({
+                rules: {
+                    HolidayName: {
+                        required: true,
+                        regx: /^[a-zA-Z]+$/
+                    },
+                    HolidayDate: {
+                        required: true,
+                        date:true
+                    },
+                    FinancialYearId: {
+                        required: true
+                    },
+                    isOptionalHoliday: {
+                        required: true
+                    },
+                    isActive: {
+                        required: true
+
+                    },
+
+                },
+                submitHandler: function (form) {
+                    AddHoliday();
+                    return false;
+                }
+            });
+            $.validator.addMethod("regx", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter  Only Alphabets .");
+            $.validator.addMethod("regex", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter 10 Digit Number.");
+            $.validator.addMethod("reg", function (value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Please enter valid Password");
+ 
+                   
+        });
+
+
+
+    });
+
+    function AddHoliday() {
+        var holiday = [];
+        var holidayname = $("#HolidayName").val();
+        var holidatydate = $("#HolidayDate").val();
+        var financialyear = $("#FinancialYearId").val();
+        var optionalholiday = $("#isOptionalHoliday").val();
+        var status = $("#isActive").val();
+        holiday.push({ "HolidayName": holidayname, "HolidayDate": holidatydate, "FinancialYearId": financialyear, "isOptionalHoliday": optionalholiday, "isActive": status });
+
+        holiday = JSON.stringify({ 'holiday': holiday });
+        $.ajax({
+            //contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            url: '/HolidayCalendar/CreateHoliday',
+            data: {
+                "HolidayName": holidayname, "HolidayDate": holidatydate, "FinancialYearId": financialyear, "isOptionalHoliday": optionalholiday, "isActive": status
+            },
+            success: function (data) {
+                if (data === "HolidayName Already Exist In this Account") {
+                    $("#HolidayName").addClass("validate_msg");
+                    $("#HolidayDate").removeClass("validate_msg");
+                } else if (data === "HolidayDate Already Exist In this Account") {
+                    $("#HolidayName").removeClass("validate_msg");
+                    $("#HolidayDate").addClass("validate_msg");
+                } else {
+                    $("#HolidayName").removeClass("validate_msg");
+                    $("#HolidayDate").removeClass("validate_msg");
+                    alert(data);
+                   // console.log(data);
+                    window.location.reload();
+                }
+               
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        });
+    }
+    function loaddata() {
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/HolidayCalendar/GetHolidaysCollection",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+
+                        { 'data': 'HolidayCalendarID', visible: false },
+                        { 'data': 'AccountName', visible: false },
+                        { 'data': 'financialyear', visible: false },
+                        { 'data': 'HolidayName' },
+                        { 'data': 'HolidayWeek' },
+
+                        {
+                            'data': 'HolidayDate',
+                            "type": "date ",
+                            "render": function (value) {
+                                if (value === null) return "";
+
+                                var pattern = /Date\(([^)]+)\)/;
+                                var results = pattern.exec(value);
+                                var dt = new Date(parseFloat(results[1]));
+
+                                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+                            }
+                        },
+                        {
+                            'data': 'isOptionalHoliday',
+                            "render": function (isOptionalHoliday, type, full, meta) {
+                                if (isOptionalHoliday === true) {
+                                    return "<span >Yes</span>";
+                                }
+                                else {
+                                    return "<span >No</span>";
+                                }
+                            }
+                        },
+                        {
+                            'data': 'isActive',
+                            "render": function (isActive, type, full, meta) {
+                                if (isActive === true) {
+                                    return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked  onclick="UnCheckStatus(' + full.HolidayCalendarID + ')"> <label for="check_01"></label> </div>';
+                                }
+                                else {
+                                    return '<div class="statuscheck"> <input type="checkbox" id="check_02"  onclick="CheckStatus(' + full.HolidayCalendarID + ')"> <label for="check_02"></label> </div>';
+                                }
+                            }
+                        },
+                        {
+                            "render": function (HolidayCalendarID, type, full, meta) {
+                               // return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.HolidayCalendarID + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn" id="deletebtn" onclick=" Deletehc(' + full.HolidayCalendarID + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                                 var permissions = '@ViewBag.a';
+                                if (permissions === "Read/Write") {
+
+                                    return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.HolidayCalendarID + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn btn-icn-hide" data-toggle="modal"  data-target="#containerDelete"  id="deletebtn" onclick=" GetId(' + full.HolidayCalendarID + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+                                }
+                                else{
+                                    return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.HolidayCalendarID + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn" data-toggle="modal"  data-target="#containerDelete"  id="deletebtn" onclick=" GetId(' + full.HolidayCalendarID + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+
+                                }
+
+                            }
+
+                        },
+
+
+
+                    ]
+                });
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+
+    function UnCheckStatus(id) {
+        $.ajax({
+            url: "/HolidayCalendar/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status':false
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function CheckStatus(id) {
+        $.ajax({
+            url: "/HolidayCalendar/ChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': true
+            },
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+
+    function GetId(id) {
+        delid = id;
+    }
+
+    function Deletehc(hcid){
+
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/HolidayCalendar/DeleteHoliday",
+            type: "POST",
+            data: {
+                'id': hcid
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function edit(hcid) {
+        $("#btnAdd").hide();
+        $("#btnUpdate").show();
+        $("#editholiday").show();
+        $("#addholiday").hide();
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/HolidayCalendar/GetCalenderDetailByID",
+            type: "POST",
+            data: {
+                'id': hcid
+            },
+
+            dataType: "json",
+            success: function (data) {
+
+                $("#HolidayCalendarID").val(data.HolidayCalendarID);
+                $("#HolidayName").val(data.HolidayName);
+
+                var holiday = data.HolidayDate;
+                var exnowdate = new Date(parseInt(holiday.substr(6)));
+                $("#HolidayDate").val(exnowdate.format('mm/dd/yyyy'));
+                //$("#HolidayDate").val();
+                $("#FinancialYearId").val(data.FinancialYearId);
+                var date = data.HolidayDate;
+                var status = data.isActive;
+
+                if (status === true) {
+                    $("#isActive").val("True");
+                } else {
+                    $("#isActive").val("False");
+                }
+                var optional = data.isOptionalHoliday;
+                if (optional === true) {
+                    $("#isOptionalHoliday").val("True");
+                } else {
+                    $("#isOptionalHoliday").val("False");
+                }
+
+
+
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#account_management + li").addClass("active");
+        $("#account_management + li > ul.treeview-menu > li:last-child").addClass("click");
+        $("#account_management + li").siblings().removeClass("active");
+
+        var permissions = '@ViewBag.a';
+      //  alert(permissions);
+        if (permissions.toLowerCase() === "read/write") {
+
+            $("#btnAddModel").show();
+            $("#actions").show();
+
+    }
+    else {
+            $("#btnAddModel").hide();
+            $("#actions").hide();
+
+    }
+
+    });
+
+
+
+    $.fn.noMask = function (regex) {
+        this.on("keypress", function (e) {
+            if (regex.test(String.fromCharCode(e.which))) {
+                return false;
+            }
+        });
+    }
+
+     //  /^ (0 ? [1 - 9] | [12][0 - 9] | 3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
+   // $("#HolidayDate").noMask(/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g);
+    $("#HolidayDate").noMask(/^[\w.,:;"'/!|#%&$*()_-]+$/);
+    $("#HolidayDate").noMask(/[$-/:-?{-~!"^_`\[\]]/);
+
+</script>
+
+

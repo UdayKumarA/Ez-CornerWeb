@@ -1,0 +1,42 @@
+﻿@model Evolutyz.Entities.OrganizationAccountEntity
+@{
+    ViewBag.Title = "Organization Account History List";
+   
+    var OrgAccDetails = ViewBag.OrgAccDetails;
+}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    @{
+        if (OrgAccDetails != null)
+        {
+            foreach (var orgaccdet in OrgAccDetails)
+            {
+                var i = 0;
+                <a>
+                    <input type="checkbox">
+                    orgaccdet[i].Acc_Version
+                </a>
+                i++;
+            }
+        }
+    }
+
+    <a>
+        <input type="checkbox">
+        E.0.0.1 15/2/2017
+    </a> <a>
+        <input type="checkbox">
+        E.0.0.2 20/4/2017
+    </a> <a>
+        <input type="checkbox">
+        E.0.0.3 30/6/2017
+    </a> <a>
+        <input type="checkbox">
+        E.0.0.4 10/8/2017
+    </a> <a>
+        <input type="checkbox">
+        E.0.0.4 20/10/2017
+    </a> <a data-toggle="modal" data-target="#compare">
+        <button type="button" class="btn btn-block btn-warning">Compare</button>
+    </a>
+</div>

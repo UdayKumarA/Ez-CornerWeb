@@ -1,0 +1,263 @@
+﻿@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/LoginCssNew/images/favicon.png" />
+    <!--===============================================================================================-->
+    @*<link href="~/LoginCssNew/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/LoginCssNew/fonts/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <link href="~/LoginCssNew/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+
+    <link href="~/LoginCssNew/vendor/animate/animate.css" type="text/css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <link href="~/LoginCssNew/vendor/css-hamburgers/hamburgers.min.css" type="text/css" rel="stylesheet" />
+
+    <!--===============================================================================================-->
+
+    <link href="~/LoginCssNew/vendor/animsition/css/animsition.min.css" type="text/css" rel="stylesheet" />
+
+    <!--===============================================================================================-->
+
+
+    <link href="~/LoginCssNew/vendor/select2/select2.min.css" type="text/css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <link href="~/LoginCssNew/vendor/daterangepicker/daterangepicker.css" type="text/css" rel="stylesheet" />
+    <!--===============================================================================================-->
+
+    <link href="~/LoginCssNew/css/util.css" type="text/css" rel="stylesheet" />
+    <link href="~/LoginCssNew/css/main.css" type="text/css" rel="stylesheet" />
+    
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        @*<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>*@
+                        <a class="navbar-brand" href="#"><img src="~/LoginCssNew/images/evolutyzcorplogo.png" /></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    @*<div class="collapse navbar-collapse" id="header">
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Our Team</a></li>
+                                        <li><a href="#">Portfolio Pricing</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Articulation</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Register</a></li>
+                                <li><a href="#">Contact</a></li>
+
+                            </ul>
+                        </div>*@
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <div class="wrap-login100">
+
+                <div class="login100-form-title">
+
+                    @*style="background-image: url(/LoginCssNew/images/bg-01.jpg);"*@
+                    <h2 class="heading-fancy">Login</h2>
+
+                    <span class="login100-form-title-1">
+
+                        @ViewBag.userid
+                        @*<img src="~/LoginCssNew/images/EITS.png" />*@
+                    </span>
+
+                </div>
+                <label style="color:red;">@TempData["Error"]</label>
+                <label style="color:red;">@TempData["setpass"]</label>
+
+
+                <form class="login100-form validate-form" action="../Home/VerifyData" method="post">
+                  
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <input class="input100" type="text" id="txtuserName" name="txtuserName" placeholder="Login with Username or Emailid">
+                  
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <input class="input100" type="password" id="txtUserPassword" name="txtUserPassword" placeholder="Enter password">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div>
+                            <a href="#" class="txt1">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        <br />
+
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button id="loginbutton" class="login100-form-btn" style="background-color:#039BE5;" onclick="location.href='@Url.Action("VerifyData", "Home")'">
+                            <i class="fa fa-arrow-right"></i>  Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/LoginCssNew/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <script src="~/LoginCssNew/vendor/animsition/js/animsition.min.js"></script>
+    @*<script src="vendor/animsition/js/animsition.min.js"></script>*@
+    <!--===============================================================================================-->
+    <script src="~/LoginCssNew/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/LoginCssNew/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/LoginCssNew/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/LoginCssNew/vendor/daterangepicker/moment.js"></script>
+    <script src="~/LoginCssNew/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+
+    <script src="~/LoginCssNew/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+        Element.prototype.backgroundClipPolyfill = function () {
+            var a = arguments[0],
+                d = document,
+                b = d.body,
+                el = this;
+
+            function hasBackgroundClip() {
+                return b.style.webkitBackgroundClip !== undefined;
+            };
+
+            function addAttributes(el, attributes) {
+                for (var key in attributes) {
+                    el.setAttribute(key, attributes[key]);
+                }
+            }
+
+            function createSvgElement(tagname) {
+                return d.createElementNS('http://www.w3.org/2000/svg', tagname);
+            }
+
+            function createSVG() {
+                var a = arguments[0],
+                    svg = createSvgElement('svg'),
+                    pattern = createSvgElement('pattern'),
+                    image = createSvgElement('image'),
+                    text = createSvgElement('text');
+
+                // Add attributes to elements
+                addAttributes(pattern, {
+                    'id': a.id,
+                    'patternUnits': 'userSpaceOnUse',
+                    'width': a.width,
+                    'height': a.height
+                });
+
+                addAttributes(image, {
+                    'width': a.width,
+                    'height': a.height
+                });
+                image.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', a.url);
+
+                addAttributes(text, {
+                    'x': 0,
+                    'y': 80,
+                    'class': a['class'],
+                    'style': 'fill:url(#' + a.id + ');'
+                });
+
+                // Set text
+                text.textContent = a.text;
+
+                // Add elements to pattern
+                pattern.appendChild(image);
+
+                // Add elements to SVG
+                svg.appendChild(pattern);
+                svg.appendChild(text);
+
+                return svg;
+            };
+
+            if (!hasBackgroundClip()) {
+                var img = new Image();
+                img.onload = function () {
+                    var svg = createSVG({
+                        'id': a.patternID,
+                        'url': a.patternURL,
+                        'class': a['class'],
+                        'width': this.width,
+                        'height': this.height,
+                        'text': el.textContent
+                    });
+
+                    el.parentNode.replaceChild(svg, el);
+                }
+                img.src = a.patternURL;
+            }
+        };
+
+        var element = document.querySelector('.heading-fancy');
+        
+        element.backgroundClipPolyfill({
+            'patternID': 'mypattern',
+            'patternURL': 'https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0537/8621/rrtracerspandex_shop_preview.jpg',
+            'class': 'heading-fancy'
+        });
+
+        $(document).ready(function () {
+            $(".txt1").click(function () {
+                window.location.href = "/Home/ForgotPassword";
+            });
+        });
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e522a31a90d64df1a885470377e1e2e6" Name="Diagram1">
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.C__MigrationHistory" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Acc_Spec_OptionalHolidays" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Account" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AccountClient" Width="1.5" PointX="11.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AccountDepartment" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AccountSocialMediaProfile" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AccountSpecificTask" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AspNetUserLogin" Width="1.5" PointX="13.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.AspNetUser" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ClientProject" Width="1.5" PointX="10" PointY="2.625" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ClientProjectsTask" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ClientsBusiness" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ComponentType" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ContentType" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Country" Width="1.5" PointX="9.75" PointY="14.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.DocumentType" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.EmployeeBankDetail" Width="1.5" PointX="15.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.EmployeeSalaryComponent" Width="1.5" PointX="15.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.EmployeeSalarySlip" Width="1.5" PointX="15.75" PointY="13.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.EmployeeSalaryStructure" Width="1.5" PointX="11.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.EmployeeSalaryStructureDetail" Width="1.5" PointX="13.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ErrorLog" Width="1.5" PointX="15.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.FinancialYear" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.GenericRole" Width="1.5" PointX="17.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.GenericTask" Width="1.5" PointX="17.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_Account" Width="1.5" PointX="17.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_LeaveScheme" Width="1.5" PointX="17.75" PointY="17.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_LeaveType" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_Projects" Width="1.5" PointX="2.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_Role" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_UserProjects" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_Users" Width="1.5" PointX="19.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.History_UserType" Width="1.5" PointX="19.75" PointY="11.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.HolidayCalendar" Width="1.5" PointX="7.5" PointY="9.125" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.LeaveScheme" Width="1.5" PointX="19.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.LeaveStatu" Width="1.5" PointX="6.75" PointY="20.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.LeaveType" Width="1.5" PointX="8.75" PointY="20.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Master_Module" Width="1.5" PointX="13.75" PointY="20.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Master_Sub_Module" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Master_TimesheetMode" Width="1.5" PointX="21.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.MobileNotificationTemplate" Width="1.5" PointX="21.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ModuleAccessType" Width="1.5" PointX="10.75" PointY="21.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.NewsBoard" Width="1.5" PointX="21.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.PayMode" Width="1.5" PointX="21.75" PointY="15.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Phase" Width="1.5" PointX="21.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Policy" Width="1.5" PointX="19.75" PointY="22.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Project_workstatus" Width="1.5" PointX="21.75" PointY="22.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ProjectPhas" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Project" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.ProjectSpecificTask" Width="1.5" PointX="23.75" PointY="5.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.RoleModule" Width="1.5" PointX="5.75" PointY="23.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Role" Width="1.5" PointX="3" PointY="23.375" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.SalarySlipDetail" Width="1.5" PointX="23.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.Skill" Width="1.5" PointX="23.75" PointY="13.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.SocialMedia" Width="1.5" PointX="15.75" PointY="23.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.State" Width="1.5" PointX="23.75" PointY="17.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.SubPolicy" Width="1.5" PointX="23.75" PointY="21.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.SubPolicyDocument" Width="1.5" PointX="7.75" PointY="24.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.TaskDetail" Width="1.5" PointX="12.75" PointY="24.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.TIMESHEET" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserDevicesToken" Width="1.5" PointX="25.75" PointY="6.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserGender" Width="1.5" PointX="9.75" PointY="25.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserLeaf" Width="1.5" PointX="25.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserLeaveTypeConsumed" Width="1.5" PointX="25.75" PointY="15.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserProjectEngagement" Width="1.5" PointX="25.75" PointY="18.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserProject" Width="1.5" PointX="25.75" PointY="22.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.User" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UsersForProject" Width="1.5" PointX="17.75" PointY="26.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserSkill" Width="1.5" PointX="19.75" PointY="26.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserSocialMediaProfile" Width="1.5" PointX="21.75" PointY="26.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UsersProfile" Width="1.5" PointX="7.5" PointY="14" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserTitle" Width="1.5" PointX="27.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserType" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="EvolutyzCornerDataModel.UserworkfromHome" Width="1.5" PointX="27.75" PointY="3.75" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK__HolidayCa__Accou__7D439ABD" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_Account_Acc_CreatedBy" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_Roles_AccountID" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_Users_AccountID" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_UserType_AccountID" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_ClientProjects_Projects" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK__HolidayCa__Creat__7E37BEF6" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK__HolidayCa__Modif__7F2BE32F" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_Roles_Roles" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_Users_UserTypeID" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.FK_UsersProfile_Master_User1" />
+        <AssociationConnector Association="EvolutyzCornerDataModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1088 @@
+/*Now the CSS*/
+* {
+  margin: 0;
+  padding: 0;
+}
+.profile-tabs.family-tree .tab-content {
+    overflow-x: scroll;
+    height: 1000px;
+    background:#fff;
+}
+.member-search {
+    position:fixed;
+    z-index:9;
+    top:70px;
+    right:50px;
+    width:250px;
+}
+.member-search .search-trigger {
+    position:absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 17px;
+}
+ul.tree-navigations {
+    list-style:none;
+    padding:0px;
+    position:fixed;
+    z-index:9;
+    bottom: 15px;
+    right: 30px;
+    width:96px;
+}
+ul.tree-navigations li {
+    float:none;
+    clear:both;
+    width:30px;
+    height:30px;
+    background:rgba(0,0,0,0.65);
+    border-radius:100%;
+    color:#fff;
+    text-align:center;
+    font-size:22px;
+    margin:2px auto 0px;
+    display:block;
+    cursor:pointer;
+    -webkit-cursor:pointer;
+    -moz-cursor:pointer;
+    -ms-cursor:pointer;
+    -o-cursor:pointer;
+}
+    ul.tree-navigations li.tree-nav-icons {
+        float:left;
+        clear:none;
+    }
+.zoomOff.tree-nav-icons {
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+}
+.node-image .toggle-node,.node-image .floating-node,.childrens .image .floating-node{
+    position: absolute;
+    z-index: 9;
+    top: 3px;
+    left: 33%;
+    background: rgba(0,0,0,0.65);
+    width: 30px;
+    height: 30px;
+    padding: 4px 0px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    visibility: hidden;
+    transition:all 0.35s ease-out;
+}
+.tree-member .floating-node{
+    position: absolute;
+    z-index: 90;
+    background: rgba(0,0,0,0.65);
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    visibility: hidden;
+    transition: all 0.35s ease-out;
+}
+.tree-member .floating-node.show-tree-node {
+    top: 30px;
+    right: -25px;
+}
+.tree-member .floating-node.add-member-node {
+    top: -15px;
+    right: -26px;
+}
+.node-image .floating-node.show-tree-node {
+    top: 38px;
+    left: 29%;
+    font-size: 16px;
+    padding: 5px 0px;
+}
+.node-image .floating-node.show-menu-node {
+    top: 73px;
+    left: 31%;
+    font-size: 15px;
+    padding: 6px 0px;
+}
+.node-image .floating-node.add-member-node {
+    top: 73px;
+    left: 60%;
+    font-size: 15px;
+    padding: 6px 0px;
+}
+.is-partner .node-image .show-tree-node{
+    top: 15px;
+    left: 56%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+.is-partner .node-image .show-menu-node {
+    top: 53px;
+    left: 57%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+.is-partner .node-image .add-member-node {
+    top: 15px;
+    left: 36%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+.is-ex-partner .node-image .show-tree-node {
+    top: 15px;
+    left: 35%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+.is-ex-partner .node-image .show-menu-node {
+    top: 53px;
+    left: 35%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+.is-ex-partner .node-image .add-member-node {
+    top: 15px;
+    left: 56%;
+    font-size: 15px;
+    padding: 5px 0px;
+    z-index: 10;
+}
+
+.tree-center .childrens .image .show-tree-node {
+    top: -6px;
+    left: 27px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+.tree-center .childrens .image .show-menu-node {
+    top: -7px;
+    left: -6px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+.tree-center .childrens .image .add-member-node {
+    top: 20px;
+    left: -6px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+.siblings .node-image .toggle-node {
+    top: 30%;
+    left: 19%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 3px 0px;
+}
+.siblings .node-image .show-tree-node {
+    top: 41%;
+    left: 19%;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    padding: 3px 0px;
+}
+.siblings .node-image .show-menu-node {
+    top: 30%;
+    left: 39%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.siblings .node-image .add-member-node {
+    top: 41%;
+    left: 39%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.siblings .is-partner .node-image .show-tree-node {
+    top: 33%;
+    left: 49%;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    padding: 3px 0px;
+}
+.siblings .is-partner .node-image .show-menu-node {
+    top: 0px;
+    left: 49%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.siblings .is-partner .node-image .add-member-node {
+    top: 33%;
+    left: 27%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.siblings .childrens .image .show-tree-node {
+    top: 6px;
+    left: 35px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+.siblings .childrens .image .show-menu-node {
+    top: 6px;
+    left: -5px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+.siblings .childrens .image .add-member-node {
+    top: 30px;
+    left: -5px;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+}
+
+
+.parents-wrap .node-image .show-tree-node {
+    top: 27px;
+    left: 65%;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    padding: 3px 0px;
+}
+.parents-wrap .node-image .show-menu-node {
+    top: 27px;
+    left: 8%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.parents-wrap .node-image .add-member-node {
+    top: 0px;
+    left: 8%;
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px;
+}
+.parents-wrap .node-text {
+    width: 100% !important;
+    overflow: hidden;
+    height: 25px;
+}
+
+.node-image:hover .toggle-node,.node-image:hover .floating-node,.image:hover .floating-node,.tree-member:hover .floating-node{
+    visibility:visible;
+    transition:all 0.35s ease-in;
+}
+
+.tree {
+    position:relative;
+    width:1500px;
+    padding: 50px 30px;
+    font-family: 'open_sansregular';
+    color:#666;
+    margin: 125px auto;
+    display: block;
+}
+#renderTree {
+    transition:all 0.35s ease-in;
+}
+.node-details-wrap {
+    visibility:hidden;
+    opacity:0;
+    position: absolute;
+    z-index: 100;
+    width: 300px;
+    background: #fff;
+    padding: 5px;
+    -webkit-box-shadow: 1px 1px 10px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 10px -1px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.3);
+    transition:all 0.35s ease-out;
+}
+    
+    .node-details-wrap.border-blue {
+        border-top:2px solid #039BE5;
+    }
+        .node-details-wrap.border-blue .node-row.node-name {
+            color:#039BE5;
+        }
+    .node-details-wrap.border-pink {
+        border-top:2px solid #d94fc1;
+    }
+       .node-details-wrap.border-pink .node-row.node-name {
+            color:#d94fc1;
+        }
+    .node-details-wrap.active {
+         visibility:visible;
+         opacity:1;
+         transition:all 0.35s ease-in;
+    }
+    .node-details-wrap .close-node-wrap {
+        visibility:hidden;
+        color:#555;
+        position:absolute;
+        z-index:1;
+        top:0px;
+        right:5px;
+        font-size:16px;
+        cursor:pointer;
+        -webkit-cursor:pointer;
+        -moz-cursor:pointer;
+        -ms-cursor:pointer;
+        -o-cursor:pointer;
+    }
+    .node-details-wrap:hover .close-node-wrap {
+        visibility:visible;
+    }
+.node-details-wrap .node-pic {
+   
+}
+    .node-details-wrap .node-pic img {
+        margin:0 auto;
+        display:block;
+        width: 80px;
+        height: 80px;
+        border-radius:100%;
+    }
+.node-details-wrap .node-row {    
+    padding: 3px 0px;
+    color:#555;
+    text-transform: capitalize;
+}
+.node-details-wrap .node-row.node-name {
+    /*color: #039BE5;*/
+    font-weight: 400;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.node-details-wrap .node-row.node-location {
+    color: #999;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+.node-details-wrap .node-row.node-dob {
+    font-size: 11px;
+    text-align: center;
+}
+
+.node-details-wrap .node-row.node-gender {
+    text-align: center;
+    font-size: 11px;
+}
+.node-details-wrap ul.info-links {
+    padding: 0px;
+    margin-bottom: 0px;
+    list-style:none;
+}
+
+.node-details-wrap .info-links li {
+    padding: 10px 0px;
+    float: left;
+    /* border-right: 1px solid #ddd; */
+}
+
+.node-details-wrap .info-links li a {
+    padding: 0px 10px;
+    font-size: 13px;
+    color:#555;
+    text-transform: uppercase;
+    border-right: 1px solid #ddd;
+}
+.node-details-wrap .info-links li:first-child a {
+    padding-left: 0px;
+}
+.node-details-wrap .info-links li:last-child a {
+    border-right: 0px;
+    padding-right: 0px;
+}
+
+.tree .node {
+    width: 200px;
+    float: left;
+    padding: 10px;
+    position:relative;
+}
+.node.tree-center {
+    width: 350px;
+}
+.node.tree-center.active {
+    margin:0 auto;
+    display:block;
+    float:none;
+}
+.tree .tree-center .node-image.root-node{
+    height: 80px;
+}
+.tree .tree-center .node-image.root-node img {
+    width: 80px;
+    height: 80px;
+}
+.node.is-ex-partner {
+    margin-right: 168px;
+    width: 350px;
+    padding-top: 25px;
+}
+.node.is-partner {
+    margin-left: 168px;
+    width: 350px;
+    padding-top: 30px; 
+}
+    .tree .node .line{
+        border-top:1px solid #ccc;
+        width: 450px;
+        position:absolute;
+        z-index: 2;
+        text-align:center;
+        text-transform:uppercase;
+        font-size:12px;
+        padding: 5px 0px;
+        top: 50%;
+        margin-top: -15px;
+    }
+    .tree .childrens {
+        margin: 0px 10px;
+        float: left;
+        display: block;
+        width: 100%;
+        /* height: auto; */
+        position: relative;
+    }
+    .childrens .node {
+        margin-top: 50px;
+        z-index: 10;
+        background: #fff;
+        position: relative;
+        padding: 25px 20px;
+        width: 140px;
+    }
+    .tree .childrens .node .line,.tree .node.siblings .line {
+        border-bottom: 1px solid #ccc;
+        border-top: 0px;
+        /* border-left:1px solid #ccc; */
+        height: 100px;
+        width: 40px;
+        position:absolute;
+        z-index: -1;
+        text-align:center;
+        text-transform:uppercase;
+        font-size:12px;
+        padding-bottom:5px;
+        top: 0px;
+        /* margin-top: -55px; */
+    }
+    .tree .node .line.line-right{
+        left: 238px;
+        margin-left: -20px;
+    }
+    .tree .node .line.line-left{
+        right: 238px;
+        margin-right: -20px;
+    }
+    .tree .node .line.line-top{
+        /* left: 15%; */
+        /* margin-top: 66px; */
+        top: 20px;
+        /* border-top: 1px solid #ccc; */
+        /* border-bottom: 0px; */
+    }
+    .tree .node .line.line-top.short {
+        width: 85px !important;
+    }
+    .tree .node .line.line-right > span, .tree .node .line.line-left > span, .tree .line.line-top > span {
+        font-size: 9px;
+        position:absolute;
+        z-index:2;
+        text-transform: uppercase;
+    }
+    .tree .node .line.line-right > span {
+        top: -18px;
+        left: 5px;
+    }
+    .tree .node .line.line-left > span {
+        top: -18px;
+        right: 5px;
+    }
+    .tree .line.line-top > span {
+        bottom: 5px;
+        left: 5px;
+    }
+    .tree .node .line.line-bottom {
+        border-top: 0px;
+        top: 110px;
+        left: 175px;
+        margin-left: 0;
+        z-index: 1;
+        border-left: 1px solid #ccc;
+    }
+.tree .node.tree-center .line.line-bottom {
+    top: 145px;
+}
+.line.line-bottom .border-overlay {
+    position: absolute;
+    z-index: 1;
+    /* border-left: 1px solid #fff; */
+    width: 5px;
+    height: 133px;
+    bottom: 0px;
+    left: -1px;
+    background: #fff;
+}
+    .line.line-bottom .border-overlay.short {
+        height: 115px;
+    }
+.tree .node-image {
+    width: 100%;
+    height: 50px;
+    /*border-radius: 100%;*/
+    overflow: hidden;
+    /*border: 1px solid #ccc;*/
+    margin: 0 auto;
+    cursor:pointer;
+    -webkit-cursor:pointer;
+    -moz-cursor:pointer;
+    -ms-cursor:pointer;
+    -o-cursor:pointer;
+}
+.tree .node-image img {
+    width: 50px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 100%;
+    margin: 0 auto;
+    display: block;
+}
+.node-image.add-new-member {
+    padding: 1px;
+    background: #fff;
+}
+.is-partner .node-image.add-new-member,.is-ex-partner .node-image.add-new-member {
+    width:50px;
+}
+    .node-image.add-new-member img {
+        width:100% !important;
+        height:auto !important;
+    }
+.tree .node-text {
+    width:100px;
+    text-align: center;
+    font-size: 13px;
+    font-weight:400;
+    text-transform:capitalize;
+    padding: 5px 0px;
+    margin: 0 auto;
+    cursor:pointer;
+    -webkit-cursor:pointer;
+    -moz-cursor:pointer;
+    -ms-cursor:pointer;
+    -o-cursor:pointer;
+}
+.tree .node-center .node-text {
+    padding: 5px 0px;
+} 
+    .tree .node-text.male,.tree ul .text.male {
+        color:#039BE5;
+    }
+    .tree .node-text.female,.tree ul .text.female  {
+        color:#d94fc1;
+    }
+.node.is-siblings {
+    /* margin-top: 80px; */
+}
+.node.siblings {
+    clear:both;
+    padding: 85px 0px;
+    position: relative;
+    z-index: 1;
+    /* min-height: 120px; */
+    /* border-left: 1px solid #000; */
+    width: 275px;
+}
+.siblings .line.line-right {
+    border-left: 0px !important;
+    bottom: 0px !important;
+}
+
+.node.siblings .line.line-right > span {
+    bottom: 5px;
+    top: initial;
+    right: 0px;
+    left: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.tree .node.siblings .line.line-right {
+    width: 60px;
+    margin-left: -80px;
+    top: 20px;
+}
+.tree .node.siblings .line.line-right.dashed-border ,.tree .node.siblings .line.line-top.dashed-border {
+    border-top:0px !important;
+    border-bottom: 1px dashed #ccc !important;
+}
+.siblings .node-image {
+    width: 35px;
+    height: 35px;
+    margin: 0px 75px;
+}
+.siblings .is-partner .node-image {
+    margin: 0px 90px;
+}
+.siblings .node-text  {
+    /* text-align: center; */
+    /* padding: 0px 20px; */
+    width: 100px;
+    margin: 0px 43px;
+}
+.siblings .is-partner .node-text {
+    margin: 0px 60px;
+}
+.tree .siblings .node-image img {
+    width: 35px;
+    height: 35px;
+}
+
+.node.siblings .line {
+    width: 100% !important;
+    /* min-height: 120px !important; */
+}
+.node.siblings .is-partner {
+    margin-left: 0px;
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    /* right: -4px; */
+    left: 111%;
+    padding-top: 10px;
+}
+.siblings .childrens {
+    /* margin-left: -5px; */
+    width: 100%;
+    top: 72px;
+    z-index: 100;
+    left: 0px;
+}
+.siblings .node.is-child-partner {
+    width: 100px;
+    margin-top: 0px;
+    position: absolute;
+    top: 290px;
+    left: 10px;
+    z-index: 10;
+    padding: 0px 15px;
+}
+.siblings .childrens .node.is-child-partner.is-siblings {
+    margin-top: 60px;
+}
+.node.siblings .is-child-partner .line {
+    height: 50px !important;
+}
+.siblings .is-child-partner .node-image {
+    width: 25px;
+    height: 25px;
+    margin-top: -8px;
+}
+.siblings .is-child-partner .node-image img {
+    width: 25px;
+}
+
+
+
+/*Now the CSS*/
+
+.tree .childrens ul {
+  padding-top: 20px;
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+.tree .siblings ul ul {
+  padding-top: 40px;
+}
+.tree .childrens li {
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree .childrens li::before,
+.tree .childrens li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+
+.tree .childrens li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+
+.tree .childrens li:only-child::after,
+.tree .childrens li:only-child::before {
+  display: none;
+}
+
+
+/*Remove space from the top of single children*/
+
+.tree .childrens li:only-child {
+  padding-top: 0;
+}
+
+
+/*Remove left connector from first child and 
+right connector from last child*/
+
+.tree .childrens li:first-child::before,
+.tree .childrens li:last-child::after {
+  border: 0 none;
+}
+
+
+/*Adding back the vertical connector to the last nodes*/
+
+.tree .childrens li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+.tree .childrens li:first-child::after {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+.info-links li::after,.info-links li::before {
+  display: none !important;
+}
+
+
+/*Time to add downward connectors from parents*/
+
+.tree .childrens ul ul::before {
+    content: '';
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 62px;
+}
+.dashed-border ul ul::before {
+    border-left: 1px dashed #ccc !important;
+}
+.tree .childrens li a {
+  padding: 5px 0px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-block;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  /* width: 35px; */
+  -moz-transition: all 0.5s;
+}
+
+.tree .siblings .childrens li a {
+    width: 40px;
+}
+
+    .tree .childrens li a .image {
+        width: 30px;
+        height: 30px;
+        border-radius:100%;
+        margin:0 auto;
+        overflow:hidden;
+    }
+    .tree .childrens li a .image img {
+        width: 30px;
+        height: 30px;
+    }
+    .tree .childrens li a .text {
+        font-family: 'open_sansregular';
+        padding:5px 0px;
+        height: 20px;
+        width:30px;
+        font-size: 10px;
+        /* font-weight: 400; */
+        overflow: hidden;
+        /* overflow-x: visible; */
+        text-transform: capitalize;
+    }
+
+    .tree .siblings .childrens li a .image {
+        width: 20px;
+        height: 20px;
+        border-radius:100%;
+        margin:0 auto;
+        overflow:hidden;
+    }
+    .tree .siblings .childrens li a .image img {
+        width: 20px;
+        height: 20px;
+    }
+    .tree .siblings .childrens li a .text {
+        padding:5px 0px;
+        height: 20px;
+        font-size: 10px;
+        overflow: hidden;
+        /* overflow-x: visible; */
+    }
+
+/*Time for some hover effects*/
+
+
+/*We will apply the hover effect the the lineage of the element also*/
+
+.tree li a:hover,
+.tree li a:hover+ul li a {
+    
+}
+
+
+/*Connector styles on hover*/
+
+.tree li a:hover+ul li::after,
+.tree li a:hover+ul li::before,
+.tree li a:hover+ul::before,
+.tree li a:hover+ul ul::before {
+  border-color: #94a0b4;
+}
+
+.siblings .childrens ul ul::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 75px;
+}
+
+.node.is-siblings .line {
+    /* height: 180px !important; */
+}
+
+.node.is-siblings {
+    padding: 20px 0px 90px 0px;
+}
+
+.is-siblings .childrens {
+    padding-top: 0px;
+    top: -28px;
+}
+
+.node.is-siblings .is-partner {
+    top: 10px;
+}
+.parents-wrap {
+    width: 100%;
+    position: relative;
+    margin-top: -95px;
+    height:100px;
+}
+.parents-wrap .node {
+    width: 100px;
+}
+.parents-wrap .is-father {
+    float: left;
+}
+.parents-wrap .is-mother{
+    float:right;
+}
+.link.horizontal {
+    width: 215px;
+    border-bottom: 1px solid #ccc;
+    float: left;
+    height: 30px;
+    margin: 0px -50px 0px -50px;
+}
+
+.link.vertical {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    height: 69px;
+    z-index: 2;
+}
+.link span {
+    font-size: 9px;
+    text-transform: uppercase;
+    text-align: center;
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: -1px;
+    width: 100%;
+}
+.parents-wrap .node-image {
+    width: 35px;
+    height: 35px;
+}
+
+.parents-wrap .node-image img {
+    width: 35px;
+    height: 35px;
+}
+.parents-wrap.grand-parents-wrap {
+    width: 160px;
+    margin-left: -40px;
+    margin-top: -100px;
+    height: 100px;
+}
+
+.grand-parents-wrap .node {
+    width: 50px;
+    /* background: #fff; */
+}
+
+.grand-parents-wrap .link.horizontal {
+    width: 145px;
+}
+
+.grand-parents-wrap .link.vertical {
+    height: 70px;
+}
+.grand-parents-wrap .link span {
+
+}
+.dashed-border.link.horizontal,.dashed-border.link.horizontal {
+    border-bottom:1px dashed #ccc !important;
+}
+.dashed-border.link.vertical {
+    border-left:1px dashed #ccc !important;
+}
+.grand-parents-wrap .node-image {
+    width: 30px;
+    height: 30px;
+    background: #fff;
+}
+
+.grand-parents-wrap .node-image img {
+    width: 30px;
+    height:30px;
+}
+.grand-parents-wrap .node.left {
+    left: -10px;
+    top: 3px;
+}
+.grand-parents-wrap .node.right {
+    right: -10px;
+    top: 3px;
+}
+
+.node.is-siblings .line.line-top {
+    border-bottom: 0px;
+    border-top: 1px solid #ccc;
+    /* background-color: white; */
+    top: 53px;
+}
+
+.tree .node.is-siblings .line.line-right {
+    top: 53px;
+    border-bottom: 0px;
+    border-top: 1px solid #ccc;
+}
+
+.tree .is-siblings .line.line-top > span {
+    top: -18px;
+    bottom: auto;
+}
+
+.node.is-siblings .line.line-right > span {
+    top: -17px;
+    bottom: auto;
+}
+.dashed-border.line.line-top,.dashed-border.line.line-right {
+    border-top: 1px dashed #ccc !important;
+}
+.dashed-border.line.line-bottom {
+    border-left: 1px dashed #ccc !important;
+}
+.history-block {
+    position: fixed;
+    z-index: 99;
+    top: 80px;
+    left: 20px;
+    width: 40px;
+    transition:all 0.35s ease-in-out;
+}
+.history-block .tooltip {min-width:200px;}
+
+#link-diagonal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    top: 60px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+@media print {
+    .pull-right.printblock {
+        float:left !important;
+    }
+    .tree .node-text.male,.tree ul .text.male {
+        color:#039BE5 !important;
+    }
+    .tree .node-text.female,.tree ul .text.female  {
+        color:#d94fc1 !important;
+    }
+    .grand-parents-wrap .node-image {
+        background: #fff !important;
+    }
+    .line.line-bottom .border-overlay {
+        position: absolute !important;
+        z-index: 1 !important;
+        width: 5px !important;
+        height: 133px !important;
+        bottom: -1px !important;
+        left: -1px !important;
+        background: #fff !important;
+    }
+}

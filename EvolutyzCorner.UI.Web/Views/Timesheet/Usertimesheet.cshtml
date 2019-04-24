@@ -1,0 +1,1508 @@
+﻿@model evolCorner.Models.UserProjectdetailsEntity
+@{
+
+    ViewBag.Title = "Usertimesheet";
+}
+
+
+<script src="~/EvolutyzCornerScripts/AddTimesheet.js"></script>
+
+<style>
+    fieldset.note-status {
+        float: left;
+        text-align: left;
+        padding: 5px 15px 10px;
+        margin: 0 2px;
+        border: 1px solid silver;
+    }
+    table[id^="SubTable"] {
+        background-color: #fff;
+    }
+
+        table[id^="SubTable"] tr > td:first-child {
+            word-spacing: 5px;
+            text-align: right;
+            padding-right: 15px;
+        }
+        fieldset.note-status > legend {
+            width: auto;
+            margin-bottom: auto;
+            font-size: 16px;
+            font-weight: 600;
+            border: 0;
+            padding: 0 10px;
+        }
+
+        fieldset.note-status > label {
+            margin: 0 5px;
+        }
+
+            fieldset.note-status > label:before {
+                content: "*";
+                width: 18px;
+                height: 18px;
+                line-height: 22px;
+                display: inline-block;
+                color: #fff;
+                text-align: center;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+            /*fieldset.note-status > label.black:before {
+                background-color: black;
+            }*/
+
+            fieldset.note-status > label.green:before {
+                background-color: green;
+            }
+
+            fieldset.note-status > label.red:before {
+                background-color: red;
+            }
+
+            fieldset.note-status > label.blue:before {
+                background-color: blue;
+            }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    .flex {
+        display: flex;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    /*.box.box-solid.box-brown .btn-warning
+        {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success
+        {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }*/
+    .block-content .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .block-content .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+
+<style>
+    /*b[class^="ts_ManagerNames"],*/
+    table#ClientDetails td > b ~ b {
+        display: block;
+    }
+    table[id^="SubTable"] td.colored {
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+    }
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+    /*.box.box-solid.box-brown .btn-warning
+        {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success
+        {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }*/
+    .block-content .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .block-content .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+<style>
+    .evInputBtn {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 3px 5px;
+        background: #848484;
+        color: #FFF !important;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        -moz-box-shadow: inset 0px -10px 15px rgba(0, 0, 0, 0.2), 1px 1px 5px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+
+    #btnSave.evInputBtn,
+    #btnSaveUpdate.evInputBtn {
+        background: #ff9800;
+    }
+
+    #btnSend.evInputBtn,
+    #btnSubmitUpdate.evInputBtn {
+        background: #4CAF50;
+    }
+    /*.evInputBtn:hover {
+            background: #FF6600;
+        }*/
+
+
+    .contentArea {
+        background: #FFF url(../images/shadow.png) repeat-x;
+        box-shadow: 0px 5px 8px rgba(183, 35, 35, 0.81);
+        padding: 30px;
+        min-height: 350px;
+    }
+
+    #MainTable {
+        border: 0px !important;
+    }
+
+    #SubTable {
+        border: 0px !important;
+    }
+
+    #SubTable2 {
+        border: 0px !important;
+    }
+
+    table#ClientDetails td {
+        border: none;
+        width: auto;
+    }
+
+    tbody > tr:only-child:nth-child(odd) {
+        background: none;
+    }
+
+    .evAdminTable th {
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+        background: #666;
+        color: #FFF;
+    }
+
+    table td, table th {
+        padding: 3px 6px;
+    }
+
+    table tr:nth-of-type(odd) {
+        background: #f9f9f9;
+    }
+
+    #MainTable > td[id^="td"] {
+        border: 0;
+        width: 50%;
+        vertical-align: top;
+    }
+
+    table td > .form-control {
+        border-radius: 0px;
+        height: auto;
+        padding: 2px;
+    }
+
+    table td > select.form-control {
+        width: 100%;
+    }
+
+    table #MainTable > td[id^="td"]:first-child {
+        padding-left: 0;
+    }
+
+    table#MainTable > td[id^="td"]:last-child {
+        padding-right: 0;
+    }
+
+    table [id^="SubTable"] tr > td:last-child {
+        display: none;
+    }
+
+    .evAdminTable th {
+        border-bottom: 0px solid #EAEAEA;
+        padding: 5px;
+        background: #666;
+        color: #FFF;
+    }
+
+    @@page {
+        size: A4 landscape;
+    }
+    /*@@media print {
+        .nonPrintable {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .skin-blue .main-header .navbar {
+            background-color: #3b464e !important;
+        }
+
+        .main-footer {
+            background: #142837 !important;
+            color: #FFF !important;
+        }
+      }*/
+
+</style>
+<style>
+    #loading-image {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1035;
+        background-color: rgba(243, 243, 243, 0.75);
+        /*opacity: .8;*/
+    }
+
+        #loading-image > img {
+            /*width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 87, 34, 0.25);
+            border-top-color: #f37a41;
+            border-radius: 50%;*/
+            position: absolute;
+            /* animation: loader-rotate 1s linear infinite; */
+            top: 50%;
+            left: 50%;
+            margin: -60px auto 0;
+            max-width: 100%;
+            display: block;
+            height: 100px;
+        }
+
+        #loading-image > span {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            animation: loader-circles 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            margin: -20px auto 0;
+        }
+
+        #loading-image > strong {
+            position: absolute;
+            top: 50%;
+            left: 48%;
+            margin: 0px auto 0;
+            font-size: 10px;
+        }
+
+    @@keyframes loader-circles {
+        0% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+
+        12.5% {
+            box-shadow: 0 -85px 0 0 #f37a41, 61px -61px 0 0 rgba(255, 87, 34, 0.05), 85px 0 0 0 rgba(255, 87, 34, 0.1), 61px 61px 0 0 rgba(255, 87, 34, 0.2), 0 85px 0 0 rgba(255, 87, 34, 0.3), -61px 61px 0 0 rgba(255, 87, 34, 0.4), -85px 0 0 0 rgba(255, 87, 34, 0.6), -61px -61px 0 0 rgba(255, 87, 34, 0.8);
+        }
+
+        25% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.8), 61px -61px 0 0 #f37a41, 85px 0 0 0 rgba(255, 87, 34, 0.05), 61px 61px 0 0 rgba(255, 87, 34, 0.1), 0 85px 0 0 rgba(255, 87, 34, 0.2), -61px 61px 0 0 rgba(255, 87, 34, 0.3), -85px 0 0 0 rgba(255, 87, 34, 0.4), -61px -61px 0 0 rgba(255, 87, 34, 0.6);
+        }
+
+        37.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.6), 61px -61px 0 0 rgba(255, 87, 34, 0.8), 85px 0 0 0 #f37a41, 61px 61px 0 0 rgba(255, 87, 34, 0.05), 0 85px 0 0 rgba(255, 87, 34, 0.1), -61px 61px 0 0 rgba(255, 87, 34, 0.2), -85px 0 0 0 rgba(255, 87, 34, 0.3), -61px -61px 0 0 rgba(255, 87, 34, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.4), 61px -61px 0 0 rgba(255, 87, 34, 0.6), 85px 0 0 0 rgba(255, 87, 34, 0.8), 61px 61px 0 0 #f37a41, 0 85px 0 0 rgba(255, 87, 34, 0.05), -61px 61px 0 0 rgba(255, 87, 34, 0.1), -85px 0 0 0 rgba(255, 87, 34, 0.2), -61px -61px 0 0 rgba(255, 87, 34, 0.3);
+        }
+
+        62.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.3), 61px -61px 0 0 rgba(255, 87, 34, 0.4), 85px 0 0 0 rgba(255, 87, 34, 0.6), 61px 61px 0 0 rgba(255, 87, 34, 0.8), 0 85px 0 0 #f37a41, -61px 61px 0 0 rgba(255, 87, 34, 0.05), -85px 0 0 0 rgba(255, 87, 34, 0.1), -61px -61px 0 0 rgba(255, 87, 34, 0.2);
+        }
+
+        75% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.2), 61px -61px 0 0 rgba(255, 87, 34, 0.3), 85px 0 0 0 rgba(255, 87, 34, 0.4), 61px 61px 0 0 rgba(255, 87, 34, 0.6), 0 85px 0 0 rgba(255, 87, 34, 0.8), -61px 61px 0 0 #f37a41, -85px 0 0 0 rgba(255, 87, 34, 0.05), -61px -61px 0 0 rgba(255, 87, 34, 0.1);
+        }
+
+        87.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.1), 61px -61px 0 0 rgba(255, 87, 34, 0.2), 85px 0 0 0 rgba(255, 87, 34, 0.3), 61px 61px 0 0 rgba(255, 87, 34, 0.4), 0 85px 0 0 rgba(255, 87, 34, 0.6), -61px 61px 0 0 rgba(255, 87, 34, 0.8), -85px 0 0 0 #f37a41, -61px -61px 0 0 rgba(255, 87, 34, 0.05);
+        }
+
+        100% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+    }
+
+    /* #f37a41 - rgb(255, 87, 34) , #f8c26c - rgb(248, 194, 108) */
+
+
+
+</style>
+
+<style type="text/css" media="print">
+
+    .nonPrintable {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .skin-blue .main-header .navbar {
+        background-color: #3b464e !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .main-footer {
+        background: #142837 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+        .main-footer *,
+        .skin-blue .main-header .navbar .nav > li > a *,
+        .skin-blue .main-header .navbar .sidebar-toggle:before,
+        .block-content .btn-warning {
+            color: #FFF !important;
+        }
+
+    .block-content .btn-warning {
+        background-color: #f97045 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    #btnSave.evInputBtn, #btnSaveUpdate.evInputBtn {
+        background: #ff9800 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    #btnSend.evInputBtn, #btnSubmitUpdate.evInputBtn {
+        background: #4CAF50 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .evInputBtn {
+        background: #848484 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    header.main-header,
+    .navbar {
+        display: block !important;
+    }
+
+    a[href]:after {
+        content: "" !important;
+    }
+</style>
+
+
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+
+<div class="block-content" id="PdfPrint">
+    @*<div class="box-header with-border">
+            <h3 class="box-title">Submit Timesheet</h3>
+        </div>*@
+    <div class="">
+        <h4 class="heading-fancy"> Submit Timesheet </h4>
+        @*<a class="btn" href="Usertimesheet" title="Add"><i class="fa fa-plus" style="font-size: 22px;"></i> </a>*@
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    @*<form class="form-horizontal">
+    *@
+    <div id="dvTimesheetid"><span id="dvTimesheetids" style="display:none"> </span></div>
+    <div class="clearfix">
+        <div id="StardateToEnddate" style="color:coral;font-size:large;float:left;width: 90%;text-align:center;font-weight:600"></div>
+
+    </div>
+    <table cellspacing="0" cellpadding="0" border="0" id="ClientDetails" style="display:none;margin: 10px auto;width:98%;border:1px solid #aaaaaa;">
+        <tbody>
+            <tr>
+                <td align="right" width="100" class="alt">
+                    <b>Client Name:</b>
+                    <b id="ts_approid">Approved on:</b>
+                </td>
+                <td>
+                    <div id="ts_ClientNameid">  </div>
+                    <div id="ts_Approveid"></div>
+                </td>
+                <td align="right" width="110" class="alt">
+                    <b>Project Name:</b>
+                    <b id="ts_submited">Submitted on:</b>
+                </td>
+                <td>
+                    <div id="ts_ProjectNameid"></div>
+                    <div id="ts_Submittedid"></div>
+                </td>
+                <td width="100" align="right" class="alt">
+                    <b>Manager 1:</b>
+                    <b id="ts_Manager2">Manager 2:</b>
+                </td>
+                <td>
+                    <div id="ts_ManagerNamesid1"></div>
+                    <div id="ts_ManagerNamesid2"></div>
+                </td>
+                <td><b>Duration :</b><b>Timesheet Mode:</b></td>
+                <td><div id="Timesheet_Duration"></div><div id="Timesheet_dvTSMode">Monthly</div></td>
+            </tr>
+        </tbody>
+
+
+
+    </table>
+
+    <div class="box-body no-padding" id="body">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="divMonthYear">
+                    <div id="divhiduserid" style="display:none"><input type="hidden" id="hidUserid">/>@Model.User_ID</div>
+
+
+                    <label for="inputPassword3" class="col-md-2 control-label">Year : </label>
+
+                    <select class="form-control col-md-4" name="year" id="year">
+                        @*
+                            <option value="">Select Year</option>*@
+                    </select>
+
+
+                    <label for="inputPassword3" class="col-md-2 control-label">Month : </label>
+
+                    <select class="form-control col-md-4" name="month" id="month">
+                        @*
+                            <option value="">Select Month</option>*@
+                    </select>
+
+
+                </div>
+            </div>
+            <div class="col-md-6 text-left">
+                <button class="btn btn-success margin-r-5" id="submit" value="1" onclick="CheckTimesheetexits()">Load</button>
+                <a class="btn btn-warning" id="btnPreview" value="1" onclick="LoadAllTimesheets()">Preview Timesheets</a>
+            </div>
+        </div>
+
+        <div id="divhidFday" style="display:none">
+            <p> <label id="fday"></label></p>
+        </div>
+        <div class="clearfix text-right" >
+            @*<div id="StardateToEnddate" style="color:coral;font-size:large;float:left;width: 90%;text-align:center;font-weight:600"></div>*@
+            <button type='submit' id='btnPrint' name='bntPrint' title="Click here to print" class='evInputBtn' onClick='print_page()' style="display:none;"><i class="fa fa-print"></i></button>
+            <button type='submit' name='btnpdf' id='btnpdf' title="Click here to pdf" class='evInputBtn' style="display:none;"><i class="fa fa-file-pdf-o"></i></button>
+            <button class="btn btn-warning" id="btnChangeDate" value="2" name="ChangeDate" style="display:none;">ChangeDate</button>
+        </div>
+        <div id="tabCon"></div>
+        <div id="TotHrs" style="float:right;position:relative;right:19px;font-size:large;display:none"><label>Total Working Hours:</label>&nbsp;&nbsp;<label name="totCount" id="TotalHoursCount"></label></div>
+
+    </div>
+
+
+    <div id="footer">
+
+        <div id='Cmtsave' style="display:none">
+            <label style='color:coral'>Additional Comments</label>
+            <div>
+                <textarea name='tnameDescription' rows='2' cols='20' id='txtDescription' style='width:100%;'></textarea>
+
+            </div>
+            <div class='clearfix' style='padding: 10px;text-align:right;'>
+                <fieldset class="note-status">
+                    <legend>Note :</legend>
+                    <label class="green">Work from Home</label>
+                    <label class="red">Leaves</label>
+                    <label class="blue">Holidays</label>
+                </fieldset>
+                <input type='submit' name='btnSave' value='Save &amp; Close' onclick=ConfirmSendTimesheet('1') id='btnSave' class='evInputBtn' />
+                &nbsp;&nbsp;
+                <input type='submit' name='btnSend' value='Save &amp; Submit Timesheet' onclick=ConfirmSendTimesheet('2') id='btnSend' class='evInputBtn' />
+                &nbsp;&nbsp;
+                <input type='submit' name='SaveUpdate' value='Save &amp;Update' id='btnSaveUpdate' onclick=updateTimesheet('1') style="display:none" class='evInputBtn' />
+                &nbsp;&nbsp;
+                <input type='submit' name='SubmitUpdate' value='Submit&amp;Update' id='btnSubmitUpdate' onclick=updateTimesheet('2') style="display:none" class='evInputBtn' />
+                &nbsp;&nbsp;
+                <input type='submit' id='btnclose' name='bntClose' value='Close' title="Close" class='evInputBtn' onClick='window.location.reload()' />
+                @*<input type='submit' id='btnPrint' name='bntPrint' value='Print'  class='evInputBtn' onClick='print_page()'>
+
+        <input type='submit' name='btnpdf' value='Pdf' id='btnpdf' class='evInputBtn'>*@
+                
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    @*
+        </form>*@
+</div>
+<!-- /.box -->
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+
+    function print_page()
+    {
+        window.print();
+    }
+
+    $("body").on("click", "#btnpdf", function () {
+        html2canvas($('#PdfPrint')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Timesheet.pdf");
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    var resultDataArray; var hidtimesheet; var Submittedtype = ""; var getData; var MonthYear = '';
+    var id =@Model.tsktaskID; var sessionuserid = @Model.User_ID;
+    var sessionprojectid = "@Model.projectName"; var sessionusername = "@Model.Usr_Username";
+    var sessionClientprojectid = "@Model.ProjectClientName";
+    var TaskLookupId = "", workingHours = "", Commentss = "";
+    var resultHoursWorkedColourArray;
+
+
+
+
+
+    function LoadAllTimesheets()
+    {
+        window.location = '/Timesheet/PreviewTimesheets';
+
+    }
+
+    $("#btnChangeDate").on("click", function () {
+        $("#body").show();
+        $('#divMonthYear').show();
+        $('#btnChangeDate').hide();
+        $('#btnPrint').hide();
+        $('#btnpdf').hide();
+        $('#btnPreview').show();
+        $('#submit').show();
+        $('#TotHrs').hide();
+        $("#MainTable").html("");
+        $("#SubTable").html("");
+        $("#tabCon").html("");
+        $("#StardateToEnddate").html("");
+        $("#ClientDetails").hide();
+        $('#Cmtsave').hide();
+
+    });
+    //calculateSum
+function calculateSum()
+{
+   
+var sum = 0;
+$(".uc1txtHours").each(function () {
+//add only if the value is number
+if (!isNaN(this.value) && this.value.length != 0) {
+sum += parseFloat(this.value);
+}
+});
+//.toFixed() method will roundoff the final sum to 2 decimal places
+$("#TotalHoursCount").html(sum.toFixed(2));
+    }
+
+
+
+
+    function CalculateTtlLeaves()
+    {
+       
+        var sum = 0;
+        $("td.colored[name='uc1txtHours'] > font").each(function () {
+           
+            
+            //sum += Number($(this).val()) || 0;
+            sum += parseInt($(this).text());
+           
+        
+            
+        });
+       
+         $("#TotalHoursCount").html(sum);
+    }
+
+
+    //Load DropDown Tasks
+function LoadTasklookups() {
+
+$.ajax({
+type: "GET",
+url: "/Admin/getLookUp",
+datatype: "Json",
+//data: { id: id },
+    success: function (data)
+    {
+    $.each(data, function (index, value)
+    {
+
+$('.lookup').append('<option value="' + value.tsk_TaskID + '">' + value.tsk_TaskName + '</option>');
+
+        $(".lookup option").each(function () {
+
+            if ($(this).val() == id) {
+            $(this).attr("selected", "selected");
+            return;
+            }
+        });
+
+      });
+    },
+});
+
+}
+
+
+    function CheckTimesheetexits()
+    {
+
+        var month = $("#month").val();
+        var year = $("#year").val();
+        if (month <= 9) {
+
+            MonthYear = year + '-' + "0" + month + '-' + '01';
+        }
+        else {
+
+            MonthYear = year + '-' + month + '-' + '01';
+        }
+
+        var objDate = new Date(MonthYear),
+            locale = "en-us",
+            month = objDate.toLocaleString(locale, { month: "short" });
+
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+            type: "GET",
+            url: "/Timesheet/CheckTimesheetExits",
+            data: { timesheetsdate: MonthYear },
+            datatype: "Json",
+            async: false,
+            success: function (data) {
+
+                if (data == '101') {
+                    var r = confirm("TimeSheet for this month: " + month + " and year: " + year + " is already Submitted,\nDo you want to Preview?");
+                    if (r == true) {
+                        $("#btnSave").attr("style", "display: none;");
+                        $("#btnSend").attr("style", "display: none;");
+                        $("#btnSaveUpdate").attr("style", "display: none;");
+                        $("#btnSubmitUpdate").attr("style", "display: none;");
+                        $("#txtDescription").attr('readonly', true);
+                        LoadClientDetails();
+                        PreviewAlreadysubmittedTimesheets(MonthYear);
+                    }
+
+                }
+                if (data == '102') {
+
+                    var r = confirm("TimeSheet for this month: " + month + " and year: " + year + " is Saved already,\nDo you want to Submit the Timesheet?");
+                    if (r == true) {
+
+                        $("#btnSave").attr("style", "display: none;");
+                        $("#btnSend").attr("style", "display: none;");
+                        $("#btnSaveUpdate").attr("style", "display: inline-block;");
+                        $("#btnSubmitUpdate").attr("style", "display: inline-block;");
+                        LoadClientDetails();
+                        displaysavedTimesheets(MonthYear,  @Model.User_ID);
+
+                    }
+
+
+                }
+                if (data == "103") {
+                    LoadAllHoursWorkingByMonth(MonthYear);
+                    //var r = confirm("Do u want to fill new timesheet for this month: " + month + " and year: " + year + "?");
+                    //if (r == true) {
+
+                    //  alert("Welcome to fill Newly Timesheet for this  Month: " + month + " and Year: " + year + "");
+                    //   LoadAllHoursWorkingByMonth(MonthYear);
+
+                    //}
+
+
+                }
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            }
+
+        });
+
+
+    }
+       // });
+
+
+    function displaysavedTimesheets(MonthTimesheet, tsuserid)
+    {
+        var taskid = '';
+        $("#btnPrint").hide();
+        $("#btnpdf").hide();
+        
+        $('#ts_ClientNameid').html(sessionprojectid);
+        $('#ts_ProjectNameid').html(sessionClientprojectid);
+
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+            url: "/Timesheet/ViewSubmitedTimesheet",
+            type: "GET",
+            data: { TimesheetMonth: MonthTimesheet, TimesheetUserid: tsuserid },
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            async: false,
+            success: function (resultData) {
+               // taskid = resultData[0].Taskid;
+                resultDataArray = resultData;
+                resultDataArrayTID = resultData.TimesheetID;
+                LoadHoursWorkedAcctoDate(MonthTimesheet, tsuserid);
+                savedTimesheetsTable(MonthTimesheet, resultData);
+                LoadSavedTasks();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            }
+        });
+        LoadTaskData();
+
+    }
+    function LoadHoursWorkedAcctoDate(MonthTimesheet, tsuserid) {
+        $.ajax({
+            url: "/Timesheet/HoursWorkedTimesheet",
+            type: "GET",
+            data: { TimesheetMonth: MonthTimesheet, TimesheetUserid: tsuserid },
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            async: false,
+            // cache: false,
+
+            success: function (resultData) {
+                resultHoursWorkedColourArray = resultData
+
+            },
+
+        });
+    }
+
+
+    function savedTimesheetsTable(MonthTimesheet, resultData) {
+        $('#divMonthYear').hide();
+        $('#btnChangeDate').show();
+        $('#btnPrint').hide();
+        $('#btnpdf').hide();
+        $('#TotHrs').show();
+        $('#submit').hide();
+        $('#btnPreview').hide();
+        $("#StardateToEnddate").empty();
+        $("#tabCon").empty();
+        $('#Cmtsave').show();
+        $("#MainTable").empty();
+        $("#SubTable").empty();
+       var tbltask = ''; var objSelect = '';
+
+        var counter = -1;
+        var counter15 = -1;
+        $("#ClientDetails").show(true);
+        $("#tabCon").append("<table name='maintbl' id='MainTable' width='100%'>");
+
+        $.each(resultData, function (k, v) {
+            hidtimesheet = v.TimesheetID;
+            $('#dvTimesheetids').html(hidtimesheet);
+            $('#Timesheet_Duration').html(v.TotalMonthName);
+            $("#ts_Approveid").hide();
+            $("#ts_Submittedid").hide();
+            $("#ts_approid").hide();
+            $("#ts_submited").hide();
+            $('#ts_ManagerNamesid1').html(v.ManagerName1);
+            if (v.ManagerName2 != '0') {
+                $('#ts_ManagerNamesid2').html(v.ManagerName2);
+                $("b.ts_ManagerNamesid2").show();
+                $("#ts_Manager2").show();
+            }
+            else {
+                $("#ts_ManagerNamesid2").hide();
+                $('#ts_ManagerNamesid2').html("");
+                $("#ts_Manager2").hide();
+            }
+            $("#StardateToEnddate").html("<span id='StartToEnd'><b>Timesheet of " + v.UserName + " for the Period of " + v.TotalMonthName + "</b></span>");
+            $("#txtDescription").val(v.Comments);
+
+            if (k <= 15) {
+                tbltask = 'uc1_ddlTask' + k;
+
+                if (counter15 == -1)
+                {
+                    $("#MainTable").append("<td id='td1'>" +
+      "<table id='SubTable' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50' class='evAdminTable'>Hours </th></tr>");
+                }
+
+                $("#SubTable").append("<tr><td>" + v.MonthYearName + "</td><td><select id='uc1_ddlTask" + k + "' class='form-control lookup' selected  ></select></td><td><div class='flex'><input class='form-control uc1txtHours' name='hrs' type='number' title='Enter hours' min='0' max='24' maxlength='2' id='uc1_txtHours" + k + "' value=" + v.NoofHoursWorked + "  style='width: 56px;'><span id='HoursColours" + k + "' style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td><td >&nbsp</td></td>");
+                 counter15 = counter15 + 1;
+            }
+            else {
+
+                tbltask = 'uc1_ddlTask' + k;
+                if (counter == -1) {
+                    $("#SubTable").append("</table>")
+                    $("#SubTable").append("</td>")
+                    $("#MainTable").append("<td id='td2'><table id='SubTable2' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50'class='evAdminTable'>Hours</th></tr>");
+                }
+
+                $("#SubTable2").append("<tr><td>" + v.MonthYearName + "</td><td><select class='lookup form-control' selected  id='uc1_ddlTask" + k + "' class='form-control lookup' selected ></select></td><td><div class='flex'><input class='form-control uc1txtHours' title='Enter hours' name='hrs' type='number'   min='0' max='24'  maxlength='2' id='uc1_txtHours" + k + "'  value=" + v.NoofHoursWorked + " style='width: 56px;'><span id='HoursColours" + k + "' style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td><td>&nbsp</td></td>");
+                // $('#uc1_ddlTask' + k).append('<option value="' + v.Taskid + '">' + v.Taskname + '</option>');
+                counter = counter + 1;
+            }
+
+        });
+        HoursDataColours();
+        calculateSum();
+        $(":input").bind('keyup mouseup', function () {
+            calculateSum();
+
+        });
+
+
+        "</table>" + + "<hr />"
+        $("#MainTable").append("</tr></table>") + "<hr />";
+
+    }
+
+    function LoadSavedTasks()
+    {
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+            type: "GET",
+            url: "/Admin/getLookUp",
+            datatype: "Json",
+            async: false,
+            //data: { id: id },
+            success: function (data) {
+
+                $(data).each(function () {
+
+                    $(".lookup").append($("<option></option>").val(this.tsk_TaskID).html(this.tsk_TaskName));
+
+                });
+
+
+            },
+              complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            }
+        });
+
+    }
+
+    function LoadTaskData() {
+
+        if (resultDataArray && resultDataArray.length > 0) {
+
+            $.each(resultDataArray, function (index, value) {
+
+                $('#uc1_ddlTask' + index).val(value.Taskid).attr("selected", "selected");
+
+
+
+            });
+        }
+    }
+
+    function LoadSubmittedTaskData() {
+
+        if (resultDataArray && resultDataArray.length > 0) {
+
+            $.each(resultDataArray, function (index, value) {
+
+                $('#uc1_ddlTask' + index).val(value.Taskid).attr("selected", "true");
+                $('#uc1_txtHours' + index).val(value.NoofHoursWorked).attr("selected", "true");
+
+
+
+            });
+        }
+    }
+
+
+function ConfirmSendTimesheet(id)
+{
+
+    if (id == '1') {
+        Submittedtype = 'Save';
+    }
+    if (id == '2') {
+
+        Submittedtype = 'Submit';
+    }
+    var Commentss = $.trim($("#txtDescription").val());
+    var Projectid =@Model.Proj_ProjectID;
+
+
+    var rows = $("#SubTable,#SubTable2").find("tr");
+    var listtimesheetdetails = []; var rowData = {}; var Date, TaskId, hours, workingHours;
+
+    for (var rowOn = 1; rowOn < rows.length; rowOn++) {
+        workingHours = $(rows[rowOn]).find('.uc1txtHours').attr('id');
+
+        Date = $(rows[rowOn]).find("td").eq(0).text();
+        TaskId = $(rows[rowOn]).find("#uc1_ddlTask option:selected").val();
+        // hours = $(rows[rowOn]).find("input").val();
+        hours = $("#" + workingHours).val();
+        if (hours == "") {
+            if (!$.trim(this.value)) {
+                alert("Please enter working hours");
+                $("#" + workingHours).val('');
+                $("#" + workingHours).focus('');
+                calculateSum();
+                return false;
+            }
+        }
+        if (hours != "") {
+            if (hours < 0) {
+                alert("Working hours should be not be less than zero");
+                $("#" + workingHours).val('');
+                $("#" + workingHours).focus('');
+                calculateSum();
+                return false;
+            }
+        }
+        if (hours != "") {
+            if (hours > 24) {
+                alert("Working hours should not be greater than 24 hours");
+                $("#" + workingHours).val('');
+                $("#" + workingHours).focus('');
+                calculateSum();
+                return false;
+            }
+        }
+
+        if (rowOn != 17) {
+            if (TaskId != undefined && hours != undefined && Date != null) {
+                rowData = { taskDate: Date, taskid: TaskId, hoursWorked: hours, ProjectID: Projectid  }
+            }
+        }
+        else {
+            continue;
+        }
+
+        listtimesheetdetails.push(rowData);
+    }
+    var TsDate;
+    var month = $("#month").val();
+    var year = $("#year").val();
+
+    if (month <= 9) {
+
+        TsDate = year + '-' + "0" + month + '-' + '01';
+    }
+    else {
+
+        TsDate = year + '-' + month + '-' + '01';
+    }
+
+        var timesheets = {
+        UserID: @Model.User_ID,
+        TimeSheetMonth: TsDate ,
+        Comments: Commentss,
+        SubmittedType: Submittedtype,
+        }
+
+var sheetObj =
+    {
+        timesheets: timesheets,
+        listtimesheetdetails: listtimesheetdetails
+    };
+
+    $('#loading-image').attr("style", "display: block;");
+$.ajax({
+    type: "POST",
+    url: "/Timesheet/AddSubmitTimesheet",
+    data: JSON.stringify(sheetObj),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function (data) {
+        alert(data);
+        window.location.reload();
+    },
+    complete: function () {
+        $('#loading-image').attr("style", "display: none;");
+    }
+});
+
+    }
+
+
+    //////////////////////////////////////////////////////Update timesheet//////////////////////////////////////////
+
+    function updateTimesheet(id)
+    {
+        if (id == '1') {
+            Submittedtype = 'Save';
+        }
+        if (id == '2') {
+
+            Submittedtype = 'Submit';
+        }
+
+        Commentss = $.trim($("#txtDescription").val());
+
+
+        //if (Commentss == "") {
+        //    alert("Please enter comments");
+        //    $("#txtDescription").focus();
+        //    return false;
+        //}
+        var rows = $("#SubTable,#SubTable2").find("tr");
+
+        var listtimesheetdetails = []; var rowData = {}; var Date, TaskId, hours;
+
+        for (var rowOn = 1; rowOn < rows.length; rowOn++) {
+
+            TaskLookupId = $(rows[rowOn]).find('.lookup').attr('id');
+            workingHours = $(rows[rowOn]).find('.uc1txtHours').attr('id');
+
+            Date = $(rows[rowOn]).find("td").eq(0).text();
+
+            TaskId = $("#" + TaskLookupId).val();
+
+            hours = $("#" + workingHours).val();
+
+            if (hours == "") {
+                if (!$.trim(this.value)) {
+                    alert("Please enter working hours");
+                    $(".uc1txtHours").focus();
+                    calculateSum();
+                    return false;
+                }
+            }
+
+            if (hours != "") {
+                if (hours < 0) {
+                    alert("Working hours should be not be less than zero");
+                    $("#" + workingHours).val('');
+                    $("#uc1_txtHours").focus();
+                    calculateSum();
+                    return false;
+                }
+            }
+
+
+
+            if (hours != "") {
+                if (hours > 24) {
+                    alert("Working hours should not be greater than 24 hours");
+                    $("#" + workingHours).val('');
+                    $("#uc1_txtHours").focus();
+                    calculateSum();
+                    return false;
+                }
+            }
+
+
+            if (TaskId != undefined && hours != undefined && Date != null) {
+                rowData = { taskDate: Date, taskid: TaskId, hoursWorked: hours }
+            }
+            listtimesheetdetails.push(rowData);
+        }
+
+
+        var timesheets = {
+            TimesheetID: hidtimesheet,
+            TimeSheetMonth: MonthYear,
+            Comments: Commentss,
+            SubmittedType: Submittedtype,
+
+
+        }
+
+        var sheetObj = {
+            timesheets: timesheets,
+            listtimesheetdetails: listtimesheetdetails
+
+        };
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            type: "POST",
+            url: "/Timesheet/updateTimesheetTaskDetails",
+            data: JSON.stringify(sheetObj),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+
+            } ,
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+
+            }
+        });
+
+
+    }
+
+    /////////////////////////////////////////checking timesheets for edit or preview////////////////////////////////////
+
+    @*var objUserSessionId = ''; var resultsubmitstatus = '';
+          $.ajax({
+            url: "/User/GetPreviewTimesheets",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            // cache: false,
+            success: function (resultData) {
+                if (resultData.RoleName) {
+                    objUserSessionId = resultData.RoleName
+                    resultsubmitstatus = resultData.timesheets.TimesheetApprovalStatus
+
+                   displaysavedTimesheets(MonthYear,  @Model.User_ID);
+                }
+            },
+            error: function (data) {
+                //  alert(data.responseText);
+            }
+        })*@
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function PreviewAlreadysubmittedTimesheets(MonthTimesheet)
+    {
+        $("#btnPrint").show();
+        $("#btnpdf").show();
+        $('#ts_ClientNameid').html(sessionprojectid);
+        $('#ts_ProjectNameid').html(sessionClientprojectid);
+        $('#loading-image').attr("style", "display: block;");
+        $.ajax({
+            url: "/Timesheet/ViewSubmitedTimesheet",
+            type: "GET",
+            data: { TimesheetMonth: MonthTimesheet, TimesheetUserid: sessionuserid},
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'JSON',
+            async: false,
+            // cache: false,
+
+            success: function (resultData) {
+                resultDataArray = resultData;
+                LoadHoursWorkedAcctoDate(MonthTimesheet, sessionuserid);
+                PreviewTimesheetByMonth(MonthYear, resultData);
+               // LoadSavedTasks();
+
+            } ,
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            }
+
+        });
+      LoadSubmittedTaskData();
+    }
+
+
+
+    function PreviewTimesheetByMonth(MonthTimesheet, resultData)
+    {
+        
+        $('#divMonthYear').hide();
+        $('#btnChangeDate').show();
+        $('#btnPrint').show();
+        $('#btnpdf').show();
+        $('#TotHrs').show();
+        $('#submit').hide();
+        $('#btnPreview').hide();
+        $("#StardateToEnddate").empty();
+        $("#tabCon").empty();
+        $("#MainTable").empty();
+        $("#SubTable").empty();
+        var tbltask = ''; var objSelect = '';
+        $('#Cmtsave').show();
+        var counter = -1;
+        var counter15 = -1;
+        $("#ClientDetails").show(true);
+        $("#tabCon").append("<table name='maintbl' id='MainTable' width='100%' /*style='position:relative;left:10%;'*/>");
+        $.each(resultData, function (k, v)
+        {
+            //debugger;
+            $("#StardateToEnddate").html("<span id='StartToEnd'><b>Timesheet of " + v.UserName + " for the Period of " + v.TotalMonthName + "</b></span>");
+            $('#Timesheet_Duration').html(v.TotalMonthName);
+            $("#txtDescription").val(v.Comments);
+            $('#ts_ManagerNamesid1').html(v.ManagerName1);
+            $("#ts_Approveid").hide();
+            $("#ts_Submittedid").hide();
+            $("#ts_approid").hide();
+            $("#ts_submited").hide();
+
+            if (v.ManagerName2 != '0') {
+                $('#ts_ManagerNamesid2').html(v.ManagerName2);
+                $("b.ts_ManagerNamesid2").show();
+                $("#ts_Manager2").show();
+                //$('#ts_ManagerNamesid2').closest("b.ts_ManagerNamesid2").show();
+            }
+            else {
+                $('#ts_ManagerNamesid2').html("");
+                $("b.ts_ManagerNamesid2").hide();
+                $("#ts_Manager2").hide();
+            }
+
+            if (k <= 15) {
+                tbltask = 'uc1_ddlTask' + k;
+                if (counter15 == -1)
+                {
+                    $("#MainTable").append("<td id='td1'>" +
+                        "<table id='SubTable' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50' class='evAdminTable'>Hours </th></tr>");
+                }
+                
+               
+                $("#SubTable").append("<tr><td class='colored'>" + v.MonthYearName + "</td><td class='colored'  id='uc1_ddlTask" + k + "'>" + v.Taskname + "</td><div class='flex'><td class='colored' class='form-control uc1txtHours' name='uc1txtHours' id='uc1_txtHours" + k + "'><font>" + v.NoofHoursWorked + "</font><span id='HoursColours" + k + "' style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td></td>");
+                counter15 = counter15 + 1;
+              
+                
+            }
+            else if(k>15){
+              
+                tbltask = 'uc1_ddlTask' + k;
+                if (counter == -1) {
+                    $("#SubTable").append("</table>")
+                    $("#SubTable").append("</td>")
+                    $("#MainTable").append("<td id='td2'><table id='SubTable2' /*style='position:relative;top:19px;'*/ width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50'class='evAdminTable'>Hours</th></tr>");
+                }
+                $("#SubTable2").append("<tr><td class='colored'>" + v.MonthYearName + "</td><td id='uc1_ddlTask" + k + "'  class='colored lookup'>" + v.Taskname + "</td><td  class='colored uc1txtHours' name='uc1txtHours'  id='uc1_txtHours" + k + "'><font>" + v.NoofHoursWorked + "</font><span id='HoursColours" + k + "' style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td></td>");
+              //  $("#SubTable2").append("<tr><td>" + v.MonthYearName + "</td><td id='uc1_ddlTask" + k + "' class='lookup task form-control'></td><td class='form-control uc1txtHours'   id='uc1_txtHours" + k + "'  value=" + v.NoofHoursWorked + "  style='width: 56px;'><div class='flex'><span id='HoursColours" + k + "' style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td><td>&nbsp</td></td>");
+                // $('#uc1_ddlTask' + k).append('<option value="' + v.Taskid + '">' + v.Taskname + '</option>');
+                counter = counter + 1;
+          
+               
+            }
+
+           
+          //  $('#txtDescription').val(v.Comments).attr("disabled", "true");
+
+
+        });
+
+        HoursDataColours();
+        CalculateTtlLeaves();
+        "</table>" + + "<hr />"
+        $("#MainTable").append("</tr></table>") + "<hr />";
+        $('table[id="SubTable"] tr > td:last-child').css("display", "table-cell");
+        $('table[id="SubTable2"] tr > td:last-child').css("display", "table-cell");
+    }
+
+    function LoadClientDetails()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/Timesheet/Usertimesheet",
+            datatype: "Json",
+            success: function (data) {
+
+            }
+        });
+    }
+
+    function LoadAllHoursWorkingByMonth(MonthYear)
+    {
+        $("#btnPrint").hide();
+        $("#btnpdf").hide();
+        $('#ts_ClientNameid').html(sessionprojectid);
+        $('#ts_ProjectNameid').html(sessionClientprojectid);
+        $.ajax({
+            type: "GET",
+            url: "/Timesheet/GetHoursWorkedByCalender",
+            data: { tdate: MonthYear, Userid:@Model.User_ID,cmpnyAccountid:@Model.Account_ID,UsrProjectId:@Model.Proj_ProjectID},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (resultData) {
+                var datahourworked = resultData.timeSheetDetails;
+                $('#ts_ManagerNamesid1').html(resultData.objEmpInfo.ManagerName1);
+                $('#Timesheet_Duration').html(resultData.objEmpInfo.TotalMonthName);
+                $("#StardateToEnddate").empty();
+                $("#StardateToEnddate").html("<span id='StartToEnd'><b>Timesheet of " + resultData.objEmpInfo.UserName + " for the Period of " + resultData.objEmpInfo.TotalMonthName + "</b></span>");
+                if (resultData.objEmpInfo.ManagerName2 != '0') {
+                    $('#ts_ManagerNamesid2').html(resultData.objEmpInfo.ManagerName2);
+                    $("b.ts_ManagerNamesid2").show();
+                    $("#ts_Manager2").show();
+                }
+                else {
+                    $('#ts_ManagerNamesid2').html("");
+                    $("b.ts_ManagerNamesid2").hide();
+                    $("#ts_Manager2").hide();
+                }
+                $("#ts_Approveid").hide();
+                $("#ts_Submittedid").hide();
+                $("#ts_approid").hide();
+                $("#ts_submited").hide();
+
+                FirstLoadTimesheetsTable(MonthYear, datahourworked)
+                LoadTasklookups();
+            }
+           });
+
+    }
+
+    function FirstLoadTimesheetsTable(MonthYear, resultData)
+    {
+        $('#divMonthYear').hide();
+        $('#btnChangeDate').show();
+        $('#btnPrint').hide();
+        $('#btnpdf').hide();
+        $('#TotHrs').show();
+        $('#submit').hide();
+        $('#btnPreview').hide();
+        $("#tabCon").empty();
+        $('#Cmtsave').show();
+        $("#MainTable").empty();
+        $("#SubTable").empty();
+        var counter = -1;
+        var counter15 = -1;
+        $("#ClientDetails").show(true);
+
+      $("#tabCon").append("<table name='maintbl' id='MainTable' width='100%'>");
+
+        $.each(resultData, function (k, v)
+        {
+
+            if (k <= 15) {
+
+                if (counter15 == -1) {
+
+                    $("#MainTable").append("<td id='td1'>" +
+                        "<table id='SubTable' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50' class='evAdminTable'>Hours </th></tr>");
+
+                }
+                if (v.colour == 'black') {
+                    v.colour = 'white';
+                }
+                $("#SubTable").append("<tr><td>" + v.TaskDate + "</td><td><select id='uc1_ddlTask' class='form-control lookup' selected  onload='LoadTasklookups()'></select></td><td><div class='flex'><input class='form-control uc1txtHours' name='hrs' type='number' title='Enter hours' maxlength='2' min='0' max='24' id='uc1_txtHours" + k + "' value=" + v.NoofHoursWorked + "  style='width: 56px;'><span style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td><td >&nbsp</td></td>");
+
+                counter15 = counter15 + 1;
+
+
+            }
+            else {
+
+
+                if (counter == -1) {
+                    $("#SubTable").append("</table>")
+                    $("#SubTable").append("</td>")
+                    $("#MainTable").append("<td id='td2'><table id='SubTable2' width='100%' class='evAdminTable1'><tr style='background-color:black;color:white'><th width='160' text-align='center' class='evAdminTable'>Date </th> <th class='evAdminTable'>Task </th> <th width='50'class='evAdminTable'>Hours</th></tr>");
+                }
+                if (v.colour == 'black') {
+                    v.colour = 'white';
+                }
+                $("#SubTable2").append("<tr><td>" + v.TaskDate + "</td><td><select class='lookup form-control' selected  id='uc1_ddlTask' class='form-control lookup' selected onload='LoadTasklookups()'></select></td><td><div class='flex'><input class='form-control uc1txtHours' name='hrs' type='number' title='Enter hours' maxlength='2' min='0' max='24' id='uc1_txtHours" + k + "' value=" + v.NoofHoursWorked + "  style='width: 56px;'><span style='font-size: 25px;line-height: 25px;color:" + v.colour + "'>* </span></div></td><td >&nbsp</td></td>");
+                // $('#uc1_ddlTask' + k).append('<option value="' + v.Taskid + '">' + v.Taskname + '</option>');
+                counter = counter + 1;
+
+            }
+
+        });
+
+        calculateSum();
+        $(":input").bind('keyup mouseup', function () {
+            calculateSum();
+
+        });
+        "</table>" + + "<hr />"
+        $("#MainTable").append("</tr></table>") + "<hr />";
+    }
+
+
+    function HoursDataColours()
+    {
+        $.each(resultHoursWorkedColourArray, function (index, value)
+        {
+            if (value.colour == 'black')
+            {
+                value.colour = 'white';
+            }
+            $('#HoursColours' + index).attr('style', 'font-size:25px;line-height:25px;color:' + value.colour);
+
+        });
+
+    }
+
+</script>

@@ -1,0 +1,1789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EvolutyzCornerDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Acc_Spec_OptionalHolidays">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="Acc_Spec_OptionalHolidayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccoutID" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="FinancialYearId" Type="int" Nullable="false" />
+    <Property Name="NoofOptionalHolidays" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Acc_AccountID" />
+    </Key>
+    <Property Name="Acc_AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Acc_AccountCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Acc_AccountName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Acc_AccountDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Acc_EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Acc_MobileNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Acc_PhoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Acc_CompanyLogo" Type="nvarchar" MaxLength="200" />
+    <Property Name="Acc_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Acc_Version" Type="smallint" Nullable="false" />
+    <Property Name="Acc_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Acc_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Acc_ModifiedDate" Type="datetime" />
+    <Property Name="Acc_ModifiedBy" Type="int" />
+    <Property Name="Acc_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="is_UsAccount" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountClients">
+    <Key>
+      <PropertyRef Name="Acc_ClientID" />
+    </Key>
+    <Property Name="Acc_ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="varchar" MaxLength="100" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="WebsiteUrl" Type="varchar" MaxLength="50" />
+    <Property Name="IndustryID" Type="varchar" MaxLength="100" />
+    <Property Name="Address" Type="varchar" MaxLength="250" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="6" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountDepartments">
+    <Key>
+      <PropertyRef Name="AccountDepartmentID" />
+    </Key>
+    <Property Name="AccountDepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
+    <Property Name="Dept_Description" Type="varchar" MaxLength="250" />
+    <Property Name="Dept_CreatedDate" Type="datetime" />
+    <Property Name="Dept_CreatedBy" Type="int" />
+    <Property Name="Dept_ModifiedDate" Type="datetime" />
+    <Property Name="Dept_ModifiedBy" Type="int" />
+    <Property Name="Dept_isDeleted" Type="bit" />
+    <Property Name="Dept_ActiveStatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="AccountSocialMediaProfiles">
+    <Key>
+      <PropertyRef Name="Acc_SocialMediaProfileId" />
+    </Key>
+    <Property Name="Acc_SocialMediaProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Asmp_AccountId" Type="int" />
+    <Property Name="Asmp_SocialMediaId" Type="int" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+    <Property Name="Asmp_CreatedDate" Type="datetime" />
+    <Property Name="Asmp_ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AccountSpecificTasks">
+    <Key>
+      <PropertyRef Name="Acc_SpecificTaskId" />
+    </Key>
+    <Property Name="Acc_SpecificTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" />
+    <Property Name="Acc_SpecificTaskName" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="isDeleted" Type="bit" />
+    <Property Name="StatusId" Type="bit" />
+    <Property Name="tsk_TaskID" Type="int" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientProjects">
+    <Key>
+      <PropertyRef Name="CL_ProjectID" />
+    </Key>
+    <Property Name="CL_ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Proj_ProjectID" Type="int" />
+    <Property Name="Accountid" Type="int" />
+    <Property Name="ClientProjTitle" Type="varchar" MaxLength="30" />
+    <Property Name="ClientProjDesc" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="ClientProjectsTasks">
+    <Key>
+      <PropertyRef Name="CL_ProjectsTasksID" />
+    </Key>
+    <Property Name="CL_ProjectsTasksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Accountid" Type="int" />
+    <Property Name="rol_roleid" Type="int" />
+    <Property Name="acc_specifictaskid" Type="int" />
+  </EntityType>
+  <EntityType Name="ClientsBusiness">
+    <Key>
+      <PropertyRef Name="BusinessId" />
+    </Key>
+    <Property Name="BusinessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessTitle" Type="varchar" MaxLength="50" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="ComponentType">
+    <Key>
+      <PropertyRef Name="ComponentTypeId" />
+    </Key>
+    <Property Name="ComponentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComponentType" Type="varchar" MaxLength="50" />
+    <Property Name="Com_CreatedDate" Type="datetime" />
+    <Property Name="Com_CreatedBy" Type="int" />
+    <Property Name="Com_ModifiedDate" Type="datetime" />
+    <Property Name="Com_ModifiedBy" Type="int" />
+    <Property Name="Com_isDeleted" Type="bit" />
+    <Property Name="Com_ActiveStatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="ContentType">
+    <Key>
+      <PropertyRef Name="ContentTypeId" />
+    </Key>
+    <Property Name="ContentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentTitle" Type="varchar(max)" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Con_ActiveStatus" Type="bit" />
+    <Property Name="Con_CreatedDate" Type="datetime" />
+    <Property Name="Con_CreatedBy" Type="int" />
+    <Property Name="Con_ModifiedDate" Type="datetime" />
+    <Property Name="Con_ModifiedBy" Type="int" />
+    <Property Name="Con_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PhoneCode" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="StatusId" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeId" />
+    </Key>
+    <Property Name="DocumentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentTitle" Type="varchar(max)" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Doc_ActiveStatus" Type="bit" />
+    <Property Name="Doc_CreatedDate" Type="datetime" />
+    <Property Name="Doc_CreatedBy" Type="int" />
+    <Property Name="Doc_ModifiedDate" Type="datetime" />
+    <Property Name="Doc_ModifiedBy" Type="int" />
+    <Property Name="Doc_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="EmployeeBankDetails">
+    <Key>
+      <PropertyRef Name="EmpBankID" />
+    </Key>
+    <Property Name="EmpBankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpB_UserID" Type="int" />
+    <Property Name="BANK_No" Type="bigint" />
+    <Property Name="PAN_No" Type="varchar" MaxLength="30" />
+    <Property Name="UAN_No" Type="bigint" />
+    <Property Name="PF_No" Type="varchar" MaxLength="50" />
+    <Property Name="ESI_No" Type="varchar" MaxLength="50" />
+    <Property Name="PayModeID" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryComponent">
+    <Key>
+      <PropertyRef Name="EmpSalCompId" />
+    </Key>
+    <Property Name="EmpSalCompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpSC_AccountID" Type="int" />
+    <Property Name="ComponentTitle" Type="varchar" MaxLength="100" />
+    <Property Name="ComponentDescription" Type="varchar" MaxLength="100" />
+    <Property Name="ComponentTypeId" Type="int" />
+    <Property Name="EmpSC_ActiveStatus" Type="bit" />
+    <Property Name="EmpSC_Version" Type="int" />
+    <Property Name="EmpSC_CreatedDate" Type="datetime" />
+    <Property Name="EmpSC_CreatedBy" Type="int" />
+    <Property Name="EmpSC_ModifiedDate" Type="datetime" />
+    <Property Name="EmpSC_ModifiedBy" Type="int" />
+    <Property Name="EmpSC_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="EmployeeSalarySlips">
+    <Key>
+      <PropertyRef Name="EmpSalarySlipID" />
+    </Key>
+    <Property Name="EmpSalarySlipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Epmss_UserID" Type="int" />
+    <Property Name="Month" Type="int" />
+    <Property Name="YEAR" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryStructure">
+    <Key>
+      <PropertyRef Name="Emps_StructureID" />
+    </Key>
+    <Property Name="Emps_StructureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Emps_UserID" Type="int" />
+    <Property Name="WorkingDays" Type="int" />
+    <Property Name="WorkedDays" Type="int" />
+    <Property Name="Payable" Type="int" />
+    <Property Name="SalaryMonth" Type="datetime" />
+    <Property Name="FinancialYearId" Type="int" />
+    <Property Name="CTC" Type="money" />
+    <Property Name="Ess_ActiveStatus" Type="bit" />
+    <Property Name="Ess_Version" Type="int" />
+    <Property Name="Ess_CreatedDate" Type="datetime" />
+    <Property Name="Ess_CreatedBy" Type="int" />
+    <Property Name="Ess_ModifiedDate" Type="datetime" />
+    <Property Name="Ess_ModifiedBy" Type="int" />
+    <Property Name="Ess_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryStructureDetails">
+    <Key>
+      <PropertyRef Name="EmpssdetailId" />
+    </Key>
+    <Property Name="EmpssdetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpSalCompId" Type="int" />
+    <Property Name="Emps_StructureId" Type="int" />
+    <Property Name="EssD_ActiveStatus" Type="bit" />
+    <Property Name="EssD_Version" Type="int" />
+    <Property Name="EssD_CreatedDate" Type="datetime" />
+    <Property Name="EssD_CreatedBy" Type="int" />
+    <Property Name="EssD_ModifiedDate" Type="datetime" />
+    <Property Name="EssD_ModifiedBy" Type="int" />
+    <Property Name="EssD_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorlogId" />
+    </Key>
+    <Property Name="ErrorlogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SourceName" Type="varchar" MaxLength="500" />
+    <Property Name="MethodName" Type="varchar" MaxLength="500" />
+    <Property Name="ErrorMessage" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="FinancialYearId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="int" />
+    <Property Name="EndDate" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="GenericRoles">
+    <Key>
+      <PropertyRef Name="GenericRoleID" />
+    </Key>
+    <Property Name="GenericRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="StatusID" Type="bit" />
+  </EntityType>
+  <EntityType Name="GenericTasks">
+    <Key>
+      <PropertyRef Name="tsk_TaskID" />
+    </Key>
+    <Property Name="tsk_TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tsk_TaskName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tsk_TaskDescription" Type="varchar" MaxLength="500" />
+    <Property Name="tsk_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="tsk_Version" Type="smallint" Nullable="false" />
+    <Property Name="tsk_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="tsk_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="tsk_ModifiedDate" Type="datetime" />
+    <Property Name="tsk_ModifiedBy" Type="int" />
+    <Property Name="tsk_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="History_Account">
+    <Key>
+      <PropertyRef Name="History_Account_AccountID" />
+    </Key>
+    <Property Name="History_Account_AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_Acc_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_Acc_AccountCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_Acc_AccountName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_Acc_AccountDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_Acc_EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="History_Acc_MobileNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="History_Acc_PhoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="History_Acc_CompanyLogo" Type="nvarchar" MaxLength="200" />
+    <Property Name="History_Acc_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_Acc_Version" Type="smallint" Nullable="false" />
+    <Property Name="History_Acc_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_Acc_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="History_Acc_ModifiedDate" Type="datetime" />
+    <Property Name="History_Acc_ModifiedBy" Type="int" />
+    <Property Name="History_Acc_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_LeaveScheme">
+    <Key>
+      <PropertyRef Name="History_LeaveScheme_ID" />
+    </Key>
+    <Property Name="History_LeaveScheme_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_LSchm_LeaveSchemeID" Type="int" Nullable="false" />
+    <Property Name="History_LSchm_LeaveTypeID" Type="int" Nullable="false" />
+    <Property Name="History_LSchm_UserTypeID" Type="int" Nullable="false" />
+    <Property Name="History_LSchm_LeaveFrequency" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_LSchm_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_LSchm_LeaveSchemeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_LSchm_LeaveScheme" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_LSchm_LeaveSchemeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_LSchm_LeaveCount" Type="smallint" Nullable="false" />
+    <Property Name="History_LSchm_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_LSchm_Version" Type="smallint" Nullable="false" />
+    <Property Name="History_LSchm_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_LSchm_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="History_LSchm_ModifiedDate" Type="datetime" />
+    <Property Name="History_LSchm_ModifiedBy" Type="int" />
+    <Property Name="History_LSchm_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_LeaveType">
+    <Key>
+      <PropertyRef Name="History_LeaveType_ID" />
+    </Key>
+    <Property Name="History_LeaveType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_LTyp_LeaveTypeID" Type="int" Nullable="false" />
+    <Property Name="History_LTyp_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_LTyp_LeaveType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_LTyp_LeaveTypeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_LTyp_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_LTyp_Version" Type="smallint" Nullable="false" />
+    <Property Name="History_LTyp_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_LTyp_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="History_LTyp_ModifiedDate" Type="datetime" />
+    <Property Name="History_LTyp_ModifiedBy" Type="int" />
+    <Property Name="History_LTyp_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Projects">
+    <Key>
+      <PropertyRef Name="History_Project_ID" />
+    </Key>
+    <Property Name="History_Project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_Proj_ProjectID" Type="int" Nullable="false" />
+    <Property Name="History_Proj_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_Proj_ProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_Proj_ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_Proj_ProjectDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_Proj_StartDate" Type="datetime" Nullable="false" />
+    <Property Name="History_Proj_EndDate" Type="datetime" />
+    <Property Name="History_Proj_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_Proj_Version" Type="smallint" Nullable="false" />
+    <Property Name="History_Proj_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_Proj_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="History_Proj_ModifiedDate" Type="datetime" />
+    <Property Name="History_Proj_ModifiedBy" Type="int" />
+    <Property Name="History_Proj_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Role">
+    <Key>
+      <PropertyRef Name="History_Role_ID" />
+    </Key>
+    <Property Name="History_Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_Rol_RoleID" Type="int" Nullable="false" />
+    <Property Name="History_Rol_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_Rol_RoleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_Rol_RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_Rol_RoleDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_Rol_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_Rol_Version" Type="int" Nullable="false" />
+    <Property Name="History_Rol_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_Rol_createdBy" Type="int" Nullable="false" />
+    <Property Name="History_Rol_ModifiedDate" Type="datetime" />
+    <Property Name="History_Rol_ModifiedBy" Type="int" />
+    <Property Name="History_Rol_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_UserProjects">
+    <Key>
+      <PropertyRef Name="HUProj_UserProjectID" />
+    </Key>
+    <Property Name="HUProj_UserProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HUProj_ProjectID" Type="int" Nullable="false" />
+    <Property Name="HUProj_UserID" Type="int" Nullable="false" />
+    <Property Name="HUProj_StartDate" Type="datetime" Nullable="false" />
+    <Property Name="HUProj_EndDate" Type="datetime" />
+    <Property Name="HUProj_ParticipationPercentage" Type="tinyint" Nullable="false" />
+    <Property Name="HUProj_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="HUProj_Version" Type="smallint" Nullable="false" />
+    <Property Name="HUProj_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="HUProj_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="HUProj_ModifiedDate" Type="datetime" />
+    <Property Name="HUProj_ModifiedBy" Type="int" />
+    <Property Name="HUProj_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Users">
+    <Key>
+      <PropertyRef Name="History_User_ID" />
+    </Key>
+    <Property Name="History_User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_Usr_UserID" Type="int" Nullable="false" />
+    <Property Name="History_Usr_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_Usr_UserTypeID" Type="int" Nullable="false" />
+    <Property Name="History_Usr_RoleID" Type="int" Nullable="false" />
+    <Property Name="History_Usr_Manager" Type="int" />
+    <Property Name="History_Usr_Manager2" Type="int" />
+    <Property Name="History_Usr_Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="History_Usr_LoginId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_Usr_Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="History_Usr_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_Usr_TaskID" Type="int" />
+    <Property Name="History_Usr_Version" Type="smallint" Nullable="false" />
+    <Property Name="History_Usr_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_Usr_CreatedBy" Type="int" />
+    <Property Name="History_Usr_ModifiedDate" Type="datetime" />
+    <Property Name="History_Usr_ModifiedBy" Type="int" />
+    <Property Name="History_Usr_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_UserType">
+    <Key>
+      <PropertyRef Name="History_UserType_ID" />
+    </Key>
+    <Property Name="History_UserType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="History_UsT_UserTypeID" Type="int" Nullable="false" />
+    <Property Name="History_AccountID" Type="int" Nullable="false" />
+    <Property Name="History_UsT_UserTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="History_UsT_UserType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="History_UsT_UserTypeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="History_UsT_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="History_UsT_Version" Type="int" Nullable="false" />
+    <Property Name="History_UsT_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="History_UsT_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="History_UsT_ModifiedDate" Type="datetime" />
+    <Property Name="History_UsT_ModifiedBy" Type="int" />
+    <Property Name="History_UsT_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidayCalendar">
+    <Key>
+      <PropertyRef Name="HolidayCalendarID" />
+    </Key>
+    <Property Name="HolidayCalendarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="HolidayName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="HolidayDate" Type="date" Nullable="false" />
+    <Property Name="isOptionalHoliday" Type="bit" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+  </EntityType>
+  <EntityType Name="LeaveScheme">
+    <Key>
+      <PropertyRef Name="LSchm_LeaveSchemeID" />
+    </Key>
+    <Property Name="LSchm_LeaveSchemeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LSchm_LeaveTypeID" Type="int" Nullable="false" />
+    <Property Name="LSchm_UserTypeID" Type="int" Nullable="false" />
+    <Property Name="LSchm_LeaveFrequency" Type="nvarchar" MaxLength="50" />
+    <Property Name="LSchm_AccountID" Type="int" Nullable="false" />
+    <Property Name="LSchm_LeaveSchemeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="LSchm_LeaveScheme" Type="nvarchar" MaxLength="100" />
+    <Property Name="LSchm_LeaveSchemeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="LSchm_LeaveCount" Type="float" />
+    <Property Name="LSchm_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="LSchm_Version" Type="smallint" />
+    <Property Name="LSchm_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="LSchm_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="LSchm_ModifiedDate" Type="datetime" />
+    <Property Name="LSchm_ModifiedBy" Type="int" />
+    <Property Name="LSchm_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="FinancialYearId" Type="int" />
+  </EntityType>
+  <EntityType Name="LeaveStatus">
+    <Key>
+      <PropertyRef Name="L_StatusId" />
+    </Key>
+    <Property Name="L_StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="L_Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LeaveType">
+    <Key>
+      <PropertyRef Name="LTyp_LeaveTypeID" />
+    </Key>
+    <Property Name="LTyp_LeaveTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LTyp_AccountID" Type="int" Nullable="false" />
+    <Property Name="LTyp_LeaveType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LTyp_LeaveTypeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="LTyp_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="LTyp_Version" Type="smallint" Nullable="false" />
+    <Property Name="LTyp_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="LTyp_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="LTyp_ModifiedDate" Type="datetime" />
+    <Property Name="LTyp_ModifiedBy" Type="int" />
+    <Property Name="LTyp_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Master_Module">
+    <Key>
+      <PropertyRef Name="Mod_ModuleID" />
+    </Key>
+    <Property Name="Mod_ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mod_ModuleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mod_ModuleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Mod_Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mod_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Mod_Version" Type="smallint" Nullable="false" />
+    <Property Name="Mod_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Mod_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Mod_ModifiedDate" Type="datetime" />
+    <Property Name="Mod_ModifiedBy" Type="int" />
+    <Property Name="Mod_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Master_Sub_Module">
+    <Key>
+      <PropertyRef Name="Sub_ModuleID" />
+    </Key>
+    <Property Name="Sub_ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mod_ModuleID" Type="int" Nullable="false" />
+    <Property Name="Sub_ModuleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sub_ModuleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sub_Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Sub_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Sub_Version" Type="smallint" Nullable="false" />
+    <Property Name="Sub_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Sub_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Sub_ModifiedDate" Type="datetime" />
+    <Property Name="Sub_ModifiedBy" Type="int" />
+    <Property Name="Sub_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Orderby" Type="int" />
+  </EntityType>
+  <EntityType Name="Master_TimesheetMode">
+    <Key>
+      <PropertyRef Name="TimesheetMode_id" />
+    </Key>
+    <Property Name="TimesheetMode_id" Type="int" Nullable="false" />
+    <Property Name="TimeModeName" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="MobileNotificationTemplate">
+    <Key>
+      <PropertyRef Name="MobileNotificationId" />
+    </Key>
+    <Property Name="MobileNotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="500" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="ModuleAccessType">
+    <Key>
+      <PropertyRef Name="ModuleAccessTypeID" />
+    </Key>
+    <Property Name="ModuleAccessTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleAccessType" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="StatusId" Type="bit" />
+  </EntityType>
+  <EntityType Name="NewsBoard">
+    <Key>
+      <PropertyRef Name="NewsBoardId" />
+    </Key>
+    <Property Name="NewsBoardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Image" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EvolutyzCornerTesting.dbo.NobleLeadData_AIU' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="NobleLeadData_AIU">
+          <Property Name="SyStudentId" Type="float" />
+          <Property Name="Phone" Type="float" />
+          <Property Name="School" Type="nvarchar" MaxLength="255" />
+          <Property Name="amleadsrcid" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EvolutyzCornerTesting.dbo.NobleLeadData_CTU' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="NobleLeadData_CTU">
+          <Property Name="SyStudentId" Type="float" />
+          <Property Name="Phone" Type="float" />
+          <Property Name="School" Type="nvarchar" MaxLength="255" />
+          <Property Name="amleadsrcid" Type="float" />
+        </EntityType>-->
+  <EntityType Name="PayMode">
+    <Key>
+      <PropertyRef Name="PayModeID" />
+    </Key>
+    <Property Name="PayModeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PayMode" Type="varchar" MaxLength="50" />
+    <Property Name="PayModeDescription" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Phases">
+    <Key>
+      <PropertyRef Name="PhaseId" />
+    </Key>
+    <Property Name="PhaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhaseTitle" Type="varchar" MaxLength="250" />
+    <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Policies">
+    <Key>
+      <PropertyRef Name="PolicyId" />
+    </Key>
+    <Property Name="PolicyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PolicyTitle" Type="varchar(max)" />
+    <Property Name="Icon" Type="varchar" MaxLength="100" />
+    <Property Name="Is_Css" Type="bit" />
+    <Property Name="PolicyDescription" Type="varchar(max)" />
+    <Property Name="Pol_ActiveStatus" Type="bit" />
+    <Property Name="Pol_CreatedDate" Type="datetime" />
+    <Property Name="Pol_CreatedBy" Type="int" />
+    <Property Name="Pol_ModifiedDate" Type="datetime" />
+    <Property Name="Pol_ModifiedBy" Type="int" />
+    <Property Name="Pol_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Project_workstatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="FromDT" Type="datetime" />
+    <Property Name="ToDT" Type="datetime" />
+    <Property Name="PercentageCompleted" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="ProjectPhases">
+    <Key>
+      <PropertyRef Name="Proj_PhaseId" />
+    </Key>
+    <Property Name="Proj_PhaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhaseId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Actual_StartDate" Type="datetime" />
+    <Property Name="Actual_EndDate" Type="datetime" />
+    <Property Name="Plan_StartDate" Type="datetime" />
+    <Property Name="Plan_EndDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Proj_ProjectID" />
+    </Key>
+    <Property Name="Proj_ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Proj_AccountID" Type="int" Nullable="false" />
+    <Property Name="Proj_ClientName" Type="varchar" MaxLength="50" />
+    <Property Name="Proj_ProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Proj_ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Proj_ProjectDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Plan_StartDate" Type="datetime" Nullable="false" />
+    <Property Name="Plan_EndDate" Type="datetime" />
+    <Property Name="Proj_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Proj_Version" Type="smallint" Nullable="false" />
+    <Property Name="Proj_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Proj_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Proj_ModifiedDate" Type="datetime" />
+    <Property Name="Proj_ModifiedBy" Type="int" />
+    <Property Name="Proj_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Actual_StartDate" Type="datetime" />
+    <Property Name="Actual_EndDate" Type="datetime" />
+    <Property Name="Is_Timesheet_ProjectSpecific" Type="bit" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="StateID" Type="int" />
+    <Property Name="WebUrl" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProjectSpecificTasks">
+    <Key>
+      <PropertyRef Name="Proj_SpecificTaskId" />
+    </Key>
+    <Property Name="Proj_SpecificTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Proj_SpecificTaskName" Type="varchar" MaxLength="100" />
+    <Property Name="RTMId" Type="varchar" MaxLength="100" />
+    <Property Name="Actual_StartDate" Type="datetime" />
+    <Property Name="Actual_EndDate" Type="datetime" />
+    <Property Name="Plan_StartDate" Type="datetime" />
+    <Property Name="Plan_EndDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="isDeleted" Type="bit" />
+    <Property Name="StatusId" Type="bit" />
+    <Property Name="tsk_TaskID" Type="int" />
+  </EntityType>
+  <EntityType Name="RoleModules">
+    <Key>
+      <PropertyRef Name="RMod_RoleModuleID" />
+    </Key>
+    <Property Name="RMod_RoleModuleID" Type="int" Nullable="false" />
+    <Property Name="RMod_AccountID" Type="int" Nullable="false" />
+    <Property Name="RMod_RoleID" Type="int" Nullable="false" />
+    <Property Name="Sub_ModuleID" Type="int" Nullable="false" />
+    <Property Name="ModuleAccessTypeID" Type="int" />
+    <Property Name="RMod_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="RMod_Version" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RMod_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="RMod_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="RMod_ModifiedDate" Type="datetime" />
+    <Property Name="RMod_ModifiedBy" Type="int" />
+    <Property Name="RMod_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Rol_RoleID" />
+    </Key>
+    <Property Name="Rol_RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rol_AccountID" Type="int" Nullable="false" />
+    <Property Name="Rol_RoleCode" Type="nvarchar" MaxLength="250" />
+    <Property Name="Rol_RoleName" Type="int" />
+    <Property Name="Rol_RoleDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Rol_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Rol_Version" Type="int" Nullable="false" />
+    <Property Name="Rol_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Rol_createdBy" Type="int" Nullable="false" />
+    <Property Name="Rol_ModifiedDate" Type="datetime" />
+    <Property Name="Rol_ModifiedBy" Type="int" />
+    <Property Name="Rol_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsManagerRole" Type="bit" />
+  </EntityType>
+  <EntityType Name="SalarySlipDetails">
+    <Key>
+      <PropertyRef Name="SalarySlipDetailID" />
+    </Key>
+    <Property Name="SalarySlipDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpssdetailId" Type="int" />
+  </EntityType>
+  <EntityType Name="Skills">
+    <Key>
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillTitle" Type="varchar" MaxLength="100" />
+    <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
+    <Property Name="Sk_CreatedDate" Type="datetime" />
+    <Property Name="Sk_CreatedBy" Type="int" />
+    <Property Name="Sk_ModifiedDate" Type="datetime" />
+    <Property Name="Sk_ModifiedBy" Type="int" />
+    <Property Name="Sk_isDeleted" Type="bit" />
+    <Property Name="Acc_AccountID" Type="int" />
+    <Property Name="StatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="SocialMediaId" />
+    </Key>
+    <Property Name="SocialMediaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sm_AccountID" Type="int" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Icon" Type="varchar" MaxLength="100" />
+    <Property Name="Sm_CreatedDate" Type="datetime" />
+    <Property Name="Sm_CreatedBy" Type="int" />
+    <Property Name="Sm_ModifiedDate" Type="datetime" />
+    <Property Name="Sm_ModifiedBy" Type="int" />
+    <Property Name="Sm_isDeleted" Type="bit" />
+    <Property Name="Sm_ActiveStatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Countryid" Type="int" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" MaxLength="100" />
+    <Property Name="StateName" Type="varchar" MaxLength="250" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="StatusId" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EvolutyzCornerTesting.dbo.STEP1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="STEP1">
+          <Property Name="d_record_id" Type="float" />
+          <Property Name="dnis_phone" Type="float" />
+        </EntityType>-->
+  <EntityType Name="SubPolicy">
+    <Key>
+      <PropertyRef Name="SubPolicyId" />
+    </Key>
+    <Property Name="SubPolicyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PolicyId" Type="int" />
+    <Property Name="SubPolicyTitle" Type="varchar(max)" />
+    <Property Name="Icon" Type="varchar" MaxLength="100" />
+    <Property Name="Is_Css" Type="bit" />
+    <Property Name="Purpose" Type="varchar(max)" />
+    <Property Name="SPol_ActiveStatus" Type="bit" />
+    <Property Name="SPol_CreatedDate" Type="datetime" />
+    <Property Name="SPol_CreatedBy" Type="int" />
+    <Property Name="SPol_ModifiedDate" Type="datetime" />
+    <Property Name="SPol_ModifiedBy" Type="int" />
+    <Property Name="SPol_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="SubPolicyDocument">
+    <Key>
+      <PropertyRef Name="SubPolicyDocumentId" />
+    </Key>
+    <Property Name="SubPolicyDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubPolicyId" Type="int" />
+    <Property Name="SubPolicyDocumenTitle" Type="varchar(max)" />
+    <Property Name="DocumentTypeId" Type="int" />
+    <Property Name="ContentTypeId" Type="int" />
+    <Property Name="DocumentTitle" Type="varchar(max)" />
+    <Property Name="DocumentFile" Type="varbinary(max)" />
+    <Property Name="SubP_ActiveStatus" Type="bit" />
+    <Property Name="SubP_CreatedDate" Type="datetime" />
+    <Property Name="SubP_CreatedBy" Type="int" />
+    <Property Name="SubP_ModifiedDate" Type="datetime" />
+    <Property Name="SubP_ModifiedBy" Type="int" />
+    <Property Name="SubP_isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="TaskDetails">
+    <Key>
+      <PropertyRef Name="TaskDetailsID" />
+    </Key>
+    <Property Name="TaskDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimesheetID" Type="int" Nullable="false" />
+    <Property Name="TaskID" Type="int" Nullable="false" />
+    <Property Name="HoursWorked" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="TaskDate" Type="date" />
+    <Property Name="Proj_SpecificTaskId" Type="int" />
+    <Property Name="projectid" Type="int" />
+  </EntityType>
+  <EntityType Name="TIMESHEET">
+    <Key>
+      <PropertyRef Name="TimesheetID" />
+    </Key>
+    <Property Name="TimesheetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TaskDate" Type="date" />
+    <Property Name="TimesheetMonth" Type="date" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="TaskId" Type="varchar" MaxLength="100" />
+    <Property Name="SubmittedDate" Type="datetime" />
+    <Property Name="SubmittedType" Type="bit" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="L1_Manager" Type="nvarchar" MaxLength="10" />
+    <Property Name="L1_ApproverStatus" Type="int" />
+    <Property Name="L1_ApproverDate" Type="date" />
+    <Property Name="L1_RejectedDate" Type="date" />
+    <Property Name="L2_Manager" Type="nvarchar" MaxLength="10" />
+    <Property Name="L2_ApproverStatus" Type="int" />
+    <Property Name="L2_ApproverDate" Type="date" />
+    <Property Name="L2_RejectedDate" Type="date" />
+    <Property Name="DeviceTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserDevicesToken">
+    <Key>
+      <PropertyRef Name="UdTokenID" />
+    </Key>
+    <Property Name="UdTokenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="TokenID" Type="varchar" MaxLength="300" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserGender">
+    <Key>
+      <PropertyRef Name="Usr_GenderId" />
+    </Key>
+    <Property Name="Usr_GenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="UserLeaves">
+    <Key>
+      <PropertyRef Name="Usrl_LeaveId" />
+    </Key>
+    <Property Name="Usrl_LeaveId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usrl_UserId" Type="int" />
+    <Property Name="LeaveStartDate" Type="datetime" />
+    <Property Name="LeaveEndDate" Type="datetime" />
+    <Property Name="Tot_No_Days" Type="int" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="L_StatusId" Type="int" />
+    <Property Name="ApprovedDate" Type="datetime" />
+    <Property Name="RejectedDate" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="RejectedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserLeaveTypeConsumed">
+    <Key>
+      <PropertyRef Name="Usrlt_TypeConsumeId" />
+    </Key>
+    <Property Name="Usrlt_TypeConsumeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usrl_LeaveId" Type="int" />
+    <Property Name="LSchm_LeaveSchemeID" Type="int" />
+    <Property Name="No_Of_Days" Type="int" />
+  </EntityType>
+  <EntityType Name="UserProjectEngagement">
+    <Key>
+      <PropertyRef Name="UserProj_EngId" />
+    </Key>
+    <Property Name="UserProj_EngId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="tsk_TaskID" Type="int" />
+    <Property Name="Proj_SpecificTaskId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserProjects">
+    <Key>
+      <PropertyRef Name="UProj_UserProjectID" />
+    </Key>
+    <Property Name="UProj_UserProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UProj_ProjectID" Type="int" Nullable="false" />
+    <Property Name="UProj_UserID" Type="int" Nullable="false" />
+    <Property Name="UProj_StartDate" Type="datetime" Nullable="false" />
+    <Property Name="UProj_EndDate" Type="datetime" />
+    <Property Name="UProj_ParticipationPercentage" Type="tinyint" Nullable="false" />
+    <Property Name="UProj_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="UProj_Version" Type="smallint" Nullable="false" />
+    <Property Name="UProj_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UProj_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UProj_ModifiedDate" Type="datetime" />
+    <Property Name="UProj_ModifiedBy" Type="int" />
+    <Property Name="UProj_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="UProj_L1_ManagerId" Type="int" />
+    <Property Name="UProj_L2_ManagerId" Type="int" />
+    <Property Name="Is_L1_Manager" Type="bit" />
+    <Property Name="Is_L2_Manager" Type="bit" />
+    <Property Name="ClientprojID" Type="int" />
+    <Property Name="TimesheetMode" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Usr_UserID" />
+    </Key>
+    <Property Name="Usr_UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usr_AccountID" Type="int" Nullable="false" />
+    <Property Name="Usr_UserTypeID" Type="int" Nullable="false" />
+    <Property Name="Usr_RoleID" Type="int" Nullable="false" />
+    <Property Name="Usr_Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Usr_LoginId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Usr_Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Usr_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Usr_TaskID" Type="int" />
+    <Property Name="Usr_Version" Type="smallint" Nullable="false" />
+    <Property Name="Usr_salt" Type="nvarchar(max)" />
+    <Property Name="Usr_Manager" Type="int" />
+    <Property Name="Usr_Manager2" Type="int" />
+    <Property Name="Usr_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Usr_CreatedBy" Type="int" />
+    <Property Name="Usr_ModifiedDate" Type="datetime" />
+    <Property Name="Usr_ModifiedBy" Type="int" />
+    <Property Name="Usr_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Url_token" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UsersForProjects">
+    <Key>
+      <PropertyRef Name="Ufp_UsersForProjectsID" />
+    </Key>
+    <Property Name="Ufp_UsersForProjectsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ufp_ProjectID" Type="int" Nullable="false" />
+    <Property Name="Ufp_UserID" Type="int" Nullable="false" />
+    <Property Name="Ufp_StartDate" Type="datetime" Nullable="false" />
+    <Property Name="Ufp_EndDate" Type="datetime" />
+    <Property Name="Ufp_ParticipationPercentage" Type="int" />
+    <Property Name="Ufp_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="Ufp_Version" Type="smallint" Nullable="false" />
+    <Property Name="Ufp_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Ufp_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="Ufp_ModifiedDate" Type="datetime" />
+    <Property Name="Ufp_ModifiedBy" Type="int" />
+    <Property Name="Ufp_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSkills">
+    <Key>
+      <PropertyRef Name="Usr_SkillId" />
+    </Key>
+    <Property Name="Usr_SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usr_UserId" Type="int" />
+    <Property Name="SkillId" Type="int" />
+    <Property Name="Experience" Type="varchar" MaxLength="20" />
+    <Property Name="Usk_CreatedDate" Type="datetime" />
+    <Property Name="Usk_ModifiedDate" Type="datetime" />
+    <Property Name="Is_Deleted" Type="bit" />
+    <Property Name="StatusID" Type="int" />
+  </EntityType>
+  <EntityType Name="UserSocialMediaProfiles">
+    <Key>
+      <PropertyRef Name="SocialMediaProfileId" />
+    </Key>
+    <Property Name="SocialMediaProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usmp_UserID" Type="int" />
+    <Property Name="Usmp_SocialMediaId" Type="int" />
+    <Property Name="Url" Type="varchar" MaxLength="100" />
+    <Property Name="Usmp_CreatedDate" Type="datetime" />
+    <Property Name="Usmp_ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UsersProfile">
+    <Key>
+      <PropertyRef Name="UsrP_UserProfileID" />
+    </Key>
+    <Property Name="UsrP_UserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsrP_UserID" Type="int" Nullable="false" />
+    <Property Name="UsrP_FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UsrP_LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UsrP_EmployeeID" Type="nvarchar" MaxLength="100" />
+    <Property Name="UsrP_EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Usrp_MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Usrp_CountryCode" Type="int" />
+    <Property Name="Usrp_ProfilePicture" Type="nvarchar" MaxLength="200" />
+    <Property Name="UsrP_DOB" Type="datetime" />
+    <Property Name="Usrp_DOJ" Type="datetime" />
+    <Property Name="UsrP_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="UsrP_Version" Type="smallint" Nullable="false" />
+    <Property Name="UsrP_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UsrP_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UsrP_ModifiedDate" Type="datetime" />
+    <Property Name="UsrP_ModifiedBy" Type="int" />
+    <Property Name="UsrP_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Usr_Titleid" Type="int" />
+    <Property Name="Usr_GenderId" Type="int" />
+    <Property Name="Marital_Status" Type="varchar" MaxLength="15" />
+    <Property Name="PermanentAddress" Type="varchar" MaxLength="250" />
+    <Property Name="TemporaryAddress" Type="varchar" MaxLength="250" />
+    <Property Name="passcode" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="UserTitle">
+    <Key>
+      <PropertyRef Name="Usr_Titleid" />
+    </Key>
+    <Property Name="Usr_Titleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitlePrefix" Type="char" MaxLength="3" />
+    <Property Name="Acc_AccountID" Type="int" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UsT_UserTypeID" />
+    </Key>
+    <Property Name="UsT_UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsT_AccountID" Type="int" Nullable="false" />
+    <Property Name="UsT_UserTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UsT_UserType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UsT_UserTypeDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="UsT_ActiveStatus" Type="bit" Nullable="false" />
+    <Property Name="UsT_Version" Type="int" Nullable="false" />
+    <Property Name="UsT_CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UsT_CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UsT_ModifiedDate" Type="datetime" />
+    <Property Name="UsT_ModifiedBy" Type="int" />
+    <Property Name="UsT_isDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserworkfromHome">
+    <Key>
+      <PropertyRef Name="UserwfhID" />
+    </Key>
+    <Property Name="UserwfhID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usrl_UserId" Type="int" />
+    <Property Name="UserwfhStartDate" Type="datetime" />
+    <Property Name="UserwfhEndDate" Type="datetime" />
+    <Property Name="Tot_No_Days" Type="int" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="L_StatusId" Type="int" />
+    <Property Name="ApprovedDate" Type="datetime" />
+    <Property Name="RejectedDate" Type="datetime" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="RejectedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Is_WorkFromHome" Type="bit" />
+  </EntityType>
+  <Association Name="FK__HolidayCa__Accou__7D439ABD">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="HolidayCalendar" Type="Self.HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HolidayCa__Creat__7E37BEF6">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="HolidayCalendar" Type="Self.HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HolidayCa__Modif__7F2BE32F">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="HolidayCalendar" Type="Self.HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Acc_CreatedBy">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Acc_CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientProjects_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="ClientProjects" Type="Self.ClientProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="Proj_ProjectID" />
+      </Principal>
+      <Dependent Role="ClientProjects">
+        <PropertyRef Name="Proj_ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_AccountID">
+    <End Role="Account" Type="Self.Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="Rol_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Roles1" Type="Self.Roles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Rol_RoleID" />
+      </Principal>
+      <Dependent Role="Roles1">
+        <PropertyRef Name="Rol_RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_AccountID">
+    <End Role="Account" Type="Self.Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Usr_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserTypeID">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UsT_UserTypeID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Usr_UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersProfile_Master_User1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersProfile" Type="Self.UsersProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="UsersProfile">
+        <PropertyRef Name="UsrP_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserType_AccountID">
+    <End Role="Account" Type="Self.Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserType" Type="Self.UserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="UserType">
+        <PropertyRef Name="UsT_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddorEditUsersProfileByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="UsrFname" Type="varchar" Mode="In" />
+    <Parameter Name="UsrLname" Type="varchar" Mode="In" />
+    <Parameter Name="UsrEmpId" Type="varchar" Mode="In" />
+    <Parameter Name="UsrEmailId" Type="varchar" Mode="In" />
+    <Parameter Name="UserMobilenum" Type="varchar" Mode="In" />
+    <Parameter Name="PhoneNum" Type="varchar" Mode="In" />
+    <Parameter Name="User_ProfilePath" Type="nvarchar" Mode="In" />
+    <Parameter Name="UsrDob" Type="datetime" Mode="In" />
+    <Parameter Name="UsrDoj" Type="datetime" Mode="In" />
+    <Parameter Name="UserProfileID" Type="int" Mode="InOut" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="AddSubmitTaskDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="TaskID" Type="int" Mode="In" />
+    <Parameter Name="HoursWorked" Type="nvarchar" Mode="In" />
+    <Parameter Name="TaskDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="AddSubmitTimesheetWeb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="TimesheetMonth" Type="datetime" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="SubmittedType" Type="varchar" Mode="In" />
+    <Parameter Name="L1ApproverStatus" Type="bit" Mode="In" />
+    <Parameter Name="L2ApproverStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="TimesheetID" Type="int" Mode="InOut" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="AlexaSubmitTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Month" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ChangeOrUpdatePasswd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserLoginId" Type="varchar" Mode="In" />
+    <Parameter Name="CurrentPassword" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NewPassword" Type="varchar" Mode="In" />
+    <Parameter Name="Flag" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CreateDefaultRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Decrypt2Number" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="encryptString" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EditSubmitTaskDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="TaskId" Type="int" Mode="In" />
+    <Parameter Name="HoursWorked" Type="nvarchar" Mode="In" />
+    <Parameter Name="TaskDate" Type="date" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="EditWeeklySubmitTaskDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="AccTaskID" Type="int" Mode="In" />
+    <Parameter Name="HoursWorked" Type="nvarchar" Mode="In" />
+    <Parameter Name="TaskDate" Type="date" Mode="In" />
+    <Parameter Name="ProjectID" Type="int" Mode="In" />
+    <Parameter Name="Proj_SpecificTaskId" Type="int" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Encrypt2String" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="Number2Encrypt" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_CountWeekDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromdate" Type="datetime" Mode="In" />
+    <Parameter Name="todate" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="NoOfWeekDays" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Get_EmailsByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_LeavesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="DateOfMonth" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_ManagerEmailDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Managers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+    <Parameter Name="RoleId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_UserLeaves" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="MonthYear" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_UserLeavesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_UserLeavesforTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="MonthYear" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_UserWorkFromHome" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_WorkfromHomeTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="MonthYear" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetDashBoardTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="StartPosition" Type="int" Mode="In" />
+    <Parameter Name="EndPosition" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetLeaveCategoreries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Userid" Type="nvarchar" Mode="In" />
+    <Parameter Name="Year" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetManagerEmailIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetProfileDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="getTimeSheetEmailDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="Timesheetmonth" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetTimeSheetforApprovalTesting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="StartPosition" Type="int" Mode="In" />
+    <Parameter Name="EndPosition" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTotalWorkingHours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Fromdate" Type="date" Mode="In" />
+    <Parameter Name="EndDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetTotalWorkingHoursAcctoHolidays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Fromdate" Type="date" Mode="In" />
+    <Parameter Name="EndDate" Type="date" Mode="In" />
+    <Parameter Name="Accounid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserHolidayCalender" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserAccontID" Type="varchar" Mode="In" />
+    <Parameter Name="HolidaySelectionDate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserLeavesforApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetUsersDatabyLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GetUserTimeSheetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="Fromdate" Type="date" Mode="In" />
+    <Parameter Name="EndDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetUserWorkFrmHomeApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="InitialCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="String" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_AccountSpecificTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_UserLeaves" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Message" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Insert_UserLeavesConsumed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserLeaveId" Type="int" Mode="In" />
+    <Parameter Name="No_Of_Days" Type="int" Mode="In" />
+    <Parameter Name="LeaveTypeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_UserWorkFromHome" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usrl_UserId" Type="int" Mode="In" />
+    <Parameter Name="UserwfhStartDate" Type="datetime" Mode="In" />
+    <Parameter Name="UserwfhEndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+    <Parameter Name="Is_WorkFromHome" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="InsertUserLeaves" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="LeaveStartDate" Type="datetime" Mode="In" />
+    <Parameter Name="LeaveEndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="UserLeaveId" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="MailsAppOrRejStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ManagerActionsfromEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="ManagerId" Type="int" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="Projectid" Type="int" Mode="In" />
+    <Parameter Name="SubmittedType" Type="varchar" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_GetLeaveTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_GetProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetProjSpecificTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_month_dates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Character" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="TempSubmitTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="timesheetMonth" Type="date" Mode="In" />
+    <Parameter Name="Userid" Type="int" Mode="In" />
+    <Parameter Name="Accountid" Type="int" Mode="In" />
+    <Parameter Name="Projectid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="TempTimesheetonLeavesandHolidays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="timesheetMonth" Type="date" Mode="In" />
+    <Parameter Name="Userid" Type="int" Mode="In" />
+    <Parameter Name="Accountid" Type="int" Mode="In" />
+    <Parameter Name="Projectid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="TimesheetManagerActions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="ManagerId" Type="int" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="SubmittedType" Type="varchar" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="UserAuthenticateWithToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="token" Type="varchar" Mode="In" />
+    <Parameter Name="loginType" Type="varchar" Mode="In" />
+    <Parameter Name="Message" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="UserLeaveManagerActionsfromEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="LeaveID" Type="int" Mode="In" />
+    <Parameter Name="ManagerId" Type="int" Mode="In" />
+    <Parameter Name="StatusType" Type="int" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="UserWFHManagerActionsfromEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="WFHID" Type="int" Mode="In" />
+    <Parameter Name="ManagerId" Type="int" Mode="In" />
+    <Parameter Name="StatusType" Type="int" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="WebEditSubmitTaskDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="TaskId" Type="int" Mode="In" />
+    <Parameter Name="HoursWorked" Type="nvarchar" Mode="In" />
+    <Parameter Name="TaskDate" Type="date" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="WebEditSubmitTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimesheetID" Type="int" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Comments" Type="varchar" Mode="In" />
+    <Parameter Name="SubmittedType" Type="varchar" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="WebGetProfileDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserProfileid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="WebGetTimeSheetforApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="WebgetUserTimesheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+    <Parameter Name="Timesheetmonth" Type="date" Mode="In" />
+  </Function>
+  <Function Name="WebValidTimesheetMonthExits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="TimesheetMonth" Type="date" Mode="In" />
+    <Parameter Name="Trans_Output" Type="int" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="EvolutyzCornerDataModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Acc_Spec_OptionalHolidays" EntityType="Self.Acc_Spec_OptionalHolidays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountClients" EntityType="Self.AccountClients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountDepartments" EntityType="Self.AccountDepartments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountSocialMediaProfiles" EntityType="Self.AccountSocialMediaProfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountSpecificTasks" EntityType="Self.AccountSpecificTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientProjects" EntityType="Self.ClientProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientProjectsTasks" EntityType="Self.ClientProjectsTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientsBusiness" EntityType="Self.ClientsBusiness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContentType" EntityType="Self.ContentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeBankDetails" EntityType="Self.EmployeeBankDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeSalaryComponent" EntityType="Self.EmployeeSalaryComponent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeSalarySlips" EntityType="Self.EmployeeSalarySlips" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeSalaryStructure" EntityType="Self.EmployeeSalaryStructure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeSalaryStructureDetails" EntityType="Self.EmployeeSalaryStructureDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinancialYear" EntityType="Self.FinancialYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GenericRoles" EntityType="Self.GenericRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GenericTasks" EntityType="Self.GenericTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_Account" EntityType="Self.History_Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_LeaveScheme" EntityType="Self.History_LeaveScheme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_LeaveType" EntityType="Self.History_LeaveType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_Projects" EntityType="Self.History_Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_Role" EntityType="Self.History_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_UserProjects" EntityType="Self.History_UserProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_Users" EntityType="Self.History_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History_UserType" EntityType="Self.History_UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HolidayCalendar" EntityType="Self.HolidayCalendar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LeaveScheme" EntityType="Self.LeaveScheme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LeaveStatus" EntityType="Self.LeaveStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LeaveType" EntityType="Self.LeaveType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Master_Module" EntityType="Self.Master_Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Master_Sub_Module" EntityType="Self.Master_Sub_Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Master_TimesheetMode" EntityType="Self.Master_TimesheetMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MobileNotificationTemplate" EntityType="Self.MobileNotificationTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleAccessType" EntityType="Self.ModuleAccessType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsBoard" EntityType="Self.NewsBoard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayMode" EntityType="Self.PayMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phases" EntityType="Self.Phases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project_workstatus" EntityType="Self.Project_workstatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectPhases" EntityType="Self.ProjectPhases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectSpecificTasks" EntityType="Self.ProjectSpecificTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleModules" EntityType="Self.RoleModules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalarySlipDetails" EntityType="Self.SalarySlipDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialMedia" EntityType="Self.SocialMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubPolicy" EntityType="Self.SubPolicy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubPolicyDocument" EntityType="Self.SubPolicyDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskDetails" EntityType="Self.TaskDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIMESHEET" EntityType="Self.TIMESHEET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDevicesToken" EntityType="Self.UserDevicesToken" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGender" EntityType="Self.UserGender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLeaves" EntityType="Self.UserLeaves" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLeaveTypeConsumed" EntityType="Self.UserLeaveTypeConsumed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProjectEngagement" EntityType="Self.UserProjectEngagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProjects" EntityType="Self.UserProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersForProjects" EntityType="Self.UsersForProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSkills" EntityType="Self.UserSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSocialMediaProfiles" EntityType="Self.UserSocialMediaProfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersProfile" EntityType="Self.UsersProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTitle" EntityType="Self.UserTitle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserworkfromHome" EntityType="Self.UserworkfromHome" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__HolidayCa__Accou__7D439ABD" Association="Self.FK__HolidayCa__Accou__7D439ABD">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HolidayCa__Creat__7E37BEF6" Association="Self.FK__HolidayCa__Creat__7E37BEF6">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HolidayCa__Modif__7F2BE32F" Association="Self.FK__HolidayCa__Modif__7F2BE32F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Acc_CreatedBy" Association="Self.FK_Account_Acc_CreatedBy">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientProjects_Projects" Association="Self.FK_ClientProjects_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ClientProjects" EntitySet="ClientProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_AccountID" Association="Self.FK_Roles_AccountID">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Roles" Association="Self.FK_Roles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Roles1" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_AccountID" Association="Self.FK_Users_AccountID">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserTypeID" Association="Self.FK_Users_UserTypeID">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersProfile_Master_User1" Association="Self.FK_UsersProfile_Master_User1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersProfile" EntitySet="UsersProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserType_AccountID" Association="Self.FK_UserType_AccountID">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserType" EntitySet="UserType" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

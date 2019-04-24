@@ -1,0 +1,16 @@
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\Evolutyz.Data.dll.config
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\Evolutyz.Data.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\Evolutyz.Data.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\EntityFramework.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\EntityFramework.SqlServer.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\Evolutyz.Entities.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\RestSharp.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\Evolutyz.Entities.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\EntityFramework.xml
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\EntityFramework.SqlServer.xml
+D:\EvolutyzCornerWeb\Evolutyz.Data\bin\Release\RestSharp.xml
+D:\EvolutyzCornerWeb\Evolutyz.Data\obj\Release\Evolutyz.Data.csprojAssemblyReference.cache
+D:\EvolutyzCornerWeb\Evolutyz.Data\obj\Release\Evolutyz.Data.csproj.CoreCompileInputs.cache
+D:\EvolutyzCornerWeb\Evolutyz.Data\obj\Release\Evolutyz.Data.csproj.CopyComplete
+D:\EvolutyzCornerWeb\Evolutyz.Data\obj\Release\Evolutyz.Data.dll
+D:\EvolutyzCornerWeb\Evolutyz.Data\obj\Release\Evolutyz.Data.pdb

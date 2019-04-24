@@ -1,0 +1,2072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EvolutyzCornerDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_CountWeekDays_Result">
+    <Property Name="NoOfWeekDays" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="SplitString_Result">
+    <Property Name="Item" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityContainer Name="EvolutyzCornerDataEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="fn_CountWeekDays" IsComposable="true" ReturnType="Collection(EvolutyzCornerDataModel.fn_CountWeekDays_Result)">
+      <Parameter Name="fromdate" Mode="In" Type="DateTime" />
+      <Parameter Name="todate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(EvolutyzCornerDataModel.SplitString_Result)">
+      <Parameter Name="Input" Mode="In" Type="String" />
+      <Parameter Name="Character" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddorEditUsersProfileByUser">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="UsrFname" Mode="In" Type="String" />
+      <Parameter Name="UsrLname" Mode="In" Type="String" />
+      <Parameter Name="UsrEmpId" Mode="In" Type="String" />
+      <Parameter Name="UsrEmailId" Mode="In" Type="String" />
+      <Parameter Name="UserMobilenum" Mode="In" Type="String" />
+      <Parameter Name="PhoneNum" Mode="In" Type="String" />
+      <Parameter Name="User_ProfilePath" Mode="In" Type="String" />
+      <Parameter Name="UsrDob" Mode="In" Type="DateTime" />
+      <Parameter Name="UsrDoj" Mode="In" Type="DateTime" />
+      <Parameter Name="UserProfileID" Mode="InOut" Type="Int32" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddSubmitTaskDetails">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="TaskID" Mode="In" Type="Int32" />
+      <Parameter Name="HoursWorked" Mode="In" Type="String" />
+      <Parameter Name="TaskDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AddSubmitTimesheetWeb" ReturnType="Collection(Int32)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="TimesheetMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="SubmittedType" Mode="In" Type="String" />
+      <Parameter Name="L1ApproverStatus" Mode="In" Type="Boolean" />
+      <Parameter Name="L2ApproverStatus" Mode="In" Type="String" />
+      <Parameter Name="TimesheetID" Mode="InOut" Type="Int32" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlexaSubmitTimesheet" ReturnType="Collection(Int32)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Month" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ChangeOrUpdatePasswd">
+      <Parameter Name="UserLoginId" Mode="In" Type="String" />
+      <Parameter Name="CurrentPassword" Mode="In" Type="String" />
+      <Parameter Name="NewPassword" Mode="In" Type="String" />
+      <Parameter Name="Flag" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateDefaultRoles">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EditSubmitTaskDetails">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="TaskId" Mode="In" Type="Int32" />
+      <Parameter Name="HoursWorked" Mode="In" Type="String" />
+      <Parameter Name="TaskDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EditWeeklySubmitTaskDetails">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="AccTaskID" Mode="In" Type="Int32" />
+      <Parameter Name="HoursWorked" Mode="In" Type="String" />
+      <Parameter Name="TaskDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="Proj_SpecificTaskId" Mode="In" Type="Int32" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_EmailsByProjectId" ReturnType="Collection(EvolutyzCornerDataModel.Get_EmailsByProjectId_Result)">
+      <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_LeavesCount" ReturnType="Collection(EvolutyzCornerDataModel.Get_LeavesCount_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="DateOfMonth" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_ManagerEmailDetails" ReturnType="Collection(EvolutyzCornerDataModel.Get_ManagerEmailDetails_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Managers" ReturnType="Collection(EvolutyzCornerDataModel.Get_Managers_Result)">
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+      <Parameter Name="RoleId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_UserLeaves" ReturnType="Collection(EvolutyzCornerDataModel.Get_UserLeaves_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="MonthYear" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_UserLeavesCount" ReturnType="Collection(EvolutyzCornerDataModel.Get_UserLeavesCount_Result)" />
+    <FunctionImport Name="Get_UserLeavesforTimesheet" ReturnType="Collection(DateTime)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="MonthYear" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_UserWorkFromHome" ReturnType="Collection(EvolutyzCornerDataModel.Get_UserWorkFromHome_Result)" />
+    <FunctionImport Name="Get_WorkfromHomeTimesheet" ReturnType="Collection(DateTime)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="MonthYear" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDashBoardTimesheet" ReturnType="Collection(EvolutyzCornerDataModel.GetDashBoardTimesheet_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="StartPosition" Mode="In" Type="Int32" />
+      <Parameter Name="EndPosition" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetLeaveCategoreries" ReturnType="Collection(EvolutyzCornerDataModel.GetLeaveCategoreries_Result)">
+      <Parameter Name="Userid" Mode="In" Type="String" />
+      <Parameter Name="Year" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetManagerEmailIds" ReturnType="Collection(EvolutyzCornerDataModel.GetManagerEmailIds_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetProfileDetails" ReturnType="Collection(EvolutyzCornerDataModel.GetProfileDetails_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getTimeSheetEmailDetails" ReturnType="Collection(EvolutyzCornerDataModel.getTimeSheetEmailDetails_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="Timesheetmonth" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetTimeSheetforApprovalTesting" ReturnType="Collection(EvolutyzCornerDataModel.GetTimeSheetforApprovalTesting_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="StartPosition" Mode="In" Type="Int32" />
+      <Parameter Name="EndPosition" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserHolidayCalender" ReturnType="Collection(EvolutyzCornerDataModel.GetUserHolidayCalender_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserAccontID" Mode="In" Type="String" />
+      <Parameter Name="HolidaySelectionDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUsersDatabyLogin" ReturnType="Collection(EvolutyzCornerDataModel.GetUsersDatabyLogin_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserTimeSheetList" ReturnType="Collection(EvolutyzCornerDataModel.GetUserTimeSheetList_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="Fromdate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserWorkFrmHomeApproval" ReturnType="Collection(EvolutyzCornerDataModel.GetUserWorkFrmHomeApproval_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_AccountSpecificTasks" ReturnType="Collection(EvolutyzCornerDataModel.Insert_AccountSpecificTasks_Result)">
+      <Parameter Name="AccountID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_UserLeaves">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Message" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_UserLeavesConsumed" ReturnType="Collection(Int32)">
+      <Parameter Name="UserLeaveId" Mode="In" Type="Int32" />
+      <Parameter Name="No_Of_Days" Mode="In" Type="Int32" />
+      <Parameter Name="LeaveTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_UserWorkFromHome">
+      <Parameter Name="Usrl_UserId" Mode="In" Type="Int32" />
+      <Parameter Name="UserwfhStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UserwfhEndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Is_WorkFromHome" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="InsertUserLeaves">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="LeaveStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="LeaveEndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="UserLeaveId" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MailsAppOrRejStatus" ReturnType="Collection(EvolutyzCornerDataModel.MailsAppOrRejStatus_Result)">
+      <Parameter Name="TimesheetID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ManagerActionsfromEmail">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="ManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="Projectid" Mode="In" Type="Int32" />
+      <Parameter Name="SubmittedType" Mode="In" Type="String" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetLeaveTypes" ReturnType="Collection(EvolutyzCornerDataModel.sp_GetLeaveTypes_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_GetProjects" ReturnType="Collection(EvolutyzCornerDataModel.Sp_GetProjects_Result)" />
+    <FunctionImport Name="Sp_GetProjSpecificTasks" ReturnType="Collection(EvolutyzCornerDataModel.Sp_GetProjSpecificTasks_Result)" />
+    <FunctionImport Name="Sp_GetTasks" ReturnType="Collection(EvolutyzCornerDataModel.Sp_GetTasks_Result)" />
+    <FunctionImport Name="sp_month_dates" ReturnType="Collection(String)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="TempSubmitTimesheet" ReturnType="Collection(EvolutyzCornerDataModel.TempSubmitTimesheet_Result)">
+      <Parameter Name="timesheetMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="Userid" Mode="In" Type="Int32" />
+      <Parameter Name="Accountid" Mode="In" Type="Int32" />
+      <Parameter Name="Projectid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="TempTimesheetonLeavesandHolidays" ReturnType="Collection(EvolutyzCornerDataModel.TempTimesheetonLeavesandHolidays_Result)">
+      <Parameter Name="timesheetMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="Userid" Mode="In" Type="Int32" />
+      <Parameter Name="Accountid" Mode="In" Type="Int32" />
+      <Parameter Name="Projectid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="TimesheetManagerActions">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="ManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="SubmittedType" Mode="In" Type="String" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UserAuthenticateWithToken" ReturnType="Collection(EvolutyzCornerDataModel.UserAuthenticateWithToken_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="token" Mode="In" Type="String" />
+      <Parameter Name="loginType" Mode="In" Type="String" />
+      <Parameter Name="Message" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UserLeaveManagerActionsfromEmail">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="LeaveID" Mode="In" Type="Int32" />
+      <Parameter Name="ManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusType" Mode="In" Type="Int32" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UserWFHManagerActionsfromEmail">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="WFHID" Mode="In" Type="Int32" />
+      <Parameter Name="ManagerId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusType" Mode="In" Type="Int32" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="WebEditSubmitTaskDetails">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="TaskId" Mode="In" Type="Int32" />
+      <Parameter Name="HoursWorked" Mode="In" Type="String" />
+      <Parameter Name="TaskDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="WebEditSubmitTimesheet">
+      <Parameter Name="TimesheetID" Mode="In" Type="Int32" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Comments" Mode="In" Type="String" />
+      <Parameter Name="SubmittedType" Mode="In" Type="String" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="WebGetProfileDetails" ReturnType="Collection(EvolutyzCornerDataModel.WebGetProfileDetails_Result)">
+      <Parameter Name="UserProfileid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="WebGetTimeSheetforApproval" ReturnType="Collection(EvolutyzCornerDataModel.WebGetTimeSheetforApproval_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="WebgetUserTimesheet" ReturnType="Collection(EvolutyzCornerDataModel.WebgetUserTimesheet_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+      <Parameter Name="Timesheetmonth" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="WebValidTimesheetMonthExits">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="TimesheetMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="Trans_Output" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="C__MigrationHistory" EntityType="EvolutyzCornerDataModel.C__MigrationHistory" />
+    <EntitySet Name="Acc_Spec_OptionalHolidays" EntityType="EvolutyzCornerDataModel.Acc_Spec_OptionalHolidays" />
+    <EntitySet Name="Accounts" EntityType="EvolutyzCornerDataModel.Account" />
+    <EntitySet Name="AccountClients" EntityType="EvolutyzCornerDataModel.AccountClient" />
+    <EntitySet Name="AccountDepartments" EntityType="EvolutyzCornerDataModel.AccountDepartment" />
+    <EntitySet Name="AccountSocialMediaProfiles" EntityType="EvolutyzCornerDataModel.AccountSocialMediaProfile" />
+    <EntitySet Name="AccountSpecificTasks" EntityType="EvolutyzCornerDataModel.AccountSpecificTask" />
+    <EntitySet Name="AspNetRoles" EntityType="EvolutyzCornerDataModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="EvolutyzCornerDataModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="EvolutyzCornerDataModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="EvolutyzCornerDataModel.AspNetUser" />
+    <EntitySet Name="ClientProjects" EntityType="EvolutyzCornerDataModel.ClientProject" />
+    <EntitySet Name="ClientProjectsTasks" EntityType="EvolutyzCornerDataModel.ClientProjectsTask" />
+    <EntitySet Name="ClientsBusinesses" EntityType="EvolutyzCornerDataModel.ClientsBusiness" />
+    <EntitySet Name="ComponentTypes" EntityType="EvolutyzCornerDataModel.ComponentType" />
+    <EntitySet Name="ContentTypes" EntityType="EvolutyzCornerDataModel.ContentType" />
+    <EntitySet Name="Countries" EntityType="EvolutyzCornerDataModel.Country" />
+    <EntitySet Name="DocumentTypes" EntityType="EvolutyzCornerDataModel.DocumentType" />
+    <EntitySet Name="EmployeeBankDetails" EntityType="EvolutyzCornerDataModel.EmployeeBankDetail" />
+    <EntitySet Name="EmployeeSalaryComponents" EntityType="EvolutyzCornerDataModel.EmployeeSalaryComponent" />
+    <EntitySet Name="EmployeeSalarySlips" EntityType="EvolutyzCornerDataModel.EmployeeSalarySlip" />
+    <EntitySet Name="EmployeeSalaryStructures" EntityType="EvolutyzCornerDataModel.EmployeeSalaryStructure" />
+    <EntitySet Name="EmployeeSalaryStructureDetails" EntityType="EvolutyzCornerDataModel.EmployeeSalaryStructureDetail" />
+    <EntitySet Name="ErrorLogs" EntityType="EvolutyzCornerDataModel.ErrorLog" />
+    <EntitySet Name="FinancialYears" EntityType="EvolutyzCornerDataModel.FinancialYear" />
+    <EntitySet Name="GenericRoles" EntityType="EvolutyzCornerDataModel.GenericRole" />
+    <EntitySet Name="GenericTasks" EntityType="EvolutyzCornerDataModel.GenericTask" />
+    <EntitySet Name="History_Account" EntityType="EvolutyzCornerDataModel.History_Account" />
+    <EntitySet Name="History_LeaveScheme" EntityType="EvolutyzCornerDataModel.History_LeaveScheme" />
+    <EntitySet Name="History_LeaveType" EntityType="EvolutyzCornerDataModel.History_LeaveType" />
+    <EntitySet Name="History_Projects" EntityType="EvolutyzCornerDataModel.History_Projects" />
+    <EntitySet Name="History_Role" EntityType="EvolutyzCornerDataModel.History_Role" />
+    <EntitySet Name="History_UserProjects" EntityType="EvolutyzCornerDataModel.History_UserProjects" />
+    <EntitySet Name="History_Users" EntityType="EvolutyzCornerDataModel.History_Users" />
+    <EntitySet Name="History_UserType" EntityType="EvolutyzCornerDataModel.History_UserType" />
+    <EntitySet Name="HolidayCalendars" EntityType="EvolutyzCornerDataModel.HolidayCalendar" />
+    <EntitySet Name="LeaveSchemes" EntityType="EvolutyzCornerDataModel.LeaveScheme" />
+    <EntitySet Name="LeaveStatus" EntityType="EvolutyzCornerDataModel.LeaveStatu" />
+    <EntitySet Name="LeaveTypes" EntityType="EvolutyzCornerDataModel.LeaveType" />
+    <EntitySet Name="Master_Module" EntityType="EvolutyzCornerDataModel.Master_Module" />
+    <EntitySet Name="Master_Sub_Module" EntityType="EvolutyzCornerDataModel.Master_Sub_Module" />
+    <EntitySet Name="Master_TimesheetMode" EntityType="EvolutyzCornerDataModel.Master_TimesheetMode" />
+    <EntitySet Name="MobileNotificationTemplates" EntityType="EvolutyzCornerDataModel.MobileNotificationTemplate" />
+    <EntitySet Name="ModuleAccessTypes" EntityType="EvolutyzCornerDataModel.ModuleAccessType" />
+    <EntitySet Name="NewsBoards" EntityType="EvolutyzCornerDataModel.NewsBoard" />
+    <EntitySet Name="PayModes" EntityType="EvolutyzCornerDataModel.PayMode" />
+    <EntitySet Name="Phases" EntityType="EvolutyzCornerDataModel.Phase" />
+    <EntitySet Name="Policies" EntityType="EvolutyzCornerDataModel.Policy" />
+    <EntitySet Name="Project_workstatus" EntityType="EvolutyzCornerDataModel.Project_workstatus" />
+    <EntitySet Name="ProjectPhases" EntityType="EvolutyzCornerDataModel.ProjectPhas" />
+    <EntitySet Name="Projects" EntityType="EvolutyzCornerDataModel.Project" />
+    <EntitySet Name="ProjectSpecificTasks" EntityType="EvolutyzCornerDataModel.ProjectSpecificTask" />
+    <EntitySet Name="RoleModules" EntityType="EvolutyzCornerDataModel.RoleModule" />
+    <EntitySet Name="Roles" EntityType="EvolutyzCornerDataModel.Role" />
+    <EntitySet Name="SalarySlipDetails" EntityType="EvolutyzCornerDataModel.SalarySlipDetail" />
+    <EntitySet Name="Skills" EntityType="EvolutyzCornerDataModel.Skill" />
+    <EntitySet Name="SocialMedias" EntityType="EvolutyzCornerDataModel.SocialMedia" />
+    <EntitySet Name="States" EntityType="EvolutyzCornerDataModel.State" />
+    <EntitySet Name="SubPolicies" EntityType="EvolutyzCornerDataModel.SubPolicy" />
+    <EntitySet Name="SubPolicyDocuments" EntityType="EvolutyzCornerDataModel.SubPolicyDocument" />
+    <EntitySet Name="TaskDetails" EntityType="EvolutyzCornerDataModel.TaskDetail" />
+    <EntitySet Name="TIMESHEETs" EntityType="EvolutyzCornerDataModel.TIMESHEET" />
+    <EntitySet Name="UserDevicesTokens" EntityType="EvolutyzCornerDataModel.UserDevicesToken" />
+    <EntitySet Name="UserGenders" EntityType="EvolutyzCornerDataModel.UserGender" />
+    <EntitySet Name="UserLeaves" EntityType="EvolutyzCornerDataModel.UserLeaf" />
+    <EntitySet Name="UserLeaveTypeConsumeds" EntityType="EvolutyzCornerDataModel.UserLeaveTypeConsumed" />
+    <EntitySet Name="UserProjectEngagements" EntityType="EvolutyzCornerDataModel.UserProjectEngagement" />
+    <EntitySet Name="UserProjects" EntityType="EvolutyzCornerDataModel.UserProject" />
+    <EntitySet Name="Users" EntityType="EvolutyzCornerDataModel.User" />
+    <EntitySet Name="UsersForProjects" EntityType="EvolutyzCornerDataModel.UsersForProject" />
+    <EntitySet Name="UserSkills" EntityType="EvolutyzCornerDataModel.UserSkill" />
+    <EntitySet Name="UserSocialMediaProfiles" EntityType="EvolutyzCornerDataModel.UserSocialMediaProfile" />
+    <EntitySet Name="UsersProfiles" EntityType="EvolutyzCornerDataModel.UsersProfile" />
+    <EntitySet Name="UserTitles" EntityType="EvolutyzCornerDataModel.UserTitle" />
+    <EntitySet Name="UserTypes" EntityType="EvolutyzCornerDataModel.UserType" />
+    <EntitySet Name="UserworkfromHomes" EntityType="EvolutyzCornerDataModel.UserworkfromHome" />
+    <AssociationSet Name="FK__HolidayCa__Accou__7D439ABD" Association="EvolutyzCornerDataModel.FK__HolidayCa__Accou__7D439ABD">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Acc_CreatedBy" Association="EvolutyzCornerDataModel.FK_Account_Acc_CreatedBy">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_AccountID" Association="EvolutyzCornerDataModel.FK_Roles_AccountID">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_AccountID" Association="EvolutyzCornerDataModel.FK_Users_AccountID">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserType_AccountID" Association="EvolutyzCornerDataModel.FK_UserType_AccountID">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="UserType" EntitySet="UserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="EvolutyzCornerDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientProjects_Projects" Association="EvolutyzCornerDataModel.FK_ClientProjects_Projects">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ClientProject" EntitySet="ClientProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HolidayCa__Creat__7E37BEF6" Association="EvolutyzCornerDataModel.FK__HolidayCa__Creat__7E37BEF6">
+      <End Role="User" EntitySet="Users" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HolidayCa__Modif__7F2BE32F" Association="EvolutyzCornerDataModel.FK__HolidayCa__Modif__7F2BE32F">
+      <End Role="User" EntitySet="Users" />
+      <End Role="HolidayCalendar" EntitySet="HolidayCalendars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Roles" Association="EvolutyzCornerDataModel.FK_Roles_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Role1" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserTypeID" Association="EvolutyzCornerDataModel.FK_Users_UserTypeID">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersProfile_Master_User1" Association="EvolutyzCornerDataModel.FK_UsersProfile_Master_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UsersProfile" EntitySet="UsersProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="EvolutyzCornerDataModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="GetUserLeavesforApproval" ReturnType="Collection(EvolutyzCornerDataModel.GetUserLeavesforApproval_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Get_EmailsByProjectId_Result">
+    <Property Type="Int32" Name="UProj_UserProjectID" Nullable="false" />
+    <Property Type="Int32" Name="UProj_ProjectID" Nullable="false" />
+    <Property Type="Int32" Name="UProj_UserID" Nullable="false" />
+    <Property Type="DateTime" Name="UProj_StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UProj_EndDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="UProj_ParticipationPercentage" Nullable="false" />
+    <Property Type="Boolean" Name="UProj_ActiveStatus" Nullable="false" />
+    <Property Type="Int16" Name="UProj_Version" Nullable="false" />
+    <Property Type="DateTime" Name="UProj_CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="UProj_CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="UProj_ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UProj_ModifiedBy" Nullable="true" />
+    <Property Type="Boolean" Name="UProj_isDeleted" Nullable="false" />
+    <Property Type="Int32" Name="UProj_L1_ManagerId" Nullable="true" />
+    <Property Type="Int32" Name="UProj_L2_ManagerId" Nullable="true" />
+    <Property Type="Boolean" Name="Is_L1_Manager" Nullable="true" />
+    <Property Type="Boolean" Name="Is_L2_Manager" Nullable="true" />
+    <Property Type="Int32" Name="ClientprojID" Nullable="true" />
+    <Property Type="Int32" Name="UsrP_UserProfileID" Nullable="false" />
+    <Property Type="Int32" Name="UsrP_UserID" Nullable="false" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Usrp_MobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usrp_PhoneNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usrp_ProfilePicture" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="UsrP_DOB" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Usrp_DOJ" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="UsrP_ActiveStatus" Nullable="false" />
+    <Property Type="Int16" Name="UsrP_Version" Nullable="false" />
+    <Property Type="DateTime" Name="UsrP_CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="UsrP_CreatedBy" Nullable="false" />
+    <Property Type="DateTime" Name="UsrP_ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UsrP_ModifiedBy" Nullable="true" />
+    <Property Type="Boolean" Name="UsrP_isDeleted" Nullable="false" />
+    <Property Type="Int32" Name="Usr_Titleid" Nullable="true" />
+    <Property Type="Int32" Name="Usr_GenderId" Nullable="true" />
+    <Property Type="String" Name="Marital_Status" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="PermanentAddress" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TemporaryAddress" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="passcode" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="Get_LeavesCount_Result">
+    <Property Type="Int32" Name="UProj_UserID" Nullable="false" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="LeaveStartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LeaveEndDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_ManagerEmailDetails_Result">
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerLevel1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerLevel2" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="L1_ManagerID" Nullable="false" />
+    <Property Type="Int32" Name="L2_ManagerID" Nullable="false" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_Managers_Result">
+    <Property Type="Int32" Name="Usr_UserID" Nullable="false" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Get_UserLeaves_Result">
+    <Property Type="Int32" Name="USerID" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="LeaveDates" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_UserLeavesCount_Result">
+    <Property Type="Int32" Name="Usrl_UserId" Nullable="true" />
+    <Property Type="DateTime" Name="LeaveStartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LeaveEndDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Usrl_LeaveId" Nullable="false" />
+    <Property Type="String" Name="LTyp_LeaveType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_UserWorkFromHome_Result">
+    <Property Type="Int32" Name="UserwfhID" Nullable="false" />
+    <Property Type="Int32" Name="Usrl_UserId" Nullable="true" />
+    <Property Type="DateTime" Name="UserwfhStartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UserwfhEndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetDashBoardTimesheet_Result">
+    <Property Type="Int64" Name="Sno" Nullable="true" />
+    <Property Type="Int32" Name="TimesheetID" Nullable="false" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="34" />
+    <Property Type="Int32" Name="Companyworkinghours" Nullable="true" />
+    <Property Type="Decimal" Name="WorkedHours" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="Proj_ProjectID" Nullable="false" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ResultSubmitStatus" Nullable="true" MaxLength="58" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="DateTime" Name="modifieddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="SubmittedDate" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="L1_ApproverDate" Nullable="true" />
+    <Property Type="String" Name="FinalStatus" Nullable="true" MaxLength="8000" />
+  </ComplexType>
+  <ComplexType Name="GetLeaveCategoreries_Result">
+    <Property Type="Int32" Name="LSchm_LeaveTypeID" Nullable="false" />
+    <Property Type="String" Name="LTyp_LeaveType" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="leavecount" Nullable="true" />
+    <Property Type="Int32" Name="HolidaysUsed" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetManagerEmailIds_Result">
+    <Property Type="String" Name="ManagerLevel1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerLevel2" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Acc_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="UserEmailid" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="L1_ManagerID" Nullable="false" />
+    <Property Type="Int32" Name="L2_ManagerID" Nullable="false" />
+    <Property Type="Int32" Name="Usr_AccountID" Nullable="true" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="8000" />
+  </ComplexType>
+  <ComplexType Name="GetProfileDetails_Result">
+    <Property Type="Int32" Name="UsrP_UserProfileID" Nullable="false" />
+    <Property Type="Int32" Name="UsrP_UserID" Nullable="false" />
+    <Property Type="String" Name="UsrName" Nullable="false" MaxLength="201" />
+    <Property Type="String" Name="EmpID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Emailid" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mobile_Number" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usrp_PhoneNumber" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Dateofjoing" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProfilePicture" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="getTimeSheetEmailDetails_Result">
+    <Property Type="Int32" Name="TimesheetId" Nullable="false" />
+    <Property Type="String" Name="TimesheetMonth" Nullable="true" MaxLength="66" />
+    <Property Type="String" Name="TimesheetMonthforMail" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Usr_UserID" Nullable="false" />
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="Proj_ClientName" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="8000" />
+    <Property Type="DateTime" Name="SubmittedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="TotalWorkingHours" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="GetTimeSheetforApprovalTesting_Result">
+    <Property Type="Int64" Name="Sno" Nullable="true" />
+    <Property Type="Int32" Name="TimesheetID" Nullable="false" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="34" />
+    <Property Type="Int32" Name="Companyworkinghours" Nullable="true" />
+    <Property Type="Int32" Name="WorkedHours" Nullable="true" />
+    <Property Type="Int32" Name="TotalTimesheetIds" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserHolidayCalender_Result">
+    <Property Type="DateTime" Name="HolidayDate" Nullable="false" />
+    <Property Type="String" Name="HolidayName" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="isOptionalHoliday" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetUsersDatabyLogin_Result">
+    <Property Type="Int32" Name="Usr_UserID" Nullable="false" />
+    <Property Type="Int32" Name="Usr_UserTypeID" Nullable="false" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="106" />
+    <Property Type="Int32" Name="Proj_ProjectID" Nullable="false" />
+    <Property Type="String" Name="UsT_UserTypeCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UsT_UserType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Acc_CompanyLogo" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Acc_AccountID" Nullable="false" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="UsT_UserTypeID" Nullable="false" />
+    <Property Type="Int32" Name="tsk_TaskID" Nullable="false" />
+    <Property Type="String" Name="tsk_TaskName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Rol_RoleName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Usrp_DOJ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Rol_RoleID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserTimeSheetList_Result">
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TimesheetID" Nullable="false" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="61" />
+    <Property Type="Double" Name="WorkedHours" Nullable="true" />
+    <Property Type="Int32" Name="Companyworkinghours" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserWorkFrmHomeApproval_Result">
+    <Property Type="Int32" Name="UserwfhID" Nullable="false" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LeaveEndDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="LeaveStartDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="L_StatusId" Nullable="true" />
+    <Property Type="Int32" Name="Usrl_UserId" Nullable="true" />
+    <Property Type="String" Name="Acc_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UProj_L1_ManagerId" Nullable="true" />
+    <Property Type="Int32" Name="Tot_No_Days" Nullable="true" />
+    <Property Type="String" Name="ResultSubmitStatus" Nullable="true" MaxLength="17" />
+  </ComplexType>
+  <ComplexType Name="Insert_AccountSpecificTasks_Result">
+    <Property Type="Int32" Name="tsk_TaskID" Nullable="false" />
+    <Property Type="String" Name="tsk_TaskName" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="MailsAppOrRejStatus_Result">
+    <Property Type="String" Name="ManagerLevel1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ManagerLevel2" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Acc_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="UserEmailid" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="L1_ManagerID" Nullable="false" />
+    <Property Type="Int32" Name="L2_ManagerID" Nullable="false" />
+    <Property Type="Int32" Name="Usr_AccountID" Nullable="true" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="8000" />
+  </ComplexType>
+  <ComplexType Name="sp_GetLeaveTypes_Result">
+    <Property Type="String" Name="ltyp_leavetype" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="AppliedLeaves" Nullable="true" />
+    <Property Type="Int32" Name="LTyp_LeaveTypeID" Nullable="false" />
+    <Property Type="Double" Name="lschm_leavecount" Nullable="true" />
+    <Property Type="String" Name="Acc_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="LSchm_LeaveSchemeID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetProjects_Result">
+    <Property Type="Int32" Name="Proj_ProjectID" Nullable="false" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetProjSpecificTasks_Result">
+    <Property Type="Int32" Name="Proj_SpecificTaskId" Nullable="false" />
+    <Property Type="String" Name="Proj_SpecificTaskName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetTasks_Result">
+    <Property Type="Int32" Name="TaskId" Nullable="false" />
+    <Property Type="String" Name="TaskName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="TempSubmitTimesheet_Result">
+    <Property Type="String" Name="HoursWorked" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="35" />
+    <Property Type="String" Name="TotalMonthName" Nullable="true" MaxLength="64" />
+  </ComplexType>
+  <ComplexType Name="TempTimesheetonLeavesandHolidays_Result">
+    <Property Type="Int32" Name="HoursWorked" Nullable="true" />
+    <Property Type="String" Name="colour" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="worktype" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="35" />
+  </ComplexType>
+  <ComplexType Name="UserAuthenticateWithToken_Result">
+    <Property Type="Int32" Name="Usr_UserID" Nullable="false" />
+    <Property Type="Int32" Name="Usr_UserTypeID" Nullable="false" />
+    <Property Type="String" Name="Usr_Usame" Nullable="true" MaxLength="54" />
+    <Property Type="Int32" Name="Proj_ProjectID" Nullable="false" />
+    <Property Type="String" Name="UsT_UserTypeCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UsT_UserType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Acc_CompanyLogo" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Acc_AccountID" Nullable="false" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="UsT_UserTypeID" Nullable="false" />
+    <Property Type="Int32" Name="tsk_TaskID" Nullable="false" />
+    <Property Type="String" Name="tsk_TaskName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Rol_RoleID" Nullable="false" />
+    <Property Type="Int32" Name="Rol_RoleName" Nullable="true" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Usrp_DOJ" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="WebGetProfileDetails_Result">
+    <Property Type="Int32" Name="Usr_Titleid" Nullable="true" />
+    <Property Type="Int32" Name="Usr_GenderId" Nullable="true" />
+    <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Usrp_MobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usrp_PhoneNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usrp_ProfilePicture" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="UsrP_DOB" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Usrp_DOJ" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Usr_GenderId1" Nullable="true" />
+    <Property Type="String" Name="Marital_Status" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="PermanentAddress" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TemporaryAddress" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="WebGetTimeSheetforApproval_Result">
+    <Property Type="Int64" Name="Sno" Nullable="true" />
+    <Property Type="Int32" Name="TimesheetID" Nullable="false" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="34" />
+    <Property Type="Int32" Name="Companyworkinghours" Nullable="true" />
+    <Property Type="Decimal" Name="WorkedHours" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="Proj_ProjectID" Nullable="false" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ResultSubmitStatus" Nullable="true" MaxLength="58" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="DateTime" Name="modifieddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="8000" />
+    <Property Type="String" Name="SubmittedDate" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="L1_ApproverDate" Nullable="true" />
+    <Property Type="String" Name="FinalStatus" Nullable="true" MaxLength="8000" />
+  </ComplexType>
+  <ComplexType Name="WebgetUserTimesheet_Result">
+    <Property Type="Int32" Name="TimesheetID" Nullable="false" />
+    <Property Type="Int32" Name="Usr_UserID" Nullable="false" />
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="8000" />
+    <Property Type="Int32" Name="taskid" Nullable="false" />
+    <Property Type="String" Name="taskname" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ProjectID" Nullable="true" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="HoursWorked" Nullable="true" />
+    <Property Type="String" Name="Comments" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MonthYearName" Nullable="true" MaxLength="36" />
+    <Property Type="DateTime" Name="TaskDate" Nullable="true" />
+    <Property Type="Boolean" Name="SubmittedType" Nullable="true" />
+    <Property Type="String" Name="TotalMonthName" Nullable="true" MaxLength="65" />
+    <Property Type="String" Name="SubmittedDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="L1_ApproverDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="L1_ManagerName" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="L2_ManagerName" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="ClientProjTitle" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Acc_Spec_OptionalHolidays">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="Acc_Spec_OptionalHolidayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccoutID" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="FinancialYearId" Type="Int32" Nullable="false" />
+    <Property Name="NoofOptionalHolidays" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Acc_AccountID" />
+    </Key>
+    <Property Name="Acc_AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Acc_AccountCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_AccountName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_AccountDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_CompanyLogo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Acc_Version" Type="Int16" Nullable="false" />
+    <Property Name="Acc_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Acc_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="Acc_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Acc_ModifiedBy" Type="Int32" />
+    <Property Name="Acc_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="is_UsAccount" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="HolidayCalendars" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Accou__7D439ABD" FromRole="Account" ToRole="HolidayCalendar" />
+    <NavigationProperty Name="User" Relationship="EvolutyzCornerDataModel.FK_Account_Acc_CreatedBy" FromRole="Account" ToRole="User" />
+    <NavigationProperty Name="Roles" Relationship="EvolutyzCornerDataModel.FK_Roles_AccountID" FromRole="Account" ToRole="Role" />
+    <NavigationProperty Name="Users" Relationship="EvolutyzCornerDataModel.FK_Users_AccountID" FromRole="Account" ToRole="User" />
+    <NavigationProperty Name="UserTypes" Relationship="EvolutyzCornerDataModel.FK_UserType_AccountID" FromRole="Account" ToRole="UserType" />
+  </EntityType>
+  <EntityType Name="AccountClient">
+    <Key>
+      <PropertyRef Name="Acc_ClientID" />
+    </Key>
+    <Property Name="Acc_ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="WebsiteUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IndustryID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AccountDepartment">
+    <Key>
+      <PropertyRef Name="AccountDepartmentID" />
+    </Key>
+    <Property Name="AccountDepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Dept_Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Dept_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Dept_CreatedBy" Type="Int32" />
+    <Property Name="Dept_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Dept_ModifiedBy" Type="Int32" />
+    <Property Name="Dept_isDeleted" Type="Boolean" />
+    <Property Name="Dept_ActiveStatus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="AccountSocialMediaProfile">
+    <Key>
+      <PropertyRef Name="Acc_SocialMediaProfileId" />
+    </Key>
+    <Property Name="Acc_SocialMediaProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Asmp_AccountId" Type="Int32" />
+    <Property Name="Asmp_SocialMediaId" Type="Int32" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Asmp_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Asmp_ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AccountSpecificTask">
+    <Key>
+      <PropertyRef Name="Acc_SpecificTaskId" />
+    </Key>
+    <Property Name="Acc_SpecificTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="Int32" />
+    <Property Name="Acc_SpecificTaskName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="StatusId" Type="Boolean" />
+    <Property Name="tsk_TaskID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="EvolutyzCornerDataModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="EvolutyzCornerDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="EvolutyzCornerDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetRoles" Relationship="EvolutyzCornerDataModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="ClientProject">
+    <Key>
+      <PropertyRef Name="CL_ProjectID" />
+    </Key>
+    <Property Name="CL_ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proj_ProjectID" Type="Int32" />
+    <Property Name="Accountid" Type="Int32" />
+    <Property Name="ClientProjTitle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ClientProjDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Project" Relationship="EvolutyzCornerDataModel.FK_ClientProjects_Projects" FromRole="ClientProject" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="ClientProjectsTask">
+    <Key>
+      <PropertyRef Name="CL_ProjectsTasksID" />
+    </Key>
+    <Property Name="CL_ProjectsTasksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Accountid" Type="Int32" />
+    <Property Name="rol_roleid" Type="Int32" />
+    <Property Name="acc_specifictaskid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ClientsBusiness">
+    <Key>
+      <PropertyRef Name="BusinessId" />
+    </Key>
+    <Property Name="BusinessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ComponentType">
+    <Key>
+      <PropertyRef Name="ComponentTypeId" />
+    </Key>
+    <Property Name="ComponentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComponentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Com_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Com_CreatedBy" Type="Int32" />
+    <Property Name="Com_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Com_ModifiedBy" Type="Int32" />
+    <Property Name="Com_isDeleted" Type="Boolean" />
+    <Property Name="Com_ActiveStatus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ContentType">
+    <Key>
+      <PropertyRef Name="ContentTypeId" />
+    </Key>
+    <Property Name="ContentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContentTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Con_ActiveStatus" Type="Boolean" />
+    <Property Name="Con_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Con_CreatedBy" Type="Int32" />
+    <Property Name="Con_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Con_ModifiedBy" Type="Int32" />
+    <Property Name="Con_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="StatusId" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeId" />
+    </Key>
+    <Property Name="DocumentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Doc_ActiveStatus" Type="Boolean" />
+    <Property Name="Doc_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Doc_CreatedBy" Type="Int32" />
+    <Property Name="Doc_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Doc_ModifiedBy" Type="Int32" />
+    <Property Name="Doc_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EmployeeBankDetail">
+    <Key>
+      <PropertyRef Name="EmpBankID" />
+    </Key>
+    <Property Name="EmpBankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpB_UserID" Type="Int32" />
+    <Property Name="BANK_No" Type="Int64" />
+    <Property Name="PAN_No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UAN_No" Type="Int64" />
+    <Property Name="PF_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ESI_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayModeID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryComponent">
+    <Key>
+      <PropertyRef Name="EmpSalCompId" />
+    </Key>
+    <Property Name="EmpSalCompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpSC_AccountID" Type="Int32" />
+    <Property Name="ComponentTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ComponentDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ComponentTypeId" Type="Int32" />
+    <Property Name="EmpSC_ActiveStatus" Type="Boolean" />
+    <Property Name="EmpSC_Version" Type="Int32" />
+    <Property Name="EmpSC_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="EmpSC_CreatedBy" Type="Int32" />
+    <Property Name="EmpSC_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="EmpSC_ModifiedBy" Type="Int32" />
+    <Property Name="EmpSC_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EmployeeSalarySlip">
+    <Key>
+      <PropertyRef Name="EmpSalarySlipID" />
+    </Key>
+    <Property Name="EmpSalarySlipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Epmss_UserID" Type="Int32" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="YEAR" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryStructure">
+    <Key>
+      <PropertyRef Name="Emps_StructureID" />
+    </Key>
+    <Property Name="Emps_StructureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Emps_UserID" Type="Int32" />
+    <Property Name="WorkingDays" Type="Int32" />
+    <Property Name="WorkedDays" Type="Int32" />
+    <Property Name="Payable" Type="Int32" />
+    <Property Name="SalaryMonth" Type="DateTime" Precision="3" />
+    <Property Name="FinancialYearId" Type="Int32" />
+    <Property Name="CTC" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Ess_ActiveStatus" Type="Boolean" />
+    <Property Name="Ess_Version" Type="Int32" />
+    <Property Name="Ess_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Ess_CreatedBy" Type="Int32" />
+    <Property Name="Ess_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Ess_ModifiedBy" Type="Int32" />
+    <Property Name="Ess_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EmployeeSalaryStructureDetail">
+    <Key>
+      <PropertyRef Name="EmpssdetailId" />
+    </Key>
+    <Property Name="EmpssdetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpSalCompId" Type="Int32" />
+    <Property Name="Emps_StructureId" Type="Int32" />
+    <Property Name="EssD_ActiveStatus" Type="Boolean" />
+    <Property Name="EssD_Version" Type="Int32" />
+    <Property Name="EssD_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="EssD_CreatedBy" Type="Int32" />
+    <Property Name="EssD_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="EssD_ModifiedBy" Type="Int32" />
+    <Property Name="EssD_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorlogId" />
+    </Key>
+    <Property Name="ErrorlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SourceName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MethodName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearId" />
+    </Key>
+    <Property Name="FinancialYearId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="Int32" />
+    <Property Name="EndDate" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="GenericRole">
+    <Key>
+      <PropertyRef Name="GenericRoleID" />
+    </Key>
+    <Property Name="GenericRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="StatusID" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="GenericTask">
+    <Key>
+      <PropertyRef Name="tsk_TaskID" />
+    </Key>
+    <Property Name="tsk_TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tsk_TaskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tsk_TaskDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tsk_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="tsk_Version" Type="Int16" Nullable="false" />
+    <Property Name="tsk_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tsk_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="tsk_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="tsk_ModifiedBy" Type="Int32" />
+    <Property Name="tsk_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="History_Account">
+    <Key>
+      <PropertyRef Name="History_Account_AccountID" />
+    </Key>
+    <Property Name="History_Account_AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_Acc_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_Acc_AccountCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_AccountName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_AccountDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_CompanyLogo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="History_Acc_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_Acc_Version" Type="Int16" Nullable="false" />
+    <Property Name="History_Acc_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_Acc_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="History_Acc_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_Acc_ModifiedBy" Type="Int32" />
+    <Property Name="History_Acc_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_LeaveScheme">
+    <Key>
+      <PropertyRef Name="History_LeaveScheme_ID" />
+    </Key>
+    <Property Name="History_LeaveScheme_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_LSchm_LeaveSchemeID" Type="Int32" Nullable="false" />
+    <Property Name="History_LSchm_LeaveTypeID" Type="Int32" Nullable="false" />
+    <Property Name="History_LSchm_UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="History_LSchm_LeaveFrequency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_LSchm_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_LSchm_LeaveSchemeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_LSchm_LeaveScheme" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_LSchm_LeaveSchemeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_LSchm_LeaveCount" Type="Int16" Nullable="false" />
+    <Property Name="History_LSchm_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_LSchm_Version" Type="Int16" Nullable="false" />
+    <Property Name="History_LSchm_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_LSchm_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="History_LSchm_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_LSchm_ModifiedBy" Type="Int32" />
+    <Property Name="History_LSchm_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_LeaveType">
+    <Key>
+      <PropertyRef Name="History_LeaveType_ID" />
+    </Key>
+    <Property Name="History_LeaveType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_LTyp_LeaveTypeID" Type="Int32" Nullable="false" />
+    <Property Name="History_LTyp_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_LTyp_LeaveType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_LTyp_LeaveTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_LTyp_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_LTyp_Version" Type="Int16" Nullable="false" />
+    <Property Name="History_LTyp_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_LTyp_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="History_LTyp_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_LTyp_ModifiedBy" Type="Int32" />
+    <Property Name="History_LTyp_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Projects">
+    <Key>
+      <PropertyRef Name="History_Project_ID" />
+    </Key>
+    <Property Name="History_Project_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_Proj_ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="History_Proj_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_Proj_ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_Proj_ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Proj_ProjectDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_Proj_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_Proj_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="History_Proj_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_Proj_Version" Type="Int16" Nullable="false" />
+    <Property Name="History_Proj_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_Proj_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="History_Proj_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_Proj_ModifiedBy" Type="Int32" />
+    <Property Name="History_Proj_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Role">
+    <Key>
+      <PropertyRef Name="History_Role_ID" />
+    </Key>
+    <Property Name="History_Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_Rol_RoleID" Type="Int32" Nullable="false" />
+    <Property Name="History_Rol_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_Rol_RoleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_Rol_RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Rol_RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_Rol_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_Rol_Version" Type="Int32" Nullable="false" />
+    <Property Name="History_Rol_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_Rol_createdBy" Type="Int32" Nullable="false" />
+    <Property Name="History_Rol_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_Rol_ModifiedBy" Type="Int32" />
+    <Property Name="History_Rol_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_UserProjects">
+    <Key>
+      <PropertyRef Name="HUProj_UserProjectID" />
+    </Key>
+    <Property Name="HUProj_UserProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HUProj_ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="HUProj_UserID" Type="Int32" Nullable="false" />
+    <Property Name="HUProj_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HUProj_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="HUProj_ParticipationPercentage" Type="Byte" Nullable="false" />
+    <Property Name="HUProj_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="HUProj_Version" Type="Int16" Nullable="false" />
+    <Property Name="HUProj_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HUProj_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="HUProj_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="HUProj_ModifiedBy" Type="Int32" />
+    <Property Name="HUProj_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_Users">
+    <Key>
+      <PropertyRef Name="History_User_ID" />
+    </Key>
+    <Property Name="History_User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_Usr_UserID" Type="Int32" Nullable="false" />
+    <Property Name="History_Usr_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_Usr_UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="History_Usr_RoleID" Type="Int32" Nullable="false" />
+    <Property Name="History_Usr_Manager" Type="Int32" />
+    <Property Name="History_Usr_Manager2" Type="Int32" />
+    <Property Name="History_Usr_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_Usr_LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_Usr_Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="History_Usr_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_Usr_TaskID" Type="Int32" />
+    <Property Name="History_Usr_Version" Type="Int16" Nullable="false" />
+    <Property Name="History_Usr_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_Usr_CreatedBy" Type="Int32" />
+    <Property Name="History_Usr_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_Usr_ModifiedBy" Type="Int32" />
+    <Property Name="History_Usr_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="History_UserType">
+    <Key>
+      <PropertyRef Name="History_UserType_ID" />
+    </Key>
+    <Property Name="History_UserType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_UsT_UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="History_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="History_UsT_UserTypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="History_UsT_UserType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="History_UsT_UserTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="History_UsT_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="History_UsT_Version" Type="Int32" Nullable="false" />
+    <Property Name="History_UsT_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="History_UsT_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="History_UsT_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="History_UsT_ModifiedBy" Type="Int32" />
+    <Property Name="History_UsT_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidayCalendar">
+    <Key>
+      <PropertyRef Name="HolidayCalendarID" />
+    </Key>
+    <Property Name="HolidayCalendarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="HolidayName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="HolidayDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isOptionalHoliday" Type="Boolean" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Accou__7D439ABD" FromRole="HolidayCalendar" ToRole="Account" />
+    <NavigationProperty Name="User" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Creat__7E37BEF6" FromRole="HolidayCalendar" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Modif__7F2BE32F" FromRole="HolidayCalendar" ToRole="User" />
+  </EntityType>
+  <EntityType Name="LeaveScheme">
+    <Key>
+      <PropertyRef Name="LSchm_LeaveSchemeID" />
+    </Key>
+    <Property Name="LSchm_LeaveSchemeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LSchm_LeaveTypeID" Type="Int32" Nullable="false" />
+    <Property Name="LSchm_UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="LSchm_LeaveFrequency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LSchm_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="LSchm_LeaveSchemeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LSchm_LeaveScheme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LSchm_LeaveSchemeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LSchm_LeaveCount" Type="Double" />
+    <Property Name="LSchm_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="LSchm_Version" Type="Int16" />
+    <Property Name="LSchm_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LSchm_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LSchm_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="LSchm_ModifiedBy" Type="Int32" />
+    <Property Name="LSchm_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="FinancialYearId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LeaveStatu">
+    <Key>
+      <PropertyRef Name="L_StatusId" />
+    </Key>
+    <Property Name="L_StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="L_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LeaveType">
+    <Key>
+      <PropertyRef Name="LTyp_LeaveTypeID" />
+    </Key>
+    <Property Name="LTyp_LeaveTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LTyp_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="LTyp_LeaveType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LTyp_LeaveTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LTyp_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="LTyp_Version" Type="Int16" Nullable="false" />
+    <Property Name="LTyp_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LTyp_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LTyp_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="LTyp_ModifiedBy" Type="Int32" />
+    <Property Name="LTyp_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Master_Module">
+    <Key>
+      <PropertyRef Name="Mod_ModuleID" />
+    </Key>
+    <Property Name="Mod_ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mod_ModuleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mod_ModuleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mod_Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mod_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Mod_Version" Type="Int16" Nullable="false" />
+    <Property Name="Mod_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mod_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="Mod_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Mod_ModifiedBy" Type="Int32" />
+    <Property Name="Mod_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Master_Sub_Module">
+    <Key>
+      <PropertyRef Name="Sub_ModuleID" />
+    </Key>
+    <Property Name="Sub_ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mod_ModuleID" Type="Int32" Nullable="false" />
+    <Property Name="Sub_ModuleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_ModuleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Sub_Version" Type="Int16" Nullable="false" />
+    <Property Name="Sub_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sub_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="Sub_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Sub_ModifiedBy" Type="Int32" />
+    <Property Name="Sub_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Orderby" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Master_TimesheetMode">
+    <Key>
+      <PropertyRef Name="TimesheetMode_id" />
+    </Key>
+    <Property Name="TimesheetMode_id" Type="Int32" Nullable="false" />
+    <Property Name="TimeModeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MobileNotificationTemplate">
+    <Key>
+      <PropertyRef Name="MobileNotificationId" />
+    </Key>
+    <Property Name="MobileNotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ModuleAccessType">
+    <Key>
+      <PropertyRef Name="ModuleAccessTypeID" />
+    </Key>
+    <Property Name="ModuleAccessTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleAccessType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="StatusId" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="NewsBoard">
+    <Key>
+      <PropertyRef Name="NewsBoardId" />
+    </Key>
+    <Property Name="NewsBoardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PayMode">
+    <Key>
+      <PropertyRef Name="PayModeID" />
+    </Key>
+    <Property Name="PayModeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PayMode1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayModeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Phase">
+    <Key>
+      <PropertyRef Name="PhaseId" />
+    </Key>
+    <Property Name="PhaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhaseTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Policy">
+    <Key>
+      <PropertyRef Name="PolicyId" />
+    </Key>
+    <Property Name="PolicyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PolicyTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Css" Type="Boolean" />
+    <Property Name="PolicyDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Pol_ActiveStatus" Type="Boolean" />
+    <Property Name="Pol_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Pol_CreatedBy" Type="Int32" />
+    <Property Name="Pol_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Pol_ModifiedBy" Type="Int32" />
+    <Property Name="Pol_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Project_workstatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FromDT" Type="DateTime" Precision="3" />
+    <Property Name="ToDT" Type="DateTime" Precision="3" />
+    <Property Name="PercentageCompleted" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProjectPhas">
+    <Key>
+      <PropertyRef Name="Proj_PhaseId" />
+    </Key>
+    <Property Name="Proj_PhaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhaseId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="Actual_StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Actual_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Plan_StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Plan_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Proj_ProjectID" />
+    </Key>
+    <Property Name="Proj_ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proj_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Proj_ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Proj_ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Proj_ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Proj_ProjectDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Plan_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Plan_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Proj_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Proj_Version" Type="Int16" Nullable="false" />
+    <Property Name="Proj_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Proj_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="Proj_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Proj_ModifiedBy" Type="Int32" />
+    <Property Name="Proj_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Actual_StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Actual_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Is_Timesheet_ProjectSpecific" Type="Boolean" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="WebUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ClientProjects" Relationship="EvolutyzCornerDataModel.FK_ClientProjects_Projects" FromRole="Project" ToRole="ClientProject" />
+  </EntityType>
+  <EntityType Name="ProjectSpecificTask">
+    <Key>
+      <PropertyRef Name="Proj_SpecificTaskId" />
+    </Key>
+    <Property Name="Proj_SpecificTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="Proj_SpecificTaskName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RTMId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Actual_StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Actual_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Plan_StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Plan_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="isDeleted" Type="Boolean" />
+    <Property Name="StatusId" Type="Boolean" />
+    <Property Name="tsk_TaskID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RoleModule">
+    <Key>
+      <PropertyRef Name="RMod_RoleModuleID" />
+    </Key>
+    <Property Name="RMod_RoleModuleID" Type="Int32" Nullable="false" />
+    <Property Name="RMod_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="RMod_RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Sub_ModuleID" Type="Int32" Nullable="false" />
+    <Property Name="ModuleAccessTypeID" Type="Int32" />
+    <Property Name="RMod_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="RMod_Version" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RMod_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RMod_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="RMod_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="RMod_ModifiedBy" Type="Int32" />
+    <Property Name="RMod_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Rol_RoleID" />
+    </Key>
+    <Property Name="Rol_RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Rol_RoleCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Rol_RoleName" Type="Int32" />
+    <Property Name="Rol_RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Rol_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Rol_Version" Type="Int32" Nullable="false" />
+    <Property Name="Rol_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Rol_createdBy" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Rol_ModifiedBy" Type="Int32" />
+    <Property Name="Rol_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsManagerRole" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="EvolutyzCornerDataModel.FK_Roles_AccountID" FromRole="Role" ToRole="Account" />
+    <NavigationProperty Name="Roles1" Relationship="EvolutyzCornerDataModel.FK_Roles_Roles" FromRole="Role" ToRole="Role1" />
+    <NavigationProperty Name="Role1" Relationship="EvolutyzCornerDataModel.FK_Roles_Roles" FromRole="Role1" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="SalarySlipDetail">
+    <Key>
+      <PropertyRef Name="SalarySlipDetailID" />
+    </Key>
+    <Property Name="SalarySlipDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpssdetailId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillId" />
+    </Key>
+    <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SkillTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Sk_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Sk_CreatedBy" Type="Int32" />
+    <Property Name="Sk_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Sk_ModifiedBy" Type="Int32" />
+    <Property Name="Sk_isDeleted" Type="Boolean" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SocialMedia">
+    <Key>
+      <PropertyRef Name="SocialMediaId" />
+    </Key>
+    <Property Name="SocialMediaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sm_AccountID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sm_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Sm_CreatedBy" Type="Int32" />
+    <Property Name="Sm_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Sm_ModifiedBy" Type="Int32" />
+    <Property Name="Sm_isDeleted" Type="Boolean" />
+    <Property Name="Sm_ActiveStatus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Countryid" Type="Int32" Nullable="false" />
+    <Property Name="StateCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StateName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="StatusId" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SubPolicy">
+    <Key>
+      <PropertyRef Name="SubPolicyId" />
+    </Key>
+    <Property Name="SubPolicyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PolicyId" Type="Int32" />
+    <Property Name="SubPolicyTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Css" Type="Boolean" />
+    <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SPol_ActiveStatus" Type="Boolean" />
+    <Property Name="SPol_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="SPol_CreatedBy" Type="Int32" />
+    <Property Name="SPol_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SPol_ModifiedBy" Type="Int32" />
+    <Property Name="SPol_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SubPolicyDocument">
+    <Key>
+      <PropertyRef Name="SubPolicyDocumentId" />
+    </Key>
+    <Property Name="SubPolicyDocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubPolicyId" Type="Int32" />
+    <Property Name="SubPolicyDocumenTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentTypeId" Type="Int32" />
+    <Property Name="ContentTypeId" Type="Int32" />
+    <Property Name="DocumentTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SubP_ActiveStatus" Type="Boolean" />
+    <Property Name="SubP_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="SubP_CreatedBy" Type="Int32" />
+    <Property Name="SubP_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SubP_ModifiedBy" Type="Int32" />
+    <Property Name="SubP_isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TaskDetail">
+    <Key>
+      <PropertyRef Name="TaskDetailsID" />
+    </Key>
+    <Property Name="TaskDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimesheetID" Type="Int32" Nullable="false" />
+    <Property Name="TaskID" Type="Int32" Nullable="false" />
+    <Property Name="HoursWorked" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="TaskDate" Type="DateTime" Precision="0" />
+    <Property Name="Proj_SpecificTaskId" Type="Int32" />
+    <Property Name="projectid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TIMESHEET">
+    <Key>
+      <PropertyRef Name="TimesheetID" />
+    </Key>
+    <Property Name="TimesheetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TaskDate" Type="DateTime" Precision="0" />
+    <Property Name="TimesheetMonth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaskId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+    <Property Name="SubmittedType" Type="Boolean" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="L1_Manager" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="L1_ApproverStatus" Type="Int32" />
+    <Property Name="L1_ApproverDate" Type="DateTime" Precision="0" />
+    <Property Name="L1_RejectedDate" Type="DateTime" Precision="0" />
+    <Property Name="L2_Manager" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="L2_ApproverStatus" Type="Int32" />
+    <Property Name="L2_ApproverDate" Type="DateTime" Precision="0" />
+    <Property Name="L2_RejectedDate" Type="DateTime" Precision="0" />
+    <Property Name="DeviceTypeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserDevicesToken">
+    <Key>
+      <PropertyRef Name="UdTokenID" />
+    </Key>
+    <Property Name="UdTokenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="TokenID" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UserGender">
+    <Key>
+      <PropertyRef Name="Usr_GenderId" />
+    </Key>
+    <Property Name="Usr_GenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserLeaf">
+    <Key>
+      <PropertyRef Name="Usrl_LeaveId" />
+    </Key>
+    <Property Name="Usrl_LeaveId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usrl_UserId" Type="Int32" />
+    <Property Name="LeaveStartDate" Type="DateTime" Precision="3" />
+    <Property Name="LeaveEndDate" Type="DateTime" Precision="3" />
+    <Property Name="Tot_No_Days" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="L_StatusId" Type="Int32" />
+    <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+    <Property Name="RejectedDate" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="RejectedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserLeaveTypeConsumed">
+    <Key>
+      <PropertyRef Name="Usrlt_TypeConsumeId" />
+    </Key>
+    <Property Name="Usrlt_TypeConsumeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usrl_LeaveId" Type="Int32" />
+    <Property Name="LSchm_LeaveSchemeID" Type="Int32" />
+    <Property Name="No_Of_Days" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserProjectEngagement">
+    <Key>
+      <PropertyRef Name="UserProj_EngId" />
+    </Key>
+    <Property Name="UserProj_EngId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="tsk_TaskID" Type="Int32" />
+    <Property Name="Proj_SpecificTaskId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="isDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UserProject">
+    <Key>
+      <PropertyRef Name="UProj_UserProjectID" />
+    </Key>
+    <Property Name="UProj_UserProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UProj_ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="UProj_UserID" Type="Int32" Nullable="false" />
+    <Property Name="UProj_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UProj_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="UProj_ParticipationPercentage" Type="Byte" Nullable="false" />
+    <Property Name="UProj_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="UProj_Version" Type="Int16" Nullable="false" />
+    <Property Name="UProj_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UProj_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UProj_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UProj_ModifiedBy" Type="Int32" />
+    <Property Name="UProj_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="UProj_L1_ManagerId" Type="Int32" />
+    <Property Name="UProj_L2_ManagerId" Type="Int32" />
+    <Property Name="Is_L1_Manager" Type="Boolean" />
+    <Property Name="Is_L2_Manager" Type="Boolean" />
+    <Property Name="ClientprojID" Type="Int32" />
+    <Property Name="TimesheetMode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Usr_UserID" />
+    </Key>
+    <Property Name="Usr_UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usr_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="Usr_UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Usr_RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Usr_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Usr_LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Usr_Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Usr_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Usr_TaskID" Type="Int32" />
+    <Property Name="Usr_Version" Type="Int16" Nullable="false" />
+    <Property Name="Usr_salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Usr_Manager" Type="Int32" />
+    <Property Name="Usr_Manager2" Type="Int32" />
+    <Property Name="Usr_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Usr_CreatedBy" Type="Int32" />
+    <Property Name="Usr_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Usr_ModifiedBy" Type="Int32" />
+    <Property Name="Usr_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Url_token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="EvolutyzCornerDataModel.FK_Account_Acc_CreatedBy" FromRole="User" ToRole="Account" />
+    <NavigationProperty Name="Account" Relationship="EvolutyzCornerDataModel.FK_Users_AccountID" FromRole="User" ToRole="Account" />
+    <NavigationProperty Name="HolidayCalendars" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Creat__7E37BEF6" FromRole="User" ToRole="HolidayCalendar" />
+    <NavigationProperty Name="HolidayCalendars1" Relationship="EvolutyzCornerDataModel.FK__HolidayCa__Modif__7F2BE32F" FromRole="User" ToRole="HolidayCalendar" />
+    <NavigationProperty Name="UserType" Relationship="EvolutyzCornerDataModel.FK_Users_UserTypeID" FromRole="User" ToRole="UserType" />
+    <NavigationProperty Name="UsersProfiles" Relationship="EvolutyzCornerDataModel.FK_UsersProfile_Master_User1" FromRole="User" ToRole="UsersProfile" />
+  </EntityType>
+  <EntityType Name="UsersForProject">
+    <Key>
+      <PropertyRef Name="Ufp_UsersForProjectsID" />
+    </Key>
+    <Property Name="Ufp_UsersForProjectsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ufp_ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="Ufp_UserID" Type="Int32" Nullable="false" />
+    <Property Name="Ufp_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Ufp_EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Ufp_ParticipationPercentage" Type="Int32" />
+    <Property Name="Ufp_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Ufp_Version" Type="Int16" Nullable="false" />
+    <Property Name="Ufp_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Ufp_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="Ufp_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Ufp_ModifiedBy" Type="Int32" />
+    <Property Name="Ufp_isDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSkill">
+    <Key>
+      <PropertyRef Name="Usr_SkillId" />
+    </Key>
+    <Property Name="Usr_SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usr_UserId" Type="Int32" />
+    <Property Name="SkillId" Type="Int32" />
+    <Property Name="Experience" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Usk_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Usk_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Is_Deleted" Type="Boolean" />
+    <Property Name="StatusID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserSocialMediaProfile">
+    <Key>
+      <PropertyRef Name="SocialMediaProfileId" />
+    </Key>
+    <Property Name="SocialMediaProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usmp_UserID" Type="Int32" />
+    <Property Name="Usmp_SocialMediaId" Type="Int32" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Usmp_CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Usmp_ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UsersProfile">
+    <Key>
+      <PropertyRef Name="UsrP_UserProfileID" />
+    </Key>
+    <Property Name="UsrP_UserProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsrP_UserID" Type="Int32" Nullable="false" />
+    <Property Name="UsrP_FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UsrP_LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UsrP_EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UsrP_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Usrp_MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Usrp_CountryCode" Type="Int32" />
+    <Property Name="Usrp_ProfilePicture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UsrP_DOB" Type="DateTime" Precision="3" />
+    <Property Name="Usrp_DOJ" Type="DateTime" Precision="3" />
+    <Property Name="UsrP_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="UsrP_Version" Type="Int16" Nullable="false" />
+    <Property Name="UsrP_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsrP_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UsrP_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UsrP_ModifiedBy" Type="Int32" />
+    <Property Name="UsrP_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Usr_Titleid" Type="Int32" />
+    <Property Name="Usr_GenderId" Type="Int32" />
+    <Property Name="Marital_Status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TemporaryAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="passcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="EvolutyzCornerDataModel.FK_UsersProfile_Master_User1" FromRole="UsersProfile" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserTitle">
+    <Key>
+      <PropertyRef Name="Usr_Titleid" />
+    </Key>
+    <Property Name="Usr_Titleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TitlePrefix" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Acc_AccountID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UsT_UserTypeID" />
+    </Key>
+    <Property Name="UsT_UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsT_AccountID" Type="Int32" Nullable="false" />
+    <Property Name="UsT_UserTypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UsT_UserType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UsT_UserTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UsT_ActiveStatus" Type="Boolean" Nullable="false" />
+    <Property Name="UsT_Version" Type="Int32" Nullable="false" />
+    <Property Name="UsT_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsT_CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UsT_ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UsT_ModifiedBy" Type="Int32" />
+    <Property Name="UsT_isDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="EvolutyzCornerDataModel.FK_UserType_AccountID" FromRole="UserType" ToRole="Account" />
+    <NavigationProperty Name="Users" Relationship="EvolutyzCornerDataModel.FK_Users_UserTypeID" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserworkfromHome">
+    <Key>
+      <PropertyRef Name="UserwfhID" />
+    </Key>
+    <Property Name="UserwfhID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usrl_UserId" Type="Int32" />
+    <Property Name="UserwfhStartDate" Type="DateTime" Precision="3" />
+    <Property Name="UserwfhEndDate" Type="DateTime" Precision="3" />
+    <Property Name="Tot_No_Days" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="L_StatusId" Type="Int32" />
+    <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+    <Property Name="RejectedDate" Type="DateTime" Precision="3" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="RejectedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Is_WorkFromHome" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK__HolidayCa__Accou__7D439ABD">
+    <End Type="EvolutyzCornerDataModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="EvolutyzCornerDataModel.HolidayCalendar" Role="HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Acc_CreatedBy">
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="EvolutyzCornerDataModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Acc_CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_AccountID">
+    <End Type="EvolutyzCornerDataModel.Account" Role="Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EvolutyzCornerDataModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="Rol_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_AccountID">
+    <End Type="EvolutyzCornerDataModel.Account" Role="Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Usr_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserType_AccountID">
+    <End Type="EvolutyzCornerDataModel.Account" Role="Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EvolutyzCornerDataModel.UserType" Role="UserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Acc_AccountID" />
+      </Principal>
+      <Dependent Role="UserType">
+        <PropertyRef Name="UsT_AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="EvolutyzCornerDataModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EvolutyzCornerDataModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientProjects_Projects">
+    <End Type="EvolutyzCornerDataModel.Project" Role="Project" Multiplicity="0..1" />
+    <End Type="EvolutyzCornerDataModel.ClientProject" Role="ClientProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Proj_ProjectID" />
+      </Principal>
+      <Dependent Role="ClientProject">
+        <PropertyRef Name="Proj_ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HolidayCa__Creat__7E37BEF6">
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="EvolutyzCornerDataModel.HolidayCalendar" Role="HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HolidayCa__Modif__7F2BE32F">
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="EvolutyzCornerDataModel.HolidayCalendar" Role="HolidayCalendar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="HolidayCalendar">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Roles">
+    <End Type="EvolutyzCornerDataModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="EvolutyzCornerDataModel.Role" Role="Role1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Rol_RoleID" />
+      </Principal>
+      <Dependent Role="Role1">
+        <PropertyRef Name="Rol_RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserTypeID">
+    <End Type="EvolutyzCornerDataModel.UserType" Role="UserType" Multiplicity="1" />
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UsT_UserTypeID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Usr_UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersProfile_Master_User1">
+    <End Type="EvolutyzCornerDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="EvolutyzCornerDataModel.UsersProfile" Role="UsersProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usr_UserID" />
+      </Principal>
+      <Dependent Role="UsersProfile">
+        <PropertyRef Name="UsrP_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="EvolutyzCornerDataModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="EvolutyzCornerDataModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="GetUserLeavesforApproval_Result">
+    <Property Type="String" Name="Usr_Username" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="UsrP_EmployeeID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UsrP_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Proj_ProjectName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Usrl_LeaveId" Nullable="false" />
+    <Property Type="Int32" Name="Usrl_UserId" Nullable="true" />
+    <Property Type="String" Name="LeaveStartDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="LeaveEndDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="No_Of_Days" Nullable="true" />
+    <Property Type="Int32" Name="L_StatusId" Nullable="true" />
+    <Property Type="String" Name="Acc_EmailID" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="UProj_L1_ManagerId" Nullable="true" />
+    <Property Type="String" Name="ResultSubmitStatus" Nullable="true" MaxLength="17" />
+  </ComplexType>
+</Schema>

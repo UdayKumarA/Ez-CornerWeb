@@ -1,0 +1,230 @@
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Projects\EvolutyzCorner1.0\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\EVOLUTYZ\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Anitha\Projects\EvolutyzCornerSolution\evolatest\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\AUG\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\06-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\SEPT\WEB_Code\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Sreelakshmi\OCT\WEB Code\04-10-2018\25-09-2018\EvolutyzCornerSolution\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\WebEvolutyzCorner\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Sreelakshmi\Dec\2012-12-03\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+C:\Users\suma\Desktop\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojResolveAssemblyReference.cache
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+F:\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\Evolutyz Corner December 12132018\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\jan 17 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\jan 22 2019\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Jan 30\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\jan31\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\new code\EvolutyzCornerWeb\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+E:\Evollatestbuild\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+E:\Evollatestbuild\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+E:\Evollatestbuild\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+E:\Evollatestbuild\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+E:\Evollatestbuild\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+E:\Evollatestbuild\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+D:\New folder (2)\Evolutyzcorner\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.dll
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Services.Contracts.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.dll
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\RestSharp.dll
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\Evolutyz.Entities.pdb
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\bin\Debug\RestSharp.xml
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csprojAssemblyReference.cache
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CoreCompileInputs.cache
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.csproj.CopyComplete
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.dll
+F:\EvolutyzCornerSolution\Evolutyz.Services.Contracts\obj\Debug\Evolutyz.Services.Contracts.pdb

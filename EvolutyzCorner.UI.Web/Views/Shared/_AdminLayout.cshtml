@@ -1,0 +1,390 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=11,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewData["Title"] - Evolutyz Corner</title>
+    <link rel='shortcut icon' href='~/Content/Images/favicon.png' type='image/png' />
+    @Styles.Render("~/EvolutyzCSS")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">*@
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/css/skins/_all-skins.min.css">
+
+    <link href="~/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+    <link href="~/plugins/datepicker/datepicker3.css" rel="stylesheet" />
+    <link href="~/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+    <link href="~/plugins/morris/morris.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <link href='content/css/ie-old.css' rel='stylesheet' type='text/css'>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/plugins/morris/morris.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="@Url.Content("~/Scripts/carousel.js")" type="text/javascript"></script>
+    <script>window.rootUrl = '@Url.Content("~/")';</script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<script>
+        $(document).ready(function () {
+            $('[data-toggle="modal"]').click(function (e) {
+                //e.preventDefault();
+                //$.noConflict();
+                $(".modal").modal({ backdrop: "static", keyboard: false });
+            });
+        });
+    </script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
+    <script src="~/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/plugins/knob/jquery.knob.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="~/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/plugins/fastclick/fastclick.min.js"></script>
+    <script src="~/Content/dist/js/adminlte.min.js"></script>
+    <script src="~/Scripts/demo.js"></script>
+    <script src="~/Scripts/dashboard.js"></script>
+
+    <script src="~/Content/JQGridReq/jquery.jqGrid.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/JQGridReq/grid.locale-en.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <link href="~/Content/JQGridReq/ui.jqgrid.css" rel="stylesheet" />
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    @* Once Session out, redirecting to login screen *@
+    <script>
+
+        var timeout = @FormsAuthentication.Timeout.TotalMilliseconds;
+        var wintimeout;
+        function SetWinTimeout()
+        {
+            wintimeout =  window.setTimeout( "window.location.href='@FormsAuthentication.LoginUrl';",timeout); // In millisecods
+
+        }
+        $(document).on('click', function () {
+            //when user clicks remove timeout and reset it
+            window.clearTimeout(wintimeout);
+            SetWinTimeout();
+
+        });
+        SetWinTimeout();
+
+    </script>
+    <style type="text/css">
+        .ui-widget input, .ui-widget select, .ui-widget textarea {
+            width: 100%;
+        }
+
+        .ui-jqdialog-content td.DataTD {
+            vertical-align: middle;
+        }
+
+        .ui-jqdialog-content td.DataTD,
+        .ui-jqdialog-content td.CaptionTD {
+            padding: 4px 8px;
+        }
+
+        .ui-jqdialog-content td.EditButton {
+            white-space: nowrap;
+        }
+
+
+
+        .ui-jqgrid table.ui-pg-table {
+            table-layout: auto !important;
+        }
+
+            .ui-jqgrid table.ui-pg-table td {
+                width: auto !important;
+            }
+
+        .skin-blue .wrapper {
+            background-color: transparent;
+        }
+
+        .modal .form-control {
+            width: 100%;
+        }
+
+        @@media (min-width:992px) {
+            .sidebar-mini.sidebar-collapse .content-wrapper {
+                /*border: 1px dashed #075d9d;*/
+                margin: 15px 15px 15px 65px !important;
+                padding: 15px 15px 0;
+            }
+
+            .navbar-custom-menu > .navbar-nav > li > .dropdown-menu { /*adminlte.min.css : 1333*/
+                border: 2px solid transparent;
+                box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+            }
+
+                .navbar-custom-menu > .navbar-nav > li > .dropdown-menu:before {
+                    content: "";
+                    position: absolute;
+                    right: 10px;
+                    top: -7px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 8px 8px 8px;
+                    border-color: transparent transparent #3b464e transparent;
+                    z-index: 9999;
+                }
+        }
+
+        .navbar-custom-menu > .navbar-nav > li > .dropdown-menu::after {
+            content: "";
+            position: absolute;
+            right: 4px;
+            top: -13px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 14px 14px 14px;
+            border-color: transparent transparent #ffffff transparent;
+            z-index: 9998;
+        }
+
+        .sidebar-mini .content-wrapper {
+            margin: 15px 15px 15px 245px !important;
+        }
+
+        }
+
+
+        .skin-blue .content-header,
+        .skin-blue .content-header + .content {
+            padding: 0;
+        }
+
+        .treeview-menu > li > a {
+            padding: 5px 5px 5px 20px;
+        }
+
+        .sidebar-menu {
+            white-space: normal;
+        }
+
+        .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+            top: 43px;
+        }
+
+        .skin-blue .sidebar-menu .treeview-menu > li.click > a,
+        .skin-blue .sidebar-menu .treeview-menu > li.click > a:hover {
+            color: #fbf9f6;
+            background-color: #a3765b;
+            margin-right: 5px;
+            /*margin: -5px 0px -5px -5px;*/
+        }
+        /*.ui-jqgrid .ui-jqgrid-titlebar {
+            background: linear-gradient(#8191a0,#a7b3be);
+            color: #fff;
+            font-weight: 600;
+        }*/
+        /*.sidebar-mini.sidebar-collapse .content-wrapper {
+            border-bottom: 1px solid red;
+            margin-bottom: 15px;
+        }*/
+        /*.ui-jqgrid table.ui-pg-table td {
+            display: inline-block;
+            height: auto !important;
+        }*/
+    </style>
+
+</head>
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+    <div class="preloader-block col-lg-12 no-padd">
+        <div class="preload-logo">
+            <img src="~/Content/Images/logo.png" alt="" class="img-responsive" />
+        </div>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div id="modal-change-password-box" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            @if (Session["UserSessionInfo"] != null)
+            {
+
+                Html.Partial("_ChangePassword");
+            }
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src="~/Content/logo.png" width="50px" height="20px" /></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Evolutyz </b>Corner</span>
+            </a>
+
+
+            
+            @*@TempData["lastVisited"]*@
+
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle navigation</span> </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                     
+                        <li class="dropdown user user-menu">
+
+                            @if (Session["Usrp_ProfilePicture"].ToString() != null&& Session["Usrp_ProfilePicture"].ToString()!="")
+                            {
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/uploadimages/Images/@Session["Usrp_ProfilePicture"]" class="user-image" alt="User Image" id="image"> <span class="hidden-xs"></span><span id="Firstname">@Session["FirstName"]</span><span id="Lastname">@Session["LastName"]</span></a>
+
+                            }
+                            else
+
+                            {
+                            
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="~/Content/images/user.png" class="user-image" alt="User Image" id="image"> <span class="hidden-xs"></span><span id="Firstname">@Session["FirstName"]</span><span id="Lastname">@Session["LastName"]</span></a>
+                            }
+
+
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <input type="hidden" value="@TempData["lastVisited"]" />
+
+                                @{
+                                    TempData.Keep("lastVisited");
+
+                                }
+
+
+                                @if (TempData["lastVisited"] == null)
+
+                                {
+                                    <li class="user-header">
+
+                                        <div class="drpdwn_grd_profile">
+                                            <div class="grd_profile_row">
+                                                @if (Session["Usrp_ProfilePicture"].ToString() != null && Session["Usrp_ProfilePicture"].ToString() != "")
+                                                {
+                                                    <span><img src="/uploadimages/Images/@Session["Usrp_ProfilePicture"]" class="img-circle" alt="User Image" id="imageNew"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span><img src="~/Content/images/user.png" class="img-circle" alt="User Image" id="imageNew"></span>
+                                                }
+                                                <span><p id="PFname">@Session["FirstName"] @Session["LastName"]</p><p>@HttpContext.Current.User.Identity.Name</p><p>@Session["RoleName"]</p></span>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+
+                                    <li class="user-header">
+                                        <div class="drpdwn_grd_profile">
+                                            <div class="grd_profile_row">
+                                                  @if (Session["Usrp_ProfilePicture"].ToString() != null && Session["Usrp_ProfilePicture"].ToString() != "")
+                                                {
+                                                    <span><img src="/uploadimages/Images/@Session["Usrp_ProfilePicture"]" class="img-circle" alt="User Image" id="imageNew"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span><img src="~/Content/images/user.png" class="img-circle" alt="User Image" id="imageNew"></span>
+                                                }
+                                                <span><p id="PFname">@Session["FirstName"] @Session["LastName"]</p><p>@HttpContext.Current.User.Identity.Name</p><p>@Session["RoleName"]</p></span>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                }
+
+                                <li class="user-footer" style="padding:0;">
+                                    @*<div class="clearfix text-center">*@
+                                    <a href="~/Profile/Index" class="btn btn-default">Profile</a>
+                                    <a href="~/Profile/ChangePassword" class="btn btn-default">Change Password</a>
+
+                                    @using (Html.BeginForm("SignOut", "Home", FormMethod.Post, new { style = "", id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit();" class="btn btn-default">Logout</a>
+                                    }
+
+                                </li>
+                                <li class="user-footer">
+                                    <p style="margin-bottom:auto;color:#fff;font-size :10px">Your last Logged in @TempData["lastVisited"]</p>
+                                </li>
+
+                            </ul>
+
+
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+
+                  @Html.Partial("_LeftMenu")
+
+              
+                
+            </section>
+        </aside>
+        <div class="content-wrapper">
+
+          
+
+
+            <div>
+                @RenderBody()
+            </div>
+
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs"> <b>Version</b> 1.0 </div>
+            <div class="pull-left hidden-xs"><a href="http://evolutyz.com/" target="_blank" style="color:#FFF"><img src="~/Content/images/CompanyLogos/502.png" width="85px" /> Copyrights  Evolutyz IT Services.</a> </div>
+            <br />
+        </footer>
+      
+        <script src="@Url.Content("~/Scripts/bootstrapValidator.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/bootstrap-multiselect.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/common-js.js")" type="text/javascript"></script>
+        <script>
+            //$(document).ready(function () {
+            //    $('img').on("error", function () {
+            //        $(this).attr('src', '/Content/images/broken-image.png');
+            //    });
+            //});
+            
+        </script>
+</body>
+
+</html>

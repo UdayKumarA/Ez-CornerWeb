@@ -1,0 +1,1491 @@
+﻿
+@model IEnumerable<Evolutyz.Entities.WeekDays>
+
+@{
+    ViewBag.Title = "Calendar";
+
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="~/Scripts/date.format.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <style>
+        strong.hover-notification {
+            position: relative;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background-color: gray;
+        }
+
+            strong.hover-notification[title*="Casual"] {
+                background-color: red
+            }
+
+            strong.hover-notification[title*="Comp-Off"] {
+                background-color: green;
+            }
+
+            strong.hover-notification:before {
+            }
+
+            strong .hover-notification + strong.hover-notification {
+                margin-top: 5px;
+            }
+
+        .grp-leaves {
+            margin-bottom: 15px;
+        }
+
+        @@media (min-width:992px) {
+            .grp-leaves {
+                display: flex;
+                flex-flow: wrap;
+            }
+
+                .grp-leaves > .form-group {
+                    float: left;
+                    width: 33.33%;
+                    padding: 0 15px;
+                }
+
+            .legend {
+            }
+        }
+        /*.grp-leaves > fieldset {
+                padding: 10px 20px;
+                margin: 0 2px;
+                border: 1px solid #e5e5e5;
+            }
+        .grp-leaves > fieldset > legend {
+            width: auto;
+            margin-bottom: auto;
+            border: 1px solid #e5e5e5;
+            padding: 0 10px !important;
+        }*/
+        #calendarContainer td, #calendarContainer th {
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        #calendarContainer tbody {
+            background-color: white;
+        }
+
+        #calendarContainer thead > tr > th {
+            background-color: #ffe7dc;
+        }
+
+        #calendarContainer tbody > tr > td {
+            padding: 0;
+        }
+
+            #calendarContainer tbody > tr > td > a {
+                display: flex;
+                width: 100%;
+                position: relative;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+
+        #calendarContainer {
+            height: 500px;
+            float: left;
+            /*max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 50px;*/
+        }
+
+        .modal {
+            padding-top: 90px;
+        }
+
+        .tooltip {
+            width: 400px;
+            height: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+            -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            position: absolute;
+            top: 5px;
+            left: 50px;
+            display: none;
+        }
+
+        .tooltip {
+            z-index: 100;
+        }
+
+        .leavedataonhover {
+            display: block;
+            width: 9%;
+        }
+
+            .leavedataonhover:hover + .tooltip {
+                display: block;
+            }
+
+        .tooltip:hover {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input type="hidden" class="form-control" id="userprofileid" value=@TempData["User_id"] />
+
+    <div id="LeaveList" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Employees On Leave</h4>
+                </div>
+                <div class="modal-body" id="empleaveDetails">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="AppLeave_Popup" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose Option</h4>
+                </div>
+
+
+                <div class="modal-body" id="questions">
+
+                    <form id="SelectOption">
+                        <div class="form-group row">
+                            <div class="col-md-4" id="ApplyLeave">
+                                <label class="radio-inline">
+                                    <input type="radio" class="check" name="optradio" id="radio1" value="rad1">Apply Leave
+                                </label>
+
+                            </div>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" class="check" name="optradio" id="radio2" value="rad2">Work From Home
+                                </label>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="Applyleave" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Apply Leave</h4>
+                </div>
+                <div class="modal-body" id="questions">
+
+
+
+                    <form id="AddModal">
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label>EmployeeId</label>
+                            </div>
+                            <div class="col-md-8">
+
+                                <input type="text" class="form-control" id="getEmpIds" value=@TempData["UserId"] readonly />
+                                @*<input type="text" class="form-control" />*@
+                                @*@Html.DropDownList("getEmpIds", new SelectList(string.Empty, "Value", "Text"), "
+
+                                    select EmployeeId", new {@class="form-control", @style = "" })*@
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label>EmployeeName </label>
+
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="Emp_Names" value="@TempData["Name"]" readonly />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-5">
+                                <label>FromDate </label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="from_date" name="from_date" readonly />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-5">
+                                <label>ToDate </label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="to_date" name="to_date" onchange="leavecount()" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @*<div class="col-md-12 grp-leaves" id="getleavetypes">*@
+                            <table id="tableDiagnose">
+                                <thead>
+                                    <tr>
+                                        <th>LeaveType</th>
+                                        <th id="totalLeaves">TotalLeaves</th>
+                                        <th id="appliedLeaves">AppliedLeaves</th>
+                                        <th id="applyLeaves">Apply no. Of Leaves </th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="getleavetypes"></tbody>
+
+
+                            </table>
+                        </div>
+
+                        <div class="row form-group" style="display:none">
+                            <div class="col-md-5">
+                                <label>FromAddress</label>
+                            </div>
+                            <div class="col-md-8 ">
+                                <input type="text" class="form-control" id="from_address" value=@TempData["FromAddress"] />
+                            </div>
+                        </div>
+
+
+                    </form>
+                    <div class="col-md-4 ">
+                        <input class="form-control" id="TotalLeaveCount" />
+                    </div>
+                    <div><label id="LeaveValidid" class='validation' style='color:red;margin-bottom: 20px;float:10px right;display:none'>Please Enter Leaves</label></div>
+                    <div><label id="validttlleavecount" class='validation' style='color:red;margin-bottom: 20px;float:10px right;display:none'>Please Enter valid no. of Leaves</label></div>
+                </div>
+                <div class="modal-footer" id="questions">
+                    <button type="button" class="btn btn-clr" id="Apply_Leave" onclick="userleaveconsumed()"> ApplyLeave</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="Cancel"> Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="Workfrmhome" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Work From Home</h4>
+                </div>
+                <div class="modal-body" id="questions">
+
+
+
+                    <form id="AddModal">
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label>EmployeeId</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="getEmpIds" value=@TempData["UserId"] readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label>EmployeeName </label>
+
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="Emp_Names" value="@TempData["Name"]" readonly />
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-5">
+                                <label>FromDate </label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="fromdate" name="fromdate" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-5">
+                                <label>ToDate </label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="todate" name="todate" onchange="leavecount()" />
+                            </div>
+                        </div>
+                        <div class="row form-group" style="display:none">
+                            <div class="col-md-5">
+                                <label>FromAddress</label>
+                            </div>
+                            <div class="col-md-8 ">
+                                <input type="text" class="form-control" id="from_address" value=@TempData["FromAddress"] />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="questions">
+                    <button type="button" class="btn btn-clr" id="Wrk_Frm_Hme" onclick="userwrkfrmhome()">Apply</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="cancel"> Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="main-container">
+        <div style="display:table;margin-bottom:10px;">
+            <div style="display:table-cell">
+                <select id="sel_month" class="form-control" style="width:100%;">
+                    <option value="0">selectmonth</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div style="display:table-cell;padding-left:20px">
+                <select id="sel_Year" class="form-control" style="width:100%;"></select>
+            </div>
+        </div>
+        <table id="calendarContainer">
+
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+
+                </tr>
+            </thead>
+            <tbody id="tbody_months">
+                @foreach (var index in Model)
+                {
+                    <tr>
+                        @if (index.Su != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" style="color:gray">@index.Su</a>
+                                @if (index.SuLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.SuLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName :</label>
+                                            <label> @obj.LTyp_LeaveType :</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.SuLeaveList.Count</a></small>
+                                }
+
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" style="color:gray"></a></td>
+                        }
+                        @if (index.Mo != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" data-target="#AppLeave_Popup" data-toggle="modal" style="" data-id="@index.Mo" onclick="Getdate(this)">@index.Mo</a>
+                                @if (index.MoLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.MoLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName</label>
+                                            <label> @obj.LTyp_LeaveType</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.MoLeaveList.Count</a></small>
+                                }
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td><a class="" style=""></a></td>
+
+                        }
+                        @if (index.Tu != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" data-target="#AppLeave_Popup" data-toggle="modal" href="#" style="" data-id="@index.Tu" onclick="Getdate(this)">@index.Tu</a>
+                                @if (index.TuLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.TuLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName</label>
+                                            <label> @obj.LTyp_LeaveType</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.TuLeaveList.Count</a></small>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" href="#" style=""></a></td>
+                        }
+                        @if (index.We != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" data-target="#AppLeave_Popup" data-toggle="modal" href="#" style="" data-id="@index.We" onclick="Getdate(this)">@index.We</a>
+                                @if (index.WeLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.WeLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName</label>
+                                            <label> @obj.LTyp_LeaveType</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.WeLeaveList.Count</a></small>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" href="#" style=""></a></td>
+                        }
+                        @if (index.Th != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" data-target="#AppLeave_Popup" data-toggle="modal" href="#" style="" data-id="@index.Th" onclick="Getdate(this)">@index.Th</a>
+                                @if (index.ThLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.ThLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName :</label>
+                                            <label> @obj.LTyp_LeaveType </label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.ThLeaveList.Count</a></small>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" href="#" style=""></a></td>
+                        }
+                        @if (index.Fr != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" data-target="#AppLeave_Popup" data-toggle="modal" href="#" style="" data-id="@index.Fr" onclick="Getdate(this)">@index.Fr</a>
+                                @if (index.FrLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.FrLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName</label>
+                                            <label> @obj.LTyp_LeaveType</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.FrLeaveList.Count</a></small>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" href="#" style=""></a></td>
+                        }
+                        @if (index.Sa != null)
+                        {
+                            <td>
+                                <a class="leavedataonhover" id="leavedataonhover" style="color:gray">@index.Sa</a>
+                                @if (index.SaLeaveList.Count > 0)
+                                {
+                                    <div id="1" style="display:none">
+                                        @foreach (var obj in index.SaLeaveList)
+                                        {
+                                            <label> @obj.UsrP_FirstName</label>
+                                            <label> @obj.LTyp_LeaveType</label>
+                                            <br />
+                                        }
+                                    </div>
+                                    <small><a href="#" onclick="myFunct('#1')" data-target="close"> leave count : @index.SaLeaveList.Count</a></small>
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td><a class="" href="#" style=""></a></td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        //window.onload = function () {
+        //    var d = new Date();
+        //    document.getElementById("leavedataonhover").value = d;
+
+        //};
+
+        //if (document.getElementById('radio1').checked) {
+        //    Dates();
+        //}
+        //else {
+        //    wfhDates();
+        //}
+
+        var resultDataArray; var CheckLeaveSum; var newarr = []; var filtered;
+
+
+        var minOffset = 0, maxOffset = 10;
+        var thisYear = (new Date()).getFullYear();
+
+
+        var presentmonth = (new Date()).getMonth() + 1;
+
+        for (var i = minOffset; i <= maxOffset; i++) {
+            var year = thisYear + i; $('<option>', { value: year, text: year }).appendTo("#sel_Year");
+
+        }
+        $('#sel_month option[value=' + presentmonth + ']').prop('selected', true);
+        var dataobj;
+        var empleavedata;
+        var presentdate = "";
+        var presentmonth = "";
+        var presentyear = "";
+        var newdate;
+
+        var userid = "";
+        $(document).ready(function () {
+
+            //$("#from_date").datepicker({
+            //    format: 'mm/dd/yyyy',
+            //});
+            $("#to_date").datepicker({
+                format: 'mm/dd/yyyy',
+            });
+
+
+            $("#fromdate").datepicker({
+                format: 'mm/dd/yyyy',
+            });
+            $("#todate").datepicker({
+                format: 'mm/dd/yyyy',
+            });
+
+
+
+           // loaddata();
+
+            // Colors();
+            $("#Cancel").click(function () {
+                window.location.reload();
+            });
+
+            $("#cancel").click(function () {
+                window.location.reload();
+            });
+
+
+
+            userid = $("#userprofileid").val();
+            //getleaves(userid);
+
+            getAllLeaveTypes(userid);
+
+
+            $('td').on({
+                'dblclick': function () {
+                    $(this).prop('contenteditable', true);
+                   // window.location.reload();
+                },
+                //'blur': function () {
+                //    $(this).prop('contenteditable', false);
+                //}
+            });
+
+            $('#Apply_Leave').click(function () {
+
+
+
+                var inputdata = {
+                    'EmpId': $("#getEmpIds").val(),
+                    'EmpName': $("#Emp_Names").val(),
+                    'LeaveType': $("#getleavetypes").val(),
+                    'FromDate': $("#from_date").val(),
+                    'ToDate': $("#to_date").val(),
+                   // 'FromAddress': $('#from_address').val(),
+                };
+
+               // console.log(inputdata);
+
+                    $.ajax({
+                        url: "/LeaveApplicationManagement/MailLeave",
+                        type: "POST",
+                        processData: false,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(inputdata),
+                        datatype: 'json',
+                        success: function (data, status) {
+
+                            alert(data);
+                            window.location.reload();
+                        },
+                        error: function (xhr, data, status) {
+                            console.log("Data Not Retrived");
+                        }
+                    });
+
+
+
+
+            });
+
+            $('.leavedataonhover').click(function () {
+
+                var presentdate = ($(this).text());
+
+                var presentmonth = $("#sel_month option:selected").val();
+                var presentyear = $("#sel_Year option:selected").val();
+
+                newdate = new Date(presentyear + '-' + presentmonth + '-' + presentdate).setHours(0, 0, 0, 0);
+                dataobj = [];
+                $.each(empleavedata,function(i, val) {
+                    // console.log(empleavedata);
+                    alert(empleavedata);
+                    var startingdate = val.LeaveStartDate
+                    if (new Date(parseInt(startingdate.substr(6))).setHours(0, 0, 0, 0) == newdate) {
+
+                        dataobj.push(val);
+                    };
+
+                });
+                //console.log(dataobj);
+                if (dataobj.length > 0) {
+                    for (var i = 0; i < dataobj.length; i++) {
+                        //  alert(dataobj[i].UsrP_FirstName + ' '+ dataobj[i].LTyp_LeaveType);
+                        $(this).append("<strong class='hover-notification' title='" + dataobj[i].UsrP_FirstName + " " + dataobj[i].LTyp_LeaveType + "'></strong>");
+
+
+
+                    }
+
+                }
+
+          // }
+
+            });
+
+            $('#sel_month').change(function () {
+
+                var Month = $("#sel_month option:selected").val();
+                var year = $("#sel_Year option:selected").val();
+
+                Colors();
+                var inputdata = {
+                    "Selmonth": Month,
+                    "Selyear": year,
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("SelectedMonth", "LeaveApplicationManagement")",
+                   // contentType: 'application/json',
+                    data: {
+                        "Selmonth": Month,
+                        "Selyear": year,
+                    },
+                    success: function (data) {
+                        //console.log(data);
+
+
+                        //  console.log("Data Retrived");
+                        //  console.log(JSON.stringify(data));
+                        $('#calendarContainer tbody tr').remove();
+                        //$("#calendarContainer").find('tbody').empty();
+                        for (var index = 0; index < data.length; index++) {
+                            var tr = "<tr>";
+                            if (data[index].Su != null) {
+
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover'  style='color:gray' href='#'>" + data[index].Su + "</a>";
+                                if (data[index].SuLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].SuLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].SuLeaveList.length + '</a></small>';
+                                }
+                                tr += "</td>";
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].Mo != null) {
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' data-target='#AppLeave_Popup' data-toggle='modal'   href='#' data-id="+ data[index].Mo+"  onclick='Getdate(this)'>" + data[index].Mo + "</a>";
+                                if (data[index].MoLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].MoLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr+='<small><a href="#" onclick="myFunct('+'#1'+')" data-target="close"> leave count :' + data[index].MoLeaveList.length + '</a></small>';
+                                }
+                                tr += "</td>";
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].Tu != null) {
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' data-target='#AppLeave_Popup' data-toggle='modal'   href='#' data-id="+data[index].Tu+" onclick='Getdate(this)'>" + data[index].Tu + "</a>";
+                                if (data[index].TuLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].TuLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].TuLeaveList.length + '</a></small>';
+                                }
+                                tr += "</td>";
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].We != null) {
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id="+ data[index].We +" onclick='Getdate(this)'>" + data[index].We + "</a>";
+                                if (data[index].WeLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].WeLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].WeLeaveList.length + '</a></small>';
+                                }
+                                tr += "</td>";
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].Th != null) {
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].Th +" onclick='Getdate(this)'>" + data[index].Th + "</a>";
+
+                                if (data[index].ThLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].ThLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct('+'#1'+')" data-target="close"> leave count :' + data[index].ThLeaveList.length + '</a></small>';
+                                }
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].Fr != null) {
+
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' data-target='#AppLeave_Popup' data-toggle='modal'  href='#' data-id="+ data[index].Fr +" onclick='Getdate(this)'>" + data[index].Fr + "</a>";
+                                if (data[index].FrLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].FrLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].FrLeaveList.length + '</a></small>';
+                                }
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+                            if (data[index].Sa != null) {
+
+                                tr += "<td><a class='leavedataonhover' id='leavedataonhover' style='color:gray'>" + data[index].Sa + "</a>";
+                                if (data[index].SaLeaveList.length > 0) {
+                                    tr += " <div id='1' style='display: none'>";
+                                    $.each(data[index].SaLeaveList, function (index, value) {
+                                        tr += "<label> obj.UsrP_FirstName</label>" +
+                                            "<label> obj.LTyp_LeaveType</label>" +
+                                            " <br />";
+                                    });
+                                    tr += "</div>";
+                                    tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].SaLeaveList.length + '</a></small>';
+                                }
+                            }
+                            else {
+                                tr += "<td><a style='color:gray'></a></td>";
+                            }
+
+                            $("#tbody_months").append(tr);
+                        }
+                        //$("#calendarContainer").DataTable();
+
+                    },
+
+                    error: function (xhr, data, status) {
+                         console.log("Data Not Retrived");
+                    }
+
+                });
+            });
+
+            $('#sel_Year').change(function () {
+
+                Colors();
+                var Month = $("#sel_month option:selected").val();
+                var year = $("#sel_Year option:selected").val();
+
+                var inputdata = {
+                    "Selmonth": Month,
+                    "Selyear": year,
+                };
+                  $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("selectedYear", "LeaveApplicationManagement")",
+                      contentType: 'application/json',
+                      data: JSON.stringify(inputdata),
+                      success: function (data) {
+
+                        //  alert(data);
+                          //console.log("Data Retrived");
+                          //console.log(JSON.stringify(data));
+                          $('#calendarContainer tbody tr').remove();
+                          //$("#calendarContainer").find('tbody').empty();
+                          for (var index = 0; index < data.length; index++) {
+                              var tr = "<tr>";
+                              if (data[index].Su != null) {
+
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover' style='color:gray'>" + data[index].Su + "</a>";
+                                  if (data[index].SuLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].SuLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].SuLeaveList.length + '</a></small>';
+                                  }
+                                  tr += "</td>";
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].Mo != null) {
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover'  data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].Mo +" onclick='Getdate(this)'>" + data[index].Mo + "</a>";
+                                  if (data[index].MoLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].MoLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].MoLeaveList.length + '</a></small>';
+                                  }
+                                  tr += "</td>";
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].Tu != null) {
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover'  data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].Tu +" onclick='Getdate(this)'>" + data[index].Tu + "</a>";
+                                  if (data[index].TuLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].TuLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].TuLeaveList.length + '</a></small>';
+                                  }
+                                  tr += "</td>";
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].We != null) {
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover'  data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].We +" onclick='Getdate(this)'>" + data[index].We + "</a>";
+                                  if (data[index].WeLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].WeLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].WeLeaveList.length + '</a></small>';
+                                  }
+                                  tr += "</td>";
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].Th != null) {
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover'  data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].Th +" onclick='Getdate(this)'>" + data[index].Th + "</a>";
+                                  if (data[index].ThLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].ThLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].ThLeaveList.length + '</a></small>';
+                                  }
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].Fr != null) {
+
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover'  data-target='#AppLeave_Popup' data-toggle='modal' href='#' data-id=" + data[index].Fr +" onclick='Getdate(this)'>" + data[index].Fr + "</a>";
+                                  if (data[index].WeLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].FrLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].FrLeaveList.length + '</a></small>';
+                                  }
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+                              if (data[index].Sa != null) {
+
+                                  tr += "<td><a class='leavedataonhover' id='leavedataonhover' style='color:gray'>" + data[index].Sa + "</a>";
+                                  if (data[index].SaLeaveList.length > 0) {
+                                      tr += " <div id='1' style='display: none'>";
+                                      $.each(data[index].SaLeaveList, function (index, value) {
+                                          tr += "<label> obj.UsrP_FirstName</label>" +
+                                              "<label> obj.LTyp_LeaveType</label>" +
+                                              " <br />"
+                                      });
+                                      tr += "</div>";
+                                      tr += '<small><a href="#" onclick="myFunct(' + '#1' + ')" data-target="close"> leave count :' + data[index].SaLeaveList.length + '</a></small>';
+                                  }
+                              }
+                              else {
+                                  tr += "<td><a style='color:gray'></a></td>";
+                              }
+
+                              $("#tbody_months").append(tr);
+                          }
+                      },
+                          //$("#calendarContainer").DataTable();
+
+                          error: function (xhr, data, status) {
+                              // console.log("Data Not Retrived");
+                          }
+                      });
+
+            });
+        });
+
+        function myFunct(id) {
+
+            var leaveObj = $(id).html();
+            $('#empleaveDetails').append(leaveObj);
+            //$('#leaveempName').text("Employee Name : "+empName);
+
+            //$('#leaveType').text("Leave Type : "+Leavetype);
+            $('#LeaveList').css('display','block');
+        }
+
+        var SelectedFromDate = "";
+        var seldate = "";
+        var monthSelected = "";
+        //var yearSelected = "";
+        var daysCount = "";
+        var days = "";
+        var currentleave = "";
+        var SumofLeaves = "";
+
+        function Getdate(d) {
+            console.log(d);
+            var SelectedDate = $(d).attr("data-id");
+            if (SelectedDate <= 9) {
+                seldate = ('0' + SelectedDate);
+            }
+            else {
+                seldate = SelectedDate;
+            }
+            var CurrentMonth = $("#sel_month").val();
+            if (CurrentMonth <= 9) {
+                monthSelected = ('0' + CurrentMonth);
+            }
+            else {
+                monthSelected = CurrentMonth;
+            }
+
+            var CurrentYear = $("#sel_Year").val();
+            SelectedFromDate = monthSelected + '/' + seldate + '/' + CurrentYear;
+            console.log(SelectedFromDate);
+            $("#from_date").val(SelectedFromDate);
+           // console.log($(d).attr("data-id"));
+        }
+
+
+
+
+        function Colors() {
+             var date = presentyear + "-" + presentmonth + "-" + presentdate;
+
+            $.ajax({
+               url: "/LeaveApplicationManagement/GetLeaveApprovalsDetails",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                  // alert(response);
+                    //console.log(data);
+                    empleavedata = data;
+
+                    for (var i = 0; i < data.length; i++) {
+                        var StartDate = data[i].LeaveStartDate;
+                        var EndDate = data[i].LeaveEndDate;
+                        var SDate = new Date(parseInt(StartDate.substr(6)));
+                        var EDate = new Date(parseInt(EndDate.substr(6)));
+                        var Startresult = "";
+                        var Endresult = "";
+
+                        Startresult = SDate.format("dd/mm/yyyy");
+                        Endresult = EDate.format("dd/mm/yyyy");
+
+                        for (var u= 0; u < new Date(new Date(SDate).getFullYear(), (new Date(SDate).getMonth() + 1), 0).getDate(); u++) {
+                            j = u + 1;
+                            //console.log(new Date(new Date(SDate).getFullYear(), new Date(SDate).getMonth(), j).getDate());
+
+                        }
+                        var mm = ('Month ', (new Date(SDate).getMonth() + 1));
+
+                        var dd = ('Date ', (new Date(SDate).getDate()));
+
+                        var yy = ('Year ', (new Date(SDate).getFullYear()));
+
+                    }
+
+                    //var startingdate = SDate;
+                    //console.log(startingdate);
+
+                },
+                error: function (xhr, data, status) {
+                    console.log("Data Not Retrived");
+                }
+
+            });
+        }
+
+        var addleaves;
+        var appleave = [];
+
+        function getAllLeaveTypes(userid) {
+
+            $.ajax({
+                url: "/LeaveApplicationManagement/GetLeaves",
+                type: "POST",
+                data: {
+                    'id': userid,
+                },
+                datatype: "JSON",
+                success: function (data) {
+                    addleaves = data.length;
+
+                    //console.log(data);
+
+                    $("#getleavetypes").html('');
+
+                    $("#getleavetypes").append('<input id ="accmail" value= ' + data[0].Acc_EmailID + ' style="display:none"/>');
+                    appleave = 0;
+                    $.each(data, function (index, value) {
+
+
+                        $("#date1week tbody").append("<td>&nbsp;</td>");
+                        //console.log(value);
+                        $("#getleavetypes").append('<tr><td name=""><span id="leavetypename" class=' + value.LTyp_LeaveTypeID + '>' + value.ltyp_leavetype + '</span> </td><td name=""><span id="leavetypedays" class= ' + value.lschm_leaveschemeid + '> ' + value.lschm_leavecount + '</span> </td> <td name="totalapplied"><span id="totalapplied">' + value.AppliedLeaves + '</span></td> <td> <input type="text" name="appliedleaves" contenteditable="true" id="appliedleaves' + value.LTyp_LeaveTypeID + '" class="' + value.lschm_leavecount + '" data-id = "' + value.AppliedLeaves + '" data-LeaveCount= "' + value.lschm_leavecount + '" onchange = "ttlAppliedLeaves(this)"/></td> </tr>')
+                        appleave++;
+                    });
+                }
+            });
+        }
+
+        function userwrkfrmhome() {
+
+           // wfhDates();
+
+            var frmdate = $("#fromdate").val();
+            var Todate = $("#todate").val();
+            var accemailid = $("#accmail").val();
+
+
+            $.ajax({
+                contentType: "application/json",
+                type: "POST",
+                url: "/LeaveApplicationManagement/savewrkfrmhome",
+                data: JSON.stringify({
+                    "fromdate": frmdate,
+                    "todate": Todate,
+                    "accmail": accemailid,
+                    "Usrl_UserId": userid
+                }),
+                success: function (data) {
+                    //alert(data);
+                    location.reload();
+
+                }
+            });
+
+        }
+
+        function DaysCount() {
+
+            if ($("#FromDate").val() !== "" && $("#ToDate").val() !== "") {
+
+                var From_date = new Date($("#from_date").val());
+                var To_date = new Date($("#to_date").val());
+
+                if (To_date < From_date)
+                    return 0;
+                var millisecondsPerDay = 86400 * 1000;
+                From_date.setHours(0, 0, 0, 1);
+                To_date.setHours(23, 59, 59, 999);
+                var diff = To_date - From_date;
+                days = Math.ceil(diff / millisecondsPerDay);
+
+                var weeks = Math.floor(days / 7);
+                days = days - (weeks * 2);
+
+
+                var startDay = From_date.getDay();
+                var endDay = To_date.getDay();
+
+                if (startDay - endDay > 1) {
+                    days = days - 2;
+                }
+
+                if (startDay === 0 && endDay !== 6) {
+                    days = days - 1;
+                }
+
+                if (endDay === 6 && startDay !== 0) {
+                    days = days - 1;
+                }
+               // alert(days);
+            }
+        }
+
+        function CalculateTtlLeaves() {
+            var sum = 0;
+            $("input[name=appliedleaves]").each(function () {
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+                }
+            });
+            SumofLeaves = $("#TotalLeaveCount").val(sum);
+        }
+
+
+
+        var totalleaves = "";
+        var LeavesApplied = "";
+        var maxleaves = "";
+        var currentleave = "";
+        var AppliedId;
+        //function ttlAppliedLeaves(id) {
+        //     totalleaves = id.className;
+        //     LeavesApplied = $(id).attr("data-id");
+        //     maxleaves = totalleaves - LeavesApplied;
+        //    currentleave = $(id).val();
+        //    CalculateTtlLeaves();
+
+        //}
+        function ttlAppliedLeaves(id) {
+            AppliedId = id;
+            CalculateTtlLeaves();
+            totalleaves = $(id).attr("data-LeaveCount");
+            LeavesApplied = $(id).attr("data-id");
+            maxleaves = totalleaves - LeavesApplied;
+            currentleave = parseInt($(id).val());
+
+
+
+        }
+
+        var isValid = false;
+        function userleaveconsumed()
+        {
+
+            DaysCount();
+            
+            var fromdate = $ ("#from_date").val();
+
+            var todate = $("#to_date").val();
+
+            if (todate === "")
+            {
+                $("input[name=to_date]").parent().next(".validation").remove();
+                $("input[name=to_date]").parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:10px right;'>Please Select  to Date</label>");
+                isValid = false;
+            }
+            else if (todate < fromdate)
+            {
+                  $("input[name=to_date]").parent().next(".validation").remove();
+                  $("input[name=to_date]").parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:10px right;'>Please Select Valid Date</label>");
+                  isValid = false;
+            }
+            else
+            {
+                  $("input[name=to_date]").parent().next(".validation").remove();
+                  isValid = true;
+            }
+
+
+            var lblval = $("#TotalLeaveCount").val();
+
+
+            if (lblval === "") {
+                $("#LeaveValidid").show();
+                $("#validttlleavecount").hide();
+                isValid = false;
+            } else if (parseInt(lblval) !== days) {
+                $("#validttlleavecount").show();
+                $("#LeaveValidid").hide();
+                isValid = false;
+            } else if (parseInt(lblval) === days) {
+                $("#validttlleavecount").hide();
+                $("#LeaveValidid").hide();
+                isValid = true;
+
+            }
+
+            if (maxleaves >= currentleave) {
+
+                $(AppliedId).parent().next(".validation").remove();
+                $(AppliedId).parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:left;'></label>");
+                isValid = true;
+            } else {
+
+                $(AppliedId).parent().next(".validation").remove();
+                $(AppliedId).parent().after("<label class='validation' style='color:red;margin-bottom: 20px;float:left;'>Please Enter min leaves</label>");
+                isValid = false;
+            }
+            //if (!isValid) {
+            //    return false;
+            //}
+
+
+            var leavearray = new Array();
+            var leavetypeid = new Array();
+            var leaveschmid = new Array();
+            var accmails = new Array();
+
+            var fromdate = $("#from_date").val();
+            var todate = $("#to_date").val();
+            var accemailid = $("#accmail").val();
+
+
+            $("span[id=leavetypename]").each(function () {
+                leavetypeid.push($(this).attr('class'));
+            });
+
+            $("span[id=leavetypedays]").each(function () {
+                leaveschmid.push($(this).attr('class'));
+            });
+
+            $("input[name=appliedleaves]").each(function () {
+                leavearray.push($(this).val());
+            });
+
+
+
+            var leaveupdate = [];
+
+
+
+            for (var i = 0; i <= leavearray.length; i++) {
+
+                leaveupdate.push({ "LTyp_LeaveTypeID": leavetypeid[i], "lschm_leaveschemeid": leaveschmid[i], "AppliedLeave": leavearray[i] });
+            }
+            leaveupdate = JSON.stringify({ 'leaveupdate': leaveupdate, "LeaveStartDate": fromdate, "LeaveEndDate": todate, "Usrl_UserId": userid, "Acc_EmailID": accemailid });
+
+
+            var inputdata = {
+                "leaveTypeId": leavetypeid,
+                "leaveShemeId": leaveschmid,
+              //  "leavesApplied": noOfLeavesApplied
+            };
+            //if (!isValid) {
+            //    return false;
+            //}
+
+            if (isValid== true)
+            {
+
+                $.ajax({
+                    contentType: "application/json",
+                    type: "POST",
+                    url: "/LeaveApplicationManagement/saveleavecount",
+                    data: leaveupdate,
+                    success: function (data) {
+                        alert(data);
+                        window.location = '/LeaveApplicationManagement/Calendar';
+
+                    }
+                });
+             }
+        }
+
+
+
+
+        function leavecount() {
+
+            DaysCount();
+
+            var start = $('#from_date').val();
+            var end = $('#to_date').val();
+            var startDay = new Date(start);
+            var endDay = new Date(end);
+            var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+            var millisBetween = endDay.getTime() - startDay.getTime();
+            var days = millisBetween / millisecondsPerDay;
+
+            $.ajax({
+                contentType: "application/json",
+                type: "POST",
+                url: "/LeaveApplicationManagement/CheckLeave",
+                data: JSON.stringify({
+                    'leaves': days,
+                }),
+
+                //data: JSON.stringify({
+                //    'leaves': days,
+                //}),
+                success: function (data, status) {
+
+                },
+                error: function (xhr, data, status) {
+                    // console.log("Data Not Retrived");
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+
+    <script>
+
+        $("#SelectOption input[name='optradio']").click(function () {
+            var str = $("input:radio[name=optradio]:checked").val();
+            if (str == "rad1") {
+
+                $('#Applyleave').show();
+                // Dates();
+                $('#Workfrmhome').hide();
+                $('#AppLeave_Popup').hide();
+
+            }
+            else {
+                $('#Workfrmhome').show();
+                $('#Applyleave').hide();
+                $('#AppLeave_Popup').hide();
+            }
+
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#timesheet_calender").addClass("active");
+            $("#timesheet_calender > ul.treeview-menu > li:first-child").addClass("click");
+            $("#timesheet_calender").siblings().removeClass("active");
+        });
+    </script>
+
+</body>
+
+
+</html>
+

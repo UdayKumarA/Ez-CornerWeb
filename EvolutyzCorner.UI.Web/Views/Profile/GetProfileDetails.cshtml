@@ -1,0 +1,173 @@
+﻿
+@model EvolutyzCorner.UI.Web.Models.UserProfilesData
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/ViewProfileDetails.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+   
+
+</script>
+
+<style>
+    #table_wrapper {
+        width: 930px;
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+        .box.box-solid.box-brown > .box-header {
+            /*background-color: #a3765b;
+        color: #fff;*/
+            border-color: #aaaaaa;
+            background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            color: #222222;
+        }
+
+        .box.box-solid.box-brown .btn-warning {
+            background-color: #f97045;
+            border-color: #fe450b;
+        }
+
+        .box.box-solid.box-brown .btn-success {
+            background-color: #fea728;
+            border-color: #FF9800;
+        }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="panel panel-success">
+        <div class="panel-heading">Profile Info</div>
+        <div class="panel-body">
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="FirstName">Title</label>
+                    <select id="titleid" style="width:100%" class="form-control"></select>
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="FirstName">FirstName</label>
+                    <input type="text" id="frstNameid" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="LastName">LastName</label>
+                    <input type="text" id="Lstnameid" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <label for="Gender">Gender</label>
+                    <select id="genderid" style="width:100%" class="form-control"></select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="EmployeeID">EmployeeID</label>
+                    <input type="text" id="Empid" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="EmailID">EmailID</label>
+                    <input type="text" id="Emailid" class="form-control" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="MobileNumber">MobileNumber</label>
+                    <input type="text" id="MobNumid" class="form-control" />
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="PhoneNumber">PhoneNumber</label>
+                    <input type="text" id="PhnoNumid" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="DOB">DOB</label>
+                    <div class="demo">
+                        @*<input type="date" id="txtDate" />*@
+                        <input id="DObId" type="text" placeholder="Date of Birth...">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="DOB">DOJ</label>
+                    <div class="demo">
+                        <input id="DOJId" readOnly='readonly' type="text" placeholder="Date of joining...">
+                    </div>
+                </div>
+                @*<div class="form-group col-md-4">
+                    <label for="ProfilePicture">ProfilePicture</label>
+                </div>*@
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ImageName">Image Name</label>
+                    <input type="file" id="fileUpload" name="fileUpload" accept="image/*" onchange="loadFile(event)" />
+                    @*@Html.TextBoxFor(m => m.ImageName, new { @class = "form-control", style = "display: none;" })
+                    @Html.ValidationMessageFor(m => m.ImageName)*@
+                    <img id="imgLogo" src="#" class="img-responsive" alt="Logo" width="150" height="55" />
+                </div>
+
+
+
+                @*<div class="col-md-9">
+
+            <div class="col-md-4">
+                <div class="btn btn-primary">
+                    <input type="file" id="imageBrowes" />
+                </div>
+                <hr />
+
+                <div id="imgPreview" class="thumbnail" style="display:none">
+                    <img class="img-responsive" id="targetImg" />
+                    <div class="caption">
+                        <a href="#" ><i class="glyphicon glyphicon-trash"></i></a>
+                        <span id="description"></span>
+                    </div>
+                    <a href="#" class="btn btn-default" >Upload</a>
+                </div>
+
+            </div>
+            <div class="col-md-2 thumbnail" id="uploadedImage">
+
+
+            </div>
+        </div>*@
+
+
+
+                @*<button type="button" id="btnAdd" class="btn btn-default">Add</button>*@
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

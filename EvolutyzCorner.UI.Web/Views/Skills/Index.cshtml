@@ -1,0 +1,493 @@
+﻿
+@{@model Evolutyz.Entities.SkillEntity
+
+
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<style>
+    .register {
+        /*background: -webkit-linear-gradient(left, #797980, #00c6ff);*/
+        background: -webkit-linear-gradient(left, #9c8c84, #f5aa88);
+        margin-top: 3%;
+        padding: 0 3% 3%;
+    }
+
+    .register-left {
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+        .register-left input {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+
+    .register-right {
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+
+    .register-left img {
+        margin - top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite alternate;
+        animation: mover 1s infinite alternate;
+    }
+
+    .register-left p {
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+
+    .register .register-form {
+        padding: 10%;
+        margin-top: 0;
+    }
+
+    .btnRegister {
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        /*background: #0062cc;*/
+        background: -webkit-linear-gradient(135deg, rgb(243, 122, 65), rgb(248, 194, 108));
+        border-color: rgb(253, 174, 129);
+        color: #fff;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .register .nav-tabs {
+        margin-top: 3%;
+        border: none;
+        background: #0062cc;
+        border-radius: 1.5rem;
+        width: 28%;
+        float: right;
+    }
+
+        .register .nav-tabs .nav-link {
+            padding: 2%;
+            height: 34px;
+            display: inline-block;
+            font-weight: 600;
+            width: 100px;
+            color: #0062cc;
+            border: 2px solid #0062cc !important;
+            border-radius: 1.5rem;
+        }
+
+            .register .nav-tabs .nav-link:hover {
+                border: none;
+            }
+
+    .register-heading {
+        margin-top: 2%;
+        margin-bottom: 1%;
+        color: #fbfbfb;
+    }
+</style>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Skills</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-4" style="display:none;">
+                        <label for="SkillId">SkillId</label>
+                        @Html.TextBoxFor(m => m.SkillId, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="SkillTitle">SkillTitle<font style="color:red;">*</font></label>
+                        @Html.TextBoxFor(m => m.SkillTitle, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ShortDescription">ShortDescription<font style="color:red;">*</font></label>
+                        @Html.TextBoxFor(m => m.ShortDescription, new { @type = "text", @class = "form-control" })
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label for="StatusID">Status<font style="color:red;">*</font></label>
+
+                        @Html.DropDownListFor(m => m.StatusID, new SelectList(new List<Object>{
+
+                     new { value = true, text = "Active"},
+                     new { value = false, text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.StatusID)
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnUpdate" class="btn btn-clr" style="display:none">Update</button>
+                <button type="button" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> Account Skills </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>SkillId</th>
+                        <th>SkillTitle</th>
+                        <th>ShortDescription</th>
+                        <th>Status</th>
+                        <th id="actions">Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    loaddata();
+    function loaddata() {
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/Skills/GetAccountSkills",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+
+                        { 'data': 'SkillId', visible: false },
+
+
+                        { 'data': 'SkillTitle' },
+                        { 'data': 'ShortDescription' },
+
+
+                        {
+                            'data': 'StatusID',
+                            "render": function (StatusID, type, full, meta) {
+                                //if (Acc_ActiveStatus === true) {
+                                //    return '<div class="statuscheck"> <input type="checkbox"  id="check_01" checked   onclick="UnCheckStatus(' + full.Acc_AccountID + ')"> <label for="check_01"></label> </div>';
+                                //}
+                                //else {
+                                //    return '<div class="statuscheck"> <input type="checkbox" id="check_02"   onclick="CheckStatus(' + full.Acc_AccountID + ')"> <label for="check_02"></label> </div>';
+                                //}
+                                if (StatusID === 1) {
+                                    return '<div class="statuscheck"> <input type="checkbox" id="check_01" checked onclick="UnCheckStatus(' + full.SkillId + ')"> <label for="check_01"></label> </div>';
+                                }
+                                else {
+                                    return '<div class="statuscheck"> <input type="checkbox" id="check_02" onclick="CheckStatus(' + full.SkillId + ')"> <label for="check_02"></label> </div>';
+                                }
+                            }
+                        },
+                        {
+                            "render": function (SkillId, type, full, meta) {
+                                return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.SkillId + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn" id="deletebtn" onclick="Deletehc(' + full.SkillId + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+                                //if (permissions === "Read/Write") {
+                                // return '<a class="btn btn-icn btn-icn-hide  edit" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.HolidayCalendarID + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn btn-icn-hide" id="deletebtn" onclick=" Deletehc(' + full.HolidayCalendarID + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+                                //}
+                                //else{
+                                //    return '<a class="btn btn-icn" data-toggle="modal"  data-target="#ContainerGridDetail"   onclick="edit(' + full.HolidayCalendarID + ')" ><i class="fa fa-edit" id="editbtn" aria-hidden="true"></i></a><a class="btn btn-icn" id="deletebtn" onclick=" Deletehc(' + full.HolidayCalendarID + ')" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+
+
+                                //}
+
+                            }
+
+                        }
+
+
+
+                    ]
+                });
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (msg) {
+
+            }
+        });
+    }
+
+    function edit(skillid) {
+        $("#btnAdd").hide();
+        $("#btnUpdate").show();
+          
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/Skills/Getskillbyid?id=" + skillid,
+            type: "POST",
+          
+            dataType: "json",
+            success: function (data) {
+                  
+                $("#SkillId").val(data.SkillId);
+                $("#SkillTitle").val(data.SkillTitle);
+                $("#ShortDescription").val(data.ShortDescription);
+              
+
+              
+                var status = data.StatusID;
+
+                if (status === 1) {
+                    $("#StatusID").val("True");
+                } else {
+                    $("#StatusID").val("False");
+                }
+               
+
+
+
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            }
+
+        });
+    }
+
+    function Deletehc(skillId) {
+
+        $.ajax({
+
+            type: "POST",
+            url: '/User/DeleteSkill?skillid=' + skillId,
+            dataType: "json",
+            //   cache: false,
+            complete: function (res) {
+
+                alert("Record Deleted");
+                //loaddata();
+                window.location.href = "/Skills/Index";
+
+            },
+
+            error: function (Result) {
+
+                //alert("Error");
+
+            }
+
+        })
+
+    }
+    $(document).ready(function () {
+        $("#StatusID").val("True");
+        $("#btnAddModel").click(function () {
+            $("#btnAdd").show();
+            $("#btnUpdate").hide();
+        });
+        $("#btnclose").click(function () {
+            window.location.reload();
+        });
+
+        $("#btnAdd").on("click", function () {
+
+            var skillTitle = $("#SkillTitle").val();
+            var Description = $("#ShortDescription").val();
+            var status = $("#StatusID").val();
+            if (skillTitle === "" && Description === "" || status==="") {
+                alert("Please Fill All  Mandatory Fields");
+                //$("#Stitle").focus();
+                return false;
+            }
+            if (skillTitle === "") {
+                alert("Please Fill Skill Title");
+                $("#Stitle").focus();
+                return false;
+            }
+
+            if (Description === "") {
+                alert("Please Fill Skill Description");
+                $("#Sdescription").focus();
+                return false;
+            }
+            if (status === "") {
+                alert("Please Select Status");
+                $("#StatusID").focus();
+                return false;
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Skills/AddSkills",
+                data: {
+                    skillTitle: skillTitle,
+                    Description: Description,
+                    status: status
+
+                },
+                cache: false,
+                success: function (data) {
+                    // $("#resultarea").text(data);
+                    alert(data);
+                    window.location.reload();
+
+                }
+            });
+
+
+        });
+
+        $("#btnUpdate").click(function () {
+            var skillid = $("#SkillId").val();
+            var skillTitle = $("#SkillTitle").val();
+            var Description = $("#ShortDescription").val();
+            var status = $("#StatusID").val();
+
+            if (skillTitle === "") {
+                alert("Please Fill Skill Title");
+                $("#SkillTitle").focus();
+                return false;
+            }
+
+            if (Description === "") {
+                alert("Please Fill Skill Description");
+                $("#ShortDescription").focus();
+                return false;
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Skills/UpdateSkills?id=" + skillid,
+                data: {
+                    skillTitle: skillTitle,
+                    Description: Description,
+                    status: status
+
+                },
+                cache: false,
+                success: function (data) {
+                    // $("#resultarea").text(data);
+                    alert(data);
+                    window.location.reload();
+
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<script type="text/javascript">
+    function UnCheckStatus(id) {
+        $.ajax({
+            url: "/User/SkillChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': false
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    function CheckStatus(id) {
+        $.ajax({
+            url: "/User/SkillChangeStatus",
+            type: "POST",
+            data: {
+                'id': id,
+                'status': true
+            },
+
+            //dataType: "json",
+            success: function (data) {
+
+                alert(data);
+                window.location.reload();
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+        });
+    }
+    $(document).ready(function () {
+        $("#Skills_management").addClass("active");
+        $("#Skills_management > ul.treeview-menu > li:first-child").addClass("click");
+        $("#Skills_management").siblings().removeClass("active");
+
+         var permissions = '@ViewBag.a';
+       
+        if (permissions === "Read/Write")
+        {
+            $("#btnAddModel").show();
+            $("#actions").show();
+       
+        }
+        else
+        {
+            $("#btnAddModel").hide();
+            $("#actions").hide();
+         }
+    });
+</script>

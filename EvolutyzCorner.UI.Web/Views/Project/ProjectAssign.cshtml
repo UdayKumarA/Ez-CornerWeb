@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "ProjectAssign";
+}
+<h2>Assign user to Project</h2>
+
+<div class="container">
+    <table align="center">
+        <tr>
+            <td>
+                @Html.Label("Projects")
+            </td>
+            <td>
+                @Html.DropDownList("ProjName", "Select Project")
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Users")
+            </td>
+            <td>
+                @Html.DropDownList("UserNames", "Select Users")
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td></td>
+        </tr>
+        <tr>
+            <td>From</td>
+            <td>
+                <input type="text" id="txtFromDate" placeholder="From Date" class="FormData" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td></td>
+        </tr>
+        <tr>
+            <td>To</td>
+            <td>
+                <input type="text" id="txtToDate" placeholder="To Date" class="FormData" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td></td>
+        </tr>
+        <tr>
+            <td>Allocation %</td>
+            <td>
+                <input type="text" id="txtAllocation" placeholder="Allocation Percentage" maxlength="3"  />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td></td>
+
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">
+            <input type="button" value="Save" id="btnsave" />
+        </td>
+            <td align="center">
+                <input type="button" value="Clear" id="btnClear" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+ @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css"/>
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>*@
+
+<script type="text/javascript">
+    $('#btnsave').click(function (eventObj) {
+        var dropdown1 = $("#ProjName").val();
+        var dropdown2 = $("#UserNames").val();
+        var from = $("#txtFromDate").val();
+        var To = $("#txtToDate").val();
+        var per = $("#txtAllocation").val();
+
+        $.ajax({
+            url: '@Url.Action("ProjectAssign","Project")',
+            data: {
+                'dropdown1': dropdown1, 'dropdown2': dropdown2, 'from': from, 'To': To, 'per': per},
+            type: "post",
+            cache: false,
+            success: function (savingStatus) {
+                alert('Record saved successfully');
+                clearControls();
+                //window.location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+
+        $('#txtFromDate').datepicker();
+
+        //$('#txtToDate').datetimepicker();
+        $('#txtToDate').datepicker();
+
+        $("#txtAllocation").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    });
+
+    $('#txtAllocation').keyup(function () {
+        if ($(this).val() > 100) {
+            alert("No numbers above 100");
+            $(this).val('100');
+        }
+    });
+
+    $('#btnClear').click(function () {
+        clearControls();
+    });
+
+    function clearControls() {
+        $("#ProjName").val('');
+        $("#UserNames").val('');
+        $("#txtFromDate").val('');
+        $("#txtToDate").val('');
+        $("#txtAllocation").val('');
+    }
+
+</script>

@@ -1,0 +1,339 @@
+﻿@model Evolutyz.Entities.UserEntity
+@{
+    ViewBag.Title = "User Management - User";
+    // Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="~/EvolutyzCornerScripts/UserManagement.js"></script>
+
+<style>
+    .form-control.validate_msg + span.field-validation-valid:before,
+    .validatemsg + span:before {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+    #Usr_Username.validate_msg + span:before {
+        content: "UserName already Exists";
+    }
+
+    #Usr_LoginId.validate_msg + span:before {
+        content: "Loginid already Exists";
+    }
+
+    .validatemsg + span:before {
+        content: "This Field Is Required";
+    }
+
+    .profile-image {
+        /*-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 350%, 0% 0%);*/
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        /*background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(/upload/Images/default.PNG);*/
+    }
+
+    .box.box-solid.box-brown {
+        border: 1px solid #aaaaaa;
+    }
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    .box.box-solid.box-brown > .box-header {
+        /*background-color: #a3765b;
+        color: #fff;*/
+        border-color: #aaaaaa;
+        background: #cccccc url(../Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+        color: #222222;
+    }
+
+    .box.box-solid.box-brown .btn-warning {
+        background-color: #f97045;
+        border-color: #fe450b;
+    }
+
+    .box.box-solid.box-brown .btn-success {
+        background-color: #fea728;
+        border-color: #FF9800;
+    }
+
+    #divhiduserid ~ label {
+        margin: 7px auto;
+    }
+</style>
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="edit">Edit User</h4>
+                <h4 class="modal-title" id="add">Add User</h4>
+            </div>
+            <form id="myform">
+                <div class="modal-body">
+                    <div class="row" style="display:none;">
+                        <div class="form-group col-md-6">
+                            <label for="Usr_UserID">Usr_UserID</label>
+                            @Html.TextBoxFor(m => m.Usr_UserID, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Usr_UserID">Usr_AccountID</label>
+                            @Html.TextBoxFor(m => m.Usr_AccountID, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Usr_RoleID, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.UserType, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="AccountName">Organization<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.AccountName, new SelectList(ViewBag.Accountname, "value", "text"), "Select Accountnames", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.AccountName)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="UserType">Employement Type<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.Usr_UserTypeID, new SelectList("", ""), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_UserTypeID)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="RoleName">RoleName<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.RoleName, new SelectList("", ""), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RoleName)
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div @*class="row"*@ id="Mangerdiv">
+                            <div class="form-group col-md-4">
+                                <label for="Manager1">Manager1</label>
+                                @Html.DropDownListFor(m => m.ManagerName, new SelectList("", ""), new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(m => m.ManagerName)
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Manager2">Manager2</label>
+                                @Html.DropDownListFor(m => m.Managername2, new SelectList("", ""), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Managername2)
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="Usr_Titleid">Title<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.Usr_Titleid, new SelectList(ViewBag.usertitle, "value", "text"), "Select Title", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_Titleid)
+                        </div>
+                        @*</div>
+        <div class="row">*@
+                        <div class="form-group col-md-4">
+                            <label for="UserName">FirstName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsrP_FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsrP_FirstName)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="LoginId">LastName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsrP_LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsrP_LastName)
+                        </div>
+
+                        <div class="form-group col-md-4" style="margin-bottom: 24px;">
+                            <label for="LoginId">Profile Image</label>
+                            <img id="profile-image" class="profile-image" />
+                            @*<div id="profile-image" class="profile-image"></div>*@
+
+                            <input name="file" type="file" id="fileUpload" style="visibility:hidden" onchange="readURL(this)" />
+                            @Html.ValidationMessageFor(m => m.file)
+                        </div>
+                        @*</div>
+        <div class="row">*@
+                        <div class="form-group col-md-4" style="display:none">
+                            <label for="UsrP_EmployeeID">Employee Id<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.UsrP_EmployeeID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UsrP_EmployeeID)
+                        </div>
+                        <div class="form-group col-md-4">
+
+                            <label for="UserName" style="white-space: nowrap;">UserName<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Usr_Username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_Username)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="LoginId">Emailid<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Usr_LoginId, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_LoginId)
+                            <label>Note:(login with Username or EmailID)</label>
+                        </div>
+                       
+
+                        @*</div>
+        <div class="row">*@
+                        <div class="form-group col-md-4">
+                            <label for="Password">Password<font style="color:red;">*</font></label>
+                            @Html.PasswordFor(m => m.Usr_Password, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Usr_Password)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Password">Confirm Password<font style="color:red;">*</font></label>
+                            @Html.PasswordFor(m => m.cnf_Password, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.cnf_Password)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="UserName">Sign Up Date<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Usrp_DOJ, new { @class = "form-control", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Usrp_DOJ)
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Status">Status<font style="color:red;">*</font></label>
+                            @Html.DropDownListFor(m => m.Usr_ActiveStatus, new SelectList(new List<Object>{
+
+                           new { value = 1 , text = "Active"},
+                           new { value = 0 , text = "InActive"}  }, "value", "text", 2), "Select Status", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Usr_ActiveStatus)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnUpdate" class="btn btn-clr">Update</button>
+                    <button type="submit" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy">Users </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-backdrop="false" data-keyboard="false" data-target="#ContainerGridDetail" class="btn" /> @*data-backdrop="false" data-keyboard="false"*@
+    </div>
+    <div class="table-responsive">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>Usr_AccountID</th>
+                    <th>Employement Type</th>
+                    <th>Rolename</th>
+                    <th>Taskname</th>
+                    <th>Manager1</th>
+                    <th>Manager2</th>
+                    <th>Username</th>
+                    <th>Login</th>
+                    <th>Password</th>
+                    @*<th>Status</th>*@
+                    <th id="Actions">Action</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="DeleteSkill(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        var RoleId;
+        var userId;
+        RoleId = '@ViewBag.Roleid';
+         userId ='@ViewBag.UserId';
+        var count = 0;
+        var AccountId;
+        var userid;
+        var acID;
+        acID = '@ViewBag.Accountid';
+
+</script>
+<script type="text/javascript">
+    debugger;
+     var permissions = '@ViewBag.a';
+    if (permissions === "Read/Write") {
+            $("#btnAddModel").show();
+            $("#Actions").show();
+    } else if (permissions === "Read") {
+        $("#btnAddModel").hide();
+        $("#Actions").show();
+        $("#Actions").text('View');
+    }
+        else {
+            $("#btnAddModel").hide();
+            $("#Actions").hide();
+        }
+
+    $(document).ready(function () {
+        if (RoleId === "Super Admin") {
+            //$("#ManagerName").hide();
+            //$("#Managername2").hide();
+            $("#Mangerdiv").hide();
+        }
+
+        $("#role_management + li + li").addClass("active");
+        $("#role_management + li + li > ul.treeview-menu > li:last-child").addClass("click");
+        $("#role_management + li + li").siblings().removeClass("active");
+
+        $.fn.noMask = function (regex) {
+            this.on("keypress", function (e) {
+                if (regex.test(String.fromCharCode(e.which))) {
+                    return false;
+                }
+            });
+        };
+
+        //  /^ (0 ? [1 - 9] | [12][0 - 9] | 3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
+        // $("#HolidayDate").noMask(/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g);
+        $("#Usrp_DOJ").noMask(/^[\w.,:;"'/!|#%&$*()_-]+$/);
+        $("#Usrp_DOJ").noMask(/[$-/:-?{-~!"^_`\[\]]/);
+
+    });
+</script>

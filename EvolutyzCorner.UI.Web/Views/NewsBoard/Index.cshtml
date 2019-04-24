@@ -1,0 +1,396 @@
+﻿@model Evolutyz.Entities.NewsboardEntity
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="~/Scripts/jquery.validate.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js"></script>
+<link href="~/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/date.format.js"></script>
+
+<script src="~/Scripts/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<style>
+
+    a.btn-icn {
+        display: none
+    }
+
+    a.btn-icn-hide {
+        display: inline-block
+    }
+
+    #loading-image {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1035;
+        background-color: rgba(243, 243, 243, 0.75);
+        /*opacity: .8;*/
+    }
+
+
+    label.error {
+        position: absolute;
+        bottom: -20px;
+        left: 15px;
+        font-size: 10px;
+        color: red;
+    }
+
+    #loading-image > img {
+        /*width: 56px;
+            height: 56px;
+            border: 8px solid rgba(255, 87, 34, 0.25);
+            border-top-color: #f37a41;
+            border-radius: 50%;*/
+        position: absolute;
+        /* animation: loader-rotate 1s linear infinite; */
+        top: 50%;
+        left: 50%;
+        margin: -60px auto 0;
+        max-width: 100%;
+        display: block;
+        height: 100px;
+    }
+
+    #loading-image > span {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        animation: loader-circles 1s linear infinite;
+        top: 50%;
+        left: 50%;
+        margin: -20px auto 0;
+    }
+
+    #loading-image > strong {
+        position: absolute;
+        top: 50%;
+        left: 48%;
+        margin: 0px auto 0;
+        font-size: 10px;
+    }
+
+    @@keyframes loader-circles {
+        0% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+
+        12.5% {
+            box-shadow: 0 -85px 0 0 #f37a41, 61px -61px 0 0 rgba(255, 87, 34, 0.05), 85px 0 0 0 rgba(255, 87, 34, 0.1), 61px 61px 0 0 rgba(255, 87, 34, 0.2), 0 85px 0 0 rgba(255, 87, 34, 0.3), -61px 61px 0 0 rgba(255, 87, 34, 0.4), -85px 0 0 0 rgba(255, 87, 34, 0.6), -61px -61px 0 0 rgba(255, 87, 34, 0.8);
+        }
+
+        25% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.8), 61px -61px 0 0 #f37a41, 85px 0 0 0 rgba(255, 87, 34, 0.05), 61px 61px 0 0 rgba(255, 87, 34, 0.1), 0 85px 0 0 rgba(255, 87, 34, 0.2), -61px 61px 0 0 rgba(255, 87, 34, 0.3), -85px 0 0 0 rgba(255, 87, 34, 0.4), -61px -61px 0 0 rgba(255, 87, 34, 0.6);
+        }
+
+        37.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.6), 61px -61px 0 0 rgba(255, 87, 34, 0.8), 85px 0 0 0 #f37a41, 61px 61px 0 0 rgba(255, 87, 34, 0.05), 0 85px 0 0 rgba(255, 87, 34, 0.1), -61px 61px 0 0 rgba(255, 87, 34, 0.2), -85px 0 0 0 rgba(255, 87, 34, 0.3), -61px -61px 0 0 rgba(255, 87, 34, 0.4);
+        }
+
+        50% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.4), 61px -61px 0 0 rgba(255, 87, 34, 0.6), 85px 0 0 0 rgba(255, 87, 34, 0.8), 61px 61px 0 0 #f37a41, 0 85px 0 0 rgba(255, 87, 34, 0.05), -61px 61px 0 0 rgba(255, 87, 34, 0.1), -85px 0 0 0 rgba(255, 87, 34, 0.2), -61px -61px 0 0 rgba(255, 87, 34, 0.3);
+        }
+
+        62.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.3), 61px -61px 0 0 rgba(255, 87, 34, 0.4), 85px 0 0 0 rgba(255, 87, 34, 0.6), 61px 61px 0 0 rgba(255, 87, 34, 0.8), 0 85px 0 0 #f37a41, -61px 61px 0 0 rgba(255, 87, 34, 0.05), -85px 0 0 0 rgba(255, 87, 34, 0.1), -61px -61px 0 0 rgba(255, 87, 34, 0.2);
+        }
+
+        75% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.2), 61px -61px 0 0 rgba(255, 87, 34, 0.3), 85px 0 0 0 rgba(255, 87, 34, 0.4), 61px 61px 0 0 rgba(255, 87, 34, 0.6), 0 85px 0 0 rgba(255, 87, 34, 0.8), -61px 61px 0 0 #f37a41, -85px 0 0 0 rgba(255, 87, 34, 0.05), -61px -61px 0 0 rgba(255, 87, 34, 0.1);
+        }
+
+        87.5% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.1), 61px -61px 0 0 rgba(255, 87, 34, 0.2), 85px 0 0 0 rgba(255, 87, 34, 0.3), 61px 61px 0 0 rgba(255, 87, 34, 0.4), 0 85px 0 0 rgba(255, 87, 34, 0.6), -61px 61px 0 0 rgba(255, 87, 34, 0.8), -85px 0 0 0 #f37a41, -61px -61px 0 0 rgba(255, 87, 34, 0.05);
+        }
+
+        100% {
+            box-shadow: 0 -85px 0 0 rgba(255, 87, 34, 0.05), 61px -61px 0 0 rgba(255, 87, 34, 0.1), 85px 0 0 0 rgba(255, 87, 34, 0.2), 61px 61px 0 0 rgba(255, 87, 34, 0.3), 0 85px 0 0 rgba(255, 87, 34, 0.4), -61px 61px 0 0 rgba(255, 87, 34, 0.6), -85px 0 0 0 rgba(255, 87, 34, 0.8), -61px -61px 0 0 #f37a41;
+        }
+    }
+</style>
+<!-- Horizontal Form -->
+<div id="loading-image" style="display:none">
+    @*<img src="~/Content/images/demo_wait.gif"/>*@
+    <span></span>
+    <strong>Loading Please Wait....</strong>
+</div>
+
+<div class="block-content">
+    <div class="">
+        <h4 class="heading-fancy"> News Board </h4>
+        <input type="button" id="btnAddModel" value="+" data-toggle="modal" data-target="#ContainerGridDetail" class="btn" />
+    </div>
+    <div class="table-responsive">
+        <div class="clearfix table-block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>NewsBoardId </th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Description</th>
+
+                        <th>CreatedBy</th>
+                        <th>CreatedDate</th>
+
+                        @*<th id="actions">Actions</th>*@
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade-in" id="ContainerGridDetail" role="dialog">
+
+    <div class="modal-dialog modal-custom">
+        @*<label id="succ"></label>*@
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="addnews">Add News</h4>
+                <h4 class="modal-title" id="editnews">Edit News</h4>
+            </div>
+            <form id="myform">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-4" style="display:none;">
+                            <label for="NewsBoardId">NewsBoardId</label>
+                            @Html.TextBoxFor(m => m.NewsBoardId, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Title">Title<font style="color:red;">*</font></label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Image">Image</label>
+                            <input type="file" id="fileUpload" name="fileUpload" accept="image/*" onchange="loadFile(event)" />
+                            @Html.TextBoxFor(m => m.Image, new { @class = "form-control", style = "display: none;" })
+                            @Html.ValidationMessageFor(m => m.Image)
+                            <img id="imgLogo" src='#' class="img-responsive" alt="Logo" width="150" height="55" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="Description">Description<font style="color:red;">*</font></label>
+                            @Html.TextAreaFor(m => m.Description, new { @type = "text", @class = "form-control", style = "width:821px", rows = "5" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    @*<button type="submit" id="btnUpdate" class="btn btn-clr" style="display:none">Update</button>*@
+                    <button type="submit" id="btnAdd" class="btn btn-clr" style="display:none">Add</button>
+                    <button type="button" class="btn btn-clr1" data-dismiss="modal" id="btnclose">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="containerDelete" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div id="divAdv" class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Do you really want to Delete the row</h3>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-clr" value="1" id="btnYes" onclick="Deletehc(delid)">Yes</button>
+                <button type="button" class="btn btn-clr1" value="2" data-dismiss="modal" id="cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/date.format.js"></script>
+<script>
+     var permissions = '@ViewBag.a';
+    if (permissions === "Read/Write") {
+        $("#btnAddModel").show();
+    } else {
+        $("#btnAddModel").hide();
+    }
+
+
+    function loaddata() {
+        $('#loading-image').attr("style", "display: block;");
+
+        $.ajax({
+            url: "/NewsBoard/GetNewsCollection",
+            type: "Get",
+            dataType: "json",
+            success: function (res) {
+                $('#table').DataTable({
+                    'data': res,
+                    'paginate': true,
+                    'sort': true,
+                    'Processing': true,
+                    'columns': [
+
+
+                        { 'data': 'NewsBoardId', visible: false },
+                        {
+                            'data': 'Image',
+                            "render": changeTitle
+                        },
+                        { 'data': 'Title' },
+                        {
+                            'data': 'Description',
+                            "mRender": function (data, type, row) {
+                                var trimmedString = data.substring(0, 25);
+                                return trimmedString + '...';
+                            }
+                        },
+
+                        { 'data': 'Name' },
+                        {
+                            'data': 'CreatedDate',
+                            "type": "date ",
+                            "render": function (value) {
+                                if (value === null) return "";
+                                return dateConversion(value);
+                            }
+
+                        },
+                    ]
+                });
+                function dateConversion(value) {
+                    if (value === null) return "";
+                    var pattern = /Date\(([^)]+)\)/;
+                    var results = pattern.exec(value);
+                    var dt = new Date(parseFloat(results[1]));
+
+                    return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+
+                }
+            },
+            complete: function () {
+                $('#loading-image').attr("style", "display: none;");
+            },
+            error: function (msg) {
+
+            }
+
+        });
+
+    }
+    var changeTitle = function (cellVal, options, rowObject) {
+        return "<img src='" + "/uploadimages/Images/" + cellVal + "' alt='No Image Uploaded'  width='150' height='55'  />";
+    };
+    $(document).ready(function () {
+        loaddata();
+        $('#imgLogo').on("error", function () {
+            $(this).attr('src', '/Content/images/newsDefault.jpg');
+
+        });
+        $("#btnAddModel").click(function () {
+            $("#btnAdd").show();
+           // $("#btnUpdate").hide();
+            $("#addnews").show();
+            $("#editnews").hide();
+        });
+
+        $("#btnAdd").click(function () {
+            var title = $("#Title").val();
+            var description = $("#Description").val();
+            var file = document.getElementById("fileUpload").files[0];
+            var ImageName = file;
+            var imagetext = $("#Image").val();
+            var imagename = $("#imgLogo").val();
+            var formdata = new FormData();
+            formdata.append("Image", imagetext);
+            formdata.append("Image", ImageName);
+            formdata.append("Title", title);
+            formdata.append("Description", description);
+            $('#myform').validate({
+                rules: {
+                    Title: {
+                        required: true,
+
+                    },
+                    Description: {
+                        required: true,
+
+                    }
+                   
+
+
+                },
+                submitHandler: function (form) {
+
+                    $('#loading-image').attr("style", "display: block;");
+                    $.ajax({
+                        url: "/NewsBoard/AddNews",
+                        cache: false,
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        data: formdata,
+                        success: function (res) {
+                            alert(res);
+                            window.location.reload();
+
+                        },
+                        complete: function () {
+                            $('#loading-image').attr("style", "display: none;");
+                        },
+
+                        error: function (Result) {
+
+                            //alert("Error");
+
+                        }
+
+                    });
+                    return false;
+
+
+
+                }
+            });
+
+               
+
+        
+
+        });
+    });
+
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#account_management + li").addClass("active");
+        $("#account_management + li > ul.treeview-menu > li:last-child").addClass("click");
+        $("#account_management + li").siblings().removeClass("active");
+
+    });
+</script>
+
+
+
+

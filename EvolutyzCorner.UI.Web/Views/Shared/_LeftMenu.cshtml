@@ -1,0 +1,211 @@
+﻿
+@using EvolutyzCorner.UI.Web.Controllers
+@using Evolutyz.Entities;
+
+@{
+    HomeController hm = new HomeController();
+
+    var obj = hm.GetAdminMenu();
+    UserSessionInfo info = new UserSessionInfo();
+    int? proid = info.Projectid;
+
+}
+
+
+@if (Session["UserSessionInfo"] != null)
+{
+    Html.Partial("_ChangePassword");
+
+}
+
+<ul class="sidebar-menu" data-widget="tree">
+    <li id="dashboard"> <a href="~/Dashboard/Dashboard1"> @*<i class="fa fa-dashboard"></i>*@ <img src="~/Content/images/leftmenu/inActive_Dashboard.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Dashboard.png" class="leftmenu_icn" /> <span>Dashboard</span> </a> </li>
+    @if (Session["roleid"].ToString() == "1001")
+    {
+
+        <li id=""> <a href="~/LeaveScheme/Financialyear"> <img src="~/Content/images/leftmenu/inActive_Financial_Year.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Financial_Year.png" class="leftmenu_icn" /> <span>Financial year </span> </a> </li>
+    }
+    @foreach (var item in obj)
+    {
+
+
+
+        if (item.Mod_ModuleID == 502 && item.ModuleName == "Add Project/Client")
+        {
+
+
+
+            <li id=""> <a href="~/Project/Index"> <img src="~/Content/images/leftmenu/inActive-client-management.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active-client-management.png" class="leftmenu_icn" /> <span>Projects</span> </a> </li>
+
+
+        }
+
+
+        if (item.Mod_ModuleID == 500 && item.ModuleName == "NewsBoard")
+        {
+          
+
+
+            <li id=""> <a href="~/NewsBoard/Index"> <img src="~/Content/latest_leftmenu/inActive_newsboard.png" class="leftmenu_icn" /> <img src="~/Content/latest_leftmenu/Active_newsboard.png" class="leftmenu_icn" /> <span>News Board</span> </a> </li>
+
+
+        }
+
+
+        //if (Convert.ToBoolean(Session["UsAccount"].ToString()) == false)
+        //{
+
+
+        @*if (item.Mod_ModuleID == 504 && item.ModuleName == "Add Leave Type")
+        {
+
+
+
+            <li id=""> <a href="~/LeaveType/Index"> <img src="~/Content/images/leftmenu/inActive_Leave_Type.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Leave_Type.png" class="leftmenu_icn" /> <span>Leave Type</span> </a> </li>
+
+        }
+        if (item.Mod_ModuleID == 504 && item.ModuleName == "Add Leave Scheme")
+        {
+
+
+
+            <li id=""> <a href="~/LeaveScheme/Index"> <img src="~/Content/images/leftmenu/inActive_Leave_scheme.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Leave_scheme.png" class="leftmenu_icn" /> <span>Leave Scheme </span> </a> </li>
+
+
+        }*@
+
+        // }
+
+        if (item.Mod_ModuleID == 500 && item.ModuleName == "Add Account")
+        {
+
+            <li id="account_management"> <a href="~/OrganizationAccount/Index"> <img src="~/Content/images/leftmenu/inActive_Account_management.png" class="leftmenu_icn" /> <img class="leftmenu_icn" src="~/Content/images/leftmenu/Active_Account_management.png" /> <span>Account Management</span> </a> </li>
+
+        }
+
+
+        if (item.Mod_ModuleID == 500 && item.ModuleName == "AddHoliday Calendar")
+        {
+            <li id=""> <a href="~/HolidayCalendar/HolidayCalendar"> <img src="~/Content/images/leftmenu/inActive_calendar_holiday.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_calendar_holiday.png" class="leftmenu_icn" /> <span>HolidayCalendar </span> </a> </li>
+
+        }
+
+
+
+
+        if (item.Mod_ModuleID == 500 && item.ModuleName == "Add main Tasks")
+        {
+
+            <li id=""> <a href="~/Task/Index"> <img src="~/Content/images/leftmenu/inActive_projects_tasks_management.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_projects_tasks_management.png" class="leftmenu_icn" /> <span>Manage Account Tasks</span> </a> </li>
+
+
+        }
+
+
+        if (item.Mod_ModuleID == 501 && item.ModuleName == "Add Role")
+        {
+
+            <li id="role_management"> <a href="~/ManageRole/Index"> <img src="~/Content/images/leftmenu/inActive_Role_management.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Role_management.png" class="leftmenu_icn" /> <span>Role Management</span> </a> </li>
+
+
+        }
+        if (item.Mod_ModuleID == 501 && item.ModuleName == "Add Employeement Type")
+        {
+
+
+
+            <li id=""> <a href="~/UserType/Index"> <img src="~/Content/images/leftmenu/inActive_user-type.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_user-type.png" class="leftmenu_icn" /> <span>Employment Type</span> </a> </li>
+
+
+        }
+
+
+        if (item.Mod_ModuleID == 501 && item.ModuleName == "Add User")
+        {
+
+
+
+            <li id=""> <a href="~/User/Index"> <img src="~/Content/images/leftmenu/inActive_Users.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Users.png" class="leftmenu_icn" /> <span>Users </span> </a> </li>
+
+
+        }
+
+
+
+
+        if (proid != 0)
+        {
+            if (item.Mod_ModuleID == 503 && item.ModuleName == "Add/Submit Timesheet")
+            {
+
+                <li id="timesheet_management"> <a href="~/Timesheet/PreviewTimesheets"> <img src="~/Content/images/leftmenu/inActive_Timesheet_management.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Timesheet_management.png" class="leftmenu_icn" /> <span>Timesheet Management</span> </a> </li>
+
+
+            }
+        }
+
+
+
+        @*if (item.Mod_ModuleID == 504 && item.ModuleName == "Add Leave Type")
+            {
+
+
+
+                <li id=""> <a href="~/LeaveType/Index"> <img src="~/Content/images/leftmenu/inActive_Leave_Type.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Leave_Type.png" class="leftmenu_icn" /> <span>Leave Type</span> </a> </li>
+
+            }
+            if (item.Mod_ModuleID == 504 && item.ModuleName == "Add Leave Scheme")
+            {
+
+
+
+                <li id=""> <a href="~/LeaveScheme/Index"> <img src="~/Content/images/leftmenu/inActive_Leave_scheme.png" class="leftmenu_icn" /> <img src="~/Content/images/leftmenu/Active_Leave_scheme.png" class="leftmenu_icn" /> <span>Leave Scheme </span> </a> </li>
+
+
+            }*@
+        if (item.Mod_ModuleID == 504 && item.ModuleName == "Apply Leave")
+        {
+
+
+
+            <li id=""> <a href="~/LeaveApplicationManagement/Index"> <img src="~/Content/latest_leftmenu/inActive_Leave_management.png" class="leftmenu_icn" /> <img src="~/Content/latest_leftmenu/Active_Leave_management.png" class="leftmenu_icn" /> <span> Leave Management </span> </a> </li>
+
+
+        }
+
+        if (item.Mod_ModuleID == 504 && item.ModuleName == "Leave View")
+        {
+
+
+
+            <li id=""> <a href="~/LeaveApplicationManagement/PreviewLeaves"> <img src="~/Content/latest_leftmenu/inActive_Leave_preview.png" class="leftmenu_icn" /> <img src="~/Content/latest_leftmenu/Active_Leave_preview.png" class="leftmenu_icn" /> <span>PreviewLeaves </span> </a> </li>
+            <li id=""> <a href="~/LeaveApplicationManagement/PreviewWorkFromHome"> <img src="~/Content/latest_leftmenu/inActive_workfromhome_preview.png" class="leftmenu_icn" /> <img src="~/Content/latest_leftmenu/Active_workfromhome_preview.png" class="leftmenu_icn" /> <span>PreviewWorkFromHome </span> </a> </li>
+
+
+        }
+
+        if (item.Mod_ModuleID == 501 && item.ModuleName == "Add Skill")
+        {
+
+
+
+            <li id=""> <a href="~/skills/Index"> <img src="~/Content/latest_leftmenu/inActive_addskills.png" class="leftmenu_icn" /> <img src="~/Content/latest_leftmenu/Active_addskills.png" class="leftmenu_icn" /> <span>Add Skills </span> </a> </li>
+
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+</ul>
+
+
+
+
+
